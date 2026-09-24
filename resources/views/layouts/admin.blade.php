@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="dark">
     <title>@yield('title', 'CMS') — BusinessOS</title>
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}?v={{ filemtime(public_path('assets/css/admin.css')) }}">
 </head>
 <body>
 <div class="admin-shell">
@@ -21,7 +21,10 @@
             <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><span>⌂</span>Overview</a>
             <a class="{{ request()->routeIs('admin.analytics') ? 'active' : '' }}" href="{{ route('admin.analytics') }}"><span>⌁</span>Analytics</a>
             <a class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}"><span>◫</span>Products</a>
+            <a class="{{ request()->routeIs('admin.inquiries.*') ? 'active' : '' }}" href="{{ route('admin.inquiries.index') }}"><span>✉</span>Inquiries</a>
+            <a class="{{ request()->routeIs('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}"><span>▧</span>Media</a>
             <a class="{{ request()->routeIs('admin.guides.*') ? 'active' : '' }}" href="{{ route('admin.guides.index') }}"><span>▤</span>Guides</a>
+            <a class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.edit') }}"><span>⚙</span>Settings</a>
         </nav>
 
         <div class="admin-sidebar-bottom">
@@ -55,3 +58,5 @@
 </div>
 </body>
 </html>
+
+[executed on device: ubuntu-6gb-dal-x8mx (c447f909-fdcc-4121-9924-27a69d35e9b2)]
