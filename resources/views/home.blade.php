@@ -47,7 +47,7 @@
             </div>
             <div class="story-command-body">
                 <div class="story-kpis">
-                    <article class="js-tilt" data-tilt-strength="3"><small>Active field team</small><strong>18</strong><span>+3 today</span></article>
+                    <article><small>Active field team</small><strong>18</strong><span>+3 today</span></article>
                     <article><small>Client visits</small><strong>42</strong><span>87% verified</span></article>
                     <article><small>Coverage</small><strong>76%</strong><span>On target</span></article>
                 </div>
@@ -254,7 +254,7 @@
         @if ($latestGuides->count())
             <div class="home-resource-grid">
                 @foreach ($latestGuides as $guide)
-                    <article>
+                    <article class="js-tilt" data-tilt-strength="3">
                         <div><span>{{ $guide->category }}</span><time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time></div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
