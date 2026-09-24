@@ -24,6 +24,9 @@ This repository now contains the first production-oriented BusinessOS marketing 
 - Mobile-first responsive navigation
 - Low-bandwidth delivery defaults
 - Automated feature tests and Pint style validation
+- Authenticated BusinessOS CMS with guide publishing
+- First-party website analytics with unique visits, all visits, country breakdowns and top pages
+- Configurable analytics retention with scheduled pruning
 
 ## Why the frontend is intentionally lightweight
 
@@ -66,6 +69,9 @@ vendor/bin/pint --test
 - `/terms` — website terms of use
 - `/contact` — contact and sales inquiry form
 - `/request-demo` — product demo request form
+- `/resources` — published guides and resources
+- `/guides/{slug}` — individual resource page
+- `/admin` — authenticated BusinessOS CMS
 - `/sitemap.xml` — XML sitemap
 - `/robots.txt` — crawler policy
 
@@ -80,6 +86,41 @@ php artisan migrate --force
 ```
 
 The public inquiry endpoint is validation protected, rate limited and includes a honeypot field.
+
+## CMS administration
+
+The CMS has no public registration route. After migrations, create or promote the first administrator interactively:
+
+```bash
+php artisan admin:create
+```
+
+The current CMS includes:
+
+- overview dashboard
+- guide creation, editing, draft/publish workflow and soft delete
+- unique website visits by country
+- all website visits by country
+- top public pages and daily traffic
+- 7, 30 and 90 day analytics windows
+
+Website analytics is first-party. It uses an anonymous visitor cookie for unique counting, does not store raw visitor IP addresses, and uses a trusted country code supplied by the host or CDN when available.
+
+Example production analytics configuration:
+
+```env
+ANALYTICS_ENABLED=true
+ANALYTICS_RETENTION_DAYS=400
+ANALYTICS_COUNTRY_HEADER=CF-IPCountry
+```
+
+Run Laravel's scheduler in production so expired analytics rows are pruned automatically.
+
+Seed the initial resource library with:
+
+```bash
+php artisan db:seed --class=GuideSeeder --force
+```
 
 ## Product catalog
 
@@ -117,7 +158,7 @@ php artisan optimize
 
 ## Roadmap
 
-The next implementation batches will add the content/guides architecture, CMS/admin product and inquiry management, localization infrastructure for English/Dari/Pashto, real product media and image optimization, analytics hooks, accessibility regression checks, and production performance measurement.
+The next implementation batches will expand CMS product and inquiry management, add localization infrastructure for English/Dari/Pashto, real product media and image optimization, consent/analytics refinements where required, accessibility regression checks, and production performance measurement.
 
 ## Engineering principle
 

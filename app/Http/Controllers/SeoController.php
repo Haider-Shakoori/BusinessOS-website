@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
 use Illuminate\Http\Response;
+use Throwable;
 
 class SeoController extends Controller
 {
@@ -11,6 +13,7 @@ class SeoController extends Controller
         $urls = collect([
             ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0'],
             ['loc' => route('apps.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
+            ['loc' => route('resources.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
             ['loc' => route('pricing'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
             ['loc' => route('about'), 'lastmod' => now()->toDateString(), 'priority' => '0.7'],
             ['loc' => route('security'), 'lastmod' => now()->toDateString(), 'priority' => '0.6'],
@@ -24,6 +27,21 @@ class SeoController extends Controller
                 'priority' => '0.9',
             ])
         );
+
+        try {
+            $urls = $urls->merge(
+                Guide::published()
+                    ->latest('updated_at')
+                    ->get()
+                    ->map(fn (Guide $guide) => [
+                        'loc' => route('resources.show', ['guide' => $guide->slug]),
+                        'lastmod' => $guide->updated_at?->toDateString() ?? now()->toDateString(),
+                        'priority' => '0.7',
+                    ])
+            );
+        } catch (Throwable) {
+            // Keep the static sitemap available before first migration.
+        }
 
         return response()
             ->view('seo.sitemap', ['urls' => $urls])
