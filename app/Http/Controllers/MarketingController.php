@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Throwable;
 
 class MarketingController extends Controller
 {
@@ -10,10 +13,12 @@ class MarketingController extends Controller
     {
         $apps = collect(config('businessos.apps'));
         $featured = $apps->firstWhere('featured', true) ?? $apps->first();
+        $latestGuides = $this->latestGuides();
 
         return view('home', [
             'apps' => $apps,
             'featured' => $featured,
+            'latestGuides' => $latestGuides,
             'meta' => [
                 'title' => 'BusinessOS — Fast Business Software for Real Operations',
                 'description' => 'Discover BusinessOS applications for sales, operations, automation and growth, engineered for modern teams and low-bandwidth environments.',
@@ -198,6 +203,15 @@ class MarketingController extends Controller
             'pageTitle' => 'See how BusinessOS fits your actual workflow.',
             'pageLead' => 'Tell us about your team and the workflow you want to improve. We will use that context to make the product conversation relevant.',
         ]);
+    }
+
+    private function latestGuides(): Collection
+    {
+        try {
+            return Guide::published()->latest('published_at')->limit(3)->get();
+        } catch (Throwable) {
+            return collect();
+        }
     }
 
     private function pageMeta(string $title, string $description, string $canonical): array
