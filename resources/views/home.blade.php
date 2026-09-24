@@ -24,22 +24,7 @@
             </div>
         </div>
 
-        <div class="hero-3d-stage">
-            <span class="hero-orbit orbit-one" aria-hidden="true"></span>
-            <span class="hero-orbit orbit-two" aria-hidden="true"></span>
-            <span class="hero-orbit orbit-three" aria-hidden="true"></span>
-            <span class="hero-depth-chip chip-ai" aria-hidden="true">AI</span>
-            <span class="hero-depth-chip chip-sync" aria-hidden="true">SYNC</span>
-            <div class="depth-cube" aria-hidden="true">
-                <span class="cube-face cube-front">B</span>
-                <span class="cube-face cube-back">OS</span>
-                <span class="cube-face cube-right"></span>
-                <span class="cube-face cube-left"></span>
-                <span class="cube-face cube-top"></span>
-                <span class="cube-face cube-bottom"></span>
-            </div>
-
-            <div class="story-command js-tilt" data-tilt-strength="7" aria-label="BusinessOS product preview">
+        <div class="story-command" aria-label="BusinessOS product preview">
             <div class="story-command-bar">
                 <span class="brand-mark mini" aria-hidden="true"><span></span><span></span><span></span></span>
                 <div><small>BUSINESSOS</small><strong>Operations overview</strong></div>
@@ -68,7 +53,6 @@
             </div>
             <div class="story-float story-float-a"><span>⌁</span><div><small>Connectivity</small><strong>Offline-ready</strong></div></div>
             <div class="story-float story-float-b"><span>✦</span><div><small>BusinessOS AI</small><strong>Insights available</strong></div></div>
-            </div>
         </div>
     </div>
 
@@ -92,7 +76,7 @@
             <p>BusinessOS products are designed to solve a defined operational problem well. Each app gets its own identity while sharing the same standard for speed, clarity and serious engineering.</p>
         </div>
 
-        <article class="story-product-card js-tilt" data-tilt-strength="3">
+        <article class="story-product-card">
             <div class="story-product-copy">
                 <div class="story-product-top">
                     <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
@@ -115,9 +99,7 @@
                 </div>
             </div>
 
-            <div class="story-product-visual depth-product-scene">
-                <span class="product-orbit product-orbit-a" aria-hidden="true"></span>
-                <span class="product-orbit product-orbit-b" aria-hidden="true"></span>
+            <div class="story-product-visual">
                 <div class="story-phone">
                     <div class="phone-island"></div>
                     <div class="story-phone-screen">
@@ -156,22 +138,22 @@
         </div>
 
         <div class="story-purpose-grid">
-            <article class="js-tilt" data-tilt-strength="4">
+            <article>
                 <span>01</span>
                 <h3>See what is happening</h3>
                 <p>Turn fragmented operational activity into a clear view managers can understand and act on.</p>
             </article>
-            <article class="js-tilt" data-tilt-strength="4">
+            <article>
                 <span>02</span>
                 <h3>Keep teams moving</h3>
                 <p>Design mobile workflows around people working in the field instead of forcing office software onto them.</p>
             </article>
-            <article class="js-tilt" data-tilt-strength="4">
+            <article>
                 <span>03</span>
                 <h3>Reduce repeated work</h3>
                 <p>Connect workflows, records and automation so information does not need to be entered and explained again and again.</p>
             </article>
-            <article class="js-tilt" data-tilt-strength="4">
+            <article>
                 <span>04</span>
                 <h3>Make decisions faster</h3>
                 <p>Put useful information and AI-assisted insight close to the operational data that produced it.</p>
@@ -224,7 +206,7 @@
             </div>
         </div>
 
-        <div class="story-performance-panel js-tilt" data-tilt-strength="4">
+        <div class="story-performance-panel">
             <div class="story-speed-main">
                 <small>INITIAL TRANSFER TARGET</small>
                 <strong>&lt;500<span>KB</span></strong>
@@ -254,7 +236,7 @@
         @if ($latestGuides->count())
             <div class="home-resource-grid">
                 @foreach ($latestGuides as $guide)
-                    <article class="js-tilt" data-tilt-strength="3">
+                    <article>
                         <div><span>{{ $guide->category }}</span><time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time></div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
@@ -275,7 +257,7 @@
 </section>
 
 <section class="story-section story-final">
-    <div class="shell story-final-card js-tilt" data-tilt-strength="2">
+    <div class="shell story-final-card">
         <div class="story-final-glow" aria-hidden="true"></div>
         <span class="story-index">06 / NEXT</span>
         <span class="kicker">BusinessOS</span>
