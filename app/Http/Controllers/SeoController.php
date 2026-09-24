@@ -11,6 +11,12 @@ class SeoController extends Controller
         $urls = collect([
             ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0'],
             ['loc' => route('apps.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
+            ['loc' => route('pricing'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
+            ['loc' => route('about'), 'lastmod' => now()->toDateString(), 'priority' => '0.7'],
+            ['loc' => route('security'), 'lastmod' => now()->toDateString(), 'priority' => '0.6'],
+            ['loc' => route('contact'), 'lastmod' => now()->toDateString(), 'priority' => '0.6'],
+            ['loc' => route('privacy'), 'lastmod' => now()->toDateString(), 'priority' => '0.3'],
+            ['loc' => route('terms'), 'lastmod' => now()->toDateString(), 'priority' => '0.3'],
         ])->merge(
             collect(config('businessos.apps'))->map(fn (array $app) => [
                 'loc' => route('apps.show', $app['slug']),

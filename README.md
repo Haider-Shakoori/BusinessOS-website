@@ -13,6 +13,10 @@ This repository now contains the first production-oriented BusinessOS marketing 
 - Responsive BusinessOS design system
 - BusinessOS app directory
 - Dedicated SEO product pages
+- About, Pricing, Security, Privacy, Terms and Contact pages
+- Database-backed contact / sales / demo inquiry capture
+- Rate-limited inquiry endpoint with validation and honeypot protection
+- FieldPulse conversion, pricing-status and FAQ sections
 - FieldPulse as the first configured BusinessOS application
 - Organization, WebSite, SoftwareApplication and Breadcrumb JSON-LD
 - XML sitemap
@@ -55,8 +59,27 @@ vendor/bin/pint --test
 - `/` — BusinessOS homepage
 - `/apps` — app directory
 - `/apps/fieldpulse` — FieldPulse product page
+- `/pricing` — pricing architecture
+- `/about` — BusinessOS positioning and principles
+- `/security` — security principles
+- `/privacy` — public website privacy policy
+- `/terms` — website terms of use
+- `/contact` — contact and sales inquiry form
+- `/request-demo` — product demo request form
 - `/sitemap.xml` — XML sitemap
 - `/robots.txt` — crawler policy
+
+## Inquiry capture
+
+Contact, sales and demo requests are stored in the `inquiries` table before any future email or CRM integration. This avoids depending on an invented or unconfigured recipient address and gives the later admin/CMS batch a reliable source of leads.
+
+Run migrations in every deployed environment:
+
+```bash
+php artisan migrate --force
+```
+
+The public inquiry endpoint is validation protected, rate limited and includes a honeypot field.
 
 ## Product catalog
 
@@ -94,7 +117,7 @@ php artisan optimize
 
 ## Roadmap
 
-The next implementation batches will add the remaining trust pages, content/guides architecture, CMS/admin product management, localization infrastructure for English/Dari/Pashto, image optimization, analytics hooks, accessibility regression checks, and production performance measurement.
+The next implementation batches will add the content/guides architecture, CMS/admin product and inquiry management, localization infrastructure for English/Dari/Pashto, real product media and image optimization, analytics hooks, accessibility regression checks, and production performance measurement.
 
 ## Engineering principle
 

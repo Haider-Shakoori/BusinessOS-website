@@ -68,6 +68,28 @@ return [
                 'Sales route visibility',
                 'Field-team performance review',
             ],
+            'commercial' => [
+                'pricing_status' => 'Pricing in preparation',
+                'pricing_note' => 'FieldPulse pricing will be published when the commercial package is finalized. Team size, rollout requirements and deployment context can be discussed now without inventing a public list price.',
+            ],
+            'faq' => [
+                [
+                    'question' => 'Is FieldPulse available as a finished public product?',
+                    'answer' => 'FieldPulse is currently in active development. Demo and deployment discussions should reflect the current release state rather than presenting the product as generally available before it is ready.',
+                ],
+                [
+                    'question' => 'Can FieldPulse work with unreliable mobile internet?',
+                    'answer' => 'FieldPulse is being built on an offline-first mobile foundation so essential field workflows can continue during connectivity gaps and synchronize when a connection returns.',
+                ],
+                [
+                    'question' => 'What kinds of teams is FieldPulse designed for?',
+                    'answer' => 'FieldPulse is designed for organizations managing field sales or field operations where attendance, client visits, routes, location history and manager visibility need to stay connected.',
+                ],
+                [
+                    'question' => 'How will FieldPulse pricing work?',
+                    'answer' => 'The final commercial package has not been published yet. Pricing is intended to reflect the product, team size and deployment requirements rather than using placeholder prices that have not been approved.',
+                ],
+            ],
         ],
     ],
 ];

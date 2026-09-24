@@ -17,7 +17,7 @@
             <h2 class="product-headline">{{ $app['headline'] }}</h2>
             <p class="product-lede">{{ $app['description'] }}</p>
             <div class="hero-actions">
-                <a class="button button-primary" href="{{ $app['web_url'] }}" rel="noopener">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
+                <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo <span aria-hidden="true">↗</span></a>
                 <a class="button button-ghost" href="#features">Explore features</a>
             </div>
             <div class="platform-row">
@@ -102,6 +102,20 @@
     </div>
 </section>
 
+<section class="section product-commercial-section">
+    <div class="shell product-commercial-card">
+        <div>
+            <span class="kicker">Pricing & rollout</span>
+            <h2>{{ $app['commercial']['pricing_status'] }}</h2>
+            <p>{{ $app['commercial']['pricing_note'] }}</p>
+        </div>
+        <div class="product-commercial-actions">
+            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
+            <a class="button button-ghost" href="{{ route('pricing') }}">Pricing approach</a>
+        </div>
+    </div>
+</section>
+
 <section class="section offline-section">
     <div class="shell offline-card">
         <div>
@@ -116,14 +130,32 @@
     </div>
 </section>
 
+<section class="section faq-section" id="faq">
+    <div class="shell two-column faq-layout">
+        <div>
+            <span class="kicker">Questions</span>
+            <h2>What to know before evaluating {{ $app['name'] }}.</h2>
+            <p class="section-copy">Product status, deployment and pricing information stay explicit so the page does not promise more than the current release supports.</p>
+        </div>
+        <div class="faq-list">
+            @foreach ($app['faq'] as $item)
+                <details>
+                    <summary>{{ $item['question'] }}<span aria-hidden="true">+</span></summary>
+                    <p>{{ $item['answer'] }}</p>
+                </details>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 <section class="section final-cta">
     <div class="shell final-cta-card">
         <div class="cta-orb" aria-hidden="true"></div>
         <span class="kicker">{{ $app['name'] }}</span>
         <h2>Make field activity easier to see, understand and manage.</h2>
-        <p>Explore the current FieldPulse environment or continue through the BusinessOS app ecosystem.</p>
+        <p>Tell us about your field team and the workflow you want to improve. We will keep the conversation aligned with the current FieldPulse release state.</p>
         <div class="hero-actions centered-actions">
-            <a class="button button-primary" href="{{ $app['web_url'] }}" rel="noopener">Open FieldPulse <span aria-hidden="true">↗</span></a>
+            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request FieldPulse demo <span aria-hidden="true">↗</span></a>
             <a class="button button-ghost" href="{{ route('apps.index') }}">All BusinessOS apps</a>
         </div>
     </div>
