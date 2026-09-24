@@ -55,7 +55,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Field sales tracking built for teams that work outside the office.')
             ->assertSee('SoftwareApplication')
             ->assertSee('Offline-first mobile operation')
-            ->assertSee('fieldpulse-stage', false)
+            ->assertSee('app-preview-stage app-preview-fieldpulse', false)
             ->assertSee('Open FieldPulse')
             ->assertSee('Live app: fieldpulse.businessos.af')
             ->assertSee('https://fieldpulse.businessos.af', false);
