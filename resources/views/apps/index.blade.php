@@ -13,14 +13,14 @@
     <div class="shell">
         <div class="directory-meta">
             <span>{{ $apps->count() }} {{ $apps->count() === 1 ? 'application' : 'applications' }}</span>
-            <span>More products will appear here as they are ready.</span>
+            <span>Field sales, ERP and retail operations under one BusinessOS ecosystem.</span>
         </div>
 
         <div class="directory-grid">
             @foreach ($apps as $app)
                 <article class="directory-card">
                     <div class="directory-card-top">
-                        <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
+                        <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
                         <span class="status-pill">{{ $app['status'] }}</span>
                     </div>
                     <span class="kicker">{{ $app['eyebrow'] }}</span>

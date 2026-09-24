@@ -2,7 +2,6 @@
 
 @section('content')
 <section class="product-hero">
-    <div class="hero-glow hero-glow-a" aria-hidden="true"></div>
     <div class="shell product-hero-grid">
         <div>
             <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -10,12 +9,15 @@
                 <a href="{{ route('apps.index') }}">Apps</a><span>/</span>
                 <strong>{{ $app['name'] }}</strong>
             </nav>
+
             <div class="product-title-row">
-                <div class="app-icon fieldpulse-icon large" aria-hidden="true"><span></span><span></span></div>
+                <div class="app-letter-icon large" aria-hidden="true">{{ $app['icon_letter'] }}</div>
                 <div><span class="kicker">{{ $app['eyebrow'] }}</span><h1>{{ $app['name'] }}</h1></div>
             </div>
+
             <h2 class="product-headline">{{ $app['headline'] }}</h2>
             <p class="product-lede">{{ $app['description'] }}</p>
+
             <div class="hero-actions">
                 @if (!empty($app['web_url']))
                     <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
@@ -23,6 +25,7 @@
                 <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
                 <a class="product-inline-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
             </div>
+
             @if (!empty($app['web_url']))
                 <a class="product-live-domain" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
                     <span class="app-live-dot" aria-hidden="true"></span>
@@ -30,27 +33,50 @@
                     <span aria-hidden="true">↗</span>
                 </a>
             @endif
+
+            @if (!empty($app['live_note']))
+                <p class="product-live-note">{{ $app['live_note'] }}</p>
+            @endif
+
             <div class="platform-row">
                 <span>Platforms</span>
                 @foreach ($app['platforms'] as $platform)<strong>{{ $platform }}</strong>@endforeach
             </div>
         </div>
 
-        <div class="fieldpulse-stage">
-            <div class="stage-browser">
-                <div class="window-top"><div class="window-dots"><span></span><span></span><span></span></div><div class="window-title">FieldPulse</div><div class="window-status">Live</div></div>
-                <div class="stage-body">
-                    <div class="stage-sidebar"><b>F</b><span class="active"></span><span></span><span></span><span></span></div>
-                    <div class="stage-main">
-                        <div class="stage-title"><span><small>Operations</small><strong>Live field view</strong></span><i>Today</i></div>
-                        <div class="stage-stats"><span><small>Active</small><strong>18</strong></span><span><small>Visits</small><strong>42</strong></span><span><small>Coverage</small><strong>76%</strong></span></div>
-                        <div class="stage-map"><div class="map-grid"></div><i class="map-pin pin-a"></i><i class="map-pin pin-b"></i><i class="map-pin pin-c"></i><span class="route-line"></span></div>
-                    </div>
+        <div class="app-preview-stage app-preview-{{ $app['slug'] }}" aria-label="{{ $app['name'] }} interface preview">
+            <div class="app-preview-window">
+                <div class="window-top">
+                    <div class="window-dots"><span></span><span></span><span></span></div>
+                    <div class="window-title">{{ $app['name'] }}</div>
+                    <div class="window-status">{{ $app['preview']['status'] }}</div>
                 </div>
-            </div>
-            <div class="stage-phone">
-                <div class="phone-island"></div>
-                <div class="stage-phone-content"><small>Work session</small><strong>06:42:18</strong><span>Active</span><div class="stage-bars"><i></i><i></i><i></i><i></i></div></div>
+
+                <div class="app-preview-body">
+                    <aside aria-hidden="true">
+                        <b>{{ $app['icon_letter'] }}</b>
+                        <span class="active"></span><span></span><span></span><span></span>
+                    </aside>
+
+                    <main>
+                        <div class="app-preview-heading">
+                            <div><small>{{ strtoupper($app['preview']['section']) }}</small><strong>{{ $app['preview']['title'] }}</strong></div>
+                            <i>{{ $app['status'] }}</i>
+                        </div>
+
+                        <div class="app-preview-metrics">
+                            @foreach ($app['preview']['metrics'] as $metric)
+                                <span><small>{{ $metric['label'] }}</small><strong>{{ $metric['value'] }}</strong><em>{{ $metric['detail'] }}</em></span>
+                            @endforeach
+                        </div>
+
+                        <div class="app-preview-list">
+                            @foreach ($app['preview']['rows'] as $row)
+                                <div><span><i></i>{{ $row }}</span><b>→</b></div>
+                            @endforeach
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     </div>
@@ -68,11 +94,12 @@
     <div class="shell two-column">
         <div>
             <span class="kicker">The problem</span>
-            <h2>Field work becomes invisible when the team leaves the office.</h2>
+            <h2>{{ $app['problem']['title'] }}</h2>
         </div>
         <div class="body-copy">
-            <p>Traditional attendance, spreadsheets, chat messages and end-of-day reports create gaps between what managers need to know and what actually happened in the field.</p>
-            <p>{{ $app['name'] }} brings attendance, field activity, client visits and location context into one operational view while keeping the mobile workflow practical for field staff.</p>
+            @foreach ($app['problem']['body'] as $paragraph)
+                <p>{{ $paragraph }}</p>
+            @endforeach
         </div>
     </div>
 </section>
@@ -80,8 +107,8 @@
 <section class="section feature-section" id="features">
     <div class="shell">
         <div class="section-heading split-heading">
-            <div><span class="kicker">Core capabilities</span><h2>Built around the field day, not the office desk.</h2></div>
-            <p>Each capability is designed to answer a real operational question without burying teams in unnecessary complexity.</p>
+            <div><span class="kicker">Core capabilities</span><h2>{{ $app['features_intro']['title'] }}</h2></div>
+            <p>{{ $app['features_intro']['description'] }}</p>
         </div>
 
         <div class="feature-grid">
@@ -101,12 +128,27 @@
     <div class="shell two-column">
         <div>
             <span class="kicker">Use cases</span>
-            <h2>One field platform, several daily questions answered.</h2>
-            <p class="section-copy">Use {{ $app['name'] }} where visibility, accountability and mobile execution need to stay connected.</p>
+            <h2>{{ $app['use_cases_intro']['title'] }}</h2>
+            <p class="section-copy">{{ $app['use_cases_intro']['description'] }}</p>
         </div>
         <div class="use-case-list">
             @foreach ($app['use_cases'] as $index => $useCase)
                 <div><span>0{{ $index + 1 }}</span><strong>{{ $useCase }}</strong><i>↗</i></div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="section product-spotlight-section">
+    <div class="shell product-spotlight-card">
+        <div>
+            <span class="kicker">{{ $app['spotlight']['kicker'] }}</span>
+            <h2>{{ $app['spotlight']['title'] }}</h2>
+            <p>{{ $app['spotlight']['description'] }}</p>
+        </div>
+        <div class="product-spotlight-items">
+            @foreach ($app['spotlight']['items'] as $index => $item)
+                <span><i>0{{ $index + 1 }}</i><strong>{{ $item }}</strong></span>
             @endforeach
         </div>
     </div>
@@ -122,20 +164,6 @@
         <div class="product-commercial-actions">
             <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
             <a class="button button-ghost" href="{{ route('pricing') }}">Pricing approach</a>
-        </div>
-    </div>
-</section>
-
-<section class="section offline-section">
-    <div class="shell offline-card">
-        <div>
-            <span class="kicker">Designed for imperfect connectivity</span>
-            <h2>Work should not stop when the signal does.</h2>
-            <p>FieldPulse is being built around offline-first mobile foundations so essential workflows can continue through unreliable connections and synchronize when the network is available again.</p>
-        </div>
-        <div class="signal-visual" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-            <strong>Offline<br>ready</strong>
         </div>
     </div>
 </section>
@@ -160,10 +188,9 @@
 
 <section class="section final-cta">
     <div class="shell final-cta-card">
-        <div class="cta-orb" aria-hidden="true"></div>
         <span class="kicker">{{ $app['name'] }}</span>
-        <h2>Make field activity easier to see, understand and manage.</h2>
-        <p>Tell us about your field team and the workflow you want to improve. We will keep the conversation aligned with the current FieldPulse release state.</p>
+        <h2>{{ $app['final']['title'] }}</h2>
+        <p>{{ $app['final']['description'] }}</p>
         <div class="hero-actions centered-actions">
             @if (!empty($app['web_url']))
                 <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
