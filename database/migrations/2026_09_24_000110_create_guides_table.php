@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status', 20)->default('draft')->index();
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index(['status', 'published_at']);
         });
