@@ -17,7 +17,9 @@ class MarketingPagesTest extends TestCase
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="performance"', false)
-            ->assertSee('class="modern-site"', false)
+            ->assertSee('class="modern-site professional-light"', false)
+            ->assertSee('<meta name="theme-color" content="#ffffff">', false)
+            ->assertSee('<meta name="color-scheme" content="light">', false)
             ->assertDontSee('businessos-3d.js', false);
     }
 
