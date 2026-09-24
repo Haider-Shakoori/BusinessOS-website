@@ -88,7 +88,7 @@
             @forelse ($daily as $day)
                 <div title="{{ $day->day }} — {{ $day->total }} visits / {{ $day->unique_total }} unique">
                     <i style="--height: {{ max(5, round(($day->total / $dailyMax) * 100)) }}%"></i>
-                    <span>{{ IlluminateSupportCarbon::parse($day->day)->format('j') }}</span>
+                    <span>{{ (int) substr($day->day, 8, 2) }}</span>
                 </div>
             @empty
                 <p class="analytics-empty">No daily traffic yet.</p>
