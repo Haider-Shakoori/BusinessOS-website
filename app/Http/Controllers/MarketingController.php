@@ -12,16 +12,14 @@ class MarketingController extends Controller
     public function home(): View
     {
         $apps = collect(config('businessos.apps'));
-        $featured = $apps->firstWhere('featured', true) ?? $apps->first();
         $latestGuides = $this->latestGuides();
 
         return view('home', [
             'apps' => $apps,
-            'featured' => $featured,
             'latestGuides' => $latestGuides,
             'meta' => [
-                'title' => 'BusinessOS — Fast Business Software for Real Operations',
-                'description' => 'Discover BusinessOS applications for sales, operations, automation and growth, engineered for modern teams and low-bandwidth environments.',
+                'title' => 'BusinessOS — Field Sales, ERP & POS Software',
+                'description' => 'Explore BusinessOS software for field sales, ERP and retail operations, including FieldPulse, BusinessOS ERP and BusinessOS POS.',
                 'canonical' => route('home'),
             ],
             'schema' => [

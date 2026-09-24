@@ -12,7 +12,7 @@ class MarketingPagesTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Less friction.')
+            ->assertSee('Software for the way your business actually runs.')
             ->assertSee('FieldPulse')
             ->assertSee('BusinessOS ERP')
             ->assertSee('BusinessOS POS')
@@ -25,12 +25,18 @@ class MarketingPagesTest extends TestCase
             ->assertSee('class="modern-site professional-light calm-premium"', false)
             ->assertSee('<meta name="theme-color" content="#ffffff">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
-            ->assertSee('calm-hero-visual calm-hero-scene', false)
-            ->assertSee('calm-depth-plane', false)
-            ->assertSee('calm-window calm-window-3d', false)
-            ->assertSee('calm-product-grid', false)
-            ->assertSee('calm-bento', false)
+            ->assertSee('ecosystem-scene', false)
+            ->assertSee('ecosystem-console', false)
+            ->assertSee('ecosystem-float-field', false)
+            ->assertSee('ecosystem-float-erp', false)
+            ->assertSee('ecosystem-float-pos', false)
+            ->assertSee('ecosystem-product-grid', false)
+            ->assertSee('ecosystem-solution-grid', false)
             ->assertSee('assets/css/businessos-calm.css', false)
+            ->assertSee('Explore BusinessOS apps')
+            ->assertSee('Explore all apps')
+            ->assertDontSee('See FieldPulse in action')
+            ->assertDontSee('Featured product')
             ->assertDontSee('businessos-3d.js', false);
     }
 
