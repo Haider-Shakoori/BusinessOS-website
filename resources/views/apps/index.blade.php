@@ -31,7 +31,16 @@
                             <span>{{ $platform }}</span>
                         @endforeach
                     </div>
-                    <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+                    <div class="directory-actions">
+                        <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+                        @if (!empty($app['web_url']))
+                            <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
+                                <span class="app-live-dot" aria-hidden="true"></span>
+                                {{ parse_url($app['web_url'], PHP_URL_HOST) }}
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        @endif
+                    </div>
                 </article>
             @endforeach
 
