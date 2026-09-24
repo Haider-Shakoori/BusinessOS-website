@@ -21,7 +21,11 @@
 
     <section class="section guide-body-section">
         <div class="shell guide-shell">
-            <div class="guide-body">{!! nl2br(e($guide->content)) !!}</div>
+            <div class="guide-body">
+                @foreach (preg_split('/\R{2,}/', trim($guide->content)) as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
+            </div>
             <div class="guide-end">
                 <span class="kicker">BusinessOS resources</span>
                 <h2>Turn useful ideas into better operations.</h2>
