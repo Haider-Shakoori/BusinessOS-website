@@ -3,6 +3,22 @@
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+    const autoTiltSelectors = [
+        '.pricing-grid article',
+        '.trust-card-grid article',
+        '.resource-card',
+        '.contact-form-card',
+        '.app-card',
+        '.feature-grid article'
+    ];
+
+    document.querySelectorAll(autoTiltSelectors.join(',')).forEach((element) => {
+        if (!element.classList.contains('js-tilt')) {
+            element.classList.add('js-tilt');
+            element.dataset.tiltStrength = '3';
+        }
+    });
+
     const applyEnhancementClass = () => {
         root.classList.toggle('has-3d', finePointer.matches && !reducedMotion.matches);
     };
@@ -55,21 +71,5 @@
         }, { passive: true });
 
         element.addEventListener('pointerleave', reset, { passive: true });
-    });
-
-    const selectors = [
-        '.pricing-grid article',
-        '.trust-card-grid article',
-        '.resource-card',
-        '.contact-form-card',
-        '.app-card',
-        '.feature-grid article'
-    ];
-
-    document.querySelectorAll(selectors.join(',')).forEach((element) => {
-        if (!element.classList.contains('js-tilt')) {
-            element.classList.add('js-tilt');
-            element.dataset.tiltStrength = '3';
-        }
     });
 })();
