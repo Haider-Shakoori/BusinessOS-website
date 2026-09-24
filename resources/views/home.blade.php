@@ -117,7 +117,13 @@
 
             <div class="calm-product-actions">
                 <a class="button button-primary" href="{{ route('apps.show', $featured['slug']) }}">Explore FieldPulse <span>→</span></a>
-                <a class="text-link" href="{{ route('demo', ['app' => $featured['slug']]) }}">Request a demo <span>→</span></a>
+                @if (!empty($featured['web_url']))
+                    <a class="app-live-link compact" href="{{ $featured['web_url'] }}" target="_blank" rel="noopener noreferrer">
+                        <span class="app-live-dot" aria-hidden="true"></span>
+                        Open {{ parse_url($featured['web_url'], PHP_URL_HOST) }}
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                @endif
             </div>
         </div>
 
