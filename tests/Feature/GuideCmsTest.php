@@ -12,11 +12,21 @@ class GuideCmsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_seeded_guides_are_public_and_include_article_schema(): void
+    public function test_guide_seeder_creates_initial_published_library(): void
     {
         $this->seed(GuideSeeder::class);
 
-        $guide = Guide::where('slug', 'what-to-look-for-in-field-sales-tracking-software')->firstOrFail();
+        $this->assertDatabaseCount('guides', 3);
+        $this->assertSame(3, Guide::published()->count());
+        $this->assertDatabaseHas('guides', [
+            'slug' => 'what-to-look-for-in-field-sales-tracking-software',
+            'status' => 'published',
+        ]);
+    }
+
+    public function test_published_guide_is_public_and_includes_article_schema(): void
+    {
+        $guide = $this->publishedGuide();
 
         $this->get('/resources')
             ->assertOk()
@@ -27,6 +37,11 @@ class GuideCmsTest extends TestCase
             ->assertSee($guide->title)
             ->assertSee('Article')
             ->assertSee('BreadcrumbList');
+    }
+
+    public function test_published_guide_is_in_sitemap(): void
+    {
+        $guide = $this->publishedGuide();
 
         $this->get('/sitemap.xml')
             ->assertOk()
@@ -84,5 +99,20 @@ class GuideCmsTest extends TestCase
 
         $this->assertSoftDeleted('guides', ['id' => $guide->id]);
         $this->get('/guides/'.$guide->slug)->assertNotFound();
+    }
+
+    private function publishedGuide(): Guide
+    {
+        return Guide::create([
+            'title' => 'What to Look for in Field Sales Tracking Software',
+            'slug' => 'what-to-look-for-in-field-sales-tracking-software',
+            'category' => 'Software Guide',
+            'excerpt' => 'A buyer-oriented checklist for evaluating field sales software around workflows and practical adoption.',
+            'content' => str_repeat('Practical guidance for evaluating field sales software in real operating conditions. ', 5),
+            'meta_title' => 'What to Look for in Field Sales Tracking Software | BusinessOS',
+            'meta_description' => 'Evaluate field sales tracking software with a practical workflow-focused checklist.',
+            'status' => 'published',
+            'published_at' => now()->subMinute(),
+        ]);
     }
 }
