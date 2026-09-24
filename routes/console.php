@@ -48,7 +48,6 @@ Artisan::command('admin:create {email?}', function (?string $email = null) {
     return 0;
 })->purpose('Create or promote a BusinessOS CMS administrator');
 
-
 Schedule::call(function (): void {
     PageVisit::query()
         ->where('occurred_at', '<', now()->subDays((int) config('analytics.retention_days', 400)))
