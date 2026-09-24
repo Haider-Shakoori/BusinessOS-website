@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guide;
+use App\Services\ProductCatalog;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Throwable;
 
 class MarketingController extends Controller
 {
+    public function __construct(private readonly ProductCatalog $products) {}
+
     public function home(): View
     {
-        $apps = collect(config('businessos.apps'));
+        $apps = $this->products->homepage();
         $latestGuides = $this->latestGuides();
 
         return view('home', [
@@ -42,7 +45,7 @@ class MarketingController extends Controller
 
     public function apps(): View
     {
-        $apps = collect(config('businessos.apps'));
+        $apps = $this->products->all();
 
         return view('apps.index', [
             'apps' => $apps,
@@ -75,7 +78,7 @@ class MarketingController extends Controller
 
     public function show(string $slug): View
     {
-        $app = config("businessos.apps.{$slug}");
+        $app = $this->products->find($slug);
 
         abort_unless($app, 404);
 
@@ -179,6 +182,7 @@ class MarketingController extends Controller
                 'Contact BusinessOS about products, implementation needs, sales questions or partnerships.',
                 route('contact')
             ),
+            'apps' => $this->products->all(),
             'inquiryType' => 'contact',
             'selectedApp' => request('app'),
             'pageKicker' => 'Contact BusinessOS',
@@ -195,6 +199,7 @@ class MarketingController extends Controller
                 'Request a demo of FieldPulse or another BusinessOS product and tell us about your team and operational needs.',
                 route('demo')
             ),
+            'apps' => $this->products->all(),
             'inquiryType' => 'demo',
             'selectedApp' => request('app', 'fieldpulse'),
             'pageKicker' => 'Request a demo',

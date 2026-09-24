@@ -20,6 +20,7 @@
         <nav aria-label="CMS navigation">
             <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><span>⌂</span>Overview</a>
             <a class="{{ request()->routeIs('admin.analytics') ? 'active' : '' }}" href="{{ route('admin.analytics') }}"><span>⌁</span>Analytics</a>
+            <a class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}"><span>◫</span>Products</a>
             <a class="{{ request()->routeIs('admin.guides.*') ? 'active' : '' }}" href="{{ route('admin.guides.index') }}"><span>▤</span>Guides</a>
         </nav>
 

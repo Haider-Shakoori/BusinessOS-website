@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guide;
+use App\Services\ProductCatalog;
 use Illuminate\Http\Response;
 use Throwable;
 
 class SeoController extends Controller
 {
+    public function __construct(private readonly ProductCatalog $products) {}
+
     public function sitemap(): Response
     {
         $urls = collect([
@@ -21,7 +24,7 @@ class SeoController extends Controller
             ['loc' => route('privacy'), 'lastmod' => now()->toDateString(), 'priority' => '0.3'],
             ['loc' => route('terms'), 'lastmod' => now()->toDateString(), 'priority' => '0.3'],
         ])->merge(
-            collect(config('businessos.apps'))->map(fn (array $app) => [
+            $this->products->all()->map(fn (array $app) => [
                 'loc' => route('apps.show', $app['slug']),
                 'lastmod' => $app['updated_at'] ?? now()->toDateString(),
                 'priority' => '0.9',
