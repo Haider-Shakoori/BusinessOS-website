@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Guide;
 use App\Services\ProductCatalog;
+use App\Services\SiteSettings;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Throwable;
 
 class MarketingController extends Controller
 {
-    public function __construct(private readonly ProductCatalog $products) {}
+    public function __construct(
+        private readonly ProductCatalog $products,
+        private readonly SiteSettings $settings,
+    ) {}
 
     public function home(): View
     {
@@ -21,8 +25,12 @@ class MarketingController extends Controller
             'apps' => $apps,
             'latestGuides' => $latestGuides,
             'meta' => [
-                'title' => 'BusinessOS — Field Sales, ERP & POS Software',
-                'description' => 'Explore BusinessOS software for field sales, ERP and retail operations, including FieldPulse, BusinessOS ERP and BusinessOS POS.',
+                'title' => app()->getLocale() === 'en'
+                    ? $this->settings->get('seo_default_title', __('marketing.seo.home_title'))
+                    : __('marketing.seo.home_title'),
+                'description' => app()->getLocale() === 'en'
+                    ? $this->settings->get('seo_default_description', __('marketing.seo.home_description'))
+                    : __('marketing.seo.home_description'),
                 'canonical' => route('home'),
             ],
             'schema' => [
@@ -131,20 +139,28 @@ class MarketingController extends Controller
 
     public function pricing(): View
     {
-        return view('pages.pricing', $this->pageMeta(
-            'BusinessOS Pricing — Flexible Plans for Business Software',
-            'Explore the BusinessOS pricing approach. Product pricing is configured around the application, team size and deployment needs without invented public price claims.',
-            route('pricing')
-        ));
+        return view('pages.pricing', [
+            ...$this->pageMeta(
+                'BusinessOS Pricing — Product Pricing & Deployment Options',
+                'Review the current commercial model and deployment approach for BusinessOS products without placeholder or invented pricing.',
+                route('pricing')
+            ),
+            'apps' => $this->products->all(),
+        ]);
     }
 
     public function about(): View
     {
-        return view('pages.about', $this->pageMeta(
-            'About BusinessOS — Practical Software for Real Business Operations',
-            'Learn how BusinessOS approaches product design, performance, mobile work and practical business software.',
-            route('about')
-        ));
+        return view('pages.about', [
+            ...$this->pageMeta(
+                'About BusinessOS — Practical Software for Real Business Operations',
+                'Learn how BusinessOS approaches product design, performance, mobile work and practical business software.',
+                route('about')
+            ),
+            'aboutTitle' => $this->settings->localized('about_title', 'Software shaped around the way businesses actually operate.'),
+            'aboutLead' => $this->settings->localized('about_lead', 'BusinessOS is a growing software ecosystem focused on practical business workflows.'),
+            'aboutBody' => $this->settings->localized('about_body', 'BusinessOS applications are built around clear operational problems.'),
+        ]);
     }
 
     public function security(): View
@@ -196,12 +212,12 @@ class MarketingController extends Controller
         return view('pages.contact', [
             ...$this->pageMeta(
                 'Request a BusinessOS Product Demo',
-                'Request a demo of FieldPulse or another BusinessOS product and tell us about your team and operational needs.',
+                'Request a demo of a BusinessOS product and tell us about your team and operational needs.',
                 route('demo')
             ),
             'apps' => $this->products->all(),
             'inquiryType' => 'demo',
-            'selectedApp' => request('app', 'fieldpulse'),
+            'selectedApp' => request('app'),
             'pageKicker' => 'Request a demo',
             'pageTitle' => 'See how BusinessOS fits your actual workflow.',
             'pageLead' => 'Tell us about your team and the workflow you want to improve. We will use that context to make the product conversation relevant.',
@@ -229,3 +245,5 @@ class MarketingController extends Controller
         ];
     }
 }
+
+[executed on device: ubuntu-6gb-dal-x8mx (c447f909-fdcc-4121-9924-27a69d35e9b2)]
