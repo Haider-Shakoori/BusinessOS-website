@@ -1,218 +1,158 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="calm-hero calm-hero-3d" id="top">
-    <div class="shell calm-hero-grid">
-        <div class="calm-hero-copy">
-            <span class="calm-eyebrow">BusinessOS</span>
-            <h1>Less friction.<br>More business.</h1>
-            <p>Focused software for field teams and operations—designed to make daily work clearer, faster and easier to manage.</p>
+<section class="ecosystem-hero" id="top">
+    <div class="shell ecosystem-hero-grid">
+        <div class="ecosystem-hero-copy">
+            <span class="calm-eyebrow">BusinessOS software ecosystem</span>
+            <h1>Software for the way your business actually runs.</h1>
+            <p>BusinessOS brings focused software for field sales, business management and retail operations under one product family—built for practical work, local realities and modern teams.</p>
 
             <div class="calm-hero-actions">
-                <a class="button button-primary" href="{{ route('demo', ['app' => 'fieldpulse']) }}">See FieldPulse in action <span aria-hidden="true">→</span></a>
-                <a class="button button-ghost" href="#products">Explore the product</a>
+                <a class="button button-primary" href="{{ route('apps.index') }}">Explore BusinessOS apps <span aria-hidden="true">→</span></a>
+                <a class="button button-ghost" href="{{ route('demo') }}">Request a demo</a>
             </div>
 
-            <div class="calm-trust-row" aria-label="BusinessOS product principles">
-                <span><i></i> Simple to understand</span>
-                <span><i></i> Fast on real networks</span>
-                <span><i></i> Built for mobile work</span>
+            <div class="ecosystem-trust-row" aria-label="BusinessOS product principles">
+                <span><i></i> Field operations</span>
+                <span><i></i> ERP & business management</span>
+                <span><i></i> Retail & point of sale</span>
             </div>
         </div>
 
-        <div class="calm-hero-visual calm-hero-scene" aria-label="FieldPulse product preview">
-            <div class="calm-depth-plane calm-depth-plane-back" aria-hidden="true"></div>
-            <div class="calm-depth-plane calm-depth-plane-mid" aria-hidden="true"></div>
-            <div class="calm-window calm-window-3d">
-                <div class="calm-window-top">
+        <div class="ecosystem-scene" aria-label="BusinessOS product ecosystem preview">
+            <div class="ecosystem-depth ecosystem-depth-back" aria-hidden="true"></div>
+            <div class="ecosystem-depth ecosystem-depth-mid" aria-hidden="true"></div>
+
+            <div class="ecosystem-console">
+                <div class="ecosystem-console-top">
                     <div><i></i><i></i><i></i></div>
-                    <strong>FieldPulse</strong>
-                    <span>Today</span>
+                    <strong>BusinessOS</strong>
+                    <span>Product ecosystem</span>
                 </div>
 
-                <div class="calm-window-body">
-                    <aside aria-hidden="true">
-                        <b>F</b>
-                        <span class="active"></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </aside>
+                <div class="ecosystem-console-body">
+                    <div class="ecosystem-console-intro">
+                        <small>ONE BUSINESSOS FAMILY</small>
+                        <h2>Choose the software that fits the work.</h2>
+                        <p>Each product has a clear job while sharing one BusinessOS identity.</p>
+                    </div>
 
-                    <main>
-                        <header>
-                            <div><small>GOOD MORNING</small><h2>Your field team</h2></div>
-                            <em>Live</em>
-                        </header>
-
-                        <div class="calm-metrics">
-                            <article><small>Active now</small><strong>18</strong><span>team members</span></article>
-                            <article><small>Visits today</small><strong>42</strong><span>clients</span></article>
-                            <article><small>Coverage</small><strong>76%</strong><span>territory</span></article>
-                        </div>
-
-                        <div class="calm-map">
-                            <div class="calm-map-grid"></div>
-                            <span class="route-one"></span>
-                            <span class="route-two"></span>
-                            <i class="pin-one"></i>
-                            <i class="pin-two"></i>
-                            <i class="pin-three"></i>
-                            <i class="pin-four"></i>
-                            <div class="calm-map-label"><b></b> Field activity</div>
-                        </div>
-                    </main>
+                    <div class="ecosystem-console-products">
+                        @foreach ($apps as $app)
+                            <a class="ecosystem-mini-app ecosystem-mini-{{ $app['slug'] }}" href="{{ route('apps.show', $app['slug']) }}">
+                                <span class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</span>
+                                <div>
+                                    <small>{{ $app['eyebrow'] }}</small>
+                                    <strong>{{ $app['name'] }}</strong>
+                                </div>
+                                <i>→</i>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
-            <div class="calm-float-card calm-float-one calm-float-3d">
-                <span class="calm-float-icon">✓</span>
-                <div><small>VISIT RECORDED</small><strong>Customer visit synced</strong></div>
-            </div>
-            <div class="calm-float-card calm-float-two calm-float-3d">
-                <span class="calm-float-icon">↻</span>
-                <div><small>OFFLINE MODE</small><strong>Ready to sync</strong></div>
-            </div>
+            <a class="ecosystem-float ecosystem-float-field" href="{{ route('apps.show', 'fieldpulse') }}">
+                <span>F</span>
+                <div><small>FIELD OPERATIONS</small><strong>FieldPulse</strong></div>
+            </a>
+            <a class="ecosystem-float ecosystem-float-erp" href="{{ route('apps.show', 'erp') }}">
+                <span>E</span>
+                <div><small>BUSINESS MANAGEMENT</small><strong>ERP</strong></div>
+            </a>
+            <a class="ecosystem-float ecosystem-float-pos" href="{{ route('apps.show', 'pos') }}">
+                <span>P</span>
+                <div><small>RETAIL OPERATIONS</small><strong>POS</strong></div>
+            </a>
         </div>
     </div>
 </section>
 
-<section class="calm-signal-bar">
+<section class="calm-signal-bar ecosystem-signal-bar">
     <div class="shell">
         <span>Field sales</span>
-        <span>Attendance</span>
-        <span>Client visits</span>
-        <span>Location visibility</span>
-        <span>Management insight</span>
+        <span>Customers & finance</span>
+        <span>Quotations & invoices</span>
+        <span>Retail & inventory</span>
+        <span>Business visibility</span>
     </div>
 </section>
 
-<section class="calm-section calm-product" id="products">
+<section class="calm-section ecosystem-products" id="products">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Featured product</span>
-            <h2>A better way to manage field work.</h2>
+            <span class="calm-kicker">BusinessOS apps</span>
+            <h2>Focused products for different parts of the business.</h2>
         </div>
-        <p>FieldPulse gives managers visibility without making field teams fight the software.</p>
+        <p>Use the product that matches the workflow. BusinessOS keeps each application focused instead of forcing every team into one oversized interface.</p>
     </div>
 
-    <div class="shell calm-product-grid">
-        <div class="calm-product-copy">
-            <div class="calm-product-title">
-                <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
-                <div>
-                    <small>{{ $featured['eyebrow'] }}</small>
-                    <h3>{{ $featured['name'] }}</h3>
-                </div>
-            </div>
-
-            <h4>{{ $featured['headline'] }}</h4>
-            <p>{{ $featured['short_description'] }}</p>
-
-            <div class="calm-feature-list">
-                @foreach ($featured['highlights'] as $highlight)
-                    <span><i>✓</i>{{ $highlight }}</span>
-                @endforeach
-            </div>
-
-            <div class="calm-product-actions">
-                <a class="button button-primary" href="{{ route('apps.show', $featured['slug']) }}">Explore FieldPulse <span>→</span></a>
-                @if (!empty($featured['web_url']))
-                    <a class="app-live-link compact" href="{{ $featured['web_url'] }}" target="_blank" rel="noopener noreferrer">
-                        <span class="app-live-dot" aria-hidden="true"></span>
-                        Open {{ parse_url($featured['web_url'], PHP_URL_HOST) }}
-                        <span aria-hidden="true">↗</span>
-                    </a>
-                @endif
-            </div>
-        </div>
-
-        <div class="calm-phone-stage" aria-hidden="true">
-            <div class="calm-phone">
-                <div class="calm-phone-status"><span>9:41</span><i></i></div>
-                <div class="calm-phone-brand"><b>F</b><span>FieldPulse</span></div>
-                <small>WORK SESSION</small>
-                <strong>06:42:18</strong>
-                <em>Active</em>
-
-                <div class="calm-phone-cards">
-                    <span><small>Visits</small><b>7</b></span>
-                    <span><small>Distance</small><b>18.2 km</b></span>
+    <div class="shell ecosystem-product-grid">
+        @foreach ($apps as $app)
+            <article class="ecosystem-product-card ecosystem-product-{{ $app['slug'] }}">
+                <div class="ecosystem-product-top">
+                    <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
+                    <span class="status-pill">{{ $app['status'] }}</span>
                 </div>
 
-                <div class="calm-phone-list">
-                    <div><i></i><span><strong>Rahimi Pharmacy</strong><small>Visit complete</small></span><b>✓</b></div>
-                    <div><i></i><span><strong>Kabul Market</strong><small>Next visit</small></span><b>→</b></div>
+                <span class="calm-app-kicker">{{ $app['eyebrow'] }}</span>
+                <h3>{{ $app['name'] }}</h3>
+                <p>{{ $app['short_description'] }}</p>
+
+                <div class="ecosystem-product-highlights">
+                    @foreach (array_slice($app['highlights'], 0, 3) as $highlight)
+                        <span><i>✓</i>{{ $highlight }}</span>
+                    @endforeach
                 </div>
-            </div>
-        </div>
+
+                <div class="ecosystem-product-actions">
+                    <a class="button button-ghost" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }}</a>
+                    @if (!empty($app['web_url']))
+                        <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
+                            <span class="app-live-dot" aria-hidden="true"></span>
+                            {{ parse_url($app['web_url'], PHP_URL_HOST) }}
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    @endif
+                </div>
+            </article>
+        @endforeach
     </div>
-
-    @php($otherApps = $apps->where('featured', false))
-    @if ($otherApps->count())
-        <div class="shell calm-ecosystem">
-            <div class="calm-ecosystem-head">
-                <span class="calm-kicker">More BusinessOS apps</span>
-                <a class="text-link" href="{{ route('apps.index') }}">View all apps <span>→</span></a>
-            </div>
-            <div class="calm-ecosystem-grid">
-                @foreach ($otherApps as $app)
-                    <article>
-                        <div class="calm-ecosystem-top">
-                            <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
-                            <span class="status-pill">{{ $app['status'] }}</span>
-                        </div>
-                        <span class="calm-app-kicker">{{ $app['eyebrow'] }}</span>
-                        <h3>{{ $app['name'] }}</h3>
-                        <p>{{ $app['short_description'] }}</p>
-                        <div class="calm-ecosystem-actions">
-                            <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore product <span>→</span></a>
-                            @if (!empty($app['web_url']))
-                                <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
-                                    <span class="app-live-dot" aria-hidden="true"></span>
-                                    {{ parse_url($app['web_url'], PHP_URL_HOST) }}
-                                    <span aria-hidden="true">↗</span>
-                                </a>
-                            @endif
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        </div>
-    @endif
 </section>
 
 <section class="calm-section calm-outcomes" id="solutions">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Why teams choose better software</span>
-            <h2>Good software should make work feel lighter.</h2>
+            <span class="calm-kicker">Across the business</span>
+            <h2>Different teams. One clear software direction.</h2>
         </div>
-        <p>The experience is designed around a few things people notice immediately: clarity, speed and confidence.</p>
+        <p>BusinessOS is designed around the work happening in the field, the back office and the shop floor.</p>
     </div>
 
-    <div class="shell calm-bento">
-        <article class="calm-bento-large">
+    <div class="shell ecosystem-solution-grid">
+        <article>
             <span class="calm-card-number">01</span>
-            <h3>Know what is happening</h3>
-            <p>See field activity, client visits and team progress without chasing updates across calls and messages.</p>
-            <div class="calm-mini-chart" aria-hidden="true">
-                <i style="height:32%"></i><i style="height:46%"></i><i style="height:57%"></i><i style="height:48%"></i><i style="height:72%"></i><i style="height:83%"></i><i style="height:91%"></i>
-            </div>
+            <div class="app-letter-icon" aria-hidden="true">F</div>
+            <h3>Run field operations</h3>
+            <p>Track attendance, client visits, routes and mobile activity with FieldPulse.</p>
+            <a class="text-link" href="{{ route('apps.show', 'fieldpulse') }}">Explore FieldPulse <span>→</span></a>
         </article>
 
         <article>
             <span class="calm-card-number">02</span>
-            <h3>Keep the team moving</h3>
-            <p>Mobile workflows stay focused on what needs to happen next.</p>
-            <div class="calm-check-stack" aria-hidden="true"><span>✓ Attendance</span><span>✓ Client visit</span><span>✓ Route sync</span></div>
+            <div class="app-letter-icon" aria-hidden="true">E</div>
+            <h3>Run the business record</h3>
+            <p>Keep customers, quotations, invoices, payments, expenses and ledgers connected in BusinessOS ERP.</p>
+            <a class="text-link" href="{{ route('apps.show', 'erp') }}">Explore ERP <span>→</span></a>
         </article>
 
         <article>
             <span class="calm-card-number">03</span>
-            <h3>Work through weak internet</h3>
-            <p>Offline-aware product behavior keeps essential actions usable when connectivity is unreliable.</p>
-            <div class="calm-signal-visual" aria-hidden="true"><span></span><span></span><span></span><b>Offline-ready</b></div>
+            <div class="app-letter-icon" aria-hidden="true">P</div>
+            <h3>Run retail operations</h3>
+            <p>Bring checkout, stock, purchasing, cash control and daily closing together with BusinessOS POS.</p>
+            <a class="text-link" href="{{ route('apps.show', 'pos') }}">Explore POS <span>→</span></a>
         </article>
     </div>
 </section>
@@ -221,14 +161,14 @@
     <div class="shell calm-values-grid">
         <div class="calm-values-intro">
             <span class="calm-kicker">Why BusinessOS</span>
-            <h2>Designed to feel obvious.</h2>
-            <p>People trust software faster when the interface feels familiar, predictable and calm. BusinessOS keeps the product focused so the technology gets out of the way.</p>
+            <h2>One brand. Clear products. Practical software.</h2>
+            <p>BusinessOS is the master platform and product family. Each application solves a specific operational problem while following the same approach to clarity, responsiveness and maintainability.</p>
         </div>
 
         <div class="calm-value-list">
-            <article><span>01</span><div><h3>Clear before clever</h3><p>Important actions are easy to find, understand and complete.</p></div></article>
-            <article><span>02</span><div><h3>Fast by default</h3><p>Lightweight pages and practical mobile experiences keep response time low.</p></div></article>
-            <article><span>03</span><div><h3>Built around the job</h3><p>Features exist because they support real workflows, not because they fill a checklist.</p></div></article>
+            <article><span>01</span><div><h3>Built around real workflows</h3><p>Products start from the job people need to complete, not from a generic feature checklist.</p></div></article>
+            <article><span>02</span><div><h3>Designed for local realities</h3><p>Low-bandwidth conditions, mobile work and Afghanistan-specific business requirements are considered where they matter.</p></div></article>
+            <article><span>03</span><div><h3>Ready to grow as a product family</h3><p>New applications can join BusinessOS without losing a clear identity or making existing products harder to use.</p></div></article>
         </div>
     </div>
 </section>
@@ -236,16 +176,16 @@
 <section class="calm-section calm-dark">
     <div class="shell calm-dark-grid">
         <div>
-            <span class="calm-kicker">Built responsibly</span>
-            <h2>Polished on the surface. Practical underneath.</h2>
-            <p>BusinessOS keeps the marketing experience server-rendered and lightweight, while product workflows are designed for real devices and real network conditions.</p>
+            <span class="calm-kicker">Engineering standard</span>
+            <h2>Modern on the surface. Practical underneath.</h2>
+            <p>BusinessOS products are built around responsive interfaces, maintainable application architecture and performance that remains useful on real devices and imperfect networks.</p>
         </div>
 
         <div class="calm-dark-cards">
             <article><strong>Responsive</strong><span>Purposeful layouts for desktop, tablet and mobile.</span></article>
-            <article><strong>Lightweight</strong><span>No heavy front-end framework required for core public pages.</span></article>
-            <article><strong>Search-ready</strong><span>Structured, crawlable HTML and dedicated product pages.</span></article>
-            <article><strong>Offline-aware</strong><span>Field workflows designed with imperfect connectivity in mind.</span></article>
+            <article><strong>Lightweight</strong><span>Public pages avoid unnecessary front-end weight and dependencies.</span></article>
+            <article><strong>Search-ready</strong><span>Structured, crawlable product pages support discoverability.</span></article>
+            <article><strong>Product-focused</strong><span>Field sales, ERP and retail remain clear applications instead of one overloaded interface.</span></article>
         </div>
     </div>
 </section>
@@ -254,7 +194,7 @@
     <div class="shell calm-heading">
         <div>
             <span class="calm-kicker">Resources</span>
-            <h2>Useful ideas, without the noise.</h2>
+            <h2>Useful ideas for running better operations.</h2>
         </div>
         <a class="text-link" href="{{ route('resources.index') }}">View all resources <span>→</span></a>
     </div>
@@ -286,13 +226,13 @@
 <section class="calm-section calm-final">
     <div class="shell calm-final-card">
         <div>
-            <span class="calm-kicker">FieldPulse</span>
-            <h2>See whether it fits the way your team works.</h2>
-            <p>Tell us how you manage field operations today and what you want to improve.</p>
+            <span class="calm-kicker">BusinessOS</span>
+            <h2>Find the right product for the part of your business you want to improve.</h2>
+            <p>Explore FieldPulse, ERP and POS, or tell us about the workflow you need to improve and choose the product from the demo form.</p>
         </div>
         <div class="calm-final-actions">
-            <a class="button button-primary" href="{{ route('demo', ['app' => 'fieldpulse']) }}">Request a demo <span>→</span></a>
-            <a class="button button-ghost" href="{{ route('apps.show', 'fieldpulse') }}">Explore FieldPulse</a>
+            <a class="button button-primary" href="{{ route('apps.index') }}">Explore all apps <span>→</span></a>
+            <a class="button button-ghost" href="{{ route('demo') }}">Request a demo</a>
         </div>
     </div>
 </section>
