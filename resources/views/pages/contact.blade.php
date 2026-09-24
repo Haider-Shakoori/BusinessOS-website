@@ -51,8 +51,8 @@
                     <label>Product
                         <select name="app_slug">
                             <option value="">General BusinessOS inquiry</option>
-                            @foreach (config('businessos.apps') as $slug => $app)
-                                <option value="{{ $slug }}" @selected(old('app_slug', $selectedApp) === $slug)>{{ $app['name'] }}</option>
+                            @foreach ($apps as $app)
+                                <option value="{{ $app['slug'] }}" @selected(old('app_slug', $selectedApp) === $app['slug'])>{{ $app['name'] }}</option>
                             @endforeach
                         </select>
                     </label>

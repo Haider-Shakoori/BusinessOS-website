@@ -53,18 +53,12 @@
                 </div>
             </div>
 
-            <a class="ecosystem-float ecosystem-float-field" href="{{ route('apps.show', 'fieldpulse') }}">
-                <span>F</span>
-                <div><small>FIELD OPERATIONS</small><strong>FieldPulse</strong></div>
-            </a>
-            <a class="ecosystem-float ecosystem-float-erp" href="{{ route('apps.show', 'erp') }}">
-                <span>E</span>
-                <div><small>BUSINESS MANAGEMENT</small><strong>ERP</strong></div>
-            </a>
-            <a class="ecosystem-float ecosystem-float-pos" href="{{ route('apps.show', 'pos') }}">
-                <span>P</span>
-                <div><small>RETAIL OPERATIONS</small><strong>POS</strong></div>
-            </a>
+            @foreach ($apps->take(3) as $app)
+                <a class="ecosystem-float ecosystem-float-{{ $loop->iteration }}" href="{{ route('apps.show', $app['slug']) }}">
+                    <span>{{ $app['icon_letter'] }}</span>
+                    <div><small>{{ strtoupper($app['eyebrow']) }}</small><strong>{{ $app['name'] }}</strong></div>
+                </a>
+            @endforeach
         </div>
     </div>
 </section>
@@ -131,29 +125,15 @@
     </div>
 
     <div class="shell ecosystem-solution-grid">
-        <article>
-            <span class="calm-card-number">01</span>
-            <div class="app-letter-icon" aria-hidden="true">F</div>
-            <h3>Run field operations</h3>
-            <p>Track attendance, client visits, routes and mobile activity with FieldPulse.</p>
-            <a class="text-link" href="{{ route('apps.show', 'fieldpulse') }}">Explore FieldPulse <span>→</span></a>
-        </article>
-
-        <article>
-            <span class="calm-card-number">02</span>
-            <div class="app-letter-icon" aria-hidden="true">E</div>
-            <h3>Run the business record</h3>
-            <p>Keep customers, quotations, invoices, payments, expenses and ledgers connected in BusinessOS ERP.</p>
-            <a class="text-link" href="{{ route('apps.show', 'erp') }}">Explore ERP <span>→</span></a>
-        </article>
-
-        <article>
-            <span class="calm-card-number">03</span>
-            <div class="app-letter-icon" aria-hidden="true">P</div>
-            <h3>Run retail operations</h3>
-            <p>Bring checkout, stock, purchasing, cash control and daily closing together with BusinessOS POS.</p>
-            <a class="text-link" href="{{ route('apps.show', 'pos') }}">Explore POS <span>→</span></a>
-        </article>
+        @foreach ($apps as $app)
+            <article>
+                <span class="calm-card-number">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
+                <h3>{{ $app['headline'] }}</h3>
+                <p>{{ $app['short_description'] }}</p>
+                <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+            </article>
+        @endforeach
     </div>
 </section>
 

@@ -3,12 +3,20 @@
 namespace Tests\Feature;
 
 use App\Models\Inquiry;
+use Database\Seeders\ProductSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class InquiryTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed(ProductSeeder::class);
+    }
 
     public function test_valid_demo_request_is_stored(): void
     {
