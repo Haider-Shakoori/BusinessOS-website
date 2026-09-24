@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="{{ $meta['description'] }}">
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
 
     @foreach ($schema ?? [] as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
@@ -117,6 +117,6 @@
         </div>
     </footer>
 
-    <script src="{{ asset('assets/js/businessos-3d.js') }}" defer></script>
+    <script src="{{ asset('assets/js/businessos-3d.js') }}?v={{ filemtime(public_path('assets/js/businessos-3d.js')) }}" defer></script>
 </body>
 </html>
