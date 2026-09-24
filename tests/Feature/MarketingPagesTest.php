@@ -12,17 +12,18 @@ class MarketingPagesTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Software that makes your business easier to run.')
+            ->assertSee('Operate with clarity.')
             ->assertSee('FieldPulse')
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="solutions"', false)
             ->assertSee('id="why-businessos"', false)
-            ->assertSee('class="modern-site professional-light benchmark-ui"', false)
+            ->assertSee('class="modern-site professional-light enterprise-v2"', false)
             ->assertSee('<meta name="theme-color" content="#ffffff">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
-            ->assertSee('benchmark-product-preview', false)
-            ->assertSee('benchmark-featured-product', false)
+            ->assertSee('enterprise-dashboard', false)
+            ->assertSee('enterprise-product', false)
+            ->assertSee('assets/css/businessos-enterprise.css', false)
             ->assertDontSee('businessos-3d.js', false);
     }
 
