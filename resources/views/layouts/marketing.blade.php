@@ -26,7 +26,7 @@
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body class="modern-site professional-light">
+<body class="modern-site professional-light benchmark-ui">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -40,22 +40,22 @@
 
             <nav class="desktop-nav" aria-label="Primary navigation">
                 <a href="{{ route('home') }}#products">Products</a>
+                <a href="{{ route('home') }}#solutions">Solutions</a>
                 <a href="{{ route('pricing') }}">Pricing</a>
                 <a href="{{ route('resources.index') }}">Resources</a>
-                <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
-                <a href="{{ route('about') }}">About</a>
+                <a href="{{ route('about') }}">Company</a>
             </nav>
 
             <div class="nav-actions">
-                <a class="button button-ghost desktop-cta" href="{{ route('contact', ['type' => 'sales']) }}">Contact sales</a>
+                <a class="button button-primary desktop-cta" href="{{ route('demo', ['app' => 'fieldpulse']) }}">Request demo</a>
                 <details class="mobile-menu">
                     <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
                     <nav aria-label="Mobile navigation">
                         <a href="{{ route('home') }}#products">Products</a>
+                        <a href="{{ route('home') }}#solutions">Solutions</a>
                         <a href="{{ route('pricing') }}">Pricing</a>
                         <a href="{{ route('resources.index') }}">Resources</a>
-                        <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
-                        <a href="{{ route('about') }}">About</a>
+                        <a href="{{ route('about') }}">Company</a>
                         <a href="{{ route('contact') }}">Contact</a>
                     </nav>
                 </details>
@@ -74,7 +74,7 @@
                     <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
                     <span>BusinessOS</span>
                 </a>
-                <p>Modern business software engineered to stay clear, fast and useful.</p>
+                <p>Focused business software for teams that value clarity, speed and practical workflows.</p>
             </div>
             <div class="footer-links">
                 <div>
