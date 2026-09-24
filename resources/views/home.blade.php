@@ -5,6 +5,15 @@
     <div class="story-grid" aria-hidden="true"></div>
     <div class="story-aurora story-aurora-a" aria-hidden="true"></div>
     <div class="story-aurora story-aurora-b" aria-hidden="true"></div>
+    <div class="spatial-orbit" aria-hidden="true">
+        <span class="orbit-ring orbit-ring-a"></span>
+        <span class="orbit-ring orbit-ring-b"></span>
+        <span class="orbit-ring orbit-ring-c"></span>
+        <i class="orbit-node orbit-node-a"></i>
+        <i class="orbit-node orbit-node-b"></i>
+        <i class="orbit-node orbit-node-c"></i>
+        <b class="orbit-core"></b>
+    </div>
 
     <div class="shell story-hero-shell">
         <div class="story-hero-copy">
@@ -24,13 +33,13 @@
             </div>
         </div>
 
-        <div class="story-command" aria-label="BusinessOS product preview">
-            <div class="story-command-bar">
+        <div class="story-command spatial-card" data-tilt data-tilt-strength="1.25" aria-label="BusinessOS product preview">
+            <div class="story-command-bar" data-depth="1">
                 <span class="brand-mark mini" aria-hidden="true"><span></span><span></span><span></span></span>
                 <div><small>BUSINESSOS</small><strong>Operations overview</strong></div>
                 <span class="story-live">● Live</span>
             </div>
-            <div class="story-command-body">
+            <div class="story-command-body" data-depth="2">
                 <div class="story-kpis">
                     <article><small>Active field team</small><strong>18</strong><span>+3 today</span></article>
                     <article><small>Client visits</small><strong>42</strong><span>87% verified</span></article>
@@ -51,8 +60,8 @@
                     </div>
                 </div>
             </div>
-            <div class="story-float story-float-a"><span>⌁</span><div><small>Connectivity</small><strong>Offline-ready</strong></div></div>
-            <div class="story-float story-float-b"><span>✦</span><div><small>BusinessOS AI</small><strong>Insights available</strong></div></div>
+            <div class="story-float story-float-a" data-depth="3"><span>⌁</span><div><small>Connectivity</small><strong>Offline-ready</strong></div></div>
+            <div class="story-float story-float-b" data-depth="4"><span>✦</span><div><small>BusinessOS AI</small><strong>Insights available</strong></div></div>
         </div>
     </div>
 
@@ -76,8 +85,8 @@
             <p>BusinessOS products are designed to solve a defined operational problem well. Each app gets its own identity while sharing the same standard for speed, clarity and serious engineering.</p>
         </div>
 
-        <article class="story-product-card">
-            <div class="story-product-copy">
+        <article class="story-product-card spatial-card" data-tilt data-tilt-strength=".65">
+            <div class="story-product-copy" data-depth="1">
                 <div class="story-product-top">
                     <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
                     <span class="status-pill">{{ $featured['status'] }}</span>
@@ -99,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="story-product-visual">
+            <div class="story-product-visual" data-depth="2">
                 <div class="story-phone">
                     <div class="phone-island"></div>
                     <div class="story-phone-screen">
@@ -138,22 +147,22 @@
         </div>
 
         <div class="story-purpose-grid">
-            <article>
+            <article class="spatial-card" data-tilt data-tilt-strength=".35">
                 <span>01</span>
                 <h3>See what is happening</h3>
                 <p>Turn fragmented operational activity into a clear view managers can understand and act on.</p>
             </article>
-            <article>
+            <article class="spatial-card" data-tilt data-tilt-strength=".35">
                 <span>02</span>
                 <h3>Keep teams moving</h3>
                 <p>Design mobile workflows around people working in the field instead of forcing office software onto them.</p>
             </article>
-            <article>
+            <article class="spatial-card" data-tilt data-tilt-strength=".35">
                 <span>03</span>
                 <h3>Reduce repeated work</h3>
                 <p>Connect workflows, records and automation so information does not need to be entered and explained again and again.</p>
             </article>
-            <article>
+            <article class="spatial-card" data-tilt data-tilt-strength=".35">
                 <span>04</span>
                 <h3>Make decisions faster</h3>
                 <p>Put useful information and AI-assisted insight close to the operational data that produced it.</p>
@@ -206,7 +215,7 @@
             </div>
         </div>
 
-        <div class="story-performance-panel">
+        <div class="story-performance-panel spatial-card" data-tilt data-tilt-strength=".45">
             <div class="story-speed-main">
                 <small>INITIAL TRANSFER TARGET</small>
                 <strong>&lt;500<span>KB</span></strong>
@@ -236,7 +245,7 @@
         @if ($latestGuides->count())
             <div class="home-resource-grid">
                 @foreach ($latestGuides as $guide)
-                    <article>
+                    <article class="spatial-card" data-tilt data-tilt-strength=".3">
                         <div><span>{{ $guide->category }}</span><time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time></div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
@@ -257,7 +266,7 @@
 </section>
 
 <section class="story-section story-final">
-    <div class="shell story-final-card">
+    <div class="shell story-final-card spatial-card" data-tilt data-tilt-strength=".25">
         <div class="story-final-glow" aria-hidden="true"></div>
         <span class="story-index">06 / NEXT</span>
         <span class="kicker">BusinessOS</span>
