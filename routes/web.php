@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MarketingController;
@@ -40,6 +41,7 @@ Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminAnalyticsController::class, 'dashboard'])->name('dashboard');
     Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics');
+    Route::resource('products', AdminProductController::class)->except(['show']);
     Route::resource('guides', AdminGuideController::class)->except(['show']);
     Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
 });
