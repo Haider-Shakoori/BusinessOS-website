@@ -107,6 +107,18 @@ class MarketingController extends Controller
                         ['@type' => 'ListItem', 'position' => 3, 'name' => $app['name'], 'item' => route('apps.show', $app['slug'])],
                     ],
                 ],
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'FAQPage',
+                    'mainEntity' => collect($app['faq'] ?? [])->map(fn (array $item) => [
+                        '@type' => 'Question',
+                        'name' => $item['question'],
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => $item['answer'],
+                        ],
+                    ])->all(),
+                ],
             ],
         ]);
     }
