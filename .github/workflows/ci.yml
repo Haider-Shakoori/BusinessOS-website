@@ -41,7 +41,10 @@ jobs:
           php artisan key:generate
 
       - name: Run application tests
-        run: php artisan test
+        run: |
+          php artisan test tests/Feature/CmsAnalyticsTest.php --stop-on-failure
+          php artisan test tests/Feature/GuideCmsTest.php --stop-on-failure
+          php artisan test
 
       - name: Verify code style
         run: vendor/bin/pint --test
