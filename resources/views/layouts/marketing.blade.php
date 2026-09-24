@@ -21,12 +21,13 @@
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/businessos-enterprise.css') }}?v={{ filemtime(public_path('assets/css/businessos-enterprise.css')) }}">
 
     @foreach ($schema ?? [] as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body class="modern-site professional-light benchmark-ui">
+<body class="modern-site professional-light enterprise-v2">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
