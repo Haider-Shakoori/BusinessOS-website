@@ -40,20 +40,21 @@
 
             <nav class="desktop-nav" aria-label="Primary navigation">
                 <a href="{{ route('home') }}#products">Products</a>
-                <a href="{{ route('home') }}#solutions">Purpose</a>
+                <a href="{{ route('pricing') }}">Pricing</a>
                 <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
-                <a href="{{ route('home') }}#performance">Performance</a>
+                <a href="{{ route('about') }}">About</a>
             </nav>
 
             <div class="nav-actions">
-                <a class="button button-ghost desktop-cta" href="{{ route('apps.index') }}">Explore apps</a>
+                <a class="button button-ghost desktop-cta" href="{{ route('contact', ['type' => 'sales']) }}">Contact sales</a>
                 <details class="mobile-menu">
                     <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
                     <nav aria-label="Mobile navigation">
                         <a href="{{ route('home') }}#products">Products</a>
-                        <a href="{{ route('home') }}#solutions">Purpose</a>
+                        <a href="{{ route('pricing') }}">Pricing</a>
                         <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
-                        <a href="{{ route('home') }}#performance">Performance</a>
+                        <a href="{{ route('about') }}">About</a>
+                        <a href="{{ route('contact') }}">Contact</a>
                     </nav>
                 </details>
             </div>
@@ -78,11 +79,19 @@
                     <strong>Product</strong>
                     <a href="{{ route('apps.index') }}">All apps</a>
                     <a href="{{ route('apps.show', 'fieldpulse') }}">FieldPulse</a>
+                    <a href="{{ route('pricing') }}">Pricing</a>
+                    <a href="{{ route('demo') }}">Request demo</a>
                 </div>
                 <div>
-                    <strong>Principles</strong>
-                    <a href="{{ route('home') }}#performance">Fast everywhere</a>
-                    <a href="{{ route('home') }}#why-businessos">Practical by design</a>
+                    <strong>Company</strong>
+                    <a href="{{ route('about') }}">About</a>
+                    <a href="{{ route('security') }}">Security</a>
+                    <a href="{{ route('contact') }}">Contact</a>
+                </div>
+                <div>
+                    <strong>Legal</strong>
+                    <a href="{{ route('privacy') }}">Privacy</a>
+                    <a href="{{ route('terms') }}">Terms</a>
                 </div>
             </div>
         </div>
