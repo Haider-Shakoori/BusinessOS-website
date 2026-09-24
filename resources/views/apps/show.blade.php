@@ -26,8 +26,8 @@
             </div>
         </div>
 
-        <div class="fieldpulse-stage js-tilt" data-tilt-strength="5">
-            <span class="stage-orbit stage-orbit-a" aria-hidden="true"></span><span class="stage-orbit stage-orbit-b" aria-hidden="true"></span><div class="stage-browser">
+        <div class="fieldpulse-stage">
+            <div class="stage-browser">
                 <div class="window-top"><div class="window-dots"><span></span><span></span><span></span></div><div class="window-title">FieldPulse</div><div class="window-status">Live</div></div>
                 <div class="stage-body">
                     <div class="stage-sidebar"><b>F</b><span class="active"></span><span></span><span></span><span></span></div>
@@ -76,7 +76,7 @@
 
         <div class="feature-grid">
             @foreach ($app['features'] as $index => $feature)
-                <article class="js-tilt {{ $index === 0 || $index === 3 ? 'feature-wide' : '' }}">
+                <article class="{{ $index === 0 || $index === 3 ? 'feature-wide' : '' }}">
                     <span class="feature-index">0{{ $index + 1 }}</span>
                     <div class="feature-glyph glyph-{{ ($index % 3) + 1 }}" aria-hidden="true"><i></i><i></i><i></i></div>
                     <h3>{{ $feature['title'] }}</h3>
@@ -103,7 +103,7 @@
 </section>
 
 <section class="section product-commercial-section">
-    <div class="shell product-commercial-card js-tilt" data-tilt-strength="2">
+    <div class="shell product-commercial-card">
         <div>
             <span class="kicker">Pricing & rollout</span>
             <h2>{{ $app['commercial']['pricing_status'] }}</h2>
@@ -117,7 +117,7 @@
 </section>
 
 <section class="section offline-section">
-    <div class="shell offline-card js-tilt" data-tilt-strength="2">
+    <div class="shell offline-card">
         <div>
             <span class="kicker">Designed for imperfect connectivity</span>
             <h2>Work should not stop when the signal does.</h2>
@@ -149,7 +149,7 @@
 </section>
 
 <section class="section final-cta">
-    <div class="shell final-cta-card js-tilt" data-tilt-strength="2">
+    <div class="shell final-cta-card">
         <div class="cta-orb" aria-hidden="true"></div>
         <span class="kicker">{{ $app['name'] }}</span>
         <h2>Make field activity easier to see, understand and manage.</h2>
