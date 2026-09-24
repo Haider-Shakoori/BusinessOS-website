@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#08090d">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
     <link rel="canonical" href="{{ $meta['canonical'] }}">
@@ -26,7 +26,7 @@
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body class="modern-site">
+<body class="modern-site professional-light">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
