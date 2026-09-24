@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Inquiry;
 use App\Models\PageVisit;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class AnalyticsController extends Controller
@@ -84,6 +82,12 @@ class AnalyticsController extends Controller
     {
         if (! $code || $code === 'Unknown') {
             return 'Unknown';
+        }
+
+        $configured = config('analytics.country_names.'.$code);
+
+        if (is_string($configured) && $configured !== '') {
+            return $configured;
         }
 
         if (class_exists(\Locale::class)) {
