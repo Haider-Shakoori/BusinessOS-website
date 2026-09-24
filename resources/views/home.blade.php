@@ -54,7 +54,7 @@
             </div>
 
             @foreach ($apps->take(3) as $app)
-                <a class="ecosystem-float ecosystem-float-{{ $loop->iteration }}" href="{{ route('apps.show', $app['slug']) }}">
+                <a class="ecosystem-float ecosystem-float-{{ ['field', 'erp', 'pos'][$loop->index] }}" href="{{ route('apps.show', $app['slug']) }}">
                     <span>{{ $app['icon_letter'] }}</span>
                     <div><small>{{ strtoupper($app['eyebrow']) }}</small><strong>{{ $app['name'] }}</strong></div>
                 </a>
