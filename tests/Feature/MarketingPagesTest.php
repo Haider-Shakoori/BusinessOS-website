@@ -16,7 +16,9 @@ class MarketingPagesTest extends TestCase
             ->assertSee('FieldPulse')
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
-            ->assertSee('id="performance"', false);
+            ->assertSee('id="performance"', false)
+            ->assertSee('class="modern-site"', false)
+            ->assertDontSee('businessos-3d.js', false);
     }
 
     public function test_app_directory_is_public_and_indexable(): void
@@ -33,7 +35,8 @@ class MarketingPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Field sales tracking built for teams that work outside the office.')
             ->assertSee('SoftwareApplication')
-            ->assertSee('Offline-first mobile operation');
+            ->assertSee('Offline-first mobile operation')
+            ->assertSee('fieldpulse-stage', false);
     }
 
     public function test_trust_pricing_and_conversion_pages_render(): void
