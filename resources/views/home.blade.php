@@ -147,6 +147,39 @@
             </div>
         </div>
     </div>
+
+    @php($otherApps = $apps->where('featured', false))
+    @if ($otherApps->count())
+        <div class="shell calm-ecosystem">
+            <div class="calm-ecosystem-head">
+                <span class="calm-kicker">More BusinessOS apps</span>
+                <a class="text-link" href="{{ route('apps.index') }}">View all apps <span>→</span></a>
+            </div>
+            <div class="calm-ecosystem-grid">
+                @foreach ($otherApps as $app)
+                    <article>
+                        <div class="calm-ecosystem-top">
+                            <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
+                            <span class="status-pill">{{ $app['status'] }}</span>
+                        </div>
+                        <span class="calm-app-kicker">{{ $app['eyebrow'] }}</span>
+                        <h3>{{ $app['name'] }}</h3>
+                        <p>{{ $app['short_description'] }}</p>
+                        <div class="calm-ecosystem-actions">
+                            <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore product <span>→</span></a>
+                            @if (!empty($app['web_url']))
+                                <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
+                                    <span class="app-live-dot" aria-hidden="true"></span>
+                                    {{ parse_url($app['web_url'], PHP_URL_HOST) }}
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+                            @endif
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </div>
+    @endif
 </section>
 
 <section class="calm-section calm-outcomes" id="solutions">
