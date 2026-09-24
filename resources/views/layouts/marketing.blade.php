@@ -41,6 +41,7 @@
             <nav class="desktop-nav" aria-label="Primary navigation">
                 <a href="{{ route('home') }}#products">Products</a>
                 <a href="{{ route('pricing') }}">Pricing</a>
+                <a href="{{ route('resources.index') }}">Resources</a>
                 <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
                 <a href="{{ route('about') }}">About</a>
             </nav>
@@ -52,6 +53,7 @@
                     <nav aria-label="Mobile navigation">
                         <a href="{{ route('home') }}#products">Products</a>
                         <a href="{{ route('pricing') }}">Pricing</a>
+                        <a href="{{ route('resources.index') }}">Resources</a>
                         <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
                         <a href="{{ route('about') }}">About</a>
                         <a href="{{ route('contact') }}">Contact</a>
@@ -87,6 +89,12 @@
                     <a href="{{ route('about') }}">About</a>
                     <a href="{{ route('security') }}">Security</a>
                     <a href="{{ route('contact') }}">Contact</a>
+                </div>
+                <div>
+                    <strong>Resources</strong>
+                    <a href="{{ route('resources.index') }}">Guides</a>
+                    <a href="{{ route('resources.index') }}">Field operations</a>
+                    <a href="{{ route('resources.index') }}">Software guides</a>
                 </div>
                 <div>
                     <strong>Legal</strong>
