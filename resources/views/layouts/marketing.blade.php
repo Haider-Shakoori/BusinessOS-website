@@ -39,8 +39,8 @@
             </a>
 
             <nav class="desktop-nav" aria-label="Primary navigation">
-                <a href="{{ route('apps.index') }}">Apps</a>
-                <a href="{{ route('home') }}#solutions">Solutions</a>
+                <a href="{{ route('home') }}#products">Products</a>
+                <a href="{{ route('home') }}#solutions">Purpose</a>
                 <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
                 <a href="{{ route('home') }}#performance">Performance</a>
             </nav>
@@ -50,8 +50,8 @@
                 <details class="mobile-menu">
                     <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
                     <nav aria-label="Mobile navigation">
-                        <a href="{{ route('apps.index') }}">Apps</a>
-                        <a href="{{ route('home') }}#solutions">Solutions</a>
+                        <a href="{{ route('home') }}#products">Products</a>
+                        <a href="{{ route('home') }}#solutions">Purpose</a>
                         <a href="{{ route('home') }}#why-businessos">Why BusinessOS</a>
                         <a href="{{ route('home') }}#performance">Performance</a>
                     </nav>
