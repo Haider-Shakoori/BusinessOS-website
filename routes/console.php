@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\PageVisit;
 use App\Models\User;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\Validator;
 
 Artisan::command('inspire', function () {
@@ -45,3 +47,13 @@ Artisan::command('admin:create {email?}', function (?string $email = null) {
 
     return 0;
 })->purpose('Create or promote a BusinessOS CMS administrator');
+
+
+Schedule::call(function (): void {
+    PageVisit::query()
+        ->where('occurred_at', '<', now()->subDays((int) config('analytics.retention_days', 400)))
+        ->delete();
+})
+    ->dailyAt('03:20')
+    ->name('prune-businessos-analytics')
+    ->withoutOverlapping();
