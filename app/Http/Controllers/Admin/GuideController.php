@@ -20,7 +20,7 @@ class GuideController extends Controller
 
     public function create(): View
     {
-        return view('admin.guides.form', ['guide' => new Guide()]);
+        return view('admin.guides.form', ['guide' => new Guide]);
     }
 
     public function store(SaveGuideRequest $request): RedirectResponse
