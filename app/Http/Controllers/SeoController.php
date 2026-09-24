@@ -9,9 +9,7 @@ use Throwable;
 
 class SeoController extends Controller
 {
-    public function __construct(private readonly ProductCatalog $products)
-    {
-    }
+    public function __construct(private readonly ProductCatalog $products) {}
 
     public function sitemap(): Response
     {

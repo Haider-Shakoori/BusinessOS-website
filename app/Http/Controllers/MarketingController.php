@@ -10,9 +10,7 @@ use Throwable;
 
 class MarketingController extends Controller
 {
-    public function __construct(private readonly ProductCatalog $products)
-    {
-    }
+    public function __construct(private readonly ProductCatalog $products) {}
 
     public function home(): View
     {
