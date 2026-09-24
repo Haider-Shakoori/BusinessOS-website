@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <a class="story-scroll" href="#products" aria-label="Scroll to BusinessOS products"><span></span> Discover</a>
+    <div class="story-scroll" aria-hidden="true"><span></span> Scroll to explore</div>
 </section>
 
 <section class="story-ticker" aria-label="BusinessOS capability areas">
