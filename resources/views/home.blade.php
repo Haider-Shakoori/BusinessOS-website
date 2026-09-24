@@ -222,10 +222,44 @@
     </div>
 </section>
 
+<section class="story-section story-resources" id="resources">
+    <div class="shell">
+        <div class="story-section-head">
+            <span class="story-index">05 / RESOURCES</span>
+            <div>
+                <span class="kicker">Guides & resources</span>
+                <h2>Useful ideas for better operations.</h2>
+            </div>
+            <p>Focused guidance on field work, software choices, mobile operations and the systems behind clearer execution.</p>
+        </div>
+
+        @if ($latestGuides->count())
+            <div class="home-resource-grid">
+                @foreach ($latestGuides as $guide)
+                    <article>
+                        <div><span>{{ $guide->category }}</span><time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time></div>
+                        <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
+                        <p>{{ $guide->excerpt }}</p>
+                        <a class="text-link" href="{{ route('resources.show', $guide) }}">Read guide <span>→</span></a>
+                    </article>
+                @endforeach
+            </div>
+        @else
+            <div class="home-resource-empty">
+                <span>Resources are managed from the BusinessOS CMS and will appear here when published.</span>
+            </div>
+        @endif
+
+        <div class="home-resource-more">
+            <a class="button button-ghost" href="{{ route('resources.index') }}">View all resources <span aria-hidden="true">↗</span></a>
+        </div>
+    </div>
+</section>
+
 <section class="story-section story-final">
     <div class="shell story-final-card">
         <div class="story-final-glow" aria-hidden="true"></div>
-        <span class="story-index">05 / NEXT</span>
+        <span class="story-index">06 / NEXT</span>
         <span class="kicker">BusinessOS</span>
         <h2>Start with one problem.<br>Build a better operating system for the business.</h2>
         <p>Explore FieldPulse now and follow the BusinessOS ecosystem as more focused applications are released.</p>
