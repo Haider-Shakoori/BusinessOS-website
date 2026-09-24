@@ -17,9 +17,19 @@
             <h2 class="product-headline">{{ $app['headline'] }}</h2>
             <p class="product-lede">{{ $app['description'] }}</p>
             <div class="hero-actions">
-                <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo <span aria-hidden="true">↗</span></a>
-                <a class="button button-ghost" href="#features">Explore features</a>
+                @if (!empty($app['web_url']))
+                    <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
+                @endif
+                <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
+                <a class="product-inline-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
             </div>
+            @if (!empty($app['web_url']))
+                <a class="product-live-domain" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
+                    <span class="app-live-dot" aria-hidden="true"></span>
+                    Live app: {{ parse_url($app['web_url'], PHP_URL_HOST) }}
+                    <span aria-hidden="true">↗</span>
+                </a>
+            @endif
             <div class="platform-row">
                 <span>Platforms</span>
                 @foreach ($app['platforms'] as $platform)<strong>{{ $platform }}</strong>@endforeach
@@ -155,7 +165,10 @@
         <h2>Make field activity easier to see, understand and manage.</h2>
         <p>Tell us about your field team and the workflow you want to improve. We will keep the conversation aligned with the current FieldPulse release state.</p>
         <div class="hero-actions centered-actions">
-            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request FieldPulse demo <span aria-hidden="true">↗</span></a>
+            @if (!empty($app['web_url']))
+                <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
+            @endif
+            <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">Request demo</a>
             <a class="button button-ghost" href="{{ route('apps.index') }}">All BusinessOS apps</a>
         </div>
     </div>
