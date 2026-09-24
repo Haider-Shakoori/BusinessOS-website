@@ -137,6 +137,36 @@ class ProductController extends Controller
             $this->structuredLines($data['faq_text'] ?? null, 2)
         );
         $content['live_note'] = $data['live_note'] ?? null;
+        $content['translations'] = [
+            'fa' => [
+                'name' => $data['name_fa'] ?? '',
+                'eyebrow' => $data['eyebrow_fa'] ?? '',
+                'headline' => $data['headline_fa'] ?? '',
+                'short_description' => $data['short_description_fa'] ?? '',
+                'description' => $data['description_fa'] ?? '',
+                'seo_title' => $data['seo_title_fa'] ?? '',
+                'seo_description' => $data['seo_description_fa'] ?? '',
+            ],
+            'ps' => [
+                'name' => $data['name_ps'] ?? '',
+                'eyebrow' => $data['eyebrow_ps'] ?? '',
+                'headline' => $data['headline_ps'] ?? '',
+                'short_description' => $data['short_description_ps'] ?? '',
+                'description' => $data['description_ps'] ?? '',
+                'seo_title' => $data['seo_title_ps'] ?? '',
+                'seo_description' => $data['seo_description_ps'] ?? '',
+            ],
+        ];
+        $content['commercial']['pricing_model'] = $data['pricing_model'] ?? '';
+        $content['commercial']['pricing_plans'] = array_map(
+            fn (array $parts) => [
+                'name' => $parts[0],
+                'price' => $parts[1],
+                'description' => $parts[2],
+            ],
+            $this->structuredLines($data['pricing_plans_text'] ?? null, 3)
+        );
+        $content['commercial']['deployment_options'] = $this->lines($data['deployment_options_text'] ?? null);
 
         $attributes = Arr::only($data, [
             'name',
@@ -291,6 +321,25 @@ class ProductController extends Controller
                 ->map(fn (array $item) => ($item['question'] ?? '').' | '.($item['answer'] ?? ''))
                 ->implode("\n"),
             'live_note' => $content['live_note'] ?? '',
+            'name_fa' => data_get($content, 'translations.fa.name', ''),
+            'eyebrow_fa' => data_get($content, 'translations.fa.eyebrow', ''),
+            'headline_fa' => data_get($content, 'translations.fa.headline', ''),
+            'short_description_fa' => data_get($content, 'translations.fa.short_description', ''),
+            'description_fa' => data_get($content, 'translations.fa.description', ''),
+            'seo_title_fa' => data_get($content, 'translations.fa.seo_title', ''),
+            'seo_description_fa' => data_get($content, 'translations.fa.seo_description', ''),
+            'name_ps' => data_get($content, 'translations.ps.name', ''),
+            'eyebrow_ps' => data_get($content, 'translations.ps.eyebrow', ''),
+            'headline_ps' => data_get($content, 'translations.ps.headline', ''),
+            'short_description_ps' => data_get($content, 'translations.ps.short_description', ''),
+            'description_ps' => data_get($content, 'translations.ps.description', ''),
+            'seo_title_ps' => data_get($content, 'translations.ps.seo_title', ''),
+            'seo_description_ps' => data_get($content, 'translations.ps.seo_description', ''),
+            'pricing_model' => data_get($content, 'commercial.pricing_model', ''),
+            'pricing_plans_text' => collect(data_get($content, 'commercial.pricing_plans', []))
+                ->map(fn (array $item) => ($item['name'] ?? '').' | '.($item['price'] ?? '').' | '.($item['description'] ?? ''))
+                ->implode("\n"),
+            'deployment_options_text' => $this->lineText(data_get($content, 'commercial.deployment_options', [])),
         ];
     }
 
@@ -299,3 +348,5 @@ class ProductController extends Controller
         return collect($items)->map(fn ($item) => trim((string) $item))->filter()->implode("\n");
     }
 }
+
+[executed on device: ubuntu-6gb-dal-x8mx (c447f909-fdcc-4121-9924-27a69d35e9b2)]
