@@ -21,13 +21,13 @@
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/businessos-enterprise.css') }}?v={{ filemtime(public_path('assets/css/businessos-enterprise.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/businessos-calm.css') }}?v={{ filemtime(public_path('assets/css/businessos-calm.css')) }}">
 
     @foreach ($schema ?? [] as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body class="modern-site professional-light enterprise-v2">
+<body class="modern-site professional-light calm-premium">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -48,7 +48,7 @@
             </nav>
 
             <div class="nav-actions">
-                <a class="button button-primary desktop-cta" href="{{ route('demo', ['app' => 'fieldpulse']) }}">Request demo</a>
+                <a class="button button-primary desktop-cta" href="{{ route('demo', ['app' => 'fieldpulse']) }}">See FieldPulse</a>
                 <details class="mobile-menu">
                     <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
                     <nav aria-label="Mobile navigation">
