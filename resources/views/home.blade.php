@@ -1,214 +1,238 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="hero">
-    <div class="hero-glow hero-glow-a" aria-hidden="true"></div>
-    <div class="hero-glow hero-glow-b" aria-hidden="true"></div>
-    <div class="shell hero-grid">
-        <div class="hero-copy">
-            <div class="eyebrow"><span class="pulse-dot"></span> The operating layer for modern business</div>
-            <h1>Business software that feels <span>effortless.</span></h1>
-            <p class="hero-lede">BusinessOS builds focused applications for teams that sell, operate, coordinate and grow—designed to stay useful on powerful desktops and unreliable mobile connections alike.</p>
+<section class="story-hero" id="top">
+    <div class="story-grid" aria-hidden="true"></div>
+    <div class="story-aurora story-aurora-a" aria-hidden="true"></div>
+    <div class="story-aurora story-aurora-b" aria-hidden="true"></div>
+
+    <div class="shell story-hero-shell">
+        <div class="story-hero-copy">
+            <div class="eyebrow"><span class="pulse-dot"></span> BusinessOS software ecosystem</div>
+            <h1>Run the business.<br><span>Not the software.</span></h1>
+            <p>BusinessOS builds focused applications for the work companies actually do—selling, coordinating teams, managing operations and making decisions—without the weight of bloated enterprise software.</p>
+
             <div class="hero-actions">
-                <a class="button button-primary" href="{{ route('apps.index') }}">Explore BusinessOS apps <span aria-hidden="true">↗</span></a>
-                <a class="button button-ghost" href="#why-businessos">See how we build</a>
+                <a class="button button-primary" href="#products">Explore the ecosystem <span aria-hidden="true">↓</span></a>
+                <a class="button button-ghost" href="{{ route('apps.index') }}">View all apps <span aria-hidden="true">↗</span></a>
             </div>
-            <div class="hero-proof" aria-label="BusinessOS engineering principles">
-                <span><i>01</i> Server-rendered</span>
-                <span><i>02</i> Mobile-first</span>
-                <span><i>03</i> Low-bandwidth aware</span>
+
+            <div class="story-signals" aria-label="BusinessOS product principles">
+                <span><i></i> Fast on weak connections</span>
+                <span><i></i> Mobile-first where work happens</span>
+                <span><i></i> Focused around real workflows</span>
             </div>
         </div>
 
-        <div class="hero-visual" aria-label="BusinessOS product ecosystem preview">
-            <div class="orbit orbit-one" aria-hidden="true"></div>
-            <div class="orbit orbit-two" aria-hidden="true"></div>
-            <div class="product-window">
-                <div class="window-top">
-                    <div class="window-dots"><span></span><span></span><span></span></div>
-                    <div class="window-title">BusinessOS / Operations</div>
-                    <div class="window-status">Live</div>
+        <div class="story-command" aria-label="BusinessOS product preview">
+            <div class="story-command-bar">
+                <span class="brand-mark mini" aria-hidden="true"><span></span><span></span><span></span></span>
+                <div><small>BUSINESSOS</small><strong>Operations overview</strong></div>
+                <span class="story-live">● Live</span>
+            </div>
+            <div class="story-command-body">
+                <div class="story-kpis">
+                    <article><small>Active field team</small><strong>18</strong><span>+3 today</span></article>
+                    <article><small>Client visits</small><strong>42</strong><span>87% verified</span></article>
+                    <article><small>Coverage</small><strong>76%</strong><span>On target</span></article>
                 </div>
-                <div class="window-body">
-                    <aside class="mock-sidebar" aria-hidden="true">
-                        <div class="mini-brand"></div>
-                        <span class="active"></span><span></span><span></span><span></span><span></span>
-                    </aside>
-                    <div class="mock-content">
-                        <div class="mock-heading">
-                            <div><small>Today's overview</small><strong>Field operations</strong></div>
-                            <span class="mini-chip">24 Sep</span>
-                        </div>
-                        <div class="metric-row">
-                            <article><small>Active team</small><strong>18</strong><em>+3 today</em></article>
-                            <article><small>Client visits</small><strong>42</strong><em>87% verified</em></article>
-                            <article><small>Coverage</small><strong>76%</strong><em>On target</em></article>
-                        </div>
-                        <div class="dashboard-grid">
-                            <div class="map-card">
-                                <div class="map-grid"></div>
-                                <span class="map-road road-a"></span><span class="map-road road-b"></span>
-                                <i class="map-pin pin-a"></i><i class="map-pin pin-b"></i><i class="map-pin pin-c"></i><i class="map-pin pin-d"></i>
-                                <div class="map-label">Live field map</div>
-                            </div>
-                            <div class="activity-card">
-                                <small>Live activity</small>
-                                <div><i></i><span><strong>Client visit</strong><small>2 min ago</small></span></div>
-                                <div><i></i><span><strong>Route update</strong><small>8 min ago</small></span></div>
-                                <div><i></i><span><strong>Check-in</strong><small>14 min ago</small></span></div>
-                            </div>
-                        </div>
+                <div class="story-command-grid">
+                    <div class="story-map">
+                        <div class="map-grid"></div>
+                        <span class="story-route r1"></span><span class="story-route r2"></span>
+                        <i class="story-pin p1"></i><i class="story-pin p2"></i><i class="story-pin p3"></i><i class="story-pin p4"></i>
+                        <div class="story-map-label"><span></span> Field activity</div>
+                    </div>
+                    <div class="story-feed">
+                        <small>LIVE ACTIVITY</small>
+                        <div><i></i><span><strong>Client visit verified</strong><small>2 min ago</small></span></div>
+                        <div><i></i><span><strong>Route synchronized</strong><small>8 min ago</small></span></div>
+                        <div><i></i><span><strong>Work session started</strong><small>14 min ago</small></span></div>
                     </div>
                 </div>
             </div>
-            <div class="floating-card floating-card-top"><span class="signal-icon">⌁</span><div><small>Connection</small><strong>Offline ready</strong></div></div>
-            <div class="floating-card floating-card-bottom"><span class="spark-icon">✦</span><div><small>BusinessOS AI</small><strong>Insight ready</strong></div></div>
+            <div class="story-float story-float-a"><span>⌁</span><div><small>Connectivity</small><strong>Offline-ready</strong></div></div>
+            <div class="story-float story-float-b"><span>✦</span><div><small>BusinessOS AI</small><strong>Insights available</strong></div></div>
         </div>
     </div>
+
+    <a class="story-scroll" href="#products" aria-label="Scroll to BusinessOS products"><span></span> Discover</a>
 </section>
 
-<section class="trust-strip">
-    <div class="shell trust-inner">
-        <p>Built around the work businesses actually do</p>
-        <div>
-            <span>Sales</span><span>Field Operations</span><span>Automation</span><span>Analytics</span><span>Management</span>
-        </div>
-    </div>
-</section>
-
-<section class="section apps-section" id="solutions">
+<section class="story-ticker" aria-label="BusinessOS capability areas">
     <div class="shell">
-        <div class="section-heading split-heading">
+        <span>Sales</span><i>•</i><span>Field Operations</span><i>•</i><span>Automation</span><i>•</i><span>Analytics</span><i>•</i><span>Management</span><i>•</i><span>Mobile Work</span>
+    </div>
+</section>
+
+<section class="story-section story-products" id="products">
+    <div class="shell">
+        <div class="story-section-head">
+            <span class="story-index">01 / PRODUCTS</span>
             <div>
-                <span class="kicker">BusinessOS applications</span>
-                <h2>Focused tools. One serious software ecosystem.</h2>
+                <span class="kicker">The ecosystem</span>
+                <h2>One brand. Focused software for different parts of the business.</h2>
             </div>
-            <p>Each product is built around a real operational problem, with its own workflow, search identity and room to grow.</p>
+            <p>BusinessOS products are designed to solve a defined operational problem well. Each app gets its own identity while sharing the same standard for speed, clarity and serious engineering.</p>
         </div>
 
-        <div class="featured-app">
-            <div class="app-copy">
-                <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
+        <article class="story-product-card">
+            <div class="story-product-copy">
+                <div class="story-product-top">
+                    <div class="app-icon fieldpulse-icon" aria-hidden="true"><span></span><span></span></div>
+                    <span class="status-pill">{{ $featured['status'] }}</span>
+                </div>
                 <span class="kicker">{{ $featured['eyebrow'] }}</span>
                 <h3>{{ $featured['name'] }}</h3>
-                <p class="app-headline">{{ $featured['headline'] }}</p>
+                <p class="story-product-headline">{{ $featured['headline'] }}</p>
                 <p>{{ $featured['short_description'] }}</p>
-                <div class="chip-row">
-                    @foreach ($featured['highlights'] as $highlight)
-                        <span>{{ $highlight }}</span>
+
+                <div class="story-feature-list">
+                    @foreach ($featured['highlights'] as $index => $highlight)
+                        <span><i>0{{ $index + 1 }}</i>{{ $highlight }}</span>
                     @endforeach
                 </div>
-                <a class="text-link" href="{{ route('apps.show', $featured['slug']) }}">Explore {{ $featured['name'] }} <span>→</span></a>
+
+                <div class="story-product-actions">
+                    <a class="button button-primary" href="{{ route('apps.show', $featured['slug']) }}">Explore {{ $featured['name'] }} <span aria-hidden="true">↗</span></a>
+                    <a class="text-link" href="{{ route('apps.index') }}">All BusinessOS apps <span>→</span></a>
+                </div>
             </div>
-            <div class="app-visual">
-                <div class="phone">
+
+            <div class="story-product-visual">
+                <div class="story-phone">
                     <div class="phone-island"></div>
-                    <div class="phone-screen">
-                        <div class="phone-top"><span>FieldPulse</span><i></i></div>
+                    <div class="story-phone-screen">
+                        <div class="story-phone-brand"><b>F</b><span>FieldPulse</span><i></i></div>
                         <small>Good afternoon</small>
                         <strong>Your field day</strong>
-                        <div class="phone-card">
-                            <div><span class="round-icon">↗</span><span><small>Work session</small><strong>06h 42m</strong></span></div>
-                            <span class="status-chip">Active</span>
+                        <div class="story-work-card">
+                            <div><span>↗</span><p><small>Work session</small><strong>06h 42m</strong></p></div>
+                            <em>Active</em>
                         </div>
-                        <div class="phone-grid"><span><small>Visits</small><strong>7</strong></span><span><small>Distance</small><strong>18.2 km</strong></span></div>
-                        <div class="route-preview"><i></i><i></i><i></i><span></span></div>
-                        <div class="phone-nav"><i></i><i></i><i></i><i></i></div>
+                        <div class="story-phone-stats">
+                            <span><small>Visits</small><strong>7</strong></span>
+                            <span><small>Distance</small><strong>18.2 km</strong></span>
+                        </div>
+                        <div class="story-mini-map">
+                            <div class="map-grid"></div><span></span>
+                            <i></i><i></i><i></i>
+                        </div>
                     </div>
                 </div>
-                <div class="visual-note note-a">Offline sync <strong>Ready</strong></div>
-                <div class="visual-note note-b">GPS history <strong>Verified</strong></div>
+                <div class="story-desk-card card-one"><small>VISITS</small><strong>42</strong><span>87% verified</span></div>
+                <div class="story-desk-card card-two"><small>SYNC</small><strong>Ready</strong><span>Offline queue clear</span></div>
             </div>
-        </div>
+        </article>
     </div>
 </section>
 
-<section class="section principles" id="why-businessos">
+<section class="story-section story-problem" id="solutions">
     <div class="shell">
-        <div class="section-heading centered">
-            <span class="kicker">Why BusinessOS</span>
-            <h2>Software should remove friction, not move it somewhere else.</h2>
-            <p>Our products are shaped by four engineering principles that keep the experience useful after the launch-day screenshots are forgotten.</p>
-        </div>
-        <div class="principle-grid">
-            <article>
-                <span class="principle-number">01</span>
-                <div class="line-icon icon-focus" aria-hidden="true"></div>
-                <h3>Focused by design</h3>
-                <p>Clear workflows and deliberate features instead of menus filled with things your team never uses.</p>
-            </article>
-            <article>
-                <span class="principle-number">02</span>
-                <div class="line-icon icon-speed" aria-hidden="true"></div>
-                <h3>Fast where it matters</h3>
-                <p>Small initial payloads, server-rendered content and minimal JavaScript keep pages responsive on constrained networks.</p>
-            </article>
-            <article>
-                <span class="principle-number">03</span>
-                <div class="line-icon icon-mobile" aria-hidden="true"></div>
-                <h3>Mobile is a first-class surface</h3>
-                <p>Field teams and business owners should not receive a compressed desktop experience disguised as mobile design.</p>
-            </article>
-            <article>
-                <span class="principle-number">04</span>
-                <div class="line-icon icon-scale" aria-hidden="true"></div>
-                <h3>Built to evolve</h3>
-                <p>Each application has a clean product identity and architecture so the ecosystem can expand without becoming chaotic.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section class="section performance-section" id="performance">
-    <div class="shell performance-grid">
-        <div class="performance-copy">
-            <span class="kicker">Fast everywhere</span>
-            <h2>Premium does not have to mean heavy.</h2>
-            <p>A polished website is useless if customers abandon it before the first screen appears. BusinessOS is engineered around real network constraints, including slower and unstable mobile connections.</p>
-            <ul class="check-list">
-                <li><span>✓</span> No external font download required</li>
-                <li><span>✓</span> Core content works without JavaScript</li>
-                <li><span>✓</span> Server-rendered, crawlable HTML</li>
-                <li><span>✓</span> Designed for aggressive asset caching</li>
-            </ul>
-        </div>
-        <div class="speed-panel">
-            <div class="speed-ring"><span><strong>&lt;500</strong><small>KB target</small></span></div>
-            <div class="speed-details">
-                <div><span>LCP target</span><strong>≤ 2.5s</strong></div>
-                <div><span>INP target</span><strong>≤ 200ms</strong></div>
-                <div><span>CLS target</span><strong>≤ 0.1</strong></div>
+        <div class="story-section-head compact">
+            <span class="story-index">02 / PURPOSE</span>
+            <div>
+                <span class="kicker">Built around work</span>
+                <h2>Software should make the business easier to run.</h2>
             </div>
-            <p>Performance targets are engineering gates, not marketing claims. Production measurements will be published only after deployment testing.</p>
         </div>
-    </div>
-</section>
 
-<section class="section seo-section">
-    <div class="shell seo-card">
-        <div>
-            <span class="kicker">Built to be discovered</span>
-            <h2>Every app gets its own search identity.</h2>
-            <p>BusinessOS does not force every product into one generic corporate page. Each application receives focused content, metadata, structured data and internal linking so search engines and people can understand exactly what it solves.</p>
-        </div>
-        <div class="search-demo" aria-label="Example search result presentation">
-            <div class="search-bar"><span>⌕</span> field sales tracking software</div>
+        <div class="story-purpose-grid">
             <article>
-                <small>businessos.af › apps › fieldpulse</small>
-                <strong>FieldPulse — Field Sales Tracking & Field Force Management</strong>
-                <p>Track field sales attendance, client visits, GPS activity, routes and team performance...</p>
+                <span>01</span>
+                <h3>See what is happening</h3>
+                <p>Turn fragmented operational activity into a clear view managers can understand and act on.</p>
+            </article>
+            <article>
+                <span>02</span>
+                <h3>Keep teams moving</h3>
+                <p>Design mobile workflows around people working in the field instead of forcing office software onto them.</p>
+            </article>
+            <article>
+                <span>03</span>
+                <h3>Reduce repeated work</h3>
+                <p>Connect workflows, records and automation so information does not need to be entered and explained again and again.</p>
+            </article>
+            <article>
+                <span>04</span>
+                <h3>Make decisions faster</h3>
+                <p>Put useful information and AI-assisted insight close to the operational data that produced it.</p>
             </article>
         </div>
     </div>
 </section>
 
-<section class="section final-cta">
-    <div class="shell final-cta-card">
-        <div class="cta-orb" aria-hidden="true"></div>
-        <span class="kicker">Explore the ecosystem</span>
-        <h2>Find the BusinessOS app built for your next operational problem.</h2>
-        <p>Start with FieldPulse today. More focused BusinessOS applications can join the same architecture without diluting the experience.</p>
-        <a class="button button-primary" href="{{ route('apps.index') }}">Browse all apps <span aria-hidden="true">↗</span></a>
+<section class="story-section story-principles" id="why-businessos">
+    <div class="shell">
+        <div class="story-section-head">
+            <span class="story-index">03 / PRINCIPLES</span>
+            <div>
+                <span class="kicker">Why BusinessOS</span>
+                <h2>Serious engineering without enterprise bloat.</h2>
+            </div>
+            <p>The experience should feel premium because the product is thoughtful, not because the browser downloaded megabytes of decoration.</p>
+        </div>
+
+        <div class="story-principle-stage">
+            <article>
+                <span class="story-big-number">01</span>
+                <div><small>FOCUSED</small><h3>Only what earns its place.</h3><p>Every feature should support a real business workflow. Complexity is a cost, so we make it justify itself.</p></div>
+            </article>
+            <article>
+                <span class="story-big-number">02</span>
+                <div><small>MOBILE</small><h3>Work happens away from desks.</h3><p>Mobile experiences are designed as primary product surfaces, especially for field teams and operators.</p></div>
+            </article>
+            <article>
+                <span class="story-big-number">03</span>
+                <div><small>FAST</small><h3>Useful even when the network is not.</h3><p>Server-rendered pages, lightweight assets and offline-aware product design keep BusinessOS practical on constrained connections.</p></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="story-section story-performance" id="performance">
+    <div class="shell story-performance-grid">
+        <div class="story-performance-copy">
+            <span class="story-index">04 / PERFORMANCE</span>
+            <span class="kicker">Fast everywhere</span>
+            <h2>Designed for the internet people actually have.</h2>
+            <p>BusinessOS treats bandwidth, latency and unstable connections as product constraints—not edge cases. That matters in Afghanistan, and it makes the experience better everywhere else too.</p>
+
+            <div class="story-checks">
+                <span><i>✓</i> No external font dependency</span>
+                <span><i>✓</i> Core content without JavaScript</span>
+                <span><i>✓</i> Server-rendered crawlable HTML</span>
+                <span><i>✓</i> Aggressive asset caching</span>
+            </div>
+        </div>
+
+        <div class="story-performance-panel">
+            <div class="story-speed-main">
+                <small>INITIAL TRANSFER TARGET</small>
+                <strong>&lt;500<span>KB</span></strong>
+                <p>for ordinary marketing pages where practical</p>
+            </div>
+            <div class="story-vitals">
+                <div><span>LCP</span><strong>≤ 2.5s</strong><small>target</small></div>
+                <div><span>INP</span><strong>≤ 200ms</strong><small>target</small></div>
+                <div><span>CLS</span><strong>≤ 0.1</strong><small>target</small></div>
+            </div>
+            <small class="story-disclaimer">Performance values are engineering targets. Real production results are measured after deployment rather than invented for marketing.</small>
+        </div>
+    </div>
+</section>
+
+<section class="story-section story-final">
+    <div class="shell story-final-card">
+        <div class="story-final-glow" aria-hidden="true"></div>
+        <span class="story-index">05 / NEXT</span>
+        <span class="kicker">BusinessOS</span>
+        <h2>Start with one problem.<br>Build a better operating system for the business.</h2>
+        <p>Explore FieldPulse now and follow the BusinessOS ecosystem as more focused applications are released.</p>
+        <div class="hero-actions story-final-actions">
+            <a class="button button-primary" href="{{ route('apps.show', 'fieldpulse') }}">Explore FieldPulse <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="{{ route('apps.index') }}">Browse all apps</a>
+        </div>
     </div>
 </section>
 @endsection
