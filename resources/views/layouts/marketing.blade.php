@@ -26,7 +26,7 @@
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body>
+<body class="marketing-body spatial-ui">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -108,5 +108,6 @@
             <span>Built for real businesses and real networks.</span>
         </div>
     </footer>
+    <script src="{{ asset('assets/js/spatial.js') }}" defer></script>
 </body>
 </html>
