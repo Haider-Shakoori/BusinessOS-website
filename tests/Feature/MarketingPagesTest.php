@@ -35,7 +35,9 @@ class MarketingPagesTest extends TestCase
         $this->get('/apps')
             ->assertOk()
             ->assertSee('BusinessOS applications')
-            ->assertSee('FieldPulse');
+            ->assertSee('FieldPulse')
+            ->assertSee('https://fieldpulse.businessos.af', false)
+            ->assertSee('fieldpulse.businessos.af');
     }
 
     public function test_fieldpulse_has_a_dedicated_product_page_and_schema(): void
@@ -45,7 +47,10 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Field sales tracking built for teams that work outside the office.')
             ->assertSee('SoftwareApplication')
             ->assertSee('Offline-first mobile operation')
-            ->assertSee('fieldpulse-stage', false);
+            ->assertSee('fieldpulse-stage', false)
+            ->assertSee('Open FieldPulse')
+            ->assertSee('Live app: fieldpulse.businessos.af')
+            ->assertSee('https://fieldpulse.businessos.af', false);
     }
 
     public function test_trust_pricing_and_conversion_pages_render(): void
