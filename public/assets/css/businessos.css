@@ -3679,3 +3679,1002 @@ summary:focus-visible {
         right: 11px;
     }
 }
+
+
+/* ==========================================================================
+   Professional light theme
+   Neutral white business presentation with one restrained blue accent.
+   ========================================================================== */
+
+.professional-light {
+    --bg: #ffffff;
+    --bg-soft: #f8fafc;
+    --panel: #ffffff;
+    --panel-solid: #ffffff;
+    --panel-2: #f8fafc;
+    --text: #0f172a;
+    --muted: #64748b;
+    --muted-2: #94a3b8;
+    --line: #e2e8f0;
+    --line-strong: #cbd5e1;
+    --violet: #2563eb;
+    --violet-bright: #1d4ed8;
+    --cyan: #2563eb;
+    --green: #15803d;
+    --shadow: 0 18px 50px rgba(15, 23, 42, .08);
+    color: var(--text);
+    background: #ffffff;
+}
+
+.professional-light::selection {
+    color: #0f172a;
+    background: #dbeafe;
+}
+
+.professional-light .site-header {
+    color: #0f172a;
+    background: rgba(255, 255, 255, .96);
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 0 rgba(15, 23, 42, .02);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.professional-light .brand {
+    color: #0f172a;
+}
+
+.professional-light .brand-mark {
+    border-color: #dbe2ea;
+    background: #0f172a;
+    box-shadow: none;
+}
+
+.professional-light .brand-mark span {
+    background: #ffffff;
+}
+
+.professional-light .desktop-nav a {
+    color: #475569;
+}
+
+.professional-light .desktop-nav a:hover,
+.professional-light .desktop-nav a:focus-visible {
+    color: #0f172a;
+}
+
+.professional-light .desktop-nav a::after {
+    background: #2563eb;
+}
+
+.professional-light .button {
+    border-color: #cbd5e1;
+    box-shadow: none;
+}
+
+.professional-light .button-primary {
+    color: #ffffff;
+    border-color: #0f172a;
+    background: #0f172a;
+    box-shadow: none;
+}
+
+.professional-light .button-primary:hover {
+    color: #ffffff;
+    border-color: #1e293b;
+    background: #1e293b;
+    box-shadow: none;
+}
+
+.professional-light .button-ghost {
+    color: #0f172a;
+    border-color: #cbd5e1;
+    background: #ffffff;
+}
+
+.professional-light .button-ghost:hover {
+    color: #0f172a;
+    border-color: #94a3b8;
+    background: #f8fafc;
+}
+
+.professional-light .button:focus-visible,
+.professional-light a:focus-visible,
+.professional-light summary:focus-visible {
+    outline-color: #2563eb;
+}
+
+.professional-light .mobile-menu summary {
+    border-color: #dbe2ea;
+    background: #ffffff;
+}
+
+.professional-light .mobile-menu summary span {
+    background: #0f172a;
+}
+
+.professional-light .mobile-menu nav {
+    color: #0f172a;
+    border-color: #e2e8f0;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, .12);
+}
+
+.professional-light .mobile-menu nav a {
+    color: #334155;
+}
+
+.professional-light .mobile-menu nav a:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+/* Home hero */
+.professional-light .story-hero {
+    color: #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .story-grid {
+    opacity: .6;
+    background-image:
+        linear-gradient(#f1f5f9 1px, transparent 1px),
+        linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.45) 55%, transparent 92%);
+}
+
+.professional-light .story-aurora {
+    display: none;
+}
+
+.professional-light .eyebrow,
+.professional-light .kicker {
+    color: #2563eb;
+}
+
+.professional-light .eyebrow {
+    color: #1d4ed8;
+    border-color: #dbeafe;
+    background: #eff6ff;
+}
+
+.professional-light .pulse-dot {
+    background: #16a34a;
+    box-shadow: 0 0 0 4px #dcfce7;
+}
+
+.professional-light .story-hero h1,
+.professional-light .page-hero h1,
+.professional-light .trust-page-hero h1,
+.professional-light .resource-hero h1,
+.professional-light .product-title-row h1,
+.professional-light .product-headline {
+    color: #0f172a;
+}
+
+.professional-light .story-hero h1 span {
+    color: #334155;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+}
+
+.professional-light .story-hero-copy > p,
+.professional-light .story-section-head > p,
+.professional-light .story-performance-copy > p,
+.professional-light .section-copy,
+.professional-light .body-copy p,
+.professional-light .product-lede,
+.professional-light .trust-page-hero .narrow-shell > p,
+.professional-light .contact-hero > .shell > div:first-child > p,
+.professional-light .guide-header > div > p {
+    color: #64748b;
+}
+
+.professional-light .story-signals {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .story-signals span {
+    color: #64748b;
+}
+
+.professional-light .story-signals i {
+    background: #2563eb;
+    box-shadow: 0 0 0 4px #dbeafe;
+}
+
+/* Homepage operational preview */
+.professional-light .story-command {
+    color: #0f172a;
+    border: 1px solid #dbe2ea;
+    background: #ffffff;
+    box-shadow: 0 20px 55px rgba(15, 23, 42, .09);
+}
+
+.professional-light .story-command-bar {
+    border-bottom-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .story-command-bar small,
+.professional-light .story-kpis small,
+.professional-light .story-feed > small,
+.professional-light .story-feed div small {
+    color: #94a3b8;
+}
+
+.professional-light .story-command-bar strong,
+.professional-light .story-feed div strong {
+    color: #334155;
+}
+
+.professional-light .story-live {
+    color: #166534;
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+}
+
+.professional-light .story-kpis article {
+    border-color: #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .story-kpis strong {
+    color: #0f172a;
+}
+
+.professional-light .story-kpis span {
+    color: #15803d;
+}
+
+.professional-light .story-map,
+.professional-light .story-feed {
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .story-map {
+    background: #f8fafc;
+}
+
+.professional-light .map-grid {
+    opacity: .8;
+    background-image:
+        linear-gradient(#e2e8f0 1px, transparent 1px),
+        linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+}
+
+.professional-light .story-route,
+.professional-light .route-line,
+.professional-light .map-road {
+    background: #93c5fd;
+}
+
+.professional-light .story-pin,
+.professional-light .map-pin {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 5px #dbeafe;
+}
+
+.professional-light .story-map-label,
+.professional-light .map-label {
+    color: #64748b;
+}
+
+.professional-light .story-map-label span {
+    background: #16a34a;
+    box-shadow: none;
+}
+
+.professional-light .story-feed > div {
+    border-bottom-color: #e2e8f0;
+}
+
+.professional-light .story-feed > div > i {
+    background: #2563eb;
+    box-shadow: 0 0 0 4px #dbeafe;
+}
+
+.professional-light .story-scroll {
+    color: #94a3b8;
+}
+
+.professional-light .story-scroll span {
+    border-color: #cbd5e1;
+}
+
+.professional-light .story-scroll span::after {
+    background: #64748b;
+}
+
+.professional-light .story-ticker {
+    color: #475569;
+    border-bottom-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .story-ticker .shell {
+    color: #475569;
+}
+
+.professional-light .story-ticker i {
+    color: #cbd5e1;
+}
+
+/* Sections */
+.professional-light .story-products,
+.professional-light .story-problem,
+.professional-light .story-principles,
+.professional-light .story-performance,
+.professional-light .story-resources,
+.professional-light .story-final,
+.professional-light .apps-section,
+.professional-light .feature-section,
+.professional-light .product-problem,
+.professional-light .use-case-section,
+.professional-light .offline-section,
+.professional-light .faq-section,
+.professional-light .pricing-section,
+.professional-light .trust-content-section,
+.professional-light .resource-section,
+.professional-light .legal-section {
+    color: #0f172a;
+    background: #ffffff;
+}
+
+.professional-light .story-problem,
+.professional-light .story-performance,
+.professional-light .feature-section,
+.professional-light .muted-section,
+.professional-light .resource-section,
+.professional-light .faq-section {
+    background: #f8fafc;
+}
+
+.professional-light .story-index {
+    color: #94a3b8;
+}
+
+.professional-light .story-section-head h2,
+.professional-light .story-performance-copy h2,
+.professional-light .story-final h2,
+.professional-light .section-heading h2,
+.professional-light .performance-copy h2,
+.professional-light .seo-card h2,
+.professional-light .final-cta h2,
+.professional-light .two-column h2,
+.professional-light .prose-block h2,
+.professional-light .product-commercial-card h2,
+.professional-light .offline-card h2,
+.professional-light .legal-copy h2 {
+    color: #0f172a;
+}
+
+.professional-light .story-product-card,
+.professional-light .featured-app,
+.professional-light .directory-card,
+.professional-light .resource-card,
+.professional-light .home-resource-grid article,
+.professional-light .feature-grid article,
+.professional-light .pricing-grid article,
+.professional-light .trust-card-grid article,
+.professional-light .product-commercial-card,
+.professional-light .offline-card,
+.professional-light .contact-form-card,
+.professional-light .story-performance-panel,
+.professional-light .story-final-card,
+.professional-light .final-cta-card,
+.professional-light .seo-card {
+    color: #0f172a;
+    border-color: #e2e8f0;
+    background: #ffffff;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, .06);
+}
+
+.professional-light .story-product-card,
+.professional-light .featured-app,
+.professional-light .story-performance-panel,
+.professional-light .story-final-card,
+.professional-light .final-cta-card,
+.professional-light .product-commercial-card,
+.professional-light .offline-card {
+    background: #ffffff;
+}
+
+.professional-light .story-product-copy > p,
+.professional-light .app-copy > p:last-of-type,
+.professional-light .feature-grid p,
+.professional-light .story-purpose-grid p,
+.professional-light .story-principle-stage p,
+.professional-light .home-resource-grid p,
+.professional-light .resource-card p,
+.professional-light .product-commercial-card p,
+.professional-light .offline-card p,
+.professional-light .pricing-grid p,
+.professional-light .trust-card-grid p,
+.professional-light .prose-block p,
+.professional-light .legal-copy p,
+.professional-light .faq-list details p {
+    color: #64748b;
+}
+
+.professional-light .status-pill,
+.professional-light .pricing-label {
+    color: #1d4ed8;
+    border-color: #dbeafe;
+    background: #eff6ff;
+}
+
+.professional-light .story-feature-list,
+.professional-light .use-case-list,
+.professional-light .faq-list,
+.professional-light .legal-copy section {
+    border-color: #e2e8f0;
+}
+
+.professional-light .story-feature-list span,
+.professional-light .use-case-list div,
+.professional-light .faq-list details,
+.professional-light .story-principle-stage article {
+    border-color: #e2e8f0;
+}
+
+.professional-light .story-feature-list span {
+    color: #334155;
+}
+
+.professional-light .story-feature-list i,
+.professional-light .use-case-list span,
+.professional-light .feature-index,
+.professional-light .story-big-number {
+    color: #94a3b8;
+}
+
+.professional-light .text-link {
+    color: #1d4ed8;
+}
+
+.professional-light .story-purpose-grid {
+    border-color: #e2e8f0;
+    background: transparent;
+}
+
+.professional-light .story-purpose-grid article {
+    border-color: #e2e8f0 !important;
+    background: #ffffff;
+}
+
+.professional-light .story-purpose-grid article > span {
+    color: #94a3b8;
+}
+
+.professional-light .story-purpose-grid h3,
+.professional-light .story-principle-stage h3,
+.professional-light .home-resource-grid h3,
+.professional-light .resource-card h2,
+.professional-light .feature-grid h3,
+.professional-light .pricing-grid h2,
+.professional-light .trust-card-grid h3 {
+    color: #0f172a;
+}
+
+.professional-light .story-principle-stage {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .story-principle-stage article {
+    border-bottom-color: #e2e8f0;
+}
+
+.professional-light .story-principle-stage small {
+    color: #2563eb;
+}
+
+/* Performance */
+.professional-light .story-checks span {
+    color: #475569;
+}
+
+.professional-light .story-checks i {
+    color: #15803d;
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.professional-light .story-speed-main {
+    border-bottom-color: #e2e8f0;
+}
+
+.professional-light .story-speed-main small,
+.professional-light .story-vitals span,
+.professional-light .story-vitals small,
+.professional-light .story-disclaimer {
+    color: #94a3b8;
+}
+
+.professional-light .story-speed-main strong,
+.professional-light .story-vitals strong {
+    color: #0f172a;
+}
+
+.professional-light .story-speed-main strong span {
+    color: #64748b;
+}
+
+.professional-light .story-vitals div {
+    border-color: #e2e8f0 !important;
+}
+
+/* Homepage product mockup */
+.professional-light .story-product-visual,
+.professional-light .app-visual {
+    border-color: #e2e8f0;
+    background:
+        linear-gradient(90deg, #f1f5f9 1px, transparent 1px),
+        linear-gradient(#f1f5f9 1px, transparent 1px),
+        #f8fafc;
+    background-size: 36px 36px;
+}
+
+.professional-light .story-phone,
+.professional-light .phone,
+.professional-light .stage-phone {
+    border-color: #cbd5e1;
+    background: #0f172a;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, .18);
+}
+
+.professional-light .story-phone-screen,
+.professional-light .phone-screen,
+.professional-light .stage-phone-content {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+.professional-light .story-phone-brand,
+.professional-light .phone-top {
+    color: #0f172a;
+}
+
+.professional-light .story-phone-screen > small,
+.professional-light .phone-screen > small,
+.professional-light .story-work-card small,
+.professional-light .story-phone-stats small,
+.professional-light .phone-card small,
+.professional-light .phone-grid small {
+    color: #94a3b8;
+}
+
+.professional-light .story-work-card,
+.professional-light .story-phone-stats span,
+.professional-light .phone-card,
+.professional-light .phone-grid span {
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .story-work-card em,
+.professional-light .status-chip {
+    color: #166534;
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+}
+
+.professional-light .story-mini-map,
+.professional-light .route-preview {
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .story-desk-card,
+.professional-light .floating-note {
+    color: #0f172a;
+    border-color: #e2e8f0;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+}
+
+.professional-light .story-desk-card small,
+.professional-light .floating-note small {
+    color: #94a3b8;
+}
+
+.professional-light .story-desk-card span,
+.professional-light .floating-note span {
+    color: #64748b;
+}
+
+/* Product page */
+.professional-light .product-hero,
+.professional-light .page-hero,
+.professional-light .trust-page-hero,
+.professional-light .resource-hero,
+.professional-light .guide-header {
+    color: #0f172a;
+    border-color: #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .hero-glow,
+.professional-light .cta-orb {
+    display: none;
+}
+
+.professional-light .breadcrumbs,
+.professional-light .breadcrumbs a {
+    color: #64748b;
+}
+
+.professional-light .breadcrumbs strong {
+    color: #0f172a;
+}
+
+.professional-light .app-icon {
+    border-color: #dbe2ea;
+    background: #f8fafc;
+    box-shadow: none;
+}
+
+.professional-light .fieldpulse-icon span {
+    border-color: #2563eb;
+}
+
+.professional-light .fieldpulse-icon span:last-child {
+    background: #2563eb;
+    box-shadow: 0 0 0 5px #dbeafe;
+}
+
+.professional-light .platform-row {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .platform-row span {
+    color: #94a3b8;
+}
+
+.professional-light .platform-row strong {
+    color: #475569;
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .fieldpulse-stage {
+    background: #f8fafc;
+}
+
+.professional-light .stage-browser {
+    color: #0f172a;
+    border-color: #cbd5e1;
+    background: #ffffff;
+    box-shadow: 0 20px 55px rgba(15, 23, 42, .10);
+}
+
+.professional-light .window-top {
+    border-bottom-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .window-dots span {
+    background: #cbd5e1;
+}
+
+.professional-light .window-title {
+    color: #64748b;
+}
+
+.professional-light .window-status {
+    color: #166534;
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+}
+
+.professional-light .stage-sidebar {
+    border-right-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .stage-sidebar b {
+    color: #ffffff;
+    background: #0f172a;
+}
+
+.professional-light .stage-sidebar span {
+    background: #cbd5e1;
+}
+
+.professional-light .stage-sidebar span.active {
+    border-color: #bfdbfe;
+    background: #dbeafe;
+}
+
+.professional-light .stage-title small,
+.professional-light .stage-stats small {
+    color: #94a3b8;
+}
+
+.professional-light .stage-title strong,
+.professional-light .stage-stats strong {
+    color: #0f172a;
+}
+
+.professional-light .stage-title i {
+    color: #475569;
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .stage-stats span {
+    border-color: #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .stage-map {
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .product-proof {
+    border-color: #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .proof-grid div {
+    border-color: #e2e8f0 !important;
+}
+
+.professional-light .proof-grid span {
+    color: #94a3b8;
+}
+
+.professional-light .proof-grid strong {
+    color: #334155;
+}
+
+.professional-light .feature-glyph {
+    border-color: #dbeafe;
+    background: #eff6ff;
+}
+
+.professional-light .feature-glyph i {
+    background: #2563eb;
+}
+
+.professional-light .glyph-2 i:nth-child(1),
+.professional-light .glyph-3 i:nth-child(1) {
+    border-color: #2563eb;
+}
+
+.professional-light .use-case-list strong {
+    color: #334155;
+}
+
+.professional-light .use-case-list i {
+    color: #94a3b8;
+}
+
+.professional-light .signal-visual span {
+    border-color: #bfdbfe;
+}
+
+.professional-light .signal-visual strong {
+    color: #1d4ed8;
+}
+
+/* Pricing / trust / forms */
+.professional-light .pricing-grid article.featured {
+    border-color: #94a3b8;
+    background: #f8fafc;
+    box-shadow: none;
+}
+
+.professional-light .pricing-grid ul {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .pricing-grid li {
+    color: #475569;
+}
+
+.professional-light .pricing-grid li::before {
+    color: #15803d;
+}
+
+.professional-light .pricing-note {
+    color: #64748b;
+}
+
+.professional-light .contact-promises {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .contact-promises span {
+    color: #475569;
+}
+
+.professional-light .contact-promises i {
+    color: #94a3b8;
+}
+
+.professional-light .contact-form-card label {
+    color: #334155;
+}
+
+.professional-light .contact-form-card label > span {
+    color: #94a3b8;
+}
+
+.professional-light .contact-form-card input,
+.professional-light .contact-form-card select,
+.professional-light .contact-form-card textarea {
+    color: #0f172a;
+    border-color: #cbd5e1;
+    background: #ffffff;
+}
+
+.professional-light .contact-form-card input::placeholder,
+.professional-light .contact-form-card textarea::placeholder {
+    color: #94a3b8;
+}
+
+.professional-light .contact-form-card input:focus,
+.professional-light .contact-form-card select:focus,
+.professional-light .contact-form-card textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
+}
+
+.professional-light .form-privacy {
+    color: #64748b;
+}
+
+.professional-light .form-privacy a {
+    color: #1d4ed8;
+}
+
+.professional-light .form-success {
+    color: #166534;
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+}
+
+.professional-light .form-error-summary {
+    color: #991b1b;
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+/* FAQ, legal and resources */
+.professional-light .faq-list summary {
+    color: #0f172a;
+}
+
+.professional-light .faq-list summary span {
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+.professional-light .legal-layout > nav {
+    border-color: #e2e8f0;
+    background: #ffffff;
+}
+
+.professional-light .legal-layout > nav a {
+    color: #64748b;
+}
+
+.professional-light .legal-layout > nav a:hover {
+    color: #0f172a;
+    background: #f8fafc;
+}
+
+.professional-light .resource-card:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 16px 42px rgba(15, 23, 42, .08);
+}
+
+.professional-light .resource-card-top,
+.professional-light .home-resource-grid article > div,
+.professional-light .guide-meta {
+    color: #94a3b8;
+}
+
+.professional-light .resource-pagination {
+    color: #64748b;
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .resource-pagination a {
+    color: #1d4ed8;
+}
+
+.professional-light .resource-empty,
+.professional-light .home-resource-empty {
+    color: #64748b;
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.professional-light .guide-header {
+    border-bottom-color: #e2e8f0;
+}
+
+.professional-light .guide-meta {
+    border-top-color: #e2e8f0;
+}
+
+.professional-light .guide-body {
+    color: #334155;
+}
+
+.professional-light .guide-end {
+    border-top-color: #e2e8f0;
+}
+
+/* Footer */
+.professional-light .site-footer {
+    color: #334155;
+    border-top-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light .site-footer p,
+.professional-light .footer-links a,
+.professional-light .footer-bottom {
+    color: #64748b;
+}
+
+.professional-light .footer-links strong {
+    color: #0f172a;
+}
+
+.professional-light .footer-links a:hover {
+    color: #0f172a;
+}
+
+.professional-light .footer-bottom {
+    border-top-color: #e2e8f0;
+}
+
+/* Small refinements */
+.professional-light .story-product-top,
+.professional-light .directory-meta,
+.professional-light .story-product-actions {
+    color: #334155;
+}
+
+.professional-light .chip-row span {
+    color: #475569;
+    border-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+.professional-light hr {
+    border-color: #e2e8f0;
+}
+
+@media (max-width: 920px) {
+    .professional-light .mobile-menu nav {
+        background: #ffffff;
+        border-color: #e2e8f0;
+    }
+}
+
+@media (max-width: 680px) {
+    .professional-light .story-product-visual,
+    .professional-light .app-visual,
+    .professional-light .fieldpulse-stage {
+        background-color: #f8fafc;
+    }
+
+    .professional-light .story-purpose-grid article,
+    .professional-light .feature-grid article,
+    .professional-light .trust-card-grid article,
+    .professional-light .pricing-grid article,
+    .professional-light .resource-card,
+    .professional-light .home-resource-grid article {
+        box-shadow: none;
+    }
+}
