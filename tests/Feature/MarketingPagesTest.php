@@ -14,6 +14,10 @@ class MarketingPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Less friction.')
             ->assertSee('FieldPulse')
+            ->assertSee('BusinessOS ERP')
+            ->assertSee('BusinessOS POS')
+            ->assertSee('erp.businessos.af')
+            ->assertSee('pos.businessos.af')
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="solutions"', false)
@@ -37,7 +41,11 @@ class MarketingPagesTest extends TestCase
             ->assertSee('BusinessOS applications')
             ->assertSee('FieldPulse')
             ->assertSee('https://fieldpulse.businessos.af', false)
-            ->assertSee('fieldpulse.businessos.af');
+            ->assertSee('fieldpulse.businessos.af')
+            ->assertSee('BusinessOS ERP')
+            ->assertSee('https://erp.businessos.af', false)
+            ->assertSee('BusinessOS POS')
+            ->assertSee('https://pos.businessos.af', false);
     }
 
     public function test_fieldpulse_has_a_dedicated_product_page_and_schema(): void
@@ -51,6 +59,43 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Open FieldPulse')
             ->assertSee('Live app: fieldpulse.businessos.af')
             ->assertSee('https://fieldpulse.businessos.af', false);
+    }
+
+    public function test_erp_has_a_dedicated_product_page_and_live_subdomain(): void
+    {
+        $this->get('/apps/erp')
+            ->assertOk()
+            ->assertSee('Keep customers, sales, payments and business records connected.')
+            ->assertSee('Customer ledgers & statements')
+            ->assertSee('Multi-business switching')
+            ->assertSee('Open BusinessOS ERP')
+            ->assertSee('Live app: erp.businessos.af')
+            ->assertSee('https://erp.businessos.af', false);
+    }
+
+    public function test_pos_has_a_dedicated_product_page_and_modernization_status(): void
+    {
+        $this->get('/apps/pos')
+            ->assertOk()
+            ->assertSee('Retail checkout and stock management designed for Afghanistan.')
+            ->assertSee('AFN-only retail operation')
+            ->assertSee('English, Dari & Pashto')
+            ->assertSee('Modernization in progress')
+            ->assertSee('newer Laravel BusinessOS POS')
+            ->assertSee('Open BusinessOS POS')
+            ->assertSee('Live app: pos.businessos.af')
+            ->assertSee('https://pos.businessos.af', false);
+    }
+
+    public function test_demo_form_lists_all_businessos_products(): void
+    {
+        $this->get('/request-demo?app=erp')
+            ->assertOk()
+            ->assertSee('<option value="fieldpulse"', false)
+            ->assertSee('<option value="erp"', false)
+            ->assertSee('<option value="pos"', false)
+            ->assertSee('BusinessOS ERP')
+            ->assertSee('BusinessOS POS');
     }
 
     public function test_trust_pricing_and_conversion_pages_render(): void
@@ -85,6 +130,8 @@ class MarketingPagesTest extends TestCase
             ->assertOk()
             ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
             ->assertSee('/apps/fieldpulse', false)
+            ->assertSee('/apps/erp', false)
+            ->assertSee('/apps/pos', false)
             ->assertSee('/pricing', false)
             ->assertSee('/security', false)
             ->assertSee('/privacy', false);
