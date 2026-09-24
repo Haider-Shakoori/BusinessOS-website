@@ -27,6 +27,14 @@
     @endforeach
 </head>
 <body>
+    <div class="site-depth-scene" aria-hidden="true">
+        <span class="depth-orb depth-orb-a"></span>
+        <span class="depth-orb depth-orb-b"></span>
+        <span class="depth-grid-plane"></span>
+        <span class="depth-ring depth-ring-a"></span>
+        <span class="depth-ring depth-ring-b"></span>
+    </div>
+
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -108,5 +116,7 @@
             <span>Built for real businesses and real networks.</span>
         </div>
     </footer>
+
+    <script src="{{ asset('assets/js/businessos-3d.js') }}" defer></script>
 </body>
 </html>
