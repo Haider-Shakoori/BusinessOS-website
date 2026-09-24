@@ -3,7 +3,12 @@
     "name": "businessos/website",
     "type": "project",
     "description": "The SEO-first, low-bandwidth official website for the BusinessOS software ecosystem.",
-    "keywords": ["businessos", "saas", "business software", "laravel"],
+    "keywords": [
+        "businessos",
+        "saas",
+        "business software",
+        "laravel"
+    ],
     "license": "proprietary",
     "require": {
         "php": "^8.3",
@@ -23,8 +28,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Database\\Seeders\\": "database/seeders/",
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "scripts": {
