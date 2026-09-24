@@ -12,7 +12,7 @@
 <section class="section app-directory">
     <div class="shell">
         <div class="directory-meta">
-            <span>{{ $apps->count() }} {{ Str::plural('application', $apps->count()) }}</span>
+            <span>{{ $apps->count() }} {{ $apps->count() === 1 ? 'application' : 'applications' }}</span>
             <span>More products will appear here as they are ready.</span>
         </div>
 
