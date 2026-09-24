@@ -36,6 +36,27 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Offline-first mobile operation');
     }
 
+    public function test_trust_pricing_and_conversion_pages_render(): void
+    {
+        $this->get('/pricing')->assertOk()->assertSee('Pricing should match the product');
+        $this->get('/about')->assertOk()->assertSee('About BusinessOS');
+        $this->get('/security')->assertOk()->assertSee('Security is part of the product architecture');
+        $this->get('/privacy')->assertOk()->assertSee('BusinessOS Privacy Policy');
+        $this->get('/terms')->assertOk()->assertSee('BusinessOS Website Terms of Use');
+        $this->get('/contact')->assertOk()->assertSee('Tell us what your business needs');
+        $this->get('/request-demo?app=fieldpulse')->assertOk()->assertSee('See how BusinessOS fits');
+    }
+
+    public function test_fieldpulse_includes_conversion_and_faq_content(): void
+    {
+        $this->get('/apps/fieldpulse')
+            ->assertOk()
+            ->assertSee('Request a demo')
+            ->assertSee('Pricing in preparation')
+            ->assertSee('FAQPage')
+            ->assertSee('Is FieldPulse available as a finished public product?');
+    }
+
     public function test_unknown_product_returns_not_found(): void
     {
         $this->get('/apps/not-a-real-product')->assertNotFound();
@@ -46,7 +67,10 @@ class MarketingPagesTest extends TestCase
         $this->get('/sitemap.xml')
             ->assertOk()
             ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
-            ->assertSee('/apps/fieldpulse', false);
+            ->assertSee('/apps/fieldpulse', false)
+            ->assertSee('/pricing', false)
+            ->assertSee('/security', false)
+            ->assertSee('/privacy', false);
     }
 
     public function test_robots_allows_public_marketing_pages_and_points_to_sitemap(): void
