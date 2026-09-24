@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Response;
+
+class SeoController extends Controller
+{
+    public function sitemap(): Response
+    {
+        $urls = collect([
+            ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0'],
+            ['loc' => route('apps.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
+        ])->merge(
+            collect(config('businessos.apps'))->map(fn (array $app) => [
+                'loc' => route('apps.show', $app['slug']),
+                'lastmod' => $app['updated_at'] ?? now()->toDateString(),
+                'priority' => '0.9',
+            ])
+        );
+
+        return response()
+            ->view('seo.sitemap', ['urls' => $urls])
+            ->header('Content-Type', 'application/xml; charset=UTF-8');
+    }
+
+    public function robots(): Response
+    {
+        $body = "User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ".route('sitemap')."\n";
+
+        return response($body, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
+    }
+}
