@@ -12,18 +12,19 @@ class MarketingPagesTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Operate with clarity.')
+            ->assertSee('Less friction.')
             ->assertSee('FieldPulse')
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="solutions"', false)
             ->assertSee('id="why-businessos"', false)
-            ->assertSee('class="modern-site professional-light enterprise-v2"', false)
+            ->assertSee('class="modern-site professional-light calm-premium"', false)
             ->assertSee('<meta name="theme-color" content="#ffffff">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
-            ->assertSee('enterprise-dashboard', false)
-            ->assertSee('enterprise-product', false)
-            ->assertSee('assets/css/businessos-enterprise.css', false)
+            ->assertSee('calm-hero-visual', false)
+            ->assertSee('calm-product-grid', false)
+            ->assertSee('calm-bento', false)
+            ->assertSee('assets/css/businessos-calm.css', false)
             ->assertDontSee('businessos-3d.js', false);
     }
 
