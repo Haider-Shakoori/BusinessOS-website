@@ -15,8 +15,8 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Run the business.')
             ->assertSee('FieldPulse')
             ->assertSee('application/ld+json', false)
-            ->assertSee('id=\"products\"', false)
-            ->assertSee('id=\"performance\"', false);
+            ->assertSee('id="products"', false)
+            ->assertSee('id="performance"', false);
     }
 
     public function test_app_directory_is_public_and_indexable(): void
