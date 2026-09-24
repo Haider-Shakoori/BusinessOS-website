@@ -1,7 +1,7 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="calm-hero" id="top">
+<section class="calm-hero calm-hero-3d" id="top">
     <div class="shell calm-hero-grid">
         <div class="calm-hero-copy">
             <span class="calm-eyebrow">BusinessOS</span>
@@ -20,8 +20,10 @@
             </div>
         </div>
 
-        <div class="calm-hero-visual" aria-label="FieldPulse product preview">
-            <div class="calm-window">
+        <div class="calm-hero-visual calm-hero-scene" aria-label="FieldPulse product preview">
+            <div class="calm-depth-plane calm-depth-plane-back" aria-hidden="true"></div>
+            <div class="calm-depth-plane calm-depth-plane-mid" aria-hidden="true"></div>
+            <div class="calm-window calm-window-3d">
                 <div class="calm-window-top">
                     <div><i></i><i></i><i></i></div>
                     <strong>FieldPulse</strong>
@@ -63,11 +65,11 @@
                 </div>
             </div>
 
-            <div class="calm-float-card calm-float-one">
+            <div class="calm-float-card calm-float-one calm-float-3d">
                 <span class="calm-float-icon">✓</span>
                 <div><small>VISIT RECORDED</small><strong>Customer visit synced</strong></div>
             </div>
-            <div class="calm-float-card calm-float-two">
+            <div class="calm-float-card calm-float-two calm-float-3d">
                 <span class="calm-float-icon">↻</span>
                 <div><small>OFFLINE MODE</small><strong>Ready to sync</strong></div>
             </div>

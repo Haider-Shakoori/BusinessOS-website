@@ -1542,3 +1542,177 @@
         width:100%;
     }
 }
+
+
+/* Lightweight 3D hero only — no WebGL, no 3D assets, no JavaScript */
+.calm-hero-3d {
+    perspective: 1400px;
+    perspective-origin: 72% 44%;
+}
+
+.calm-hero-scene {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    isolation: isolate;
+}
+
+.calm-depth-plane {
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid rgba(49,87,213,.11);
+    border-radius: 26px;
+    background:
+        linear-gradient(rgba(49,87,213,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(49,87,213,.045) 1px, transparent 1px),
+        rgba(255,255,255,.32);
+    background-size: 28px 28px;
+    transform-style: preserve-3d;
+}
+
+.calm-depth-plane-back {
+    inset: 7% 2% 12% 8%;
+    transform: translateZ(-70px) rotateY(-7deg) rotateX(3deg);
+    opacity: .52;
+}
+
+.calm-depth-plane-mid {
+    inset: 13% 7% 6% 1%;
+    transform: translateZ(-34px) rotateY(-4deg) rotateX(2deg);
+    opacity: .34;
+}
+
+.calm-window-3d {
+    position: relative;
+    z-index: 3;
+    transform:
+        rotateY(-7deg)
+        rotateX(3deg)
+        translateZ(34px);
+    transform-origin: 52% 50%;
+    transform-style: preserve-3d;
+    box-shadow:
+        26px 38px 70px rgba(15,23,42,.12),
+        -10px 14px 36px rgba(49,87,213,.06);
+    animation: calm-hero-float 7s ease-in-out infinite;
+}
+
+.calm-window-3d .calm-window-top {
+    transform: translateZ(16px);
+    transform-style: preserve-3d;
+}
+
+.calm-window-3d .calm-window-body {
+    transform: translateZ(26px);
+    transform-style: preserve-3d;
+}
+
+.calm-window-3d .calm-metrics article {
+    transform: translateZ(10px);
+    box-shadow: 0 8px 18px rgba(15,23,42,.04);
+}
+
+.calm-window-3d .calm-map {
+    transform: translateZ(13px);
+}
+
+.calm-float-3d {
+    z-index: 6;
+    transform-style: preserve-3d;
+    box-shadow: 0 18px 44px rgba(15,23,42,.11);
+}
+
+.calm-float-one.calm-float-3d {
+    transform: translateZ(78px) rotateY(4deg) rotateZ(-1deg);
+    animation: calm-card-float-a 6.5s ease-in-out infinite;
+}
+
+.calm-float-two.calm-float-3d {
+    transform: translateZ(92px) rotateY(-5deg) rotateZ(1deg);
+    animation: calm-card-float-b 7.2s ease-in-out infinite;
+}
+
+.calm-hero-3d::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: 5%;
+    top: 11%;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(49,87,213,.08), transparent 63%);
+    filter: blur(2px);
+}
+
+@keyframes calm-hero-float {
+    0%, 100% {
+        transform: rotateY(-7deg) rotateX(3deg) translate3d(0,0,34px);
+    }
+    50% {
+        transform: rotateY(-6deg) rotateX(2.4deg) translate3d(0,-7px,38px);
+    }
+}
+
+@keyframes calm-card-float-a {
+    0%, 100% { transform: translateZ(78px) translateY(0) rotateY(4deg) rotateZ(-1deg); }
+    50% { transform: translateZ(82px) translateY(-6px) rotateY(4deg) rotateZ(-.4deg); }
+}
+
+@keyframes calm-card-float-b {
+    0%, 100% { transform: translateZ(92px) translateY(0) rotateY(-5deg) rotateZ(1deg); }
+    50% { transform: translateZ(96px) translateY(6px) rotateY(-5deg) rotateZ(.4deg); }
+}
+
+@media (max-width: 900px) {
+    .calm-hero-3d {
+        perspective: 1100px;
+    }
+
+    .calm-depth-plane {
+        opacity: .22;
+    }
+
+    .calm-window-3d {
+        transform: rotateY(-3deg) rotateX(1.5deg) translateZ(20px);
+        animation: none;
+    }
+
+    .calm-float-one.calm-float-3d,
+    .calm-float-two.calm-float-3d {
+        transform: translateZ(44px);
+        animation: none;
+    }
+}
+
+@media (max-width: 680px) {
+    .calm-hero-3d {
+        perspective: none;
+    }
+
+    .calm-hero-scene {
+        transform-style: flat;
+    }
+
+    .calm-depth-plane {
+        display: none;
+    }
+
+    .calm-window-3d,
+    .calm-window-3d .calm-window-top,
+    .calm-window-3d .calm-window-body,
+    .calm-window-3d .calm-metrics article,
+    .calm-window-3d .calm-map {
+        transform: none;
+        animation: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .calm-window-3d,
+    .calm-float-one.calm-float-3d,
+    .calm-float-two.calm-float-3d {
+        animation: none !important;
+    }
+}
