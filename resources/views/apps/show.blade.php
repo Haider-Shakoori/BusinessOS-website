@@ -90,6 +90,24 @@
     </div>
 </section>
 
+@if(!empty($app['screenshots']))
+<section class="section product-screenshot-section">
+    <div class="shell">
+        <div class="section-heading split-heading">
+            <div><span class="kicker">Product interface</span><h2>See the product in context.</h2></div>
+            <p>Published screenshots are managed from the Product and Media CMS.</p>
+        </div>
+        <div class="product-screenshot-grid">
+            @foreach($app['screenshots'] as $screenshot)
+                <figure>
+                    <img src="{{ $screenshot }}" alt="{{ $app['name'] }} interface screenshot {{ $loop->iteration }}" loading="lazy" decoding="async">
+                </figure>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="section product-problem">
     <div class="shell two-column">
         <div>
@@ -160,10 +178,25 @@
             <span class="kicker">Pricing & rollout</span>
             <h2>{{ $app['commercial']['pricing_status'] }}</h2>
             <p>{{ $app['commercial']['pricing_note'] }}</p>
+            @if(!empty($app['commercial']['pricing_model']))
+                <div class="product-commercial-model"><small>PRICING MODEL</small><strong>{{ $app['commercial']['pricing_model'] }}</strong></div>
+            @endif
+            @if(!empty($app['commercial']['deployment_options']))
+                <div class="product-commercial-options">
+                    @foreach($app['commercial']['deployment_options'] as $option)<span>✓ {{ $option }}</span>@endforeach
+                </div>
+            @endif
         </div>
         <div class="product-commercial-actions">
-            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
-            <a class="button button-ghost" href="{{ route('pricing') }}">Pricing approach</a>
+            @if(!empty($app['commercial']['pricing_plans']))
+                <div class="product-plan-stack">
+                    @foreach($app['commercial']['pricing_plans'] as $plan)
+                        <article><span><strong>{{ $plan['name'] }}</strong><small>{{ $plan['description'] }}</small></span><b>{{ $plan['price'] }}</b></article>
+                    @endforeach
+                </div>
+            @endif
+            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.actions.request_demo') }}</a>
+            <a class="button button-ghost" href="{{ route('pricing') }}">{{ __('marketing.nav.pricing') }}</a>
         </div>
     </div>
 </section>
@@ -195,9 +228,11 @@
             @if (!empty($app['web_url']))
                 <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
             @endif
-            <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">Request demo</a>
-            <a class="button button-ghost" href="{{ route('apps.index') }}">All BusinessOS apps</a>
+            <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.actions.request_demo') }}</a>
+            <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.nav.all_apps') }}</a>
         </div>
     </div>
 </section>
 @endsection
+
+[executed on device: ubuntu-6gb-dal-x8mx (c447f909-fdcc-4121-9924-27a69d35e9b2)]
