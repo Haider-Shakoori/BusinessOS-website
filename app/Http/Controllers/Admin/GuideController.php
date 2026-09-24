@@ -77,7 +77,7 @@ class GuideController extends Controller
         while (
             Guide::withTrashed()
                 ->where('slug', $slug)
-                ->when($guide, fn ($query) => $query->whereKeyNot($guide->getKey()))
+                ->when($guide, fn ($query) => $query->where($guide->getKeyName(), '!=', $guide->getKey()))
                 ->exists()
         ) {
             $slug = $base.'-'.$suffix++;
