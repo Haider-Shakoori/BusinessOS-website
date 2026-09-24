@@ -191,7 +191,8 @@
                 @error('preview_rows_text')<small>{{ $message }}</small>@enderror
             </label>
 
-            <label>Screenshot references <span>one URL or public asset path per line; optimized uploads are handled by the upcoming Media CMS</span>
+            <label>Screenshot references <span>one URL or public asset path per line</span>
+                <div class="admin-inline-help">Upload and optimize images in the <a href="{{ route('admin.media.index') }}" target="_blank" rel="noopener">Media library ↗</a>, then paste the preferred URL below.</div>
                 <textarea name="screenshots_text" rows="5">{{ old('screenshots_text', $editor['screenshots_text']) }}</textarea>
                 @error('screenshots_text')<small>{{ $message }}</small>@enderror
             </label>
@@ -258,6 +259,81 @@
                 @error('seo_description')<small>{{ $message }}</small>@enderror
             </label>
         </section>
+
+        <section class="admin-panel admin-form">
+            <div class="admin-form-section-head"><span>LOCALIZATION</span><h2>Dari and Pashto product copy</h2></div>
+            <p class="admin-panel-copy">Leave a translated field empty to fall back to English. Public pages use the active EN / دری / پښتو language selection.</p>
+
+            <div class="admin-form-row">
+                <label>Dari product name
+                    <input type="text" name="name_fa" maxlength="190" value="{{ old('name_fa', $editor['name_fa']) }}">
+                </label>
+                <label>Pashto product name
+                    <input type="text" name="name_ps" maxlength="190" value="{{ old('name_ps', $editor['name_ps']) }}">
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari category label
+                    <input type="text" name="eyebrow_fa" maxlength="190" value="{{ old('eyebrow_fa', $editor['eyebrow_fa']) }}">
+                </label>
+                <label>Pashto category label
+                    <input type="text" name="eyebrow_ps" maxlength="190" value="{{ old('eyebrow_ps', $editor['eyebrow_ps']) }}">
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari headline
+                    <textarea name="headline_fa" rows="3">{{ old('headline_fa', $editor['headline_fa']) }}</textarea>
+                </label>
+                <label>Pashto headline
+                    <textarea name="headline_ps" rows="3">{{ old('headline_ps', $editor['headline_ps']) }}</textarea>
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari short description
+                    <textarea name="short_description_fa" rows="5">{{ old('short_description_fa', $editor['short_description_fa']) }}</textarea>
+                </label>
+                <label>Pashto short description
+                    <textarea name="short_description_ps" rows="5">{{ old('short_description_ps', $editor['short_description_ps']) }}</textarea>
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari full description
+                    <textarea name="description_fa" rows="7">{{ old('description_fa', $editor['description_fa']) }}</textarea>
+                </label>
+                <label>Pashto full description
+                    <textarea name="description_ps" rows="7">{{ old('description_ps', $editor['description_ps']) }}</textarea>
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari SEO title
+                    <input type="text" name="seo_title_fa" maxlength="190" value="{{ old('seo_title_fa', $editor['seo_title_fa']) }}">
+                </label>
+                <label>Pashto SEO title
+                    <input type="text" name="seo_title_ps" maxlength="190" value="{{ old('seo_title_ps', $editor['seo_title_ps']) }}">
+                </label>
+            </div>
+            <div class="admin-form-row">
+                <label>Dari meta description
+                    <textarea name="seo_description_fa" rows="3">{{ old('seo_description_fa', $editor['seo_description_fa']) }}</textarea>
+                </label>
+                <label>Pashto meta description
+                    <textarea name="seo_description_ps" rows="3">{{ old('seo_description_ps', $editor['seo_description_ps']) }}</textarea>
+                </label>
+            </div>
+        </section>
+
+        <section class="admin-panel admin-form">
+            <div class="admin-form-section-head"><span>COMMERCIAL</span><h2>Pricing model and deployment options</h2></div>
+            <label>Pricing model
+                <input type="text" name="pricing_model" maxlength="190" value="{{ old('pricing_model', $editor['pricing_model']) }}" placeholder="Per user / annual platform / deployment scoped">
+            </label>
+            <label>Pricing plans <span>one per line: Plan | Price label | Description</span>
+                <textarea name="pricing_plans_text" rows="7">{{ old('pricing_plans_text', $editor['pricing_plans_text']) }}</textarea>
+            </label>
+            <label>Deployment options <span>one item per line</span>
+                <textarea name="deployment_options_text" rows="5">{{ old('deployment_options_text', $editor['deployment_options_text']) }}</textarea>
+            </label>
+        </section>
     </div>
 
     <aside class="cms-editor-side">
@@ -322,3 +398,5 @@
 </form>
 @endif
 @endsection
+
+[executed on device: ubuntu-6gb-dal-x8mx (c447f909-fdcc-4121-9924-27a69d35e9b2)]
