@@ -14,7 +14,7 @@
         @if ($guides->count())
             <div class="resource-grid">
                 @foreach ($guides as $guide)
-                    <article class="resource-card">
+                    <article class="resource-card spatial-card" data-tilt data-tilt-strength=".35">
                         <div class="resource-card-top">
                             <span>{{ $guide->category }}</span>
                             <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time>
