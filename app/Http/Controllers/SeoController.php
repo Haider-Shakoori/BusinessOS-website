@@ -37,7 +37,7 @@ class SeoController extends Controller
                     ->latest('updated_at')
                     ->get()
                     ->map(fn (Guide $guide) => [
-                        'loc' => route('resources.show', $guide),
+                        'loc' => route('resources.show', ['guide' => $guide->slug]),
                         'lastmod' => $guide->updated_at?->toDateString() ?? now()->toDateString(),
                         'priority' => '0.7',
                     ])
