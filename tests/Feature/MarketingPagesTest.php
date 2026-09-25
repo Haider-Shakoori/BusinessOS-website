@@ -72,6 +72,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Raw Materials Database')
             ->assertSee('PVC Pipe Factory Management')
             ->assertSee('Financial Management Systems')
+            ->assertSee('Restaurant Management System')
             ->assertDontSee('href="https://fieldpulse.businessos.af"', false)
             ->assertDontSee('href="https://erp.businessos.af"', false)
             ->assertDontSee('href="https://dukan.businessos.af"', false);
@@ -130,6 +131,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('<option value="raw-materials-db"', false)
             ->assertSee('<option value="pvc-pipe-factory"', false)
             ->assertSee('<option value="financial-systems"', false)
+            ->assertSee('<option value="restaurant-management"', false)
             ->assertSee('BusinessOS ERP')
             ->assertSee('BusinessOS POS');
     }
@@ -173,6 +175,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('/apps/raw-materials-db', false)
             ->assertSee('/apps/pvc-pipe-factory', false)
             ->assertSee('/apps/financial-systems', false)
+            ->assertSee('/apps/restaurant-management', false)
             ->assertSee('/pricing', false)
             ->assertSee('/security', false)
             ->assertSee('/privacy', false);
