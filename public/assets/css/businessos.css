@@ -1344,13 +1344,15 @@ summary:focus-visible {
     text-transform:uppercase;
     letter-spacing:.08em;
 }
-.resource-card h2 {
+.resource-card h2,
+.resource-card h3 {
     margin:90px 0 14px;
     font-size:1.42rem;
     line-height:1.2;
     letter-spacing:-.04em;
 }
-.resource-card h2 a:hover { color:#c8c2ff; }
+.resource-card h2 a:hover,
+.resource-card h3 a:hover { color:#c8c2ff; }
 .resource-card p {
     margin:0 0 26px;
     color:#858c9d;
@@ -1446,7 +1448,7 @@ summary:focus-visible {
     .footer-links { grid-template-columns:1fr 1fr;gap:28px 22px; }
     .home-resource-grid,.resource-grid { grid-template-columns:1fr; }
     .home-resource-grid article,.resource-card { min-height:300px; }
-    .home-resource-grid h3,.resource-card h2 { margin-top:55px; }
+    .home-resource-grid h3,.resource-card h2,.resource-card h3 { margin-top:55px; }
     .resource-pagination { flex-wrap:wrap; }
     .guide-header { padding:68px 0 54px; }
     .guide-header .breadcrumbs { margin-bottom:34px; }
