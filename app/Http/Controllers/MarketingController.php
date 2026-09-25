@@ -37,6 +37,7 @@ class MarketingController extends Controller
                     ? $this->settings->get('seo_default_description', __('marketing.seo.home_description'))
                     : __('marketing.seo.home_description'),
                 'canonical' => route('home'),
+                'localized' => true,
             ],
             'schema' => [
                 [
@@ -135,6 +136,7 @@ class MarketingController extends Controller
                 'title' => $app['seo']['title'],
                 'description' => $app['seo']['description'],
                 'canonical' => route('apps.show', $app['slug']),
+                'localized' => (bool) ($app['has_localized_content'] ?? false),
                 'image' => $primaryScreenshot['url'] ?? null,
                 'image_alt' => $primaryScreenshot['alt'] ?? null,
             ],
