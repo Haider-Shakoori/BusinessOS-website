@@ -48,6 +48,27 @@
     </div>
 </section>
 
+@if($searchPages->count())
+<section class="section muted-section">
+    <div class="shell">
+        <div class="section-heading split-heading">
+            <div><span class="kicker">Detailed service guides</span><h2>Explore the service area that matches your search.</h2></div>
+            <p>These pages go deeper into scope, implementation choices, common questions and related BusinessOS products.</p>
+        </div>
+        <div class="resource-grid">
+            @foreach($searchPages as $page)
+                <article class="resource-card">
+                    <div class="resource-card-top"><span>{{ $page->eyebrow ?: 'BusinessOS service' }}</span></div>
+                    <h2><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h2>
+                    <p>{{ $page->excerpt }}</p>
+                    <a class="text-link" href="{{ route('seo-pages.show', $page) }}">Explore service <span>→</span></a>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class="section service-process-section">
     <div class="shell two-column">
         <div>
