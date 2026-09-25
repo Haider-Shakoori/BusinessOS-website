@@ -48,7 +48,7 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/services')
             ->assertOk()
-            ->assertSee('Software development & technology solutions')
+            ->assertSee('Software development & technology solutions', false)
             ->assertSee('Website Development')
             ->assertSee('Custom ERP &amp; MIS', false)
             ->assertSee('Web Applications &amp; Portals', false)
