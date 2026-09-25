@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\Product;
+use App\Services\IndexNowService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -48,9 +49,13 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(SaveProductRequest $request): RedirectResponse
+    public function store(SaveProductRequest $request, IndexNowService $indexNow): RedirectResponse
     {
         $product = Product::create($this->prepare($request));
+
+        if ($product->publication_state === 'published' && $product->is_visible) {
+            $indexNow->submit(route('apps.show', $product->slug));
+        }
 
         return redirect()
             ->route('admin.products.edit', $product)
@@ -65,16 +70,22 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(SaveProductRequest $request, Product $product): RedirectResponse
+    public function update(SaveProductRequest $request, Product $product, IndexNowService $indexNow): RedirectResponse
     {
         $product->update($this->prepare($request, $product));
+
+        if ($product->publication_state === 'published' && $product->is_visible) {
+            $indexNow->submit(route('apps.show', $product->slug));
+        }
 
         return back()->with('status', 'Product updated.');
     }
 
-    public function destroy(Product $product): RedirectResponse
+    public function destroy(Product $product, IndexNowService $indexNow): RedirectResponse
     {
+        $url = route('apps.show', $product->slug);
         $product->delete();
+        $indexNow->submit($url);
 
         return redirect()
             ->route('admin.products.index')
