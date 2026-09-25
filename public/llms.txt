@@ -1,0 +1,41 @@
+# BusinessOS
+
+> BusinessOS is a business software company and product ecosystem providing custom software development and specialized operational systems.
+
+Canonical website: https://businessos.af/
+
+## Software development services
+
+- Website development: https://businessos.af/services#website-development
+- Custom ERP and MIS: https://businessos.af/services#custom-erp-mis
+- Web applications and portals: https://businessos.af/services#web-applications
+- Data migration and cleanup: https://businessos.af/services#data-migration
+- Application upgrades and modernization: https://businessos.af/services#application-upgrades
+- System integration and APIs: https://businessos.af/services#system-integration
+- Workflow automation and dashboards: https://businessos.af/services#automation-dashboards
+- Database and information systems: https://businessos.af/services#database-solutions
+- Maintenance, performance and support: https://businessos.af/services#support-optimization
+
+## Products and industry systems
+
+- BusinessOS product directory: https://businessos.af/apps
+- FieldPulse field sales and field force management: https://businessos.af/apps/fieldpulse
+- BusinessOS ERP: https://businessos.af/apps/erp
+- BusinessOS POS: https://businessos.af/apps/pos
+- Pharmacy Management System: https://businessos.af/apps/pharmacy-management
+- Raw Materials Database: https://businessos.af/apps/raw-materials-db
+- PVC Pipe Factory Management: https://businessos.af/apps/pvc-pipe-factory
+- Financial Management Systems: https://businessos.af/apps/financial-systems
+
+## Important pages
+
+- Services: https://businessos.af/services
+- Products: https://businessos.af/apps
+- Resources: https://businessos.af/resources
+- About: https://businessos.af/about
+- Contact: https://businessos.af/contact
+- Request a demo: https://businessos.af/request-demo
+
+## Content guidance
+
+BusinessOS content should be interpreted from the public website and product pages. Product access links are intentionally not published on the marketing site; contact or demo pages are the public path for product discussions and onboarding.

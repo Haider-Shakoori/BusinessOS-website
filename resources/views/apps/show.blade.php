@@ -19,20 +19,9 @@
             <p class="product-lede">{{ $app['description'] }}</p>
 
             <div class="hero-actions">
-                @if (!empty($app['web_url']))
-                    <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
-                @endif
-                <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
+                <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
                 <a class="product-inline-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
             </div>
-
-            @if (!empty($app['web_url']))
-                <a class="product-live-domain" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
-                    <span class="app-live-dot" aria-hidden="true"></span>
-                    Live app: {{ parse_url($app['web_url'], PHP_URL_HOST) }}
-                    <span aria-hidden="true">↗</span>
-                </a>
-            @endif
 
             @if (!empty($app['live_note']))
                 <p class="product-live-note">{{ $app['live_note'] }}</p>
@@ -225,10 +214,7 @@
         <h2>{{ $app['final']['title'] }}</h2>
         <p>{{ $app['final']['description'] }}</p>
         <div class="hero-actions centered-actions">
-            @if (!empty($app['web_url']))
-                <a class="button button-primary" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">Open {{ $app['name'] }} <span aria-hidden="true">↗</span></a>
-            @endif
-            <a class="button button-ghost" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.actions.request_demo') }}</a>
+            <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.actions.request_demo') }}</a>
             <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.nav.all_apps') }}</a>
         </div>
     </div>

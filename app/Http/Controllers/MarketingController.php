@@ -20,10 +20,14 @@ class MarketingController extends Controller
     {
         $apps = $this->products->homepage();
         $latestGuides = $this->latestGuides();
+        $services = collect(config('businessos_services.services', []));
+        $serviceFaqs = config('businessos_services.faq', []);
 
         return view('home', [
             'apps' => $apps,
             'latestGuides' => $latestGuides,
+            'services' => $services,
+            'serviceFaqs' => $serviceFaqs,
             'meta' => [
                 'title' => app()->getLocale() === 'en'
                     ? $this->settings->get('seo_default_title', __('marketing.seo.home_title'))
@@ -40,6 +44,19 @@ class MarketingController extends Controller
                     'name' => 'BusinessOS',
                     'url' => route('home'),
                     'description' => config('businessos.brand.description'),
+                    'knowsAbout' => $services->pluck('name')->values()->all(),
+                    'hasOfferCatalog' => [
+                        '@type' => 'OfferCatalog',
+                        'name' => 'BusinessOS software development services',
+                        'itemListElement' => $services->map(fn (array $service) => [
+                            '@type' => 'Offer',
+                            'itemOffered' => [
+                                '@type' => 'Service',
+                                'name' => $service['name'],
+                                'description' => $service['short'],
+                            ],
+                        ])->values()->all(),
+                    ],
                 ],
                 [
                     '@context' => 'https://schema.org',
@@ -58,8 +75,8 @@ class MarketingController extends Controller
         return view('apps.index', [
             'apps' => $apps,
             'meta' => [
-                'title' => 'BusinessOS Apps — Software for Sales, Operations & Growth',
-                'description' => 'Explore BusinessOS applications built for practical business operations, mobile teams, automation and growth.',
+                'title' => 'BusinessOS Products — ERP, Field Sales, POS, Pharmacy, Manufacturing & Finance',
+                'description' => 'Explore BusinessOS software for field sales, ERP, retail, pharmacy operations, raw materials, PVC pipe manufacturing and financial management.',
                 'canonical' => route('apps.index'),
             ],
             'schema' => [
@@ -137,6 +154,56 @@ class MarketingController extends Controller
         ]);
     }
 
+    public function services(): View
+    {
+        $services = collect(config('businessos_services.services', []));
+        $serviceFaqs = config('businessos_services.faq', []);
+
+        return view('pages.services', [
+            'services' => $services,
+            'serviceFaqs' => $serviceFaqs,
+            'meta' => [
+                'title' => 'Software Development Services — Websites, Custom ERP, MIS, Web Apps & Data Migration | BusinessOS',
+                'description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, APIs, automation, database systems and software support.',
+                'canonical' => route('services'),
+            ],
+            'schema' => [
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'CollectionPage',
+                    'name' => 'BusinessOS Software Development Services',
+                    'url' => route('services'),
+                    'description' => 'Custom software development and modernization services from BusinessOS.',
+                    'mainEntity' => [
+                        '@type' => 'ItemList',
+                        'itemListElement' => $services->values()->map(fn (array $service, int $index) => [
+                            '@type' => 'ListItem',
+                            'position' => $index + 1,
+                            'item' => [
+                                '@type' => 'Service',
+                                'name' => $service['name'],
+                                'description' => $service['description'],
+                                'provider' => [
+                                    '@type' => 'Organization',
+                                    'name' => 'BusinessOS',
+                                    'url' => route('home'),
+                                ],
+                            ],
+                        ])->all(),
+                    ],
+                ],
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => route('home')],
+                        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Services', 'item' => route('services')],
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function pricing(): View
     {
         return view('pages.pricing', [
@@ -153,8 +220,8 @@ class MarketingController extends Controller
     {
         return view('pages.about', [
             ...$this->pageMeta(
-                'About BusinessOS — Practical Software for Real Business Operations',
-                'Learn how BusinessOS approaches product design, performance, mobile work and practical business software.',
+                'About BusinessOS — Business Software & Custom Software Development',
+                'Learn how BusinessOS approaches business software, custom development, modernization, performance and practical digital systems.',
                 route('about')
             ),
             'aboutTitle' => $this->settings->localized('about_title', 'Software shaped around the way businesses actually operate.'),
@@ -194,16 +261,16 @@ class MarketingController extends Controller
     {
         return view('pages.contact', [
             ...$this->pageMeta(
-                'Contact BusinessOS — Product, Sales & Partnership Inquiries',
-                'Contact BusinessOS about products, implementation needs, sales questions or partnerships.',
+                'Contact BusinessOS — Software Development, Products & Partnerships',
+                'Contact BusinessOS about website development, custom ERP or MIS, web applications, data migration, upgrades, products, integrations or partnerships.',
                 route('contact')
             ),
             'apps' => $this->products->all(),
             'inquiryType' => 'contact',
             'selectedApp' => request('app'),
             'pageKicker' => 'Contact BusinessOS',
-            'pageTitle' => 'Tell us what your business needs to run better.',
-            'pageLead' => 'Share the operational problem, team context or BusinessOS product you want to discuss. Your request is stored securely for follow-up.',
+            'pageTitle' => 'Tell us what you need to build, modernize or run better.',
+            'pageLead' => 'Share the workflow, website, application, data problem or BusinessOS product you want to discuss. Your request is stored securely for follow-up.',
         ]);
     }
 

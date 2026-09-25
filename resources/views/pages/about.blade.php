@@ -13,9 +13,9 @@
     <div class="shell trust-content-grid">
         <aside><span class="story-index">01 / APPROACH</span></aside>
         <div class="prose-block">
-            <h2>Focused products instead of one overloaded platform.</h2>
+            <h2>Focused products and custom solutions instead of one rigid template.</h2>
             <p>{{ $aboutBody }}</p>
-            <p>FieldPulse, ERP and POS can stand on their own while sharing a consistent BusinessOS approach to usability, performance, security and long-term maintainability.</p>
+            <p>FieldPulse, ERP, POS and specialized industry systems can stand on their own, while custom websites, ERP/MIS projects, migrations and modernization work follow the same BusinessOS approach to usability, performance, security and long-term maintainability.</p>
         </div>
     </div>
 </section>
