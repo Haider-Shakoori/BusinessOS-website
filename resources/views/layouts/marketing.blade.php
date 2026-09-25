@@ -129,6 +129,7 @@
                 <div>
                     <strong>{{ __('marketing.footer.resources') }}</strong>
                     <a href="{{ route('resources.index') }}">{{ __('marketing.footer.guides') }}</a>
+                    <a href="{{ route('case-studies.index') }}">Case studies</a>
                     <a href="{{ route('demo') }}">{{ $cmsLabel('nav_demo_label', __('marketing.nav.demo')) }}</a>
                 </div>
                 <div>
