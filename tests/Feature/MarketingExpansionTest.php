@@ -39,11 +39,17 @@ class MarketingExpansionTest extends TestCase
             ->assertOk()
             ->assertDontSee('app-live-link', false);
 
-        foreach (['fieldpulse', 'erp', 'pos'] as $slug) {
+        $directUrls = [
+            'fieldpulse' => 'https://fieldpulse.businessos.af',
+            'erp' => 'https://erp.businessos.af',
+            'pos' => 'https://dukan.businessos.af',
+        ];
+
+        foreach ($directUrls as $slug => $url) {
             $this->get('/apps/'.$slug)
                 ->assertOk()
                 ->assertDontSee('product-live-domain', false)
-                ->assertDontSee('>Open ', false);
+                ->assertDontSee('href="'.$url.'"', false);
         }
     }
 }
