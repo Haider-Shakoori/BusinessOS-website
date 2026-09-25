@@ -66,7 +66,7 @@ class SearchGrowthTest extends TestCase
 
         $this->get('/guides/how-to-migrate-from-excel-to-erp?lang=fa')
             ->assertOk()
-            ->assertSee('<link rel="canonical" href="http://localhost/guides/how-to-migrate-from-excel-to-erp">', false)
+            ->assertSee('<link rel="canonical" href="https://businessos.af/guides/how-to-migrate-from-excel-to-erp">', false)
             ->assertDontSee('hreflang="fa-AF"', false)
             ->assertDontSee('hreflang="ps-AF"', false);
     }
