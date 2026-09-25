@@ -267,24 +267,35 @@ The kitchen workflow should have a clear order lifecycle. Common states include 
 
 Menu management remains centralized. Prices, categories, item availability, modifiers and add-ons can be controlled by authorized restaurant staff so every waiter device uses the current menu.
 
-Table management can connect the active order to the table and responsible waiter. Additional items can be added to the same table during service, and the final bill can be produced from the complete order history rather than combining handwritten tickets.
+Table management can connect the active order to the table and responsible waiter. Additional items can be added to the same table during service. If guests move or combine seating, staff can transfer an open order to another table or merge tables without losing the order history.
 
-Billing and payments should remain connected to the table order. Depending on restaurant requirements, the system can support discounts, payment recording, split bills, order adjustments and cashier controls.
+Kitchen routing should reflect how the restaurant actually prepares food. Menu items can be assigned to kitchen stations such as grill, drinks, desserts or another preparation area. Each station can receive items through a kitchen display or printed Kitchen Order Ticket (KOT), while the overall table order remains connected.
 
-Kitchen display views can reduce paper tickets by showing incoming orders and preparation status directly to kitchen staff. If the restaurant prefers printed kitchen tickets, that workflow can also be integrated.
+Billing and payments should remain connected to the table order. The system can support split bills by item, guest or amount, multiple payment methods, approved discounts and controlled bill adjustments.
 
-BusinessOS Restaurant Management System is designed as an internal restaurant operations platform: waiter mobile app for order entry, kitchen workflow for preparation, and web administration for menu, tables, billing, users and reporting.
+Voids, cancellations, complimentary items and sensitive discounts should not disappear silently from the system. These actions can require supervisor or manager approval, a reason and audit history so management can distinguish legitimate service decisions from misuse.
+
+Waiter shifts add accountability to front-of-house activity. Orders, changes and sales can retain the responsible waiter and shift. Cashier shifts can also be opened and closed with expected versus counted totals, payment-method summaries, discounts, voids and closing variance.
+
+Kitchen display views can reduce paper tickets by showing incoming orders and preparation status directly to kitchen staff. Restaurants that prefer printed tickets can use KOT printing instead or combine both methods.
+
+BusinessOS Restaurant Management System is designed as an internal restaurant operations platform: waiter mobile app for order entry, table and shift control for front-of-house, kitchen/KOT workflow for preparation, and web administration for menu, billing, approvals, cashier closing and reporting.
 TEXT,
-                'target_keywords' => ['restaurant management software', 'waiter ordering app', 'restaurant waiter app', 'table ordering system', 'kitchen order management', 'restaurant POS and kitchen system'],
+                'target_keywords' => ['restaurant management software', 'waiter ordering app', 'restaurant waiter app', 'table ordering system', 'kitchen order management', 'KOT system', 'split bill restaurant software', 'restaurant cashier closing'],
                 'related_product_slugs' => ['restaurant-management', 'financial-systems'],
                 'faq' => [
                     ['question' => 'Who uses the mobile ordering app?', 'answer' => 'The app is used by restaurant waiters. They take customer orders at the table and send them directly into the restaurant and kitchen workflow.'],
                     ['question' => 'How does the kitchen receive waiter orders?', 'answer' => 'Submitted orders can appear immediately in a kitchen queue or kitchen display with the table number, items, quantities, notes and preparation status.'],
                     ['question' => 'Can waiters add more items to an existing table order?', 'answer' => 'Yes. The system can keep an active table order open so additional items can be added during service before billing is completed.'],
                     ['question' => 'Can the system track tables and waiter assignments?', 'answer' => 'Yes. Tables, active orders and waiter responsibility can be connected so staff and managers can see the current service state.'],
+                    ['question' => 'Can tables be transferred or merged during service?', 'answer' => 'Yes. Open orders can be transferred between tables or merged while preserving the order history and responsible staff.'],
+                    ['question' => 'Can customers at one table pay separately?', 'answer' => 'Yes. The restaurant can split a bill by item, guest or amount and record multiple payments against the same table order.'],
+                    ['question' => 'Does the system support Kitchen Order Tickets?', 'answer' => 'Yes. Items can be routed to configured kitchen stations through display screens or printed KOT tickets.'],
+                    ['question' => 'How are voids and complimentary items controlled?', 'answer' => 'Sensitive actions can require authorized approval, reason capture and audit history before they affect the final bill.'],
+                    ['question' => 'Can cashier closing identify cash variance?', 'answer' => 'Yes. Cashier closing can compare expected payment totals with counted amounts and report closing variance.'],
                 ],
                 'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
-                'meta_description' => 'Restaurant management software with waiter mobile ordering, table management, kitchen workflow, menu control, billing, payments and reporting.',
+                'meta_description' => 'Restaurant management software with waiter mobile ordering, table transfer/merge, split bills, KOT/kitchen stations, approvals, cashier closing and reporting.'
             ],
         ];
     }
