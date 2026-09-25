@@ -69,11 +69,37 @@
 
 <section class="calm-signal-bar ecosystem-signal-bar">
     <div class="shell">
-        <span>Field sales</span>
-        <span>Customers & finance</span>
-        <span>Quotations & invoices</span>
-        <span>Retail & inventory</span>
-        <span>Business visibility</span>
+        <span>Website development</span>
+        <span>Custom ERP & MIS</span>
+        <span>Web applications</span>
+        <span>Data migration</span>
+        <span>Application upgrades</span>
+    </div>
+</section>
+
+<section class="calm-section business-services" id="services">
+    <div class="shell calm-heading">
+        <div>
+            <span class="calm-kicker">Software development services</span>
+            <h2>Products when they fit. Custom software when your workflow needs something different.</h2>
+        </div>
+        <p>BusinessOS develops websites, tailored ERP and MIS platforms, web applications, database systems and integrations. We also migrate data, modernize older applications and provide ongoing technical improvement.</p>
+    </div>
+
+    <div class="shell business-service-grid">
+        @foreach ($services->take(6) as $service)
+            <article>
+                <span class="service-card-index">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                <h3>{{ $service['name'] }}</h3>
+                <p>{{ $service['short'] }}</p>
+                <a class="text-link" href="{{ route('services') }}#{{ $service['slug'] }}">Learn more <span>→</span></a>
+            </article>
+        @endforeach
+    </div>
+
+    <div class="shell business-services-cta">
+        <p>Need a specialized workflow, modernization project or system not shown here?</p>
+        <a class="button button-primary" href="{{ route('services') }}">Explore all software services <span aria-hidden="true">→</span></a>
     </div>
 </section>
 
@@ -106,13 +132,6 @@
 
                 <div class="ecosystem-product-actions">
                     <a class="button button-ghost" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }}</a>
-                    @if (!empty($app['web_url']))
-                        <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
-                            <span class="app-live-dot" aria-hidden="true"></span>
-                            {{ parse_url($app['web_url'], PHP_URL_HOST) }}
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                    @endif
                 </div>
             </article>
         @endforeach
