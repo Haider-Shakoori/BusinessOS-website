@@ -13,8 +13,8 @@
             <p>{{ $siteSettings->localized('homepage_hero_description', __('marketing.home.hero_description')) }}</p>
 
             <div class="calm-hero-actions">
-                <a class="button button-primary" href="{{ route('apps.index') }}">{{ __('marketing.actions.explore_apps') }} <span aria-hidden="true">→</span></a>
-                <a class="button button-ghost" href="{{ route('demo') }}">{{ __('marketing.actions.request_demo') }}</a>
+                <a class="button button-primary" href="{{ route('services') }}">{{ __('marketing.nav.solutions') }} <span aria-hidden="true">→</span></a>
+                <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.actions.explore_apps') }}</a>
             </div>
 
             <div class="ecosystem-trust-row" aria-label="BusinessOS product principles">
