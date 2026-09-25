@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guide;
+use App\Models\SeoPage;
 use App\Services\ProductCatalog;
 use App\Services\SiteSettings;
 use Illuminate\Contracts\View\View;
@@ -159,9 +160,16 @@ class MarketingController extends Controller
         $services = collect(config('businessos_services.services', []));
         $serviceFaqs = config('businessos_services.faq', []);
 
+        try {
+            $searchPages = SeoPage::published()->orderBy('title')->get();
+        } catch (Throwable) {
+            $searchPages = collect();
+        }
+
         return view('pages.services', [
             'services' => $services,
             'serviceFaqs' => $serviceFaqs,
+            'searchPages' => $searchPages,
             'meta' => [
                 'title' => 'Software Development Services — Websites, Custom ERP, MIS, Web Apps & Data Migration | BusinessOS',
                 'description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, APIs, automation, database systems and software support.',
