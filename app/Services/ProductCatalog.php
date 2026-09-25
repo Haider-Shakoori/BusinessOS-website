@@ -10,27 +10,50 @@ class ProductCatalog
 {
     public function all(): Collection
     {
+        $configured = $this->configuredProducts();
+
         try {
-            return Product::query()
+            $database = Product::query()
                 ->publiclyVisible()
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get()
-                ->map(fn (Product $product) => $product->toMarketingArray());
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+
+            return $database
+                ->union($configured)
+                ->sortBy(fn (array $app) => [
+                    $app['sort_order'] ?? 9999,
+                    $app['name'] ?? '',
+                ])
+                ->values();
         } catch (Throwable) {
-            return collect(config('businessos.apps', []))->values();
+            return $configured->values();
         }
     }
 
     public function homepage(): Collection
     {
+        $configured = $this->configuredProducts()
+            ->filter(fn (array $app) => (bool) ($app['show_on_homepage'] ?? true))
+            ->filter(fn (array $app) => (bool) ($app['is_visible'] ?? true))
+            ->filter(fn (array $app) => ($app['publication_state'] ?? 'published') === 'published');
+
         try {
-            return Product::query()
+            $database = Product::query()
                 ->homepage()
                 ->get()
-                ->map(fn (Product $product) => $product->toMarketingArray());
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+
+            return $database
+                ->union($configured)
+                ->sortBy(fn (array $app) => [
+                    $app['homepage_order'] ?? $app['sort_order'] ?? 9999,
+                    $app['name'] ?? '',
+                ])
+                ->values();
         } catch (Throwable) {
-            return collect(config('businessos.apps', []))->values();
+            return $configured->values();
         }
     }
 
@@ -42,11 +65,24 @@ class ProductCatalog
                 ->where('slug', $slug)
                 ->first();
 
-            return $product?->toMarketingArray();
+            if ($product) {
+                return $product->toMarketingArray();
+            }
         } catch (Throwable) {
-            $app = config('businessos.apps.'.$slug);
-
-            return is_array($app) ? $app : null;
+            // Fall through to the configuration catalog.
         }
+
+        $app = config('businessos.apps.'.$slug);
+
+        return is_array($app) ? $app : null;
+    }
+
+    private function configuredProducts(): Collection
+    {
+        return collect(config('businessos.apps', []))
+            ->filter(fn (array $app) => (bool) ($app['is_visible'] ?? true))
+            ->filter(fn (array $app) => ($app['publication_state'] ?? 'published') === 'published')
+            ->values()
+            ->keyBy('slug');
     }
 }
