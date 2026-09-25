@@ -220,8 +220,8 @@ class MarketingController extends Controller
     {
         return view('pages.about', [
             ...$this->pageMeta(
-                'About BusinessOS — Practical Software for Real Business Operations',
-                'Learn how BusinessOS approaches product design, performance, mobile work and practical business software.',
+                'About BusinessOS — Business Software & Custom Software Development',
+                'Learn how BusinessOS approaches business software, custom development, modernization, performance and practical digital systems.',
                 route('about')
             ),
             'aboutTitle' => $this->settings->localized('about_title', 'Software shaped around the way businesses actually operate.'),
@@ -261,16 +261,16 @@ class MarketingController extends Controller
     {
         return view('pages.contact', [
             ...$this->pageMeta(
-                'Contact BusinessOS — Product, Sales & Partnership Inquiries',
-                'Contact BusinessOS about products, implementation needs, sales questions or partnerships.',
+                'Contact BusinessOS — Software Development, Products & Partnerships',
+                'Contact BusinessOS about website development, custom ERP or MIS, web applications, data migration, upgrades, products, integrations or partnerships.',
                 route('contact')
             ),
             'apps' => $this->products->all(),
             'inquiryType' => 'contact',
             'selectedApp' => request('app'),
             'pageKicker' => 'Contact BusinessOS',
-            'pageTitle' => 'Tell us what your business needs to run better.',
-            'pageLead' => 'Share the operational problem, team context or BusinessOS product you want to discuss. Your request is stored securely for follow-up.',
+            'pageTitle' => 'Tell us what you need to build, modernize or run better.',
+            'pageLead' => 'Share the workflow, website, application, data problem or BusinessOS product you want to discuss. Your request is stored securely for follow-up.',
         ]);
     }
 
