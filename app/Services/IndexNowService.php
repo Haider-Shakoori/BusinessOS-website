@@ -27,7 +27,7 @@ class IndexNowService
             $response = Http::timeout((int) config('search.indexnow.timeout', 4))
                 ->acceptJson()
                 ->post((string) config('search.indexnow.endpoint'), [
-                    'host' => request()->getHost() ?: parse_url(config('app.url'), PHP_URL_HOST),
+                    'host' => (string) parse_url((string) config('app.url'), PHP_URL_HOST),
                     'key' => (string) config('search.indexnow.key'),
                     'keyLocation' => url((string) config('search.indexnow.key_path', '/indexnow-key.txt')),
                     'urlList' => $urls->all(),
