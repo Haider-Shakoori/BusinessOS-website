@@ -31,10 +31,17 @@ class SearchGrowthTest extends TestCase
             ->assertSee('Detailed service guides')
             ->assertSee('Custom ERP Development');
 
+        $this->get('/services/restaurant-management-software')
+            ->assertOk()
+            ->assertSee('waiters take table orders on mobile')
+            ->assertSee('waiter mobile ordering')
+            ->assertDontSee('customers place restaurant orders', false);
+
         $this->get('/sitemap.xml')
             ->assertOk()
             ->assertSee('/services/custom-erp-development', false)
-            ->assertSee('/services/erp-software-afghanistan', false);
+            ->assertSee('/services/erp-software-afghanistan', false)
+            ->assertSee('/services/restaurant-management-software', false);
     }
 
     public function test_search_guide_library_has_expert_attribution_and_related_links(): void

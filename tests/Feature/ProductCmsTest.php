@@ -16,8 +16,8 @@ class ProductCmsTest extends TestCase
     {
         $this->seed(ProductSeeder::class);
 
-        $this->assertDatabaseCount('products', 7);
-        $this->assertSame(7, Product::query()->publiclyVisible()->count());
+        $this->assertDatabaseCount('products', 8);
+        $this->assertSame(8, Product::query()->publiclyVisible()->count());
         $this->assertDatabaseHas('products', [
             'slug' => 'fieldpulse',
             'publication_state' => 'published',
@@ -31,6 +31,12 @@ class ProductCmsTest extends TestCase
         ]);
         $this->assertDatabaseHas('products', [
             'slug' => 'financial-systems',
+            'publication_state' => 'published',
+            'is_visible' => true,
+            'show_on_homepage' => false,
+        ]);
+        $this->assertDatabaseHas('products', [
+            'slug' => 'restaurant-management',
             'publication_state' => 'published',
             'is_visible' => true,
             'show_on_homepage' => false,

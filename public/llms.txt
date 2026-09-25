@@ -26,6 +26,7 @@ Canonical website: https://businessos.af/
 - Manufacturing ERP: https://businessos.af/services/manufacturing-erp
 - Pharmacy Management Software: https://businessos.af/services/pharmacy-management-software
 - ERP Software in Afghanistan: https://businessos.af/services/erp-software-afghanistan
+- Restaurant Management Software with waiter mobile ordering: https://businessos.af/services/restaurant-management-software
 
 ## Products and industry systems
 
@@ -37,6 +38,7 @@ Canonical website: https://businessos.af/
 - Raw Materials Database: https://businessos.af/apps/raw-materials-db
 - PVC Pipe Factory Management: https://businessos.af/apps/pvc-pipe-factory
 - Financial Management Systems: https://businessos.af/apps/financial-systems
+- Restaurant Management System for internal waiter table ordering: https://businessos.af/apps/restaurant-management
 
 ## Important pages
 
