@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guide;
+use App\Models\SeoPage;
 use Illuminate\Contracts\View\View;
 
 class GuideController extends Controller
@@ -38,8 +39,28 @@ class GuideController extends Controller
             404
         );
 
+        $haystack = strtolower($guide->title.' '.$guide->category.' '.$guide->excerpt);
+        $relatedPages = SeoPage::published()
+            ->get()
+            ->map(function (SeoPage $page) use ($haystack): array {
+                $score = collect($page->target_keywords ?? [])
+                    ->filter(fn (string $keyword) => str_contains($haystack, strtolower($keyword)))
+                    ->count();
+
+                if ($score === 0) {
+                    $score = str_contains($haystack, strtolower($page->title)) ? 1 : 0;
+                }
+
+                return ['page' => $page, 'score' => $score];
+            })
+            ->filter(fn (array $item) => $item['score'] > 0)
+            ->sortByDesc('score')
+            ->take(3)
+            ->pluck('page');
+
         return view('resources.show', [
             'guide' => $guide,
+            'relatedPages' => $relatedPages,
             'meta' => [
                 'title' => $guide->meta_title ?: $guide->title.' — BusinessOS',
                 'description' => $guide->meta_description ?: $guide->excerpt,
@@ -54,6 +75,11 @@ class GuideController extends Controller
                     'datePublished' => $guide->published_at?->toAtomString(),
                     'dateModified' => $guide->updated_at?->toAtomString(),
                     'mainEntityOfPage' => route('resources.show', $guide),
+                    'author' => [
+                        '@type' => 'Organization',
+                        'name' => $guide->author_name ?: 'BusinessOS Editorial Team',
+                        'description' => $guide->author_bio,
+                    ],
                     'publisher' => [
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',
