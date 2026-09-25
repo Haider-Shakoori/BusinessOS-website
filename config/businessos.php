@@ -840,7 +840,7 @@ return [
             ],
             'commercial' => [
                 'pricing_status' => 'Pricing based on restaurant scope',
-                'pricing_note' => 'Pricing depends on locations, number of waiters, table areas, kitchen stations, KOT printing or displays, billing controls, cashier closing, payment integrations and reporting.'
+                'pricing_note' => 'Pricing depends on locations, number of waiters, table areas, kitchen stations, KOT printing or displays, billing controls, cashier closing, payment integrations and reporting.',
                 'pricing_model' => 'Restaurant platform + mobile app',
                 'pricing_plans' => [],
                 'deployment_options' => ['BusinessOS-hosted deployment', 'Private deployment', 'Waiter mobile application'],
