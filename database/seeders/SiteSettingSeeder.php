@@ -26,9 +26,9 @@ class SiteSettingSeeder extends Seeder
                 'nav_demo_label' => 'Request a demo',
             ],
             'homepage' => [
-                'homepage_hero_eyebrow' => 'BusinessOS software ecosystem',
-                'homepage_hero_title' => 'Software for the way your business actually runs.',
-                'homepage_hero_description' => 'BusinessOS brings focused software for field sales, business management and retail operations under one product family—built for practical work, local realities and modern teams.',
+                'homepage_hero_eyebrow' => 'Business software & custom development',
+                'homepage_hero_title' => 'Build, modernize and run your business with better software.',
+                'homepage_hero_description' => 'BusinessOS builds websites, custom ERP and MIS systems, web applications and industry software—plus data migration, integrations and application upgrades for businesses that need technology matched to real workflows.',
                 'homepage_hero_title_fa' => 'نرم‌افزار برای شیوه‌ای که کسب‌وکار شما واقعاً کار می‌کند.',
                 'homepage_hero_description_fa' => 'BusinessOS نرم‌افزارهای تخصصی برای فروش ساحوی، مدیریت تجارت و عملیات فروشگاهی را در یک خانواده محصول گردهم می‌آورد.',
                 'homepage_hero_title_ps' => 'ستاسو د سوداګرۍ د واقعي کار لپاره سافټویر.',
@@ -43,7 +43,7 @@ class SiteSettingSeeder extends Seeder
                 'homepage_engineering_description' => 'BusinessOS products are built around responsive interfaces, maintainable application architecture and performance that remains useful on real devices and imperfect networks.',
                 'homepage_resources_title' => 'Useful ideas for running better operations.',
                 'homepage_final_title' => 'Find the right product for the part of your business you want to improve.',
-                'homepage_final_description' => 'Explore FieldPulse, ERP and POS, or tell us about the workflow you need to improve and choose the product from the demo form.',
+                'homepage_final_description' => 'Explore BusinessOS products or tell us about the workflow, website, system, data migration or modernization project you need to improve.',
             ],
             'about' => [
                 'about_title' => 'Software shaped around the way businesses actually operate.',
@@ -62,8 +62,8 @@ class SiteSettingSeeder extends Seeder
                 'contact_address' => 'Afghanistan',
             ],
             'seo' => [
-                'seo_default_title' => 'BusinessOS — Business Software for Field Sales, ERP & Retail',
-                'seo_default_description' => 'BusinessOS builds practical software for field sales, ERP, retail operations and business management.',
+                'seo_default_title' => 'BusinessOS — Website Development, Custom ERP, MIS & Business Software',
+                'seo_default_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.'
                 'og_image' => '',
             ],
         ];
