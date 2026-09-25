@@ -251,7 +251,39 @@ TEXT,
                 ],
                 'meta_title' => 'ERP Software in Afghanistan — Custom Business Management | BusinessOS',
                 'meta_description' => 'BusinessOS provides customizable ERP software in Afghanistan for sales, purchasing, inventory, production, finance and management reporting.',
-            ],
+            ],,
+            [
+                'title' => 'Restaurant Management Software',
+                'slug' => 'restaurant-management-software',
+                'eyebrow' => 'Restaurant software & mobile ordering',
+                'headline' => 'Restaurant management software that receives customer orders from a mobile app and moves them straight into operations.',
+                'excerpt' => 'Connect customer mobile ordering with menu control, live order reception, kitchen preparation, table service, pickup/delivery, payments and restaurant reporting.',
+                'content' => <<<'TEXT'
+Restaurant management software should connect the customer ordering experience with the people preparing and fulfilling the order. A mobile app is useful only when it feeds directly into the restaurant workflow instead of creating another channel staff must monitor separately.
+
+The customer app can present the live menu, item options, add-ons and availability. When a customer submits an order, the restaurant system should receive the order immediately with the items, quantities, notes, fulfillment method and customer context required to process it.
+
+The kitchen workflow should have a clear order lifecycle. Common states include new, accepted, preparing, ready, completed or cancelled. The exact statuses can be configured around dine-in, takeaway, pickup and delivery.
+
+Menu management should remain centralized. Prices, item availability, categories and modifiers should be managed from the restaurant administration system so customers do not need a new application release whenever the menu changes.
+
+Restaurants may also need table management, order history, payments, discounts, customer records, delivery information, inventory references and sales reporting. Those modules should remain connected to the same order instead of being maintained as separate records.
+
+The mobile experience can also show order status back to the customer when appropriate, helping reduce uncertainty after an order is placed.
+
+BusinessOS Restaurant Management System is designed as a connected web and mobile platform, with the mobile app acting as the customer ordering channel and the restaurant dashboard and kitchen views handling execution.
+TEXT,
+                'target_keywords' => ['restaurant management software', 'restaurant ordering app', 'mobile food ordering system', 'restaurant POS and kitchen system', 'restaurant order management'],
+                'related_product_slugs' => ['restaurant-management', 'financial-systems'],
+                'faq' => [
+                    ['question' => 'Can customers place restaurant orders from a mobile app?', 'answer' => 'Yes. Customers can browse the current menu, choose items and send orders directly into the restaurant management workflow.'],
+                    ['question' => 'How does the kitchen receive mobile orders?', 'answer' => 'Confirmed orders can appear in a kitchen queue or kitchen display with item details, notes and preparation status.'],
+                    ['question' => 'Can the restaurant change menu availability without updating the mobile app?', 'answer' => 'Yes. Menu data can be controlled centrally so item availability and pricing are reflected in the customer app.'],
+                    ['question' => 'Can the same system support dine-in, takeaway and delivery?', 'answer' => 'Yes. The order model can support multiple fulfillment types depending on the restaurant process.'],
+                ],
+                'meta_title' => 'Restaurant Management Software with Mobile Ordering | BusinessOS',
+                'meta_description' => 'Restaurant management software with customer mobile ordering, live order reception, kitchen workflow, menu control, pickup/delivery, payments and reporting.',
+            ]
         ];
     }
 }
