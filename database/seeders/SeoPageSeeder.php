@@ -285,6 +285,7 @@ TEXT,
                 ],
                 'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
                 'meta_description' => 'Restaurant management software with waiter mobile ordering, table management, kitchen workflow, menu control, billing, payments and reporting.',
-            ]        ];
+            ],
+        ];
     }
 }
