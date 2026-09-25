@@ -35,6 +35,10 @@ class SearchGrowthTest extends TestCase
             ->assertOk()
             ->assertSee('waiters take table orders on mobile')
             ->assertSee('waiter mobile ordering')
+            ->assertSee('Kitchen Order Ticket')
+            ->assertSee('split bills')
+            ->assertSee('Cashier shifts')
+            ->assertSee('closing variance')
             ->assertDontSee('customers place restaurant orders', false);
 
         $this->get('/sitemap.xml')
