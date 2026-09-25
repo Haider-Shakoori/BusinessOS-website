@@ -295,7 +295,7 @@ TEXT,
                     ['question' => 'Can cashier closing identify cash variance?', 'answer' => 'Yes. Cashier closing can compare expected payment totals with counted amounts and report closing variance.'],
                 ],
                 'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
-                'meta_description' => 'Restaurant management software with waiter mobile ordering, table transfer/merge, split bills, KOT/kitchen stations, approvals, cashier closing and reporting.'
+                'meta_description' => 'Restaurant management software with waiter mobile ordering, table transfer/merge, split bills, KOT/kitchen stations, approvals, cashier closing and reporting.',
             ],
         ];
     }
