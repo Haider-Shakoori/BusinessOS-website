@@ -7,8 +7,10 @@
         <lastmod>{{ $url['lastmod'] }}</lastmod>
         <priority>{{ $url['priority'] }}</priority>
         <xhtml:link rel="alternate" hreflang="en" href="{{ $url['loc'] }}"/>
-        <xhtml:link rel="alternate" hreflang="fa-AF" href="{{ $url['loc'] }}?lang=fa"/>
-        <xhtml:link rel="alternate" hreflang="ps-AF" href="{{ $url['loc'] }}?lang=ps"/>
+        @if($url['localized'] ?? false)
+            <xhtml:link rel="alternate" hreflang="fa-AF" href="{{ $url['loc'] }}?lang=fa"/>
+            <xhtml:link rel="alternate" hreflang="ps-AF" href="{{ $url['loc'] }}?lang=ps"/>
+        @endif
         <xhtml:link rel="alternate" hreflang="x-default" href="{{ $url['loc'] }}"/>
         @foreach($url['images'] ?? [] as $image)
             <image:image>
