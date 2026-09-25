@@ -804,13 +804,13 @@ return [
             'problem' => [
                 'title' => 'Restaurant operations become harder to coordinate when waiters, kitchen staff, tables and billing are handled through separate or manual processes.',
                 'body' => [
-                    'Waiters need a fast way to take orders at the table without returning to a fixed terminal or relying on paper tickets. Each order should enter the same operational workflow used by the kitchen and cashier.'
-                    'BusinessOS can connect the waiter mobile app, table order, kitchen preparation, serving status, billing, payments, menu availability and reporting so every order has a clear lifecycle from table to completion.'
+                    'Waiters need a fast way to take orders at the table without returning to a fixed terminal or relying on paper tickets. Each order should enter the same operational workflow used by the kitchen and cashier.',
+                    'BusinessOS can connect the waiter mobile app, table order, kitchen preparation, serving status, billing, payments, menu availability and reporting so every order has a clear lifecycle from table to completion.',
                 ],
             ],
             'features_intro' => [
                 'title' => 'A connected ordering workflow from the waiter’s phone to the kitchen.',
-                'description' => 'The core workflow is dine-in table service, with optional takeaway handling if the restaurant needs it.'
+                'description' => 'The core workflow is dine-in table service, with optional takeaway handling if the restaurant needs it.',
             ],
             'features' => [
                 ['title' => 'Waiter mobile ordering', 'description' => 'Waiters select the table, browse the live menu, add items and submit the order directly from a mobile application while serving customers.'],
@@ -822,25 +822,25 @@ return [
             ],
             'use_cases_intro' => [
                 'title' => 'Designed for restaurants that want waiters to take orders digitally without slowing table service.',
-                'description' => 'The waiter mobile app becomes the front-of-house order entry point while kitchen, cashier and management stay connected to the same order.'
+                'description' => 'The waiter mobile app becomes the front-of-house order entry point while kitchen, cashier and management stay connected to the same order.',
             ],
             'use_cases' => ['Waiter table ordering', 'Dine-in restaurant orders', 'Table and waiter assignment', 'Kitchen preparation queue', 'Billing and payments', 'Restaurant sales reporting'],
             'spotlight' => [
                 'kicker' => 'Waiter-to-kitchen workflow',
                 'title' => 'Every customer order moves through one visible lifecycle.',
-                'description' => 'The restaurant can see when a waiter submits an order, when the kitchen accepts and prepares it, when it is ready to serve, and when the table is billed and completed.'
+                'description' => 'The restaurant can see when a waiter submits an order, when the kitchen accepts and prepares it, when it is ready to serve, and when the table is billed and completed.',
                 'items' => ['Waiter mobile app', 'Kitchen-connected', 'Table-aware'],
             ],
             'commercial' => [
                 'pricing_status' => 'Pricing based on restaurant scope',
-                'pricing_note' => 'Pricing depends on locations, number of waiters, mobile-app requirements, table workflows, kitchen displays, billing, payment integrations and reporting.'
+                'pricing_note' => 'Pricing depends on locations, number of waiters, mobile-app requirements, table workflows, kitchen displays, billing, payment integrations and reporting.',
                 'pricing_model' => 'Restaurant platform + mobile app',
                 'pricing_plans' => [],
                 'deployment_options' => ['BusinessOS-hosted deployment', 'Private deployment', 'Waiter mobile application'],
             ],
             'final' => [
                 'title' => 'Turn waiter orders into a fast, controlled restaurant workflow.',
-                'description' => 'Tell us how waiters take table orders today, how the kitchen receives tickets, how tables are billed and how many service areas or locations you need to manage.'
+                'description' => 'Tell us how waiters take table orders today, how the kitchen receives tickets, how tables are billed and how many service areas or locations you need to manage.',
             ],
             'faq' => [
                 ['question' => 'Who uses the mobile ordering app?', 'answer' => 'The mobile app is for restaurant waiters. Waiters use it at the table to enter customer orders and send them directly into the restaurant and kitchen workflow.'],
