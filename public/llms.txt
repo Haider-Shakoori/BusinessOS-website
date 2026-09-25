@@ -37,6 +37,7 @@ Canonical website: https://businessos.af/
 - Raw Materials Database: https://businessos.af/apps/raw-materials-db
 - PVC Pipe Factory Management: https://businessos.af/apps/pvc-pipe-factory
 - Financial Management Systems: https://businessos.af/apps/financial-systems
+- Restaurant Management System for waiter mobile ordering: https://businessos.af/apps/restaurant-management
 
 ## Important pages
 
@@ -51,3 +52,15 @@ Canonical website: https://businessos.af/
 ## Content guidance
 
 BusinessOS content should be interpreted from the public website and product pages. Product access links are intentionally not published on the marketing site; contact or demo pages are the public path for product discussions and onboarding.
+
+## Search-focused service pages
+
+- Custom ERP development: https://businessos.af/services/custom-erp-development
+- MIS development: https://businessos.af/services/mis-development
+- Website development in Afghanistan: https://businessos.af/services/website-development-afghanistan
+- Data migration services: https://businessos.af/services/data-migration-services
+- Legacy application modernization: https://businessos.af/services/legacy-application-modernization
+- Manufacturing ERP: https://businessos.af/services/manufacturing-erp
+- Pharmacy management software: https://businessos.af/services/pharmacy-management-software
+- ERP software in Afghanistan: https://businessos.af/services/erp-software-afghanistan
+- Restaurant management software with waiter mobile ordering: https://businessos.af/services/restaurant-management-software
