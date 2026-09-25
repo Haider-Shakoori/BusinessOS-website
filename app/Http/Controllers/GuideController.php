@@ -44,8 +44,26 @@ class GuideController extends Controller
             ->get()
             ->map(function (SeoPage $page) use ($haystack): array {
                 $score = collect($page->target_keywords ?? [])
-                    ->filter(fn (string $keyword) => str_contains($haystack, strtolower($keyword)))
-                    ->count();
+                    ->sum(function (string $keyword) use ($haystack): int {
+                        $phrase = strtolower($keyword);
+
+                        if (str_contains($haystack, $phrase)) {
+                            return 3;
+                        }
+
+                        $tokens = collect(preg_split('/[^a-z0-9]+/i', $phrase))
+                            ->filter(fn (string $token) => strlen($token) >= 3)
+                            ->unique()
+                            ->values();
+
+                        if ($tokens->isEmpty()) {
+                            return 0;
+                        }
+
+                        $matches = $tokens->filter(fn (string $token) => str_contains($haystack, $token))->count();
+
+                        return $matches >= max(2, (int) ceil($tokens->count() / 2)) ? 1 : 0;
+                    });
 
                 if ($score === 0) {
                     $score = str_contains($haystack, strtolower($page->title)) ? 1 : 0;
