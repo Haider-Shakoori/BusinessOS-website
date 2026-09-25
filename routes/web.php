@@ -44,6 +44,8 @@ Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminAnalyticsController::class, 'dashboard'])->name('dashboard');
     Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics');
+    Route::post('/analytics/exclude-browser', [AdminAnalyticsController::class, 'excludeBrowser'])->name('analytics.exclude-browser');
+    Route::post('/analytics/include-browser', [AdminAnalyticsController::class, 'includeBrowser'])->name('analytics.include-browser');
     Route::resource('products', AdminProductController::class)->except(['show']);
     Route::resource('guides', AdminGuideController::class)->except(['show']);
 
