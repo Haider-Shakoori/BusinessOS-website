@@ -1,7 +1,12 @@
 <?php
 
+use App\Models\CaseStudy;
+use App\Models\Guide;
 use App\Models\PageVisit;
+use App\Models\SeoPage;
 use App\Models\User;
+use App\Services\IndexNowService;
+use App\Services\ProductCatalog;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
@@ -56,3 +61,34 @@ Schedule::call(function (): void {
     ->dailyAt('03:20')
     ->name('prune-businessos-analytics')
     ->withoutOverlapping();
+
+Artisan::command('search:indexnow', function (IndexNowService $indexNow, ProductCatalog $products) {
+    $urls = collect([
+        route('home'),
+        route('services'),
+        route('apps.index'),
+        route('resources.index'),
+        route('case-studies.index'),
+    ])->merge(
+        $products->all()->map(fn (array $app) => route('apps.show', $app['slug']))
+    );
+
+    try {
+        $urls = $urls
+            ->merge(SeoPage::published()->get()->map(fn (SeoPage $page) => route('seo-pages.show', $page)))
+            ->merge(Guide::published()->get()->map(fn (Guide $guide) => route('resources.show', $guide)))
+            ->merge(CaseStudy::published()->get()->map(fn (CaseStudy $caseStudy) => route('case-studies.show', $caseStudy)));
+    } catch (Throwable) {
+        // Migrations may not have run yet.
+    }
+
+    if (! $indexNow->submit($urls->unique()->values()->all())) {
+        $this->warn('IndexNow is disabled, not configured, or did not accept the submission.');
+
+        return 1;
+    }
+
+    $this->info('Submitted '.$urls->unique()->count().' public URLs to IndexNow.');
+
+    return 0;
+})->purpose('Submit the current public BusinessOS URL inventory to IndexNow');

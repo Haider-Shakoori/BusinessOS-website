@@ -6,28 +6,22 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Guide extends Model
+class SeoPage extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'slug',
-        'category',
-        'excerpt',
-        'content',
-        'author_name',
-        'author_role',
-        'author_bio',
-        'meta_title',
-        'meta_description',
-        'status',
-        'published_at',
+        'title', 'slug', 'eyebrow', 'headline', 'excerpt', 'content',
+        'target_keywords', 'faq', 'related_product_slugs',
+        'meta_title', 'meta_description', 'status', 'published_at',
     ];
 
     protected function casts(): array
     {
         return [
+            'target_keywords' => 'array',
+            'faq' => 'array',
+            'related_product_slugs' => 'array',
             'published_at' => 'datetime',
         ];
     }

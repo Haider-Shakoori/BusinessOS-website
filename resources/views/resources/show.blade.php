@@ -13,8 +13,12 @@
             <h1>{{ $guide->title }}</h1>
             <p>{{ $guide->excerpt }}</p>
             <div class="guide-meta">
-                <span>BusinessOS</span>
+                <span>{{ $guide->author_name ?: 'BusinessOS Editorial Team' }}</span>
+                @if($guide->author_role)<span>{{ $guide->author_role }}</span>@endif
                 <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('F j, Y') }}</time>
+                @if($guide->updated_at && $guide->published_at && $guide->updated_at->gt($guide->published_at->copy()->addDay()))
+                    <span>Updated {{ $guide->updated_at->format('F j, Y') }}</span>
+                @endif
             </div>
         </div>
     </header>
@@ -26,6 +30,25 @@
                     <p>{{ $paragraph }}</p>
                 @endforeach
             </div>
+            @if($guide->author_bio)
+                <aside class="seo-explainer-card" aria-label="About the author">
+                    <div><span class="kicker">About the author</span><h2>{{ $guide->author_name ?: 'BusinessOS Editorial Team' }}</h2></div>
+                    <div><p>{{ $guide->author_bio }}</p></div>
+                </aside>
+            @endif
+
+            @if($relatedPages->count())
+                <div class="guide-end">
+                    <span class="kicker">Related services</span>
+                    <h2>Continue from the guide into implementation.</h2>
+                    <div class="use-case-list">
+                        @foreach($relatedPages as $page)
+                            <div><span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><strong><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></strong><i>→</i></div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="guide-end">
                 <span class="kicker">BusinessOS resources</span>
                 <h2>Turn useful ideas into better operations.</h2>

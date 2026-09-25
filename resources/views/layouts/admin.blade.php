@@ -24,6 +24,8 @@
             <a class="{{ request()->routeIs('admin.inquiries.*') ? 'active' : '' }}" href="{{ route('admin.inquiries.index') }}"><span>✉</span>Inquiries</a>
             <a class="{{ request()->routeIs('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}"><span>▧</span>Media</a>
             <a class="{{ request()->routeIs('admin.guides.*') ? 'active' : '' }}" href="{{ route('admin.guides.index') }}"><span>▤</span>Guides</a>
+            <a class="{{ request()->routeIs('admin.seo-pages.*') ? 'active' : '' }}" href="{{ route('admin.seo-pages.index') }}"><span>⌕</span>Search Pages</a>
+            <a class="{{ request()->routeIs('admin.case-studies.*') ? 'active' : '' }}" href="{{ route('admin.case-studies.index') }}"><span>◈</span>Case Studies</a>
             <a class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.edit') }}"><span>⚙</span>Settings</a>
         </nav>
 

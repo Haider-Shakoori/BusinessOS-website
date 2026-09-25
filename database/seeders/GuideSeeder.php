@@ -86,7 +86,14 @@ TEXT,
         foreach ($guides as $guide) {
             Guide::updateOrCreate(
                 ['slug' => $guide['slug']],
-                [...$guide, 'status' => 'published', 'published_at' => now()]
+                [
+                    ...$guide,
+                    'author_name' => 'BusinessOS Editorial Team',
+                    'author_role' => 'Business software & operations',
+                    'author_bio' => 'BusinessOS publishes practical guidance based on software engineering, operational workflows and implementation experience.',
+                    'status' => 'published',
+                    'published_at' => now(),
+                ]
             );
         }
     }

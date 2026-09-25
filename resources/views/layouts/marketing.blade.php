@@ -22,13 +22,18 @@
     <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
     <link rel="alternate" hreflang="x-default" href="{{ $meta['canonical'] }}">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    @if($siteSettings->get('google_site_verification'))<meta name="google-site-verification" content="{{ $siteSettings->get('google_site_verification') }}">@endif
+    @if($siteSettings->get('bing_site_verification'))<meta name="msvalidate.01" content="{{ $siteSettings->get('bing_site_verification') }}">@endif
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ $brandName }}">
     <meta property="og:title" content="{{ $meta['title'] }}">
     <meta property="og:description" content="{{ $meta['description'] }}">
     <meta property="og:url" content="{{ $canonical }}">
-    @if($ogImage)<meta property="og:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
+    @if($ogImage)
+        <meta property="og:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">
+        <meta property="og:image:alt" content="{{ $meta['title'] }}">
+    @endif
     <meta name="twitter:card" content="{{ $ogImage ? 'summary_large_image' : 'summary' }}">
     <meta name="twitter:title" content="{{ $meta['title'] }}">
     <meta name="twitter:description" content="{{ $meta['description'] }}">
@@ -124,6 +129,7 @@
                 <div>
                     <strong>{{ __('marketing.footer.resources') }}</strong>
                     <a href="{{ route('resources.index') }}">{{ __('marketing.footer.guides') }}</a>
+                    <a href="{{ route('case-studies.index') }}">Case studies</a>
                     <a href="{{ route('demo') }}">{{ $cmsLabel('nav_demo_label', __('marketing.nav.demo')) }}</a>
                 </div>
                 <div>
