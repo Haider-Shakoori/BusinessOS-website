@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
             SiteSettingSeeder::class,
             ProductSeeder::class,
             GuideSeeder::class,
+            SearchGuideSeeder::class,
+            SeoPageSeeder::class,
         ]);
     }
 }
