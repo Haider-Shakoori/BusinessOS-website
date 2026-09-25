@@ -5,7 +5,7 @@
     <div class="shell narrow-shell">
         <div class="eyebrow"><span class="pulse-dot"></span> BusinessOS applications</div>
         <h1>Software for the work that keeps a business moving.</h1>
-        <p>Explore focused BusinessOS products for sales, field operations, management and automation. Each application is designed to stand on its own while fitting into one coherent software ecosystem.</p>
+        <p>Explore BusinessOS products and specialized systems for field sales, ERP, retail, pharmacy operations, raw materials, manufacturing and financial management. Each solution can stand on its own while fitting into a broader software ecosystem.</p>
     </div>
 </section>
 
@@ -13,7 +13,7 @@
     <div class="shell">
         <div class="directory-meta">
             <span>{{ $apps->count() }} {{ $apps->count() === 1 ? 'application' : 'applications' }}</span>
-            <span>Field sales, ERP and retail operations under one BusinessOS ecosystem.</span>
+            <span>Field sales, ERP, retail, pharmacy, materials, manufacturing and finance under one BusinessOS ecosystem.</span>
         </div>
 
         <div class="directory-grid">
@@ -33,13 +33,6 @@
                     </div>
                     <div class="directory-actions">
                         <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
-                        @if (!empty($app['web_url']))
-                            <a class="app-live-link" href="{{ $app['web_url'] }}" target="_blank" rel="noopener noreferrer">
-                                <span class="app-live-dot" aria-hidden="true"></span>
-                                {{ parse_url($app['web_url'], PHP_URL_HOST) }}
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                        @endif
                     </div>
                 </article>
             @endforeach
