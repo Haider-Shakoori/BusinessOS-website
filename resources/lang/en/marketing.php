@@ -3,7 +3,7 @@
 return [
     'nav' => [
         'products' => 'Products',
-        'solutions' => 'Solutions',
+        'solutions' => 'Services',
         'pricing' => 'Pricing',
         'resources' => 'Resources',
         'company' => 'Company',
@@ -24,9 +24,9 @@ return [
         'hero_eyebrow' => 'Business software & custom development',
         'hero_title' => 'Build, modernize and run your business with better software.',
         'hero_description' => 'BusinessOS builds websites, custom ERP and MIS systems, web applications and industry software—plus data migration, integrations and application upgrades for businesses that need technology matched to real workflows.',
-        'trust_field' => 'Field operations',
-        'trust_erp' => 'ERP & business management',
-        'trust_pos' => 'Retail & point of sale',
+        'trust_field' => 'Websites & web applications',
+        'trust_erp' => 'Custom ERP & MIS',
+        'trust_pos' => 'Data, upgrades & integrations',
         'one_family' => 'One BusinessOS family',
         'choose_software' => 'Choose the software that fits the work.',
         'family_copy' => 'Each product has a clear job while sharing one BusinessOS identity.',
