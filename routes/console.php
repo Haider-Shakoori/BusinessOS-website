@@ -62,7 +62,6 @@ Schedule::call(function (): void {
     ->name('prune-businessos-analytics')
     ->withoutOverlapping();
 
-
 Artisan::command('search:indexnow', function (IndexNowService $indexNow, ProductCatalog $products) {
     $urls = collect([
         route('home'),
@@ -79,15 +78,17 @@ Artisan::command('search:indexnow', function (IndexNowService $indexNow, Product
             ->merge(SeoPage::published()->get()->map(fn (SeoPage $page) => route('seo-pages.show', $page)))
             ->merge(Guide::published()->get()->map(fn (Guide $guide) => route('resources.show', $guide)))
             ->merge(CaseStudy::published()->get()->map(fn (CaseStudy $caseStudy) => route('case-studies.show', $caseStudy)));
-    } catch (\Throwable) {
+    } catch (Throwable) {
         // Migrations may not have run yet.
     }
 
     if (! $indexNow->submit($urls->unique()->values()->all())) {
         $this->warn('IndexNow is disabled, not configured, or did not accept the submission.');
+
         return 1;
     }
 
     $this->info('Submitted '.$urls->unique()->count().' public URLs to IndexNow.');
+
     return 0;
 })->purpose('Submit the current public BusinessOS URL inventory to IndexNow');
