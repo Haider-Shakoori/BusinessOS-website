@@ -25,6 +25,7 @@ class CaseStudyController extends Controller
     public function store(SaveCaseStudyRequest $request, IndexNowService $indexNow): RedirectResponse
     {
         $caseStudy = CaseStudy::create($this->prepare($request->validated()));
+
         if ($caseStudy->status === 'published') {
             $indexNow->submit(route('case-studies.show', $caseStudy));
         }
@@ -40,6 +41,7 @@ class CaseStudyController extends Controller
     public function update(SaveCaseStudyRequest $request, CaseStudy $caseStudy, IndexNowService $indexNow): RedirectResponse
     {
         $caseStudy->update($this->prepare($request->validated(), $caseStudy));
+
         if ($caseStudy->status === 'published') {
             $indexNow->submit(route('case-studies.show', $caseStudy));
         }
@@ -60,6 +62,7 @@ class CaseStudyController extends Controller
     {
         $data['slug'] = $data['slug'] ?: $this->uniqueSlug($data['title'], $caseStudy);
         $data['published_at'] = $data['status'] === 'published' ? ($caseStudy?->published_at ?? now()) : null;
+
         return $data;
     }
 
@@ -68,9 +71,11 @@ class CaseStudyController extends Controller
         $base = Str::slug($title) ?: 'case-study';
         $slug = $base;
         $suffix = 2;
+
         while (CaseStudy::withTrashed()->where('slug', $slug)->when($caseStudy, fn ($q) => $q->whereKeyNot($caseStudy->getKey()))->exists()) {
             $slug = $base.'-'.$suffix++;
         }
+
         return $slug;
     }
 }
