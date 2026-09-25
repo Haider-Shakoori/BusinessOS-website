@@ -9,7 +9,10 @@ use Illuminate\Contracts\View\View;
 
 class GuideController extends Controller
 {
-    public function __construct(private readonly ContentDiscovery $contentDiscovery) {}
+    public function __construct(
+        private readonly ContentDiscovery $contentDiscovery,
+    ) {}
+
     public function index(): View
     {
         $guides = Guide::published()
