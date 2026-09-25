@@ -439,7 +439,7 @@ return [
                     'answer' => 'No. The product rules intentionally do not implement a sales-tax, VAT or GST workflow.',
                 ],
             ],
-        ],,
+        ],
         'pharmacy-management' => [
             'name' => 'Pharmacy Management System',
             'slug' => 'pharmacy-management',
