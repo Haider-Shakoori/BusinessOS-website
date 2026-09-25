@@ -76,8 +76,8 @@ class MarketingController extends Controller
         return view('apps.index', [
             'apps' => $apps,
             'meta' => [
-                'title' => 'BusinessOS Products — ERP, Field Sales, POS, Pharmacy, Manufacturing & Finance',
-                'description' => 'Explore BusinessOS software for field sales, ERP, retail, pharmacy operations, raw materials, PVC pipe manufacturing and financial management.',
+                'title' => 'BusinessOS Products — ERP, Field Sales, POS, Restaurant, Pharmacy & Manufacturing',
+                'description' => 'Explore BusinessOS software for field sales, ERP, retail POS, waiter-based restaurant ordering, pharmacy operations, raw materials, manufacturing and financial management.',
                 'canonical' => route('apps.index'),
             ],
             'schema' => [
