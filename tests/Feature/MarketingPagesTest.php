@@ -119,6 +119,17 @@ class MarketingPagesTest extends TestCase
             ->assertDontSee('href="https://dukan.businessos.af"', false);
     }
 
+    public function test_restaurant_management_is_for_waiter_table_ordering_not_customer_self_ordering(): void
+    {
+        $this->get('/apps/restaurant-management')
+            ->assertOk()
+            ->assertSee('Waiter mobile ordering')
+            ->assertSee('Waiters use it at the table', false)
+            ->assertSee('Kitchen order flow')
+            ->assertSee('Table management')
+            ->assertDontSee('customer mobile ordering', false);
+    }
+
     public function test_demo_form_lists_all_businessos_products(): void
     {
         $this->get('/request-demo?app=erp')
@@ -130,6 +141,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('<option value="raw-materials-db"', false)
             ->assertSee('<option value="pvc-pipe-factory"', false)
             ->assertSee('<option value="financial-systems"', false)
+            ->assertSee('<option value="restaurant-management"', false)
             ->assertSee('BusinessOS ERP')
             ->assertSee('BusinessOS POS');
     }
@@ -173,6 +185,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('/apps/raw-materials-db', false)
             ->assertSee('/apps/pvc-pipe-factory', false)
             ->assertSee('/apps/financial-systems', false)
+            ->assertSee('/apps/restaurant-management', false)
             ->assertSee('/pricing', false)
             ->assertSee('/security', false)
             ->assertSee('/privacy', false);
