@@ -26,8 +26,24 @@
     <section class="section guide-body-section">
         <div class="shell guide-shell">
             <div class="guide-body">
-                @foreach (preg_split('/\R{2,}/', trim($guide->content)) as $paragraph)
-                    <p>{{ $paragraph }}</p>
+                @foreach (preg_split('/\R{2,}/', trim($guide->content)) as $block)
+                    @php
+                        $block = trim($block);
+                        $lines = preg_split('/\R/', $block);
+                        $isList = count($lines) > 0 && collect($lines)->every(fn ($line) => str_starts_with(trim($line), '- '));
+                    @endphp
+
+                    @if(str_starts_with($block, '### '))
+                        <h3>{{ trim(substr($block, 4)) }}</h3>
+                    @elseif(str_starts_with($block, '## '))
+                        <h2>{{ trim(substr($block, 3)) }}</h2>
+                    @elseif($isList)
+                        <ul>
+                            @foreach($lines as $line)<li>{{ trim(substr(trim($line), 2)) }}</li>@endforeach
+                        </ul>
+                    @else
+                        <p>{{ $block }}</p>
+                    @endif
                 @endforeach
             </div>
             @if($guide->author_bio)
