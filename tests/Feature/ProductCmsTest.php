@@ -86,7 +86,7 @@ class ProductCmsTest extends TestCase
             ->assertOk()
             ->assertSee('/apps/crm', false)
             ->assertSee('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"', false)
-            ->assertSee('<image:loc>http://localhost/assets/products/crm/dashboard.webp</image:loc>', false)
+            ->assertSee('<image:loc>https://businessos.af/assets/products/crm/dashboard.webp</image:loc>', false)
             ->assertSee('<image:title>CRM customer follow-up dashboard</image:title>', false);
     }
 
