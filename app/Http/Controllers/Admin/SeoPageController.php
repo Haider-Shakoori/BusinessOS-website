@@ -25,6 +25,7 @@ class SeoPageController extends Controller
     public function store(SaveSeoPageRequest $request, IndexNowService $indexNow): RedirectResponse
     {
         $page = SeoPage::create($this->prepare($request->validated()));
+
         if ($page->status === 'published') {
             $indexNow->submit(route('seo-pages.show', $page));
         }
@@ -40,6 +41,7 @@ class SeoPageController extends Controller
     public function update(SaveSeoPageRequest $request, SeoPage $seoPage, IndexNowService $indexNow): RedirectResponse
     {
         $seoPage->update($this->prepare($request->validated(), $seoPage));
+
         if ($seoPage->status === 'published') {
             $indexNow->submit(route('seo-pages.show', $seoPage));
         }
@@ -68,6 +70,7 @@ class SeoPageController extends Controller
             })
             ->filter(fn (array $item) => $item['question'] !== '' && $item['answer'] !== '')
             ->values()->all();
+
         unset($data['target_keywords_text'], $data['related_products_text'], $data['faq_text']);
         $data['published_at'] = $data['status'] === 'published' ? ($page?->published_at ?? now()) : null;
 
@@ -84,9 +87,11 @@ class SeoPageController extends Controller
         $base = Str::slug($title) ?: 'service';
         $slug = $base;
         $suffix = 2;
+
         while (SeoPage::withTrashed()->where('slug', $slug)->when($page, fn ($q) => $q->whereKeyNot($page->getKey()))->exists()) {
             $slug = $base.'-'.$suffix++;
         }
+
         return $slug;
     }
 }
