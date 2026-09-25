@@ -19,7 +19,7 @@ class SiteSettingSeeder extends Seeder
             ],
             'navigation' => [
                 'nav_products_label' => 'Products',
-                'nav_solutions_label' => 'Solutions',
+                'nav_solutions_label' => 'Services',
                 'nav_pricing_label' => 'Pricing',
                 'nav_resources_label' => 'Resources',
                 'nav_company_label' => 'Company',
