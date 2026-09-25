@@ -11,7 +11,6 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\Facades\Validator;
-use Throwable;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -80,7 +79,7 @@ Artisan::command('search:indexnow', function (IndexNowService $indexNow, Product
             ->merge(SeoPage::published()->get()->map(fn (SeoPage $page) => route('seo-pages.show', $page)))
             ->merge(Guide::published()->get()->map(fn (Guide $guide) => route('resources.show', $guide)))
             ->merge(CaseStudy::published()->get()->map(fn (CaseStudy $caseStudy) => route('case-studies.show', $caseStudy)));
-    } catch (Throwable) {
+    } catch (\Throwable) {
         // Migrations may not have run yet.
     }
 
