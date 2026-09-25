@@ -106,6 +106,13 @@ class Product extends Model
             'commercial' => [
                 'pricing_status' => 'Pricing in preparation',
                 'pricing_note' => '',
+                'pricing_model' => '',
+                'pricing_plans' => [],
+                'deployment_options' => [],
+            ],
+            'translations' => [
+                'fa' => [],
+                'ps' => [],
             ],
             'final' => [
                 'title' => '',
@@ -119,19 +126,28 @@ class Product extends Model
 
     public function toMarketingArray(): array
     {
-        $content = array_merge(
+        $content = array_replace_recursive(
             self::marketingDefaults(),
             is_array($this->content) ? $this->content : []
         );
 
+        $locale = app()->getLocale();
+        $translation = in_array($locale, ['fa', 'ps'], true)
+            ? (array) data_get($content, 'translations.'.$locale, [])
+            : [];
+
+        $value = static fn (string $key, mixed $fallback): mixed => isset($translation[$key]) && is_string($translation[$key]) && trim($translation[$key]) !== ''
+                ? $translation[$key]
+                : $fallback;
+
         return array_merge($content, [
-            'name' => $this->name,
+            'name' => $value('name', $this->name),
             'slug' => $this->slug,
             'icon_letter' => $this->icon_letter,
-            'eyebrow' => $this->eyebrow,
-            'headline' => $this->headline,
-            'short_description' => $this->short_description,
-            'description' => $this->description,
+            'eyebrow' => $value('eyebrow', $this->eyebrow),
+            'headline' => $value('headline', $this->headline),
+            'short_description' => $value('short_description', $this->short_description),
+            'description' => $value('description', $this->description),
             'category' => $this->category,
             'application_category' => $this->application_category,
             'operating_system' => $this->operating_system,
@@ -144,8 +160,8 @@ class Product extends Model
             'screenshots' => $this->screenshots ?? [],
             'updated_at' => $this->updated_at?->toDateString(),
             'seo' => [
-                'title' => $this->seo_title ?: $this->name.' — BusinessOS',
-                'description' => $this->seo_description ?: ($this->short_description ?: $this->description),
+                'title' => $value('seo_title', $this->seo_title ?: $this->name.' — BusinessOS'),
+                'description' => $value('seo_description', $this->seo_description ?: ($this->short_description ?: $this->description)),
             ],
         ]);
     }

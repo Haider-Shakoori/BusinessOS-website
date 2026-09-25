@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guide;
 use App\Models\Inquiry;
 use App\Models\PageVisit;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -19,6 +21,10 @@ class AnalyticsController extends Controller
             'uniqueVisits' => PageVisit::where('occurred_at', '>=', $start)->distinct('visitor_id')->count('visitor_id'),
             'countries' => PageVisit::where('occurred_at', '>=', $start)->whereNotNull('country_code')->distinct('country_code')->count('country_code'),
             'inquiries' => Inquiry::where('created_at', '>=', $start)->count(),
+            'newInquiries' => Inquiry::where('status', 'new')->count(),
+            'products' => Product::query()->publiclyVisible()->count(),
+            'publishedGuides' => Guide::query()->published()->count(),
+            'latestInquiries' => Inquiry::query()->latest()->limit(6)->get(),
         ]);
     }
 

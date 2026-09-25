@@ -76,6 +76,23 @@ class SaveProductRequest extends FormRequest
             'final_description' => ['nullable', 'string', 'max:3000'],
             'faq_text' => ['nullable', 'string', 'max:20000'],
             'live_note' => ['nullable', 'string', 'max:2000'],
+            'name_fa' => ['nullable', 'string', 'max:190'],
+            'eyebrow_fa' => ['nullable', 'string', 'max:190'],
+            'headline_fa' => ['nullable', 'string', 'max:255'],
+            'short_description_fa' => ['nullable', 'string', 'max:1200'],
+            'description_fa' => ['nullable', 'string', 'max:5000'],
+            'seo_title_fa' => ['nullable', 'string', 'max:190'],
+            'seo_description_fa' => ['nullable', 'string', 'max:255'],
+            'name_ps' => ['nullable', 'string', 'max:190'],
+            'eyebrow_ps' => ['nullable', 'string', 'max:190'],
+            'headline_ps' => ['nullable', 'string', 'max:255'],
+            'short_description_ps' => ['nullable', 'string', 'max:1200'],
+            'description_ps' => ['nullable', 'string', 'max:5000'],
+            'seo_title_ps' => ['nullable', 'string', 'max:190'],
+            'seo_description_ps' => ['nullable', 'string', 'max:255'],
+            'pricing_model' => ['nullable', 'string', 'max:190'],
+            'pricing_plans_text' => ['nullable', 'string', 'max:20000'],
+            'deployment_options_text' => ['nullable', 'string', 'max:10000'],
         ];
     }
 }

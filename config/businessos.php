@@ -29,6 +29,26 @@ return [
                 'title' => 'FieldPulse — Field Sales Tracking & Field Force Management Software',
                 'description' => 'Track field sales attendance, client visits, GPS activity, routes and team performance with FieldPulse, built for mobile teams and unreliable connectivity.',
             ],
+            'translations' => [
+                'fa' => [
+                    'name' => 'FieldPulse',
+                    'eyebrow' => 'فروش ساحوی و عملیات',
+                    'headline' => 'ردیابی فروش ساحوی برای تیم‌هایی که بیرون از دفتر کار می‌کنند.',
+                    'short_description' => 'حاضری، بازدید مشتریان، مسیرها و فعالیت ساحوی را در یک جریان کاری موبایل‌محور مدیریت کنید.',
+                    'description' => 'FieldPulse پلتفرم مدیریت فروش و نیروی ساحوی برای هماهنگی تیم‌های موبایل، بازدید مشتریان و دید مدیریتی است.',
+                    'seo_title' => 'FieldPulse — نرم‌افزار ردیابی فروش ساحوی',
+                    'seo_description' => 'حاضری، بازدید مشتریان، موقعیت و عملکرد تیم ساحوی را با FieldPulse مدیریت کنید.',
+                ],
+                'ps' => [
+                    'name' => 'FieldPulse',
+                    'eyebrow' => 'ساحوي پلور او عملیات',
+                    'headline' => 'د هغو ټیمونو لپاره د ساحوي پلور تعقیب چې له دفتره بهر کار کوي.',
+                    'short_description' => 'حاضري، د پیرودونکو لیدنې، لارې او ساحوي فعالیت په موبایل-محور کاري بهیر کې اداره کړئ.',
+                    'description' => 'FieldPulse د ساحوي پلور او ګرځنده ټیمونو د مدیریت لپاره یو پلاتفورم دی.',
+                    'seo_title' => 'FieldPulse — د ساحوي پلور تعقیب سافټویر',
+                    'seo_description' => 'د FieldPulse له لارې د ساحوي ټیم حاضري، پیرودونکي، موقعیت او فعالیت اداره کړئ.',
+                ],
+            ],
             'preview' => [
                 'section' => 'Field operations',
                 'title' => 'Team activity',
@@ -104,6 +124,9 @@ return [
             'commercial' => [
                 'pricing_status' => 'Pricing in preparation',
                 'pricing_note' => 'FieldPulse pricing will be published when the commercial package is finalized. Team size, rollout requirements and deployment context can be discussed now without inventing a public list price.',
+                'pricing_model' => 'Per field user + annual platform',
+                'pricing_plans' => [],
+                'deployment_options' => ['BusinessOS-hosted deployment', 'Customer domain/subdomain connection', 'Guided team onboarding'],
             ],
             'final' => [
                 'title' => 'Make field activity easier to see, understand and manage.',
@@ -149,6 +172,26 @@ return [
             'seo' => [
                 'title' => 'BusinessOS ERP — Customers, Quotations, Invoices, Payments & Expenses',
                 'description' => 'Run customers, products, quotations, invoices, payments, expenses and business records in the BusinessOS ERP web application.',
+            ],
+            'translations' => [
+                'fa' => [
+                    'name' => 'BusinessOS ERP',
+                    'eyebrow' => 'ERP و مدیریت تجارت',
+                    'headline' => 'مشتریان، فروش، پرداخت‌ها و سوابق تجارت را متصل نگه دارید.',
+                    'short_description' => 'مشتریان، محصولات، قیمت‌نامه‌ها، فاکتورها، پرداخت‌ها و مصارف را در یک سیستم تحت وب مدیریت کنید.',
+                    'description' => 'BusinessOS ERP برنامه مدیریت تجارت برای مشتریان، محصولات، قیمت‌نامه‌ها، فاکتورها، پرداخت‌ها، مصارف و سوابق مالی است.',
+                    'seo_title' => 'BusinessOS ERP — مدیریت مشتریان، فروش و پرداخت‌ها',
+                    'seo_description' => 'عملیات تجارتی را با ERP برای مشتریان، قیمت‌نامه‌ها، فاکتورها، پرداخت‌ها و مصارف مدیریت کنید.',
+                ],
+                'ps' => [
+                    'name' => 'BusinessOS ERP',
+                    'eyebrow' => 'ERP او د سوداګرۍ مدیریت',
+                    'headline' => 'پیرودونکي، پلور، تادیات او سوداګریز ریکارډونه سره ونښلوئ.',
+                    'short_description' => 'پیرودونکي، محصولات، نرخونه، انوایسونه، تادیات او لګښتونه په یوه ویب سیسټم کې اداره کړئ.',
+                    'description' => 'BusinessOS ERP د ورځنیو سوداګریزو عملیاتو لپاره د مدیریت ویب اپ دی.',
+                    'seo_title' => 'BusinessOS ERP — د پیرودونکو، پلور او تادیاتو مدیریت',
+                    'seo_description' => 'پیرودونکي، نرخونه، انوایسونه، تادیات او لګښتونه په BusinessOS ERP کې اداره کړئ.',
+                ],
             ],
             'preview' => [
                 'section' => 'Business management',
@@ -225,6 +268,9 @@ return [
             'commercial' => [
                 'pricing_status' => 'Pricing in preparation',
                 'pricing_note' => 'BusinessOS ERP pricing is not yet published publicly. Deployment scope, business structure and operational requirements can be discussed directly.',
+                'pricing_model' => 'Deployment and module scope',
+                'pricing_plans' => [],
+                'deployment_options' => ['BusinessOS-hosted deployment', 'Dedicated customer subdomain', 'Data import and onboarding'],
             ],
             'final' => [
                 'title' => 'Bring the daily business record into one connected workflow.',
@@ -257,25 +303,45 @@ return [
             'eyebrow' => 'Retail POS & Inventory',
             'headline' => 'Retail checkout and stock management designed for Afghanistan.',
             'short_description' => 'A supermarket and retail POS direction built around AFN, English/Dari/Pashto, inventory, purchasing, cash management and reliable daily closing.',
-            'description' => 'BusinessOS POS is the retail point-of-sale product for supermarkets and shops in Afghanistan. The newer Laravel product is being developed around AFN-only operation, English/Dari/Pashto interfaces, inventory and purchasing, cash management, daily closing and checkout reliability.',
+            'description' => 'BusinessOS POS is the Laravel retail point-of-sale product for supermarkets and shops in Afghanistan. The live pilot is built around AFN-only operation, English/Dari/Pashto interfaces, inventory and purchasing, cash management, daily closing and checkout reliability.',
             'category' => 'BusinessApplication',
             'application_category' => 'BusinessApplication',
             'operating_system' => 'Web',
             'platforms' => ['Web'],
-            'status' => 'Modernization in progress',
+            'status' => 'Pilot ready',
             'featured' => false,
             'accent' => 'blue',
-            'web_url' => 'https://pos.businessos.af',
-            'live_note' => 'The linked POS subdomain currently serves the existing POS portal while the newer Laravel BusinessOS POS is being developed.',
+            'web_url' => 'https://dukan.businessos.af',
+            'live_note' => 'The live BusinessOS POS pilot is available at dukan.businessos.af. The legacy pos.businessos.af installation is retained separately for compatibility and rollback.',
             'updated_at' => '2026-09-25',
             'seo' => [
                 'title' => 'BusinessOS POS — Supermarket POS & Inventory for Afghanistan',
                 'description' => 'BusinessOS POS is a retail checkout, inventory, purchasing, cash-management and daily-closing product designed for shops and supermarkets in Afghanistan.',
             ],
+            'translations' => [
+                'fa' => [
+                    'name' => 'BusinessOS POS',
+                    'eyebrow' => 'فروشگاه، POS و موجودی',
+                    'headline' => 'فروش و مدیریت موجودی برای دکان‌ها و سوپرمارکیت‌های افغانستان.',
+                    'short_description' => 'فروش، موجودی، خرید، مدیریت نقدی و بسته‌شدن روزانه را با AFN و رابط‌های محلی مدیریت کنید.',
+                    'description' => 'BusinessOS POS محصول فروشگاهی برای دکان‌ها و سوپرمارکیت‌ها با تمرکز بر AFN، موجودی، خرید، صندوق و گزارش روزانه است.',
+                    'seo_title' => 'BusinessOS POS — سیستم فروش و موجودی برای افغانستان',
+                    'seo_description' => 'فروش، موجودی، خرید و صندوق را با BusinessOS POS مدیریت کنید.',
+                ],
+                'ps' => [
+                    'name' => 'BusinessOS POS',
+                    'eyebrow' => 'پرچون، POS او ذخیره',
+                    'headline' => 'د افغانستان د دوکانونو او سوپرمارکېټونو لپاره پلور او ذخیره.',
+                    'short_description' => 'پلور، ذخیره، پېرود، نغدي مدیریت او ورځنی بندښت د AFN او محلي ژبو له لارې اداره کړئ.',
+                    'description' => 'BusinessOS POS د دوکانونو او سوپرمارکېټونو لپاره د پلور، ذخیرې، پېرود او نغدو مدیریت محصول دی.',
+                    'seo_title' => 'BusinessOS POS — د افغانستان لپاره د پلور او ذخیرې سیستم',
+                    'seo_description' => 'پلور، ذخیره، پېرود او نغدي مدیریت د BusinessOS POS له لارې اداره کړئ.',
+                ],
+            ],
             'preview' => [
                 'section' => 'Retail operations',
                 'title' => 'Point of sale',
-                'status' => 'In progress',
+                'status' => 'Pilot',
                 'metrics' => [
                     ['label' => 'Checkout', 'value' => 'Focused', 'detail' => 'reliable sales flow'],
                     ['label' => 'Inventory', 'value' => 'Connected', 'detail' => 'stock & purchasing'],
@@ -293,7 +359,7 @@ return [
                 'title' => 'Retail software should match the way local shops actually sell, stock and close the day.',
                 'body' => [
                     'Generic POS products often bring unnecessary tax assumptions, currency complexity or workflows that do not match supermarket operations in Afghanistan.',
-                    'BusinessOS POS is being rebuilt around local retail requirements: AFN, multilingual interfaces, dependable checkout, inventory control, purchasing and disciplined daily closing.',
+                    'BusinessOS POS is built around local retail requirements: AFN, multilingual interfaces, dependable checkout, inventory control, purchasing and disciplined daily closing.',
                 ],
             ],
             'features_intro' => [
@@ -323,7 +389,7 @@ return [
                 ],
                 [
                     'title' => 'Responsive custom interface',
-                    'description' => 'The Laravel rebuild uses a custom Blade, Tailwind and Alpine interface designed for a modern browser-based retail experience.',
+                    'description' => 'The Laravel application uses a custom Blade, Tailwind and Alpine interface designed for a modern browser-based retail experience.',
                 ],
             ],
             'use_cases_intro' => [
@@ -346,16 +412,19 @@ return [
             ],
             'commercial' => [
                 'pricing_status' => 'Pricing in preparation',
-                'pricing_note' => 'The modern BusinessOS POS commercial package has not been published yet. Pricing will be aligned with the final release and deployment requirements.',
+                'pricing_note' => 'The BusinessOS POS commercial package has not been published yet. Pricing will be aligned with the live Laravel release and deployment requirements.',
+                'pricing_model' => 'Shop license + deployment',
+                'pricing_plans' => [],
+                'deployment_options' => ['BusinessOS-hosted deployment', 'Dukan subdomain access', 'Catalog import and first-shop onboarding'],
             ],
             'final' => [
                 'title' => 'Give retail teams a faster path from checkout to daily closing.',
-                'description' => 'Open the current POS portal or request a discussion about the modern Laravel POS rollout for your supermarket or retail operation.',
+                'description' => 'Open the live Dukan pilot or request a discussion about rolling out BusinessOS POS for your supermarket or retail operation.',
             ],
             'faq' => [
                 [
                     'question' => 'Is BusinessOS POS already live?',
-                    'answer' => 'A POS portal is currently live at pos.businessos.af. The newer Laravel BusinessOS POS described on this page is still being developed and modernized.',
+                    'answer' => 'Yes. The Laravel BusinessOS POS pilot is live at dukan.businessos.af. The legacy pos.businessos.af installation is retained separately while the new release completes checkout UAT.',
                 ],
                 [
                     'question' => 'Which currency is the modern POS designed for?',

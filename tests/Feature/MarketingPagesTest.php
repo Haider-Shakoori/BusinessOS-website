@@ -17,12 +17,12 @@ class MarketingPagesTest extends TestCase
             ->assertSee('BusinessOS ERP')
             ->assertSee('BusinessOS POS')
             ->assertSee('erp.businessos.af')
-            ->assertSee('pos.businessos.af')
+            ->assertSee('dukan.businessos.af')
             ->assertSee('application/ld+json', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="solutions"', false)
             ->assertSee('id="why-businessos"', false)
-            ->assertSee('class="modern-site professional-light calm-premium"', false)
+            ->assertSee('modern-site professional-light calm-premium', false)
             ->assertSee('<meta name="theme-color" content="#ffffff">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
             ->assertSee('ecosystem-scene', false)
@@ -51,7 +51,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('BusinessOS ERP')
             ->assertSee('https://erp.businessos.af', false)
             ->assertSee('BusinessOS POS')
-            ->assertSee('https://pos.businessos.af', false);
+            ->assertSee('https://dukan.businessos.af', false);
     }
 
     public function test_fieldpulse_has_a_dedicated_product_page_and_schema(): void
@@ -86,11 +86,11 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Retail checkout and stock management designed for Afghanistan.')
             ->assertSee('AFN-only retail operation')
             ->assertSee('English, Dari & Pashto')
-            ->assertSee('Modernization in progress')
-            ->assertSee('newer Laravel BusinessOS POS')
+            ->assertSee('Pilot ready')
+            ->assertSee('legacy pos.businessos.af installation is retained')
             ->assertSee('Open BusinessOS POS')
-            ->assertSee('Live app: pos.businessos.af')
-            ->assertSee('https://pos.businessos.af', false);
+            ->assertSee('Live app: dukan.businessos.af')
+            ->assertSee('https://dukan.businessos.af', false);
     }
 
     public function test_demo_form_lists_all_businessos_products(): void
@@ -106,7 +106,7 @@ class MarketingPagesTest extends TestCase
 
     public function test_trust_pricing_and_conversion_pages_render(): void
     {
-        $this->get('/pricing')->assertOk()->assertSee('Pricing should match the product');
+        $this->get('/pricing')->assertOk()->assertSee('Product pricing should reflect the workflow');
         $this->get('/about')->assertOk()->assertSee('About BusinessOS');
         $this->get('/security')->assertOk()->assertSee('Security is part of the product architecture');
         $this->get('/privacy')->assertOk()->assertSee('BusinessOS Privacy Policy');
@@ -141,6 +141,25 @@ class MarketingPagesTest extends TestCase
             ->assertSee('/pricing', false)
             ->assertSee('/security', false)
             ->assertSee('/privacy', false);
+    }
+
+    public function test_localization_hreflang_and_security_headers_are_present(): void
+    {
+        $response = $this->get('/?lang=fa');
+
+        $response
+            ->assertOk()
+            ->assertSee('dir="rtl"', false)
+            ->assertSee('hreflang="fa-AF"', false)
+            ->assertSee('نرم‌افزار', false)
+            ->assertHeader('X-Content-Type-Options', 'nosniff')
+            ->assertHeader('X-Frame-Options', 'DENY')
+            ->assertHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+        $this->get('/?lang=ps')
+            ->assertOk()
+            ->assertSee('dir="rtl"', false)
+            ->assertSee('ستاسو', false);
     }
 
     public function test_robots_allows_public_marketing_pages_and_points_to_sitemap(): void

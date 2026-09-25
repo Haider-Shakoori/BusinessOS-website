@@ -3,7 +3,10 @@
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
+use App\Http\Controllers\Admin\InquiryController as AdminInquiryController;
+use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\SettingsController as AdminSettingsController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MarketingController;
@@ -43,6 +46,19 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics');
     Route::resource('products', AdminProductController::class)->except(['show']);
     Route::resource('guides', AdminGuideController::class)->except(['show']);
+
+    Route::get('/inquiries', [AdminInquiryController::class, 'index'])->name('inquiries.index');
+    Route::get('/inquiries/{inquiry}', [AdminInquiryController::class, 'show'])->name('inquiries.show');
+    Route::put('/inquiries/{inquiry}', [AdminInquiryController::class, 'update'])->name('inquiries.update');
+    Route::post('/inquiries/{inquiry}/notes', [AdminInquiryController::class, 'storeNote'])->name('inquiries.notes.store');
+
+    Route::get('/media', [AdminMediaController::class, 'index'])->name('media.index');
+    Route::post('/media', [AdminMediaController::class, 'store'])->name('media.store');
+    Route::delete('/media/{media}', [AdminMediaController::class, 'destroy'])->name('media.destroy');
+
+    Route::get('/settings', [AdminSettingsController::class, 'edit'])->name('settings.edit');
+    Route::put('/settings', [AdminSettingsController::class, 'update'])->name('settings.update');
+
     Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
 });
 

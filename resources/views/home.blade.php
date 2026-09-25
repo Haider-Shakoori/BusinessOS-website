@@ -1,22 +1,26 @@
 @extends('layouts.marketing')
 
 @section('content')
+@php
+    $homeText = static fn (string $key, string $fallback): string =>
+        app()->getLocale() === 'en' ? (string) $siteSettings->get($key, $fallback) : $fallback;
+@endphp
 <section class="ecosystem-hero" id="top">
     <div class="shell ecosystem-hero-grid">
         <div class="ecosystem-hero-copy">
-            <span class="calm-eyebrow">BusinessOS software ecosystem</span>
-            <h1>Software for the way your business actually runs.</h1>
-            <p>BusinessOS brings focused software for field sales, business management and retail operations under one product family—built for practical work, local realities and modern teams.</p>
+            <span class="calm-eyebrow">{{ $homeText('homepage_hero_eyebrow', __('marketing.home.hero_eyebrow')) }}</span>
+            <h1>{{ $siteSettings->localized('homepage_hero_title', __('marketing.home.hero_title')) }}</h1>
+            <p>{{ $siteSettings->localized('homepage_hero_description', __('marketing.home.hero_description')) }}</p>
 
             <div class="calm-hero-actions">
-                <a class="button button-primary" href="{{ route('apps.index') }}">Explore BusinessOS apps <span aria-hidden="true">→</span></a>
-                <a class="button button-ghost" href="{{ route('demo') }}">Request a demo</a>
+                <a class="button button-primary" href="{{ route('apps.index') }}">{{ __('marketing.actions.explore_apps') }} <span aria-hidden="true">→</span></a>
+                <a class="button button-ghost" href="{{ route('demo') }}">{{ __('marketing.actions.request_demo') }}</a>
             </div>
 
             <div class="ecosystem-trust-row" aria-label="BusinessOS product principles">
-                <span><i></i> Field operations</span>
-                <span><i></i> ERP & business management</span>
-                <span><i></i> Retail & point of sale</span>
+                <span><i></i> {{ __('marketing.home.trust_field') }}</span>
+                <span><i></i> {{ __('marketing.home.trust_erp') }}</span>
+                <span><i></i> {{ __('marketing.home.trust_pos') }}</span>
             </div>
         </div>
 
@@ -33,9 +37,9 @@
 
                 <div class="ecosystem-console-body">
                     <div class="ecosystem-console-intro">
-                        <small>ONE BUSINESSOS FAMILY</small>
-                        <h2>Choose the software that fits the work.</h2>
-                        <p>Each product has a clear job while sharing one BusinessOS identity.</p>
+                        <small>{{ strtoupper(__('marketing.home.one_family')) }}</small>
+                        <h2>{{ __('marketing.home.choose_software') }}</h2>
+                        <p>{{ __('marketing.home.family_copy') }}</p>
                     </div>
 
                     <div class="ecosystem-console-products">
@@ -76,10 +80,10 @@
 <section class="calm-section ecosystem-products" id="products">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">BusinessOS apps</span>
-            <h2>Focused products for different parts of the business.</h2>
+            <span class="calm-kicker">{{ __('marketing.home.apps_kicker') }}</span>
+            <h2>{{ $homeText('homepage_apps_title', __('marketing.home.apps_title')) }}</h2>
         </div>
-        <p>Use the product that matches the workflow. BusinessOS keeps each application focused instead of forcing every team into one oversized interface.</p>
+        <p>{{ $homeText('homepage_apps_description', __('marketing.home.apps_description')) }}</p>
     </div>
 
     <div class="shell ecosystem-product-grid">
@@ -118,10 +122,10 @@
 <section class="calm-section calm-outcomes" id="solutions">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Across the business</span>
-            <h2>Different teams. One clear software direction.</h2>
+            <span class="calm-kicker">{{ __('marketing.home.across_business') }}</span>
+            <h2>{{ $homeText('homepage_solutions_title', __('marketing.home.solutions_title')) }}</h2>
         </div>
-        <p>BusinessOS is designed around the work happening in the field, the back office and the shop floor.</p>
+        <p>{{ $homeText('homepage_solutions_description', __('marketing.home.solutions_description')) }}</p>
     </div>
 
     <div class="shell ecosystem-solution-grid">
@@ -140,9 +144,9 @@
 <section class="calm-section calm-values" id="why-businessos">
     <div class="shell calm-values-grid">
         <div class="calm-values-intro">
-            <span class="calm-kicker">Why BusinessOS</span>
-            <h2>One brand. Clear products. Practical software.</h2>
-            <p>BusinessOS is the master platform and product family. Each application solves a specific operational problem while following the same approach to clarity, responsiveness and maintainability.</p>
+            <span class="calm-kicker">{{ __('marketing.home.why_kicker') }}</span>
+            <h2>{{ $homeText('homepage_why_title', __('marketing.home.why_title')) }}</h2>
+            <p>{{ $homeText('homepage_why_description', __('marketing.home.why_copy')) }}</p>
         </div>
 
         <div class="calm-value-list">
@@ -156,9 +160,9 @@
 <section class="calm-section calm-dark">
     <div class="shell calm-dark-grid">
         <div>
-            <span class="calm-kicker">Engineering standard</span>
-            <h2>Modern on the surface. Practical underneath.</h2>
-            <p>BusinessOS products are built around responsive interfaces, maintainable application architecture and performance that remains useful on real devices and imperfect networks.</p>
+            <span class="calm-kicker">{{ __('marketing.home.engineering_kicker') }}</span>
+            <h2>{{ $homeText('homepage_engineering_title', __('marketing.home.engineering_title')) }}</h2>
+            <p>{{ $homeText('homepage_engineering_description', __('marketing.home.engineering_copy')) }}</p>
         </div>
 
         <div class="calm-dark-cards">
@@ -174,9 +178,9 @@
     <div class="shell calm-heading">
         <div>
             <span class="calm-kicker">Resources</span>
-            <h2>Useful ideas for running better operations.</h2>
+            <h2>{{ $homeText('homepage_resources_title', __('marketing.home.resources_title')) }}</h2>
         </div>
-        <a class="text-link" href="{{ route('resources.index') }}">View all resources <span>→</span></a>
+        <a class="text-link" href="{{ route('resources.index') }}">{{ __('marketing.actions.view_resources') }} <span>→</span></a>
     </div>
 
     <div class="shell">
@@ -190,7 +194,7 @@
                         </div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
-                        <a class="text-link" href="{{ route('resources.show', $guide) }}">Read guide <span>→</span></a>
+                        <a class="text-link" href="{{ route('resources.show', $guide) }}">{{ __('marketing.actions.read_guide') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
@@ -207,12 +211,12 @@
     <div class="shell calm-final-card">
         <div>
             <span class="calm-kicker">BusinessOS</span>
-            <h2>Find the right product for the part of your business you want to improve.</h2>
-            <p>Explore FieldPulse, ERP and POS, or tell us about the workflow you need to improve and choose the product from the demo form.</p>
+            <h2>{{ $homeText('homepage_final_title', __('marketing.home.final_title')) }}</h2>
+            <p>{{ $homeText('homepage_final_description', __('marketing.home.final_copy')) }}</p>
         </div>
         <div class="calm-final-actions">
-            <a class="button button-primary" href="{{ route('apps.index') }}">Explore all apps <span>→</span></a>
-            <a class="button button-ghost" href="{{ route('demo') }}">Request a demo</a>
+            <a class="button button-primary" href="{{ route('apps.index') }}">{{ __('marketing.actions.explore_all_apps') }} <span>→</span></a>
+            <a class="button button-ghost" href="{{ route('demo') }}">{{ __('marketing.actions.request_demo') }}</a>
         </div>
     </div>
 </section>
