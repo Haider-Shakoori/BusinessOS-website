@@ -13,6 +13,10 @@ return new class extends Migration
         }
 
         $this->replaceDefaults([
+            'nav_solutions_label' => [
+                'Solutions',
+                'Services',
+            ],
             'homepage_hero_eyebrow' => [
                 'BusinessOS software ecosystem',
                 'Business software & custom development',
@@ -47,6 +51,7 @@ return new class extends Migration
         }
 
         $this->replaceDefaults([
+            'nav_solutions_label' => ['Services', 'Solutions'],
             'homepage_hero_eyebrow' => ['Business software & custom development', 'BusinessOS software ecosystem'],
             'homepage_hero_title' => ['Build, modernize and run your business with better software.', 'Software for the way your business actually runs.'],
             'homepage_hero_description' => ['BusinessOS builds websites, custom ERP and MIS systems, web applications and industry software—plus data migration, integrations and application upgrades for businesses that need technology matched to real workflows.', 'BusinessOS brings focused software for field sales, business management and retail operations under one product family—built for practical work, local realities and modern teams.'],
