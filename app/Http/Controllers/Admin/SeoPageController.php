@@ -66,6 +66,7 @@ class SeoPageController extends Controller
         $data['faq'] = collect($this->lines($data['faq_text'] ?? ''))
             ->map(function (string $line): array {
                 [$question, $answer] = array_pad(explode('|', $line, 2), 2, '');
+
                 return ['question' => trim($question), 'answer' => trim($answer)];
             })
             ->filter(fn (array $item) => $item['question'] !== '' && $item['answer'] !== '')
