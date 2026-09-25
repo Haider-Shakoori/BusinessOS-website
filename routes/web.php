@@ -71,6 +71,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('/media', [AdminMediaController::class, 'index'])->name('media.index');
     Route::post('/media', [AdminMediaController::class, 'store'])->name('media.store');
+    Route::put('/media/{media}', [AdminMediaController::class, 'update'])->name('media.update');
     Route::delete('/media/{media}', [AdminMediaController::class, 'destroy'])->name('media.destroy');
 
     Route::get('/settings', [AdminSettingsController::class, 'edit'])->name('settings.edit');

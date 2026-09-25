@@ -140,7 +140,13 @@ class Product extends Model
                 ? $translation[$key]
                 : $fallback;
 
+        $hasLocalizedContent = collect(['fa', 'ps'])
+            ->every(fn (string $language) => collect((array) data_get($content, 'translations.'.$language, []))
+                ->filter(fn ($item) => is_string($item) && trim($item) !== '')
+                ->isNotEmpty());
+
         return array_merge($content, [
+            'has_localized_content' => $hasLocalizedContent,
             'name' => $value('name', $this->name),
             'slug' => $this->slug,
             'icon_letter' => $this->icon_letter,

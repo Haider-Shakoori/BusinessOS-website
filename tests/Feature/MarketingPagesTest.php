@@ -215,6 +215,22 @@ class MarketingPagesTest extends TestCase
             ->assertSee('ستاسو', false);
     }
 
+    public function test_product_hreflang_is_only_exposed_for_products_with_real_translations(): void
+    {
+        $this->get('/apps/fieldpulse?lang=fa')
+            ->assertOk()
+            ->assertSee('ردیابی فروش ساحوی', false)
+            ->assertSee('hreflang="fa-AF"', false)
+            ->assertSee('hreflang="ps-AF"', false);
+
+        $this->get('/apps/restaurant-management?lang=fa')
+            ->assertOk()
+            ->assertSee('Restaurant Management System')
+            ->assertSee('<link rel="canonical" href="https://businessos.af/apps/restaurant-management">', false)
+            ->assertDontSee('hreflang="fa-AF"', false)
+            ->assertDontSee('hreflang="ps-AF"', false);
+    }
+
     public function test_robots_allows_public_marketing_pages_and_points_to_sitemap(): void
     {
         $this->get('/robots.txt')

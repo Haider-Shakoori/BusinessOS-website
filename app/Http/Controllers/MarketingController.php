@@ -37,6 +37,7 @@ class MarketingController extends Controller
                     ? $this->settings->get('seo_default_description', __('marketing.seo.home_description'))
                     : __('marketing.seo.home_description'),
                 'canonical' => route('home'),
+                'localized' => true,
             ],
             'schema' => [
                 [
@@ -108,12 +109,36 @@ class MarketingController extends Controller
 
         abort_unless($app, 404);
 
+        $screenshots = collect($app['screenshots'] ?? [])
+            ->map(function (mixed $item) use ($app): array {
+                if (is_string($item)) {
+                    return [
+                        'url' => trim($item),
+                        'alt' => $app['name'].' interface screenshot',
+                        'caption' => '',
+                    ];
+                }
+
+                return [
+                    'url' => trim((string) ($item['url'] ?? '')),
+                    'alt' => trim((string) ($item['alt'] ?? '')) ?: $app['name'].' interface screenshot',
+                    'caption' => trim((string) ($item['caption'] ?? '')),
+                ];
+            })
+            ->filter(fn (array $item) => $item['url'] !== '')
+            ->values();
+
+        $primaryScreenshot = $screenshots->first();
+
         return view('apps.show', [
             'app' => $app,
             'meta' => [
                 'title' => $app['seo']['title'],
                 'description' => $app['seo']['description'],
                 'canonical' => route('apps.show', $app['slug']),
+                'localized' => (bool) ($app['has_localized_content'] ?? false),
+                'image' => $primaryScreenshot['url'] ?? null,
+                'image_alt' => $primaryScreenshot['alt'] ?? null,
             ],
             'schema' => [
                 [
@@ -124,6 +149,8 @@ class MarketingController extends Controller
                     'url' => route('apps.show', $app['slug']),
                     'applicationCategory' => $app['application_category'],
                     'operatingSystem' => $app['operating_system'],
+                    'screenshot' => $screenshots->pluck('url')->all(),
+                    'featureList' => collect($app['features'] ?? [])->pluck('title')->filter()->values()->all(),
                     'publisher' => [
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',

@@ -1,8 +1,10 @@
 @php
     $locale = app()->getLocale();
     $isRtl = in_array($locale, ['fa', 'ps'], true);
-    $canonical = $meta['canonical'].($locale === 'en' ? '' : '?lang='.$locale);
-    $ogImage = $siteSettings->get('og_image');
+    $hasLocalizedVersions = (bool) ($meta['localized'] ?? false);
+    $canonical = $meta['canonical'].($hasLocalizedVersions && $locale !== 'en' ? '?lang='.$locale : '');
+    $ogImage = $meta['image'] ?? $siteSettings->get('og_image');
+    $ogImageAlt = $meta['image_alt'] ?? $meta['title'];
     $brandName = $siteSettings->get('brand_name', 'BusinessOS');
     $cmsLabel = static fn (string $key, string $fallback): string =>
         $locale === 'en' ? (string) $siteSettings->get($key, $fallback) : $fallback;
@@ -18,8 +20,10 @@
     <meta name="description" content="{{ $meta['description'] }}">
     <link rel="canonical" href="{{ $canonical }}">
     <link rel="alternate" hreflang="en" href="{{ $meta['canonical'] }}">
-    <link rel="alternate" hreflang="fa-AF" href="{{ $meta['canonical'] }}?lang=fa">
-    <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
+    @if($hasLocalizedVersions)
+        <link rel="alternate" hreflang="fa-AF" href="{{ $meta['canonical'] }}?lang=fa">
+        <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
+    @endif
     <link rel="alternate" hreflang="x-default" href="{{ $meta['canonical'] }}">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     @if($siteSettings->get('google_site_verification'))<meta name="google-site-verification" content="{{ $siteSettings->get('google_site_verification') }}">@endif
@@ -32,11 +36,12 @@
     <meta property="og:url" content="{{ $canonical }}">
     @if($ogImage)
         <meta property="og:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">
-        <meta property="og:image:alt" content="{{ $meta['title'] }}">
+        <meta property="og:image:alt" content="{{ $ogImageAlt }}">
     @endif
     <meta name="twitter:card" content="{{ $ogImage ? 'summary_large_image' : 'summary' }}">
     <meta name="twitter:title" content="{{ $meta['title'] }}">
     <meta name="twitter:description" content="{{ $meta['description'] }}">
+    @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">

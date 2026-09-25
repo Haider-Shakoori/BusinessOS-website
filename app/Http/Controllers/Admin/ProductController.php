@@ -200,7 +200,7 @@ class ProductController extends Controller
 
         $attributes['slug'] = $data['slug'] ?: $this->uniqueSlug($data['name'], $product);
         $attributes['platforms'] = $this->lines($data['platforms_text'] ?? null);
-        $attributes['screenshots'] = $this->lines($data['screenshots_text'] ?? null);
+        $attributes['screenshots'] = $this->screenshotLines($data['screenshots_text'] ?? null);
         $attributes['featured'] = $request->boolean('featured');
         $attributes['is_visible'] = $request->boolean('is_visible');
         $attributes['show_on_homepage'] = $request->boolean('show_on_homepage');
@@ -270,6 +270,48 @@ class ProductController extends Controller
             ->all();
     }
 
+    private function screenshotLines(?string $value): array
+    {
+        return collect($this->lines($value))
+            ->map(function (string $line): array {
+                [$url, $alt, $caption] = array_map(
+                    'trim',
+                    array_pad(explode('|', $line, 3), 3, '')
+                );
+
+                return [
+                    'url' => $url,
+                    'alt' => $alt,
+                    'caption' => $caption,
+                ];
+            })
+            ->filter(fn (array $item) => $item['url'] !== '')
+            ->values()
+            ->all();
+    }
+
+    private function screenshotText(array $items): string
+    {
+        return collect($items)
+            ->map(function (mixed $item): string {
+                if (is_string($item)) {
+                    return trim($item);
+                }
+
+                if (! is_array($item)) {
+                    return '';
+                }
+
+                return implode(' | ', [
+                    trim((string) ($item['url'] ?? '')),
+                    trim((string) ($item['alt'] ?? '')),
+                    trim((string) ($item['caption'] ?? '')),
+                ]);
+            })
+            ->filter()
+            ->implode("\n");
+    }
+
     private function editorData(Product $product): array
     {
         $content = array_merge(
@@ -301,7 +343,7 @@ class ProductController extends Controller
             'publication_state' => $product->publication_state ?: 'draft',
             'seo_title' => $product->seo_title ?? '',
             'seo_description' => $product->seo_description ?? '',
-            'screenshots_text' => $this->lineText($product->screenshots ?? []),
+            'screenshots_text' => $this->screenshotText($product->screenshots ?? []),
             'highlights_text' => $this->lineText($content['highlights'] ?? []),
             'problem_title' => data_get($content, 'problem.title', ''),
             'problem_body_text' => $this->lineText(data_get($content, 'problem.body', [])),

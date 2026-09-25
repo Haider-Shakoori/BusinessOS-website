@@ -16,7 +16,7 @@ class SeoController extends Controller
     public function sitemap(): Response
     {
         $urls = collect([
-            ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0'],
+            ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0', 'localized' => true],
             ['loc' => route('apps.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
             ['loc' => route('services'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
             ['loc' => route('resources.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
@@ -32,6 +32,22 @@ class SeoController extends Controller
                 'loc' => route('apps.show', $app['slug']),
                 'lastmod' => $app['updated_at'] ?? now()->toDateString(),
                 'priority' => '0.9',
+                'localized' => (bool) ($app['has_localized_content'] ?? false),
+                'images' => collect($app['screenshots'] ?? [])
+                    ->map(function (mixed $item) use ($app): array {
+                        $rawUrl = is_array($item) ? trim((string) ($item['url'] ?? '')) : trim((string) $item);
+                        $alt = is_array($item) ? trim((string) ($item['alt'] ?? '')) : '';
+                        $caption = is_array($item) ? trim((string) ($item['caption'] ?? '')) : '';
+
+                        return [
+                            'loc' => $rawUrl === '' ? '' : (str_starts_with($rawUrl, 'http://') || str_starts_with($rawUrl, 'https://') ? $rawUrl : url($rawUrl)),
+                            'title' => $alt ?: $app['name'].' interface screenshot',
+                            'caption' => $caption,
+                        ];
+                    })
+                    ->filter(fn (array $image) => $image['loc'] !== '')
+                    ->values()
+                    ->all(),
             ])
         );
 

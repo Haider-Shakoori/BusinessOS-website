@@ -59,8 +59,16 @@ class SearchGrowthTest extends TestCase
             ->assertOk()
             ->assertSee('BusinessOS Editorial Team')
             ->assertSee('About the author')
+            ->assertSee('<h2>Map and transform the data</h2>', false)
+            ->assertSee('<h2>Rehearse and validate</h2>', false)
             ->assertSee('Related services')
             ->assertSee('Data Migration Services');
+
+        $this->get('/guides/how-to-migrate-from-excel-to-erp?lang=fa')
+            ->assertOk()
+            ->assertSee('<link rel="canonical" href="https://businessos.af/guides/how-to-migrate-from-excel-to-erp">', false)
+            ->assertDontSee('hreflang="fa-AF"', false)
+            ->assertDontSee('hreflang="ps-AF"', false);
     }
 
     public function test_robots_explicitly_allows_search_ai_crawlers(): void

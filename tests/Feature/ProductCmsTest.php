@@ -63,7 +63,12 @@ class ProductCmsTest extends TestCase
         $this->get('/apps/crm')
             ->assertOk()
             ->assertSee('BusinessOS CRM')
-            ->assertSee('Customer relationships without scattered follow-up.');
+            ->assertSee('Customer relationships without scattered follow-up.')
+            ->assertSee('CRM customer follow-up dashboard')
+            ->assertSee('Customer records and follow-up activity in one view.')
+            ->assertSee('property="og:image"', false)
+            ->assertSee('"screenshot"', false)
+            ->assertSee('"featureList"', false);
 
         $this->get('/apps')
             ->assertOk()
@@ -79,7 +84,10 @@ class ProductCmsTest extends TestCase
 
         $this->get('/sitemap.xml')
             ->assertOk()
-            ->assertSee('/apps/crm', false);
+            ->assertSee('/apps/crm', false)
+            ->assertSee('xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"', false)
+            ->assertSee('<image:loc>https://businessos.af/assets/products/crm/dashboard.webp</image:loc>', false)
+            ->assertSee('<image:title>CRM customer follow-up dashboard</image:title>', false);
     }
 
     public function test_draft_product_is_not_public(): void
@@ -153,7 +161,7 @@ class ProductCmsTest extends TestCase
             'final_title' => 'Bring customer follow-up into one workflow.',
             'final_description' => 'Tell us how your team manages customer relationships today.',
             'faq_text' => 'Is BusinessOS CRM available? | This test product is published through the CMS.',
-            'screenshots_text' => '/assets/products/crm/dashboard.webp',
+            'screenshots_text' => '/assets/products/crm/dashboard.webp | CRM customer follow-up dashboard | Customer records and follow-up activity in one view.',
             'live_note' => '',
         ];
     }

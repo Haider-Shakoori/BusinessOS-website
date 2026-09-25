@@ -76,20 +76,52 @@ class ProductCatalog
 
         $app = config('businessos.apps.'.$slug);
 
-        return is_array($app) ? $app : null;
+        return is_array($app) ? $this->localizeConfiguredProduct($app) : null;
+    }
+
+    private function localizeConfiguredProduct(array $app): array
+    {
+        $translations = (array) ($app['translations'] ?? []);
+        $hasLocalizedContent = collect(['fa', 'ps'])
+            ->every(fn (string $language) => collect((array) ($translations[$language] ?? []))
+                ->filter(fn ($item) => is_string($item) && trim($item) !== '')
+                ->isNotEmpty());
+
+        $app['has_localized_content'] = $hasLocalizedContent;
+
+        $locale = app()->getLocale();
+        if (! in_array($locale, ['fa', 'ps'], true)) {
+            return $app;
+        }
+
+        $translation = (array) ($translations[$locale] ?? []);
+        foreach (['name', 'eyebrow', 'headline', 'short_description', 'description'] as $key) {
+            if (isset($translation[$key]) && is_string($translation[$key]) && trim($translation[$key]) !== '') {
+                $app[$key] = $translation[$key];
+            }
+        }
+
+        if (isset($translation['seo_title']) && trim((string) $translation['seo_title']) !== '') {
+            $app['seo']['title'] = $translation['seo_title'];
+        }
+        if (isset($translation['seo_description']) && trim((string) $translation['seo_description']) !== '') {
+            $app['seo']['description'] = $translation['seo_description'];
+        }
+
+        return $app;
     }
 
     private function configuredProducts(): Collection
     {
         return collect(config('businessos.apps', []))
             ->values()
-            ->map(fn (array $app, int $index) => array_merge([
+            ->map(fn (array $app, int $index) => $this->localizeConfiguredProduct(array_merge([
                 'sort_order' => ($index + 1) * 10,
                 'homepage_order' => ($index + 1) * 10,
                 'show_on_homepage' => true,
                 'is_visible' => true,
                 'publication_state' => 'published',
-            ], $app))
+            ], $app)))
             ->filter(fn (array $app) => (bool) $app['is_visible'])
             ->filter(fn (array $app) => $app['publication_state'] === 'published')
             ->keyBy('slug');

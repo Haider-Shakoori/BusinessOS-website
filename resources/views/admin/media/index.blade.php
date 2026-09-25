@@ -38,14 +38,27 @@
             <picture>
                 @if($asset->avif_path)<source srcset="{{ $asset->url('avif') }}" type="image/avif">@endif
                 @if($asset->webp_path)<source srcset="{{ $asset->url('webp') }}" type="image/webp">@endif
-                <img src="{{ $asset->url() }}" alt="{{ $asset->alt_text ?: '' }}" loading="lazy">
+                <img src="{{ $asset->url() }}" alt="{{ $asset->alt_text ?: '' }}" @if($asset->width) width="{{ $asset->width }}" @endif @if($asset->height) height="{{ $asset->height }}" @endif loading="lazy" decoding="async">
             </picture>
             <div>
                 <strong>{{ $asset->original_name }}</strong>
                 <small>{{ $asset->width }}×{{ $asset->height }} · {{ number_format($asset->size_bytes / 1024, 1) }} KB</small>
-                @if($asset->alt_text)<p>{{ $asset->alt_text }}</p>@endif
+                <form method="POST" action="{{ route('admin.media.update', $asset) }}" class="admin-form">
+                    @csrf
+                    @method('PUT')
+                    <label>Alt text
+                        <input type="text" name="alt_text" maxlength="255" value="{{ $asset->alt_text }}" placeholder="Describe what is visible and useful in the image">
+                    </label>
+                    <label>Caption
+                        <textarea name="caption" rows="2" maxlength="2000">{{ $asset->caption }}</textarea>
+                    </label>
+                    <button class="admin-secondary-button" type="submit">Save image metadata</button>
+                </form>
                 <label>Preferred URL
                     <input type="text" readonly value="{{ $asset->avif_path ? $asset->url('avif') : ($asset->webp_path ? $asset->url('webp') : $asset->url()) }}">
+                </label>
+                <label>Product screenshot reference
+                    <input type="text" readonly value="{{ ($asset->avif_path ? $asset->url('avif') : ($asset->webp_path ? $asset->url('webp') : $asset->url())).' | '.($asset->alt_text ?? '').' | '.($asset->caption ?? '') }}">
                 </label>
                 <div class="media-format-row">
                     @if($asset->webp_path)<a href="{{ $asset->url('webp') }}" target="_blank" rel="noopener">WebP ↗</a>@endif
