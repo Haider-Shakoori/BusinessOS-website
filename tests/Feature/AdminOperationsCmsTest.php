@@ -137,6 +137,19 @@ class AdminOperationsCmsTest extends TestCase
 
         $asset = MediaAsset::query()->firstOrFail();
         Storage::disk('public')->assertExists($asset->original_path);
+
+        $this->actingAs($this->admin)
+            ->put('/admin/media/'.$asset->id, [
+                'alt_text' => 'BusinessOS ERP inventory dashboard',
+                'caption' => 'Inventory levels and stock movement visibility in the ERP interface.',
+            ])
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('media_assets', [
+            'id' => $asset->id,
+            'alt_text' => 'BusinessOS ERP inventory dashboard',
+            'caption' => 'Inventory levels and stock movement visibility in the ERP interface.',
+        ]);
     }
 
     private function settingsPayload(array $overrides = []): array
