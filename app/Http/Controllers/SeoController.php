@@ -32,6 +32,21 @@ class SeoController extends Controller
                 'loc' => route('apps.show', $app['slug']),
                 'lastmod' => $app['updated_at'] ?? now()->toDateString(),
                 'priority' => '0.9',
+                'images' => collect($app['screenshots'] ?? [])
+                    ->map(function (mixed $item) use ($app): array {
+                        $rawUrl = is_array($item) ? trim((string) ($item['url'] ?? '')) : trim((string) $item);
+                        $alt = is_array($item) ? trim((string) ($item['alt'] ?? '')) : '';
+                        $caption = is_array($item) ? trim((string) ($item['caption'] ?? '')) : '';
+
+                        return [
+                            'loc' => $rawUrl === '' ? '' : (str_starts_with($rawUrl, 'http://') || str_starts_with($rawUrl, 'https://') ? $rawUrl : url($rawUrl)),
+                            'title' => $alt ?: $app['name'].' interface screenshot',
+                            'caption' => $caption,
+                        ];
+                    })
+                    ->filter(fn (array $image) => $image['loc'] !== '')
+                    ->values()
+                    ->all(),
             ])
         );
 
