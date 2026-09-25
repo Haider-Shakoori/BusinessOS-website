@@ -82,6 +82,21 @@ class MediaController extends Controller
         return back()->with('status', 'Media uploaded and optimized where supported by the server.');
     }
 
+    public function update(Request $request, MediaAsset $media): RedirectResponse
+    {
+        $data = $request->validate([
+            'alt_text' => ['nullable', 'string', 'max:255'],
+            'caption' => ['nullable', 'string', 'max:2000'],
+        ]);
+
+        $media->update([
+            'alt_text' => trim((string) ($data['alt_text'] ?? '')) ?: null,
+            'caption' => trim((string) ($data['caption'] ?? '')) ?: null,
+        ]);
+
+        return back()->with('status', 'Media metadata updated.');
+    }
+
     public function destroy(MediaAsset $media): RedirectResponse
     {
         foreach (array_filter([$media->original_path, $media->webp_path, $media->avif_path]) as $path) {
