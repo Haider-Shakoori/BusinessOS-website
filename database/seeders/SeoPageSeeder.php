@@ -296,7 +296,7 @@ TEXT,
                 ],
                 'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
                 'meta_description' => 'Restaurant management software with waiter mobile ordering, table transfer/merge, split bills, KOT/kitchen stations, approvals, cashier closing and reporting.',
-            ],,
+            ],
             [
                 'title' => 'Software Development in Afghanistan',
                 'slug' => 'software-development-afghanistan',
