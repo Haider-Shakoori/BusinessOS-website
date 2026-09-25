@@ -191,8 +191,8 @@
                 @error('preview_rows_text')<small>{{ $message }}</small>@enderror
             </label>
 
-            <label>Screenshot references <span>one URL or public asset path per line</span>
-                <div class="admin-inline-help">Upload and optimize images in the <a href="{{ route('admin.media.index') }}" target="_blank" rel="noopener">Media library ↗</a>, then paste the preferred URL below.</div>
+            <label>Screenshot references <span>one per line: URL | Alt text | Caption</span>
+                <div class="admin-inline-help">Upload and optimize images in the <a href="{{ route('admin.media.index') }}" target="_blank" rel="noopener">Media library ↗</a>. Add descriptive alt text and an optional caption so image search and accessibility have useful context. Existing URL-only lines remain supported.</div>
                 <textarea name="screenshots_text" rows="5">{{ old('screenshots_text', $editor['screenshots_text']) }}</textarea>
                 @error('screenshots_text')<small>{{ $message }}</small>@enderror
             </label>
