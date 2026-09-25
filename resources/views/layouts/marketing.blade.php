@@ -1,7 +1,8 @@
 @php
     $locale = app()->getLocale();
     $isRtl = in_array($locale, ['fa', 'ps'], true);
-    $canonical = $meta['canonical'].($locale === 'en' ? '' : '?lang='.$locale);
+    $hasLocalizedVersions = (bool) ($meta['localized'] ?? false);
+    $canonical = $meta['canonical'].($hasLocalizedVersions && $locale !== 'en' ? '?lang='.$locale : '');
     $ogImage = $meta['image'] ?? $siteSettings->get('og_image');
     $ogImageAlt = $meta['image_alt'] ?? $meta['title'];
     $brandName = $siteSettings->get('brand_name', 'BusinessOS');
@@ -19,8 +20,10 @@
     <meta name="description" content="{{ $meta['description'] }}">
     <link rel="canonical" href="{{ $canonical }}">
     <link rel="alternate" hreflang="en" href="{{ $meta['canonical'] }}">
-    <link rel="alternate" hreflang="fa-AF" href="{{ $meta['canonical'] }}?lang=fa">
-    <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
+    @if($hasLocalizedVersions)
+        <link rel="alternate" hreflang="fa-AF" href="{{ $meta['canonical'] }}?lang=fa">
+        <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
+    @endif
     <link rel="alternate" hreflang="x-default" href="{{ $meta['canonical'] }}">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     @if($siteSettings->get('google_site_verification'))<meta name="google-site-verification" content="{{ $siteSettings->get('google_site_verification') }}">@endif
