@@ -53,7 +53,7 @@
 
             <nav class="desktop-nav" aria-label="Primary navigation">
                 <a href="{{ route('home') }}{{ $locale === 'en' ? '' : '?lang='.$locale }}#products">{{ $cmsLabel('nav_products_label', __('marketing.nav.products')) }}</a>
-                <a href="{{ route('home') }}{{ $locale === 'en' ? '' : '?lang='.$locale }}#solutions">{{ $cmsLabel('nav_solutions_label', __('marketing.nav.solutions')) }}</a>
+                <a href="{{ route('services', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_solutions_label', __('marketing.nav.solutions')) }}</a>
                 <a href="{{ route('pricing', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_pricing_label', __('marketing.nav.pricing')) }}</a>
                 <a href="{{ route('resources.index', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_resources_label', __('marketing.nav.resources')) }}</a>
                 <a href="{{ route('about', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_company_label', __('marketing.nav.company')) }}</a>
@@ -70,6 +70,7 @@
                     <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
                     <nav aria-label="Mobile navigation">
                         <a href="{{ route('apps.index', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_products_label', __('marketing.nav.products')) }}</a>
+                        <a href="{{ route('services', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_solutions_label', __('marketing.nav.solutions')) }}</a>
                         <a href="{{ route('pricing', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_pricing_label', __('marketing.nav.pricing')) }}</a>
                         <a href="{{ route('resources.index', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_resources_label', __('marketing.nav.resources')) }}</a>
                         <a href="{{ route('about', $locale === 'en' ? [] : ['lang' => $locale]) }}">{{ $cmsLabel('nav_company_label', __('marketing.nav.company')) }}</a>
@@ -115,6 +116,7 @@
                 </div>
                 <div>
                     <strong>{{ __('marketing.footer.company') }}</strong>
+                    <a href="{{ route('services') }}">{{ $cmsLabel('nav_solutions_label', __('marketing.nav.solutions')) }}</a>
                     <a href="{{ route('about') }}">{{ __('marketing.footer.about') }}</a>
                     <a href="{{ route('security') }}">{{ __('marketing.footer.security') }}</a>
                     <a href="{{ route('contact') }}">{{ __('marketing.nav.contact') }}</a>
