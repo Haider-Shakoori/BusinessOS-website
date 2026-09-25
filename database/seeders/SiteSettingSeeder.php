@@ -63,7 +63,7 @@ class SiteSettingSeeder extends Seeder
             ],
             'seo' => [
                 'seo_default_title' => 'BusinessOS — Website Development, Custom ERP, MIS & Business Software',
-                'seo_default_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.'
+                'seo_default_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.',
                 'og_image' => '',
             ],
         ];
