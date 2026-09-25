@@ -30,8 +30,24 @@
             @endif
         </div>
         <div class="body-copy">
-            @foreach(preg_split('/\R{2,}/', trim($seoPage->content)) as $paragraph)
-                <p>{{ $paragraph }}</p>
+            @foreach(preg_split('/\R{2,}/', trim($seoPage->content)) as $block)
+                @php
+                    $block = trim($block);
+                    $lines = preg_split('/\R/', $block);
+                    $isList = count($lines) > 0 && collect($lines)->every(fn ($line) => str_starts_with(trim($line), '- '));
+                @endphp
+
+                @if(str_starts_with($block, '### '))
+                    <h3>{{ trim(substr($block, 4)) }}</h3>
+                @elseif(str_starts_with($block, '## '))
+                    <h2>{{ trim(substr($block, 3)) }}</h2>
+                @elseif($isList)
+                    <ul>
+                        @foreach($lines as $line)<li>{{ trim(substr(trim($line), 2)) }}</li>@endforeach
+                    </ul>
+                @else
+                    <p>{{ $block }}</p>
+                @endif
             @endforeach
         </div>
     </div>
@@ -55,6 +71,27 @@
                     <h2>{{ $app['name'] }}</h2>
                     <p>{{ $app['short_description'] }}</p>
                     <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+@if($relatedGuides->count())
+<section class="section">
+    <div class="shell">
+        <div class="section-heading split-heading">
+            <div><span class="kicker">Practical reading</span><h2>Guides related to this service.</h2></div>
+            <p>Use these guides to compare options, prepare data and understand the operational choices behind implementation.</p>
+        </div>
+        <div class="resource-grid">
+            @foreach($relatedGuides as $guide)
+                <article class="resource-card">
+                    <div class="resource-card-top"><span>{{ $guide->category }}</span></div>
+                    <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
+                    <p>{{ $guide->excerpt }}</p>
+                    <a class="text-link" href="{{ route('resources.show', $guide) }}">Read guide <span>→</span></a>
                 </article>
             @endforeach
         </div>
