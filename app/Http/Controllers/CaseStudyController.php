@@ -36,17 +36,28 @@ class CaseStudyController extends Controller
                 'description' => $caseStudy->meta_description ?: $caseStudy->summary,
                 'canonical' => route('case-studies.show', $caseStudy),
             ],
-            'schema' => [[
-                '@context' => 'https://schema.org',
-                '@type' => 'Article',
-                'headline' => $caseStudy->title,
-                'description' => $caseStudy->summary,
-                'datePublished' => $caseStudy->published_at?->toAtomString(),
-                'dateModified' => $caseStudy->updated_at?->toAtomString(),
-                'author' => ['@type' => 'Organization', 'name' => 'BusinessOS'],
-                'publisher' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'url' => route('home')],
-                'mainEntityOfPage' => route('case-studies.show', $caseStudy),
-            ]],
+            'schema' => [
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'Article',
+                    'headline' => $caseStudy->title,
+                    'description' => $caseStudy->summary,
+                    'datePublished' => $caseStudy->published_at?->toAtomString(),
+                    'dateModified' => $caseStudy->updated_at?->toAtomString(),
+                    'author' => ['@type' => 'Organization', 'name' => 'BusinessOS'],
+                    'publisher' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'url' => route('home')],
+                    'mainEntityOfPage' => route('case-studies.show', $caseStudy),
+                ],
+                [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => route('home')],
+                        ['@type' => 'ListItem', 'position' => 2, 'name' => 'Case studies', 'item' => route('case-studies.index')],
+                        ['@type' => 'ListItem', 'position' => 3, 'name' => $caseStudy->title, 'item' => route('case-studies.show', $caseStudy)],
+                    ],
+                ],
+            ],
         ]);
     }
 }
