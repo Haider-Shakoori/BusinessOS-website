@@ -16,6 +16,7 @@ class SeoController extends Controller
         $urls = collect([
             ['loc' => route('home'), 'lastmod' => now()->toDateString(), 'priority' => '1.0'],
             ['loc' => route('apps.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
+            ['loc' => route('services'), 'lastmod' => now()->toDateString(), 'priority' => '0.9'],
             ['loc' => route('resources.index'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
             ['loc' => route('pricing'), 'lastmod' => now()->toDateString(), 'priority' => '0.8'],
             ['loc' => route('about'), 'lastmod' => now()->toDateString(), 'priority' => '0.7'],
