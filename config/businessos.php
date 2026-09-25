@@ -766,6 +766,6 @@ return [
                 ['question' => 'Can existing accounting data be migrated?', 'answer' => 'Yes. Historical balances and transactions can be migrated after source data, mapping and reconciliation requirements are reviewed.'],
                 ['question' => 'Can approval workflows and reports be customized?', 'answer' => 'Yes. Approval steps, account structures and reports can be tailored to the organization.'],
             ],
-        ]
+        ],
     ],
 ];
