@@ -470,7 +470,7 @@ TEXT,
                 ],
                 'meta_title' => 'Financial Management Software — Ledgers, Cash, Receivables & Reporting | BusinessOS',
                 'meta_description' => 'Financial management software for chart of accounts, journals, cash/bank, receivables, payables, expenses, approvals and business reporting.',
-            ]
+            ],
         ];
     }
 }
