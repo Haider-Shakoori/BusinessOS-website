@@ -21,9 +21,9 @@ return [
         'read_guide' => 'Read guide',
     ],
     'home' => [
-        'hero_eyebrow' => 'BusinessOS software ecosystem',
-        'hero_title' => 'Software for the way your business actually runs.',
-        'hero_description' => 'BusinessOS brings focused software for field sales, business management and retail operations under one product family—built for practical work, local realities and modern teams.',
+        'hero_eyebrow' => 'Business software & custom development',
+        'hero_title' => 'Build, modernize and run your business with better software.',
+        'hero_description' => 'BusinessOS builds websites, custom ERP and MIS systems, web applications and industry software—plus data migration, integrations and application upgrades for businesses that need technology matched to real workflows.',
         'trust_field' => 'Field operations',
         'trust_erp' => 'ERP & business management',
         'trust_pos' => 'Retail & point of sale',
@@ -50,7 +50,7 @@ return [
         'engineering_copy' => 'BusinessOS products are built around responsive interfaces, maintainable application architecture and performance that remains useful on real devices and imperfect networks.',
         'resources_title' => 'Useful ideas for running better operations.',
         'final_title' => 'Find the right product for the part of your business you want to improve.',
-        'final_copy' => 'Explore FieldPulse, ERP and POS, or tell us about the workflow you need to improve and choose the product from the demo form.',
+        'final_copy' => 'Explore BusinessOS products or tell us about the workflow, website, system, data migration or modernization project you need to improve.',
     ],
     'footer' => [
         'product' => 'Product',
@@ -71,8 +71,8 @@ return [
         'ps' => 'پښتو',
     ],
     'seo' => [
-        'home_title' => 'BusinessOS — Business Software for Field Sales, ERP & Retail',
-        'home_description' => 'BusinessOS builds practical software for field sales, ERP, retail operations and business management.',
+        'home_title' => 'BusinessOS — Website Development, Custom ERP, MIS & Business Software',
+        'home_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.'
     ],
     'inquiry_received' => 'Thanks — your request has been received. We will follow up using the contact details you provided.',
 ];
