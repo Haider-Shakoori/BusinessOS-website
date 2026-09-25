@@ -226,7 +226,7 @@ class MarketingPagesTest extends TestCase
         $this->get('/apps/restaurant-management?lang=fa')
             ->assertOk()
             ->assertSee('Restaurant Management System')
-            ->assertSee('<link rel="canonical" href="http://localhost/apps/restaurant-management">', false)
+            ->assertSee('<link rel="canonical" href="https://businessos.af/apps/restaurant-management">', false)
             ->assertDontSee('hreflang="fa-AF"', false)
             ->assertDontSee('hreflang="ps-AF"', false);
     }
