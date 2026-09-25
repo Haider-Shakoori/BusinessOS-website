@@ -251,39 +251,40 @@ TEXT,
                 ],
                 'meta_title' => 'ERP Software in Afghanistan — Custom Business Management | BusinessOS',
                 'meta_description' => 'BusinessOS provides customizable ERP software in Afghanistan for sales, purchasing, inventory, production, finance and management reporting.',
-            ],,
+            ],
             [
                 'title' => 'Restaurant Management Software',
                 'slug' => 'restaurant-management-software',
-                'eyebrow' => 'Restaurant software & mobile ordering',
-                'headline' => 'Restaurant management software that receives customer orders from a mobile app and moves them straight into operations.',
-                'excerpt' => 'Connect customer mobile ordering with menu control, live order reception, kitchen preparation, table service, pickup/delivery, payments and restaurant reporting.',
+                'eyebrow' => 'Restaurant software & waiter ordering',
+                'headline' => 'Restaurant management software that lets waiters take table orders on mobile and send them directly to the kitchen.',
+                'excerpt' => 'Connect waiter mobile ordering with tables, menu control, kitchen preparation, billing, payments and restaurant reporting in one internal system.',
                 'content' => <<<'TEXT'
-Restaurant management software should connect the customer ordering experience with the people preparing and fulfilling the order. A mobile app is useful only when it feeds directly into the restaurant workflow instead of creating another channel staff must monitor separately.
+Restaurant management software should make table service faster without disconnecting waiters from the kitchen or cashier. In the BusinessOS model, the mobile ordering app is used by restaurant waiters—not by outside customers.
 
-The customer app can present the live menu, item options, add-ons and availability. When a customer submits an order, the restaurant system should receive the order immediately with the items, quantities, notes, fulfillment method and customer context required to process it.
+A waiter opens the assigned table on the mobile app, selects menu items, adds quantities or notes and submits the order while still serving the table. The order then appears immediately in the restaurant dashboard and kitchen queue with the table number and the details needed for preparation.
 
-The kitchen workflow should have a clear order lifecycle. Common states include new, accepted, preparing, ready, completed or cancelled. The exact statuses can be configured around dine-in, takeaway, pickup and delivery.
+The kitchen workflow should have a clear order lifecycle. Common states include new, accepted, preparing, ready, served, completed or cancelled. Waiters and supervisors can see the current status without repeatedly walking to the kitchen to ask whether an order is ready.
 
-Menu management should remain centralized. Prices, item availability, categories and modifiers should be managed from the restaurant administration system so customers do not need a new application release whenever the menu changes.
+Menu management remains centralized. Prices, categories, item availability, modifiers and add-ons can be controlled by authorized restaurant staff so every waiter device uses the current menu.
 
-Restaurants may also need table management, order history, payments, discounts, customer records, delivery information, inventory references and sales reporting. Those modules should remain connected to the same order instead of being maintained as separate records.
+Table management can connect the active order to the table and responsible waiter. Additional items can be added to the same table during service, and the final bill can be produced from the complete order history rather than combining handwritten tickets.
 
-The mobile experience can also show order status back to the customer when appropriate, helping reduce uncertainty after an order is placed.
+Billing and payments should remain connected to the table order. Depending on restaurant requirements, the system can support discounts, payment recording, split bills, order adjustments and cashier controls.
 
-BusinessOS Restaurant Management System is designed as a connected web and mobile platform, with the mobile app acting as the customer ordering channel and the restaurant dashboard and kitchen views handling execution.
+Kitchen display views can reduce paper tickets by showing incoming orders and preparation status directly to kitchen staff. If the restaurant prefers printed kitchen tickets, that workflow can also be integrated.
+
+BusinessOS Restaurant Management System is designed as an internal restaurant operations platform: waiter mobile app for order entry, kitchen workflow for preparation, and web administration for menu, tables, billing, users and reporting.
 TEXT,
-                'target_keywords' => ['restaurant management software', 'restaurant ordering app', 'mobile food ordering system', 'restaurant POS and kitchen system', 'restaurant order management'],
+                'target_keywords' => ['restaurant management software', 'waiter ordering app', 'restaurant waiter app', 'table ordering system', 'kitchen order management', 'restaurant POS and kitchen system'],
                 'related_product_slugs' => ['restaurant-management', 'financial-systems'],
                 'faq' => [
-                    ['question' => 'Can customers place restaurant orders from a mobile app?', 'answer' => 'Yes. Customers can browse the current menu, choose items and send orders directly into the restaurant management workflow.'],
-                    ['question' => 'How does the kitchen receive mobile orders?', 'answer' => 'Confirmed orders can appear in a kitchen queue or kitchen display with item details, notes and preparation status.'],
-                    ['question' => 'Can the restaurant change menu availability without updating the mobile app?', 'answer' => 'Yes. Menu data can be controlled centrally so item availability and pricing are reflected in the customer app.'],
-                    ['question' => 'Can the same system support dine-in, takeaway and delivery?', 'answer' => 'Yes. The order model can support multiple fulfillment types depending on the restaurant process.'],
+                    ['question' => 'Who uses the mobile ordering app?', 'answer' => 'The app is used by restaurant waiters. They take customer orders at the table and send them directly into the restaurant and kitchen workflow.'],
+                    ['question' => 'How does the kitchen receive waiter orders?', 'answer' => 'Submitted orders can appear immediately in a kitchen queue or kitchen display with the table number, items, quantities, notes and preparation status.'],
+                    ['question' => 'Can waiters add more items to an existing table order?', 'answer' => 'Yes. The system can keep an active table order open so additional items can be added during service before billing is completed.'],
+                    ['question' => 'Can the system track tables and waiter assignments?', 'answer' => 'Yes. Tables, active orders and waiter responsibility can be connected so staff and managers can see the current service state.'],
                 ],
-                'meta_title' => 'Restaurant Management Software with Mobile Ordering | BusinessOS',
-                'meta_description' => 'Restaurant management software with customer mobile ordering, live order reception, kitchen workflow, menu control, pickup/delivery, payments and reporting.',
-            ]
-        ];
+                'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
+                'meta_description' => 'Restaurant management software with waiter mobile ordering, table management, kitchen workflow, menu control, billing, payments and reporting.',
+            ]        ];
     }
 }
