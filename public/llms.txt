@@ -16,6 +16,17 @@ Canonical website: https://businessos.af/
 - Database and information systems: https://businessos.af/services#database-solutions
 - Maintenance, performance and support: https://businessos.af/services#support-optimization
 
+## Detailed service pages
+
+- Custom ERP Development: https://businessos.af/services/custom-erp-development
+- MIS Development: https://businessos.af/services/mis-development
+- Website Development in Afghanistan: https://businessos.af/services/website-development-afghanistan
+- Data Migration Services: https://businessos.af/services/data-migration-services
+- Legacy Application Modernization: https://businessos.af/services/legacy-application-modernization
+- Manufacturing ERP: https://businessos.af/services/manufacturing-erp
+- Pharmacy Management Software: https://businessos.af/services/pharmacy-management-software
+- ERP Software in Afghanistan: https://businessos.af/services/erp-software-afghanistan
+
 ## Products and industry systems
 
 - BusinessOS product directory: https://businessos.af/apps
@@ -32,6 +43,7 @@ Canonical website: https://businessos.af/
 - Services: https://businessos.af/services
 - Products: https://businessos.af/apps
 - Resources: https://businessos.af/resources
+- Case studies: https://businessos.af/case-studies
 - About: https://businessos.af/about
 - Contact: https://businessos.af/contact
 - Request a demo: https://businessos.af/request-demo
