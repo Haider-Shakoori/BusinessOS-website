@@ -27,6 +27,10 @@ Canonical website: https://businessos.af/
 - Pharmacy Management Software: https://businessos.af/services/pharmacy-management-software
 - ERP Software in Afghanistan: https://businessos.af/services/erp-software-afghanistan
 - Restaurant Management Software with waiter mobile ordering: https://businessos.af/services/restaurant-management-software
+- Software Development in Afghanistan: https://businessos.af/services/software-development-afghanistan
+- Inventory Management Software: https://businessos.af/services/inventory-management-software
+- Field Sales Management Software: https://businessos.af/services/field-sales-management-software
+- Financial Management Software: https://businessos.af/services/financial-management-software
 
 ## Products and industry systems
 
@@ -39,6 +43,17 @@ Canonical website: https://businessos.af/
 - PVC Pipe Factory Management: https://businessos.af/apps/pvc-pipe-factory
 - Financial Management Systems: https://businessos.af/apps/financial-systems
 - Restaurant Management System for internal waiter table ordering: https://businessos.af/apps/restaurant-management
+
+## Decision and implementation guides
+
+- ERP vs MIS: https://businessos.af/guides/erp-vs-mis-difference
+- Custom ERP vs off-the-shelf ERP: https://businessos.af/guides/custom-erp-vs-off-the-shelf-erp
+- Excel to ERP migration: https://businessos.af/guides/how-to-migrate-from-excel-to-erp
+- POS vs ERP: https://businessos.af/guides/pos-vs-erp
+- Excel vs inventory management software: https://businessos.af/guides/excel-vs-inventory-management-software
+- Tracking field sales teams: https://businessos.af/guides/how-to-track-field-sales-team
+- Restaurant KOT and kitchen stations: https://businessos.af/guides/restaurant-kot-kitchen-station-workflow
+- Financial management system controls: https://businessos.af/guides/financial-management-system-controls
 
 ## Important pages
 
