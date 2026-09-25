@@ -41,11 +41,24 @@ class SearchGrowthTest extends TestCase
             ->assertSee('closing variance')
             ->assertDontSee('customers place restaurant orders', false);
 
+        $this->get('/services/inventory-management-software')
+            ->assertOk()
+            ->assertSee('<h2>Build one reliable item master</h2>', false)
+            ->assertSee('Inventory software that makes stock movements explainable');
+
+        $this->get('/services/software-development-afghanistan')
+            ->assertOk()
+            ->assertSee('Software development for Afghan businesses');
+
         $this->get('/sitemap.xml')
             ->assertOk()
             ->assertSee('/services/custom-erp-development', false)
             ->assertSee('/services/erp-software-afghanistan', false)
-            ->assertSee('/services/restaurant-management-software', false);
+            ->assertSee('/services/restaurant-management-software', false)
+            ->assertSee('/services/software-development-afghanistan', false)
+            ->assertSee('/services/inventory-management-software', false)
+            ->assertSee('/services/field-sales-management-software', false)
+            ->assertSee('/services/financial-management-software', false);
     }
 
     public function test_search_guide_library_has_expert_attribution_and_related_links(): void
@@ -53,7 +66,7 @@ class SearchGrowthTest extends TestCase
         $this->seed(SeoPageSeeder::class);
         $this->seed(SearchGuideSeeder::class);
 
-        $this->assertSame(7, Guide::published()->count());
+        $this->assertSame(12, Guide::published()->count());
 
         $this->get('/guides/how-to-migrate-from-excel-to-erp')
             ->assertOk()
@@ -69,6 +82,27 @@ class SearchGrowthTest extends TestCase
             ->assertSee('<link rel="canonical" href="https://businessos.af/guides/how-to-migrate-from-excel-to-erp">', false)
             ->assertDontSee('hreflang="fa-AF"', false)
             ->assertDontSee('hreflang="ps-AF"', false);
+    }
+
+    public function test_products_services_and_guides_form_a_bidirectional_internal_link_graph(): void
+    {
+        $this->seed(SeoPageSeeder::class);
+        $this->seed(SearchGuideSeeder::class);
+
+        $this->get('/apps/fieldpulse')
+            ->assertOk()
+            ->assertSee('/services/field-sales-management-software', false)
+            ->assertSee('/guides/how-to-track-field-sales-team', false);
+
+        $this->get('/services/field-sales-management-software')
+            ->assertOk()
+            ->assertSee('/apps/fieldpulse', false)
+            ->assertSee('/guides/how-to-track-field-sales-team', false);
+
+        $this->get('/guides/how-to-track-field-sales-team')
+            ->assertOk()
+            ->assertSee('/services/field-sales-management-software', false)
+            ->assertSee('/apps/fieldpulse', false);
     }
 
     public function test_robots_explicitly_allows_search_ai_crawlers(): void

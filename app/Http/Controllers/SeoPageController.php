@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\SeoPage;
+use App\Services\ContentDiscovery;
 use App\Services\ProductCatalog;
 use Illuminate\Contracts\View\View;
 
 class SeoPageController extends Controller
 {
-    public function __construct(private readonly ProductCatalog $products) {}
+    public function __construct(
+        private readonly ProductCatalog $products,
+        private readonly ContentDiscovery $contentDiscovery,
+    ) {}
 
     public function show(SeoPage $seoPage): View
     {
@@ -18,10 +22,12 @@ class SeoPageController extends Controller
             ->map(fn (string $slug) => $this->products->find($slug))
             ->filter()
             ->values();
+        $relatedContent = $this->contentDiscovery->forService($seoPage->slug);
 
         return view('seo-pages.show', [
             'seoPage' => $seoPage,
             'relatedProducts' => $relatedProducts,
+            'relatedGuides' => $relatedContent['guides'],
             'meta' => [
                 'title' => $seoPage->meta_title ?: $seoPage->title.' | BusinessOS',
                 'description' => $seoPage->meta_description ?: $seoPage->excerpt,

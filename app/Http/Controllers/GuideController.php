@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Guide;
 use App\Models\SeoPage;
+use App\Services\ContentDiscovery;
 use Illuminate\Contracts\View\View;
 
 class GuideController extends Controller
 {
+    public function __construct(
+        private readonly ContentDiscovery $contentDiscovery,
+    ) {}
+
     public function index(): View
     {
         $guides = Guide::published()
@@ -76,9 +81,12 @@ class GuideController extends Controller
             ->take(3)
             ->pluck('page');
 
+        $relatedContent = $this->contentDiscovery->forGuide($guide->slug);
+
         return view('resources.show', [
             'guide' => $guide,
             'relatedPages' => $relatedPages,
+            'relatedProducts' => $relatedContent['products'],
             'meta' => [
                 'title' => $guide->meta_title ?: $guide->title.' — BusinessOS',
                 'description' => $guide->meta_description ?: $guide->excerpt,

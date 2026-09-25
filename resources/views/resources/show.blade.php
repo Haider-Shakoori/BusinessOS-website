@@ -65,6 +65,18 @@
                 </div>
             @endif
 
+            @if($relatedProducts->count())
+                <div class="guide-end">
+                    <span class="kicker">Related BusinessOS products</span>
+                    <h2>See where this guidance connects to an operational system.</h2>
+                    <div class="use-case-list">
+                        @foreach($relatedProducts as $app)
+                            <div><span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><strong><a href="{{ route('apps.show', $app['slug']) }}">{{ $app['name'] }}</a></strong><i>→</i></div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="guide-end">
                 <span class="kicker">BusinessOS resources</span>
                 <h2>Turn useful ideas into better operations.</h2>

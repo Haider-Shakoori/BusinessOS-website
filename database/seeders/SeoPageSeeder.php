@@ -297,6 +297,180 @@ TEXT,
                 'meta_title' => 'Restaurant Management Software with Waiter Mobile Ordering | BusinessOS',
                 'meta_description' => 'Restaurant management software with waiter mobile ordering, table transfer/merge, split bills, KOT/kitchen stations, approvals, cashier closing and reporting.',
             ],
+            [
+                'title' => 'Software Development in Afghanistan',
+                'slug' => 'software-development-afghanistan',
+                'eyebrow' => 'Custom software in Afghanistan',
+                'headline' => 'Software development for Afghan businesses that need systems matched to real operations.',
+                'excerpt' => 'BusinessOS designs websites, web applications, ERP, MIS, integrations, data migrations and industry software with local workflow, language, currency and deployment requirements in mind.',
+                'content' => <<<'TEXT'
+Software projects are more successful when the implementation reflects the organization that will actually use the system. For businesses in Afghanistan, that can include language, currency, internet reliability, existing spreadsheet workflows, local approval practices and the way staff work across offices, shops, factories or the field.
+
+## Start with the operating problem
+
+The first question should be what the business needs to control or improve. A company may need a public website, an internal web application, a custom ERP, a management information system, a field-sales platform or a specialized industry workflow. Choosing technology before defining the problem often creates unnecessary complexity.
+
+## Design for the people using the system
+
+User roles, devices and working conditions matter. A manager on a desktop, a cashier at a counter and a salesman on a phone need different interfaces even when they use the same underlying data.
+
+Where Dari or Pashto is required, localization should include right-to-left presentation, navigation and labels rather than only translating a few words. AFN and locally relevant business rules can also be configured where the application needs them.
+
+## Preserve and migrate useful data
+
+Many organizations already have valuable information in Excel files, older PHP systems or separate databases. A new application should identify which data is worth keeping, clean it where necessary and migrate it with validation rather than forcing the business to start from zero.
+
+## Choose deployment intentionally
+
+A system may be hosted by BusinessOS, deployed to customer-controlled infrastructure or integrated with existing hosting depending on security, access and operational requirements. Backups, permissions and production configuration should be decided before launch.
+
+## Build for change
+
+Business processes evolve. Maintainable code, clear database design, role-based permissions, APIs and automated tests make later changes safer than hard-coding every current exception into the first release.
+
+BusinessOS focuses on practical software that connects business workflows with maintainable Laravel, PHP, database and mobile technology.
+TEXT,
+                'target_keywords' => ['software development Afghanistan', 'software company Afghanistan', 'custom software Afghanistan', 'web application development Afghanistan', 'Laravel development Afghanistan'],
+                'related_product_slugs' => ['erp', 'fieldpulse', 'pos'],
+                'faq' => [
+                    ['question' => 'What kinds of software can BusinessOS build?', 'answer' => 'Projects can include websites, custom ERP and MIS systems, web applications, mobile-connected workflows, integrations, data migration and industry-specific software.'],
+                    ['question' => 'Can software support English, Dari and Pashto?', 'answer' => 'Yes. Multilingual interfaces and right-to-left presentation can be implemented when the project requires them.'],
+                    ['question' => 'Can an existing Excel or legacy application be migrated?', 'answer' => 'Yes. Existing data and workflows can be reviewed, cleaned, mapped and migrated into the new system where appropriate.'],
+                ],
+                'meta_title' => 'Software Development in Afghanistan — Custom Web, ERP & Business Systems | BusinessOS',
+                'meta_description' => 'BusinessOS provides custom software development in Afghanistan for websites, web apps, ERP, MIS, integrations, data migration and industry systems.',
+            ],
+            [
+                'title' => 'Inventory Management Software',
+                'slug' => 'inventory-management-software',
+                'eyebrow' => 'Stock & warehouse systems',
+                'headline' => 'Inventory software that makes stock movements explainable, not just countable.',
+                'excerpt' => 'Track products or raw materials through purchases, receipts, transfers, sales, production and adjustments with traceable stock history, costing and reporting.',
+                'content' => <<<'TEXT'
+Inventory management software should answer more than the question “how much stock do we have?” A useful system should also explain where the quantity came from, where it is located, what transaction changed it and which user or process was responsible.
+
+## Build one reliable item master
+
+Products and raw materials need consistent names, codes, units and categories. Duplicate item identities create unreliable stock reports even when the arithmetic itself is correct.
+
+## Record stock through business events
+
+Purchases and receipts increase stock. Sales, issues or production consumption reduce it. Transfers move stock between warehouses or locations. Adjustments should require a reason and permission because they change the balance without an external transaction.
+
+## Keep movement history traceable
+
+Each stock movement should reference the source transaction that caused it. This makes it possible to investigate unexpected balances rather than relying on manual corrections.
+
+## Choose a costing method deliberately
+
+Latest rate, weighted average, standard cost or another method may be appropriate depending on the business. The software should apply the selected method consistently and make its effect on valuation understandable.
+
+## Separate availability from physical counting
+
+System stock and physical stock can differ because of receiving delays, unrecorded usage, damage or counting mistakes. Periodic stock counts and controlled reconciliation help identify those differences without deleting the movement history.
+
+## Connect inventory to the rest of operations
+
+Inventory becomes more valuable when purchasing, sales, production, pharmacy expiry, restaurant usage or finance use the same item data. That reduces repeated entry and makes operational reports easier to reconcile.
+TEXT,
+                'target_keywords' => ['inventory management software', 'stock management software', 'warehouse management software', 'inventory system Afghanistan', 'raw material inventory software'],
+                'related_product_slugs' => ['erp', 'pos', 'raw-materials-db', 'pharmacy-management'],
+                'faq' => [
+                    ['question' => 'Can inventory software track multiple warehouses?', 'answer' => 'Yes. Stock can be separated by warehouse or location and moved through controlled transfer transactions.'],
+                    ['question' => 'Can stock adjustments be audited?', 'answer' => 'Yes. Adjustments can require permissions, reasons and user history so unexplained changes are easier to investigate.'],
+                    ['question' => 'Can inventory connect to purchasing and sales?', 'answer' => 'Yes. Receipts, sales, transfers and other operational transactions can create the related stock movements automatically.'],
+                ],
+                'meta_title' => 'Inventory Management Software — Stock, Warehouses & Traceability | BusinessOS',
+                'meta_description' => 'Inventory management software for products and raw materials with receipts, transfers, sales, production usage, adjustments, costing and stock reporting.',
+            ],
+            [
+                'title' => 'Field Sales Management Software',
+                'slug' => 'field-sales-management-software',
+                'eyebrow' => 'Field force software',
+                'headline' => 'Manage sales teams that work outside the office with location-aware field workflows.',
+                'excerpt' => 'Coordinate salesmen, customers, territories, visits, attendance, collections, follow-ups and field activity through a web dashboard and mobile application.',
+                'content' => <<<'TEXT'
+Field sales management is difficult when managers only see results after staff return to the office. A mobile-connected system can make assignments, customer activity, attendance and follow-up more visible while the work is happening.
+
+## Organize people and territories
+
+Sales managers, supervisors and salesmen need a clear reporting structure. Territories and customer assignments should make it obvious which employee is responsible for each area and account.
+
+## Make customer visits structured
+
+A field visit can capture check-in, location, visit purpose, notes, follow-up, orders, collections or other business-specific actions. The objective is to turn an informal visit into a traceable operational record.
+
+## Use location carefully
+
+Location can confirm where a field action happened and help managers understand coverage. Geofences can represent customer locations or larger territories, but location data should support the workflow rather than become a substitute for performance management.
+
+## Support unreliable connectivity
+
+Field applications may need to work when connectivity is weak or temporarily unavailable. An offline-first or resilient synchronization design lets salesmen continue their work and sync later when the network becomes available.
+
+## Connect collections and follow-up
+
+If salesmen collect money or commitments from customers, confirmation and status changes should be recorded immediately and tied to the correct customer, visit and responsible employee.
+
+## Give managers useful visibility
+
+The dashboard should focus on questions such as who is active, which customers were visited, which follow-ups are due, where collections are pending and whether territories are being covered consistently.
+TEXT,
+                'target_keywords' => ['field sales management software', 'salesman tracking app', 'field force management', 'sales territory software', 'sales visit tracking'],
+                'related_product_slugs' => ['fieldpulse'],
+                'faq' => [
+                    ['question' => 'Can a field sales app work with weak internet?', 'answer' => 'Yes. The mobile workflow can be designed to capture work offline and synchronize when connectivity returns.'],
+                    ['question' => 'Can managers see territories and customer locations on a map?', 'answer' => 'Yes. Customers, territories and permitted field activity can be represented geographically where the workflow requires it.'],
+                    ['question' => 'Can collections and follow-ups be linked to customer visits?', 'answer' => 'Yes. Visit records can connect collections, notes, next actions and customer history.'],
+                ],
+                'meta_title' => 'Field Sales Management Software — Visits, Territories & Tracking | BusinessOS',
+                'meta_description' => 'Field sales management software for salesman mobile workflows, territories, customer visits, attendance, collections, follow-ups and live management visibility.',
+            ],
+            [
+                'title' => 'Financial Management Software',
+                'slug' => 'financial-management-software',
+                'eyebrow' => 'Financial systems',
+                'headline' => 'Financial software built around traceable entries, balances, approvals and management reporting.',
+                'excerpt' => 'Manage chart of accounts, journals, cash and bank, receivables, payables, expenses, approvals and financial reporting with clear links back to operational transactions.',
+                'content' => <<<'TEXT'
+A financial management system should make every balance explainable. Reports are only trustworthy when the journals, payments, receipts, expenses and operational postings behind them are traceable.
+
+## Start with a usable chart of accounts
+
+The chart of accounts should reflect how management wants to understand the organization without becoming unnecessarily detailed. Account groups, subaccounts and reporting structure should be agreed before historical data is imported.
+
+## Separate entry from approval where needed
+
+Organizations often need controls around expenses, payments, journal adjustments or period closing. Permissions and approval steps should reflect responsibility instead of giving every user the same accounting power.
+
+## Connect receivables and payables
+
+Customer balances should connect to invoices, receipts, discounts and adjustments. Supplier balances should connect to purchasing, invoices and payments. This allows the ledger to explain why an amount remains outstanding.
+
+## Reconcile cash and bank activity
+
+Cashboxes and bank accounts need transaction history and reconciliation. Where cashier or daily closing is used, the expected balance should be compared with the counted or confirmed amount.
+
+## Link finance to operations
+
+When appropriate, sales, purchasing, inventory or production transactions can create accounting entries automatically. The posting rules should be explicit so finance staff can understand how operational activity reaches the ledger.
+
+## Protect reporting periods
+
+Closed or approved periods should not be silently changed. Reversal, reopening or adjustment workflows can preserve auditability when a correction is genuinely required.
+
+The goal is a financial system where management reports can be traced back to the transactions that created them.
+TEXT,
+                'target_keywords' => ['financial management software', 'accounting system', 'business financial software', 'receivables payables software', 'financial reporting system'],
+                'related_product_slugs' => ['financial-systems', 'erp'],
+                'faq' => [
+                    ['question' => 'Can financial software integrate with ERP operations?', 'answer' => 'Yes. Sales, purchasing, inventory or production can create accounting entries when the organization wants integrated financial posting.'],
+                    ['question' => 'Can approvals be required for financial transactions?', 'answer' => 'Yes. Expenses, payments, journals and other sensitive actions can be controlled by role and approval workflow.'],
+                    ['question' => 'Can opening balances or historical accounting data be migrated?', 'answer' => 'Yes. Migration can include account mapping, opening balances, selected history and reconciliation before go-live.'],
+                ],
+                'meta_title' => 'Financial Management Software — Ledgers, Cash, Receivables & Reporting | BusinessOS',
+                'meta_description' => 'Financial management software for chart of accounts, journals, cash/bank, receivables, payables, expenses, approvals and business reporting.',
+            ],
         ];
     }
 }
