@@ -15,6 +15,7 @@ class PageVisit extends Model
         'country_code',
         'referrer_host',
         'user_agent_family',
+        'device_type',
         'occurred_at',
     ];
 

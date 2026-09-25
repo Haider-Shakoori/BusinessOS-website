@@ -34,6 +34,7 @@ class TrackPageView
                 'country_code' => $this->countryCode($request),
                 'referrer_host' => $this->referrerHost($request),
                 'user_agent_family' => $this->userAgentFamily($request),
+                'device_type' => $this->deviceType($request),
                 'occurred_at' => now(),
             ]);
         } catch (Throwable) {
@@ -59,6 +60,10 @@ class TrackPageView
             return false;
         }
 
+        if ((string) $request->cookie(config('analytics.internal_cookie', 'bos_internal')) === '1') {
+            return false;
+        }
+
         if ($response->getStatusCode() < 200 || $response->getStatusCode() >= 400) {
             return false;
         }
@@ -70,7 +75,7 @@ class TrackPageView
         $userAgent = strtolower((string) $request->userAgent());
 
         return $userAgent === '' || ! preg_match(
-            '/bot|crawler|spider|slurp|bingpreview|facebookexternalhit|monitoring|uptime/i',
+            '/bot|crawler|spider|slurp|bingpreview|facebookexternalhit|monitoring|uptime|headless|lighthouse/i',
             $userAgent
         );
     }
@@ -78,16 +83,33 @@ class TrackPageView
     private function countryCode(Request $request): ?string
     {
         foreach (config('analytics.country_headers', []) as $header) {
-            $value = strtoupper(trim((string) $request->header($header)));
+            $code = $this->normalizeCountryCode($request->header($header));
 
-            if (preg_match('/^[A-Z]{2}$/', $value) && ! in_array($value, ['XX', 'T1'], true)) {
-                return $value;
+            if ($code) {
+                return $code;
             }
         }
 
-        $serverValue = strtoupper(trim((string) $request->server('GEOIP_COUNTRY_CODE')));
+        foreach (config('analytics.country_server_vars', []) as $serverVar) {
+            $code = $this->normalizeCountryCode($request->server($serverVar));
 
-        return preg_match('/^[A-Z]{2}$/', $serverValue) ? $serverValue : null;
+            if ($code) {
+                return $code;
+            }
+        }
+
+        return null;
+    }
+
+    private function normalizeCountryCode(mixed $value): ?string
+    {
+        $code = strtoupper(trim((string) $value));
+
+        if (! preg_match('/^[A-Z]{2}$/', $code) || in_array($code, ['XX', 'T1'], true)) {
+            return null;
+        }
+
+        return $code;
     }
 
     private function referrerHost(Request $request): ?string
@@ -107,10 +129,29 @@ class TrackPageView
 
         return match (true) {
             str_contains($userAgent, 'edg/') => 'Edge',
-            str_contains($userAgent, 'firefox/') => 'Firefox',
+            str_contains($userAgent, 'firefox/') || str_contains($userAgent, 'fxios/') => 'Firefox',
             str_contains($userAgent, 'chrome/') || str_contains($userAgent, 'crios/') => 'Chrome',
             str_contains($userAgent, 'safari/') => 'Safari',
             default => 'Other',
         };
+    }
+
+    private function deviceType(Request $request): ?string
+    {
+        $userAgent = strtolower((string) $request->userAgent());
+
+        if ($userAgent === '') {
+            return null;
+        }
+
+        if (preg_match('/ipad|tablet|kindle|silk\//i', $userAgent)) {
+            return 'Tablet';
+        }
+
+        if (preg_match('/mobile|iphone|ipod|android.*mobile|windows phone/i', $userAgent)) {
+            return 'Mobile';
+        }
+
+        return 'Desktop';
     }
 }

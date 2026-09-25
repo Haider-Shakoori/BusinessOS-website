@@ -3,14 +3,32 @@
 return [
     'enabled' => env('ANALYTICS_ENABLED', true),
     'visitor_cookie' => 'bos_vid',
+    'internal_cookie' => 'bos_internal',
     'cookie_days' => 400,
     'retention_days' => (int) env('ANALYTICS_RETENTION_DAYS', 400),
+
+    // Country detection stays local/privacy-first. BusinessOS trusts only
+    // host/CDN-provided ISO country signals and never stores raw visitor IPs.
     'country_headers' => array_values(array_filter([
         env('ANALYTICS_COUNTRY_HEADER'),
         'CF-IPCountry',
         'CloudFront-Viewer-Country',
         'X-Vercel-IP-Country',
+        'X-Country-Code',
+        'X-GeoIP-Country',
+        'X-AppEngine-Country',
     ])),
+    'country_server_vars' => [
+        'GEOIP_COUNTRY_CODE',
+        'MM_COUNTRY_CODE',
+        'COUNTRY_CODE',
+        'HTTP_CF_IPCOUNTRY',
+        'HTTP_CLOUDFRONT_VIEWER_COUNTRY',
+        'HTTP_X_COUNTRY_CODE',
+        'HTTP_X_GEOIP_COUNTRY',
+        'HTTP_X_APPENGINE_COUNTRY',
+    ],
+
     'country_names' => [
         'AF' => 'Afghanistan',
         'AE' => 'United Arab Emirates',
