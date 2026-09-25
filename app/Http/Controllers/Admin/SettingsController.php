@@ -105,6 +105,8 @@ class SettingsController extends Controller
                 'seo_default_title' => ['label' => 'Default SEO title', 'default' => 'BusinessOS — Business Software for Field Sales, ERP & Retail', 'max' => 190],
                 'seo_default_description' => ['label' => 'Default SEO description', 'default' => 'BusinessOS builds practical software for field sales, ERP, retail operations and business management.', 'max' => 255],
                 'og_image' => ['label' => 'Default OG image URL/path', 'default' => '', 'max' => 2048],
+                'google_site_verification' => ['label' => 'Google Search Console verification token', 'default' => '', 'max' => 255],
+                'bing_site_verification' => ['label' => 'Bing Webmaster Tools verification token', 'default' => '', 'max' => 255],
             ],
         ];
     }
