@@ -4,7 +4,7 @@ return [
     'brand' => [
         'name' => 'BusinessOS',
         'tagline' => 'Modern software. Serious engineering. Fast everywhere.',
-        'description' => 'BusinessOS builds practical business software for sales, operations, retail, management, automation, analytics, and growth.',
+        'description' => 'BusinessOS builds business software and custom digital solutions including websites, ERP, MIS, web applications, data migration, modernization, integrations, automation, analytics and industry-specific systems.',
     ],
 
     'apps' => [
