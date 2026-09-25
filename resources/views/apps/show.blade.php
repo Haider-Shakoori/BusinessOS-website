@@ -88,9 +88,17 @@
         </div>
         <div class="product-screenshot-grid">
             @foreach($app['screenshots'] as $screenshot)
-                <figure>
-                    <img src="{{ $screenshot }}" alt="{{ $app['name'] }} interface screenshot {{ $loop->iteration }}" loading="lazy" decoding="async">
-                </figure>
+                @php
+                    $screenshotUrl = is_array($screenshot) ? ($screenshot['url'] ?? '') : $screenshot;
+                    $screenshotAlt = is_array($screenshot) ? trim((string) ($screenshot['alt'] ?? '')) : '';
+                    $screenshotCaption = is_array($screenshot) ? trim((string) ($screenshot['caption'] ?? '')) : '';
+                @endphp
+                @if($screenshotUrl)
+                    <figure>
+                        <img src="{{ $screenshotUrl }}" alt="{{ $screenshotAlt ?: $app['name'].' interface screenshot '.$loop->iteration }}" loading="lazy" decoding="async">
+                        @if($screenshotCaption)<figcaption>{{ $screenshotCaption }}</figcaption>@endif
+                    </figure>
+                @endif
             @endforeach
         </div>
     </div>
