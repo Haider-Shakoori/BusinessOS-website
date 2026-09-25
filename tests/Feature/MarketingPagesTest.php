@@ -125,8 +125,13 @@ class MarketingPagesTest extends TestCase
             ->assertOk()
             ->assertSee('Waiter mobile ordering')
             ->assertSee('Waiters select the table')
-            ->assertSee('Kitchen order flow')
-            ->assertSee('Table management')
+            ->assertSee('Kitchen stations &amp; KOT', false)
+            ->assertSee('Transfer &amp; merge tables', false)
+            ->assertSee('Split bills')
+            ->assertSee('Waiter shifts &amp; accountability', false)
+            ->assertSee('Void, cancellation &amp; complimentary controls', false)
+            ->assertSee('Cashier closing')
+            ->assertSee('Restaurant reporting')
             ->assertDontSee('customer mobile ordering', false);
     }
 
