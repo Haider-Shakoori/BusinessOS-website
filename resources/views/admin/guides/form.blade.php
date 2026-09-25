@@ -46,6 +46,19 @@
                 <textarea class="cms-content-editor" name="content" rows="22" required>{{ old('content', $guide->content) }}</textarea>
                 @error('content')<small>{{ $message }}</small>@enderror
             </label>
+
+            <div class="admin-form-section-head"><span>AUTHOR</span><h2>Expert attribution</h2></div>
+            <div class="admin-form-row">
+                <label>Author name
+                    <input type="text" name="author_name" maxlength="190" value="{{ old('author_name', $guide->author_name ?: 'BusinessOS Editorial Team') }}">
+                </label>
+                <label>Author role
+                    <input type="text" name="author_role" maxlength="190" value="{{ old('author_role', $guide->author_role ?: 'Business software & operations') }}">
+                </label>
+            </div>
+            <label>Author bio
+                <textarea name="author_bio" rows="4" maxlength="1200">{{ old('author_bio', $guide->author_bio ?: 'BusinessOS publishes practical guidance based on software engineering, operational workflows and implementation experience.') }}</textarea>
+            </label>
         </section>
 
         <section class="admin-panel admin-form">
