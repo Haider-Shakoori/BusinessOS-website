@@ -37,7 +37,7 @@ class SearchGrowthTest extends TestCase
             ->assertSee('waiter mobile ordering')
             ->assertSee('Kitchen Order Ticket')
             ->assertSee('split bills')
-            ->assertSee('cashier shifts')
+            ->assertSee('Cashier shifts')
             ->assertSee('closing variance')
             ->assertDontSee('customers place restaurant orders', false);
 
