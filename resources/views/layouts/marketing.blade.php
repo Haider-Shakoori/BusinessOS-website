@@ -2,7 +2,8 @@
     $locale = app()->getLocale();
     $isRtl = in_array($locale, ['fa', 'ps'], true);
     $canonical = $meta['canonical'].($locale === 'en' ? '' : '?lang='.$locale);
-    $ogImage = $siteSettings->get('og_image');
+    $ogImage = $meta['image'] ?? $siteSettings->get('og_image');
+    $ogImageAlt = $meta['image_alt'] ?? $meta['title'];
     $brandName = $siteSettings->get('brand_name', 'BusinessOS');
     $cmsLabel = static fn (string $key, string $fallback): string =>
         $locale === 'en' ? (string) $siteSettings->get($key, $fallback) : $fallback;
@@ -32,11 +33,12 @@
     <meta property="og:url" content="{{ $canonical }}">
     @if($ogImage)
         <meta property="og:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">
-        <meta property="og:image:alt" content="{{ $meta['title'] }}">
+        <meta property="og:image:alt" content="{{ $ogImageAlt }}">
     @endif
     <meta name="twitter:card" content="{{ $ogImage ? 'summary_large_image' : 'summary' }}">
     <meta name="twitter:title" content="{{ $meta['title'] }}">
     <meta name="twitter:description" content="{{ $meta['description'] }}">
+    @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
