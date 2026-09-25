@@ -259,7 +259,7 @@ Analytics and Search Console data should guide the next content decisions. Impre
 TEXT,
                 'meta_title' => 'Business Website SEO Foundation: What to Build First | BusinessOS',
                 'meta_description' => 'Learn the website foundations SEO depends on: useful service pages, crawlability, internal links, performance, structured data, authority and search measurement.',
-            ],,
+            ],
             [
                 'title' => 'POS vs ERP: Where Does Each System Fit?',
                 'slug' => 'pos-vs-erp',
