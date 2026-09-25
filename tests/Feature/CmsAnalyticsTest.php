@@ -122,7 +122,7 @@ class CmsAnalyticsTest extends TestCase
             ->assertSee('Visitors by country')
             ->assertSee('Page views by country')
             ->assertSee('External referrers')
-            ->assertSee('Landing pages')
+            ->assertSee('Where visitors entered')
             ->assertSee('Product pages people viewed')
             ->assertSee('Browser mix')
             ->assertSee('Device mix')
