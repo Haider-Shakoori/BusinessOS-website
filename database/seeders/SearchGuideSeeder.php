@@ -450,7 +450,7 @@ The goal is a system where the numbers are not only calculated correctly but can
 TEXT,
                 'meta_title' => 'Financial Management System Controls: Practical Checklist | BusinessOS',
                 'meta_description' => 'A practical checklist for financial software covering chart of accounts, journals, receivables, payables, cash, approvals, fiscal periods and auditability.',
-            ]
+            ],
         ];
     }
 }
