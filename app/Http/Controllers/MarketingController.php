@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guide;
 use App\Models\SeoPage;
+use App\Services\ContentDiscovery;
 use App\Services\ProductCatalog;
 use App\Services\SiteSettings;
 use Illuminate\Contracts\View\View;
@@ -15,6 +16,7 @@ class MarketingController extends Controller
     public function __construct(
         private readonly ProductCatalog $products,
         private readonly SiteSettings $settings,
+        private readonly ContentDiscovery $contentDiscovery,
     ) {}
 
     public function home(): View
@@ -129,9 +131,12 @@ class MarketingController extends Controller
             ->values();
 
         $primaryScreenshot = $screenshots->first();
+        $relatedContent = $this->contentDiscovery->forProduct($app['slug']);
 
         return view('apps.show', [
             'app' => $app,
+            'relatedServices' => $relatedContent['services'],
+            'relatedGuides' => $relatedContent['guides'],
             'meta' => [
                 'title' => $app['seo']['title'],
                 'description' => $app['seo']['description'],
