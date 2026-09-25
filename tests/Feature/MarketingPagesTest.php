@@ -124,7 +124,7 @@ class MarketingPagesTest extends TestCase
         $this->get('/apps/restaurant-management')
             ->assertOk()
             ->assertSee('Waiter mobile ordering')
-            ->assertSee('Waiters use it at the table', false)
+            ->assertSee('Waiters select the table')
             ->assertSee('Kitchen order flow')
             ->assertSee('Table management')
             ->assertDontSee('customer mobile ordering', false);
