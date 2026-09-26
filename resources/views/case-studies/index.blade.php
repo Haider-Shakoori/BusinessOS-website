@@ -17,7 +17,7 @@
                     <article class="resource-card">
                         <div class="resource-card-top">
                             <span>{{ $caseStudy->industry }}</span>
-                            <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->format('M j, Y') }}</time>
+                            <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->locale(app()->getLocale())->translatedFormat('M j, Y') }}</time>
                         </div>
                         <h2><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h2>
                         <p>{{ $caseStudy->summary }}</p>
