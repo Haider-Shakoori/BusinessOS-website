@@ -83,7 +83,7 @@ Artisan::command('search:indexnow', function (IndexNowService $indexNow, Product
         // Migrations may not have run yet.
     }
 
-    if (! $indexNow->submit($urls->unique()->values()->all())) {
+    if (!$indexNow->submit($urls->unique()->values()->all())) {
         $this->warn('IndexNow is disabled, not configured, or did not accept the submission.');
 
         return 1;
