@@ -17,7 +17,7 @@
                     <article class="resource-card">
                         <div class="resource-card-top">
                             <span>{{ $guide->category }}</span>
-                            <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time>
+                            <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->locale(app()->getLocale())->translatedFormat('M j, Y') }}</time>
                         </div>
                         <h2><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h2>
                         <p>{{ $guide->excerpt }}</p>
