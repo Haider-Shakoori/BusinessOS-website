@@ -32,7 +32,7 @@
                 <div class="ecosystem-console-top">
                     <div><i></i><i></i><i></i></div>
                     <strong>BusinessOS</strong>
-                    <span>Product ecosystem</span>
+                    <span>{{ __('marketing.ui.home.ecosystem') }}</span>
                 </div>
 
                 <div class="ecosystem-console-body">
@@ -69,21 +69,21 @@
 
 <section class="calm-signal-bar ecosystem-signal-bar">
     <div class="shell">
-        <span>Website development</span>
-        <span>Custom ERP & MIS</span>
-        <span>Web applications</span>
-        <span>Data migration</span>
-        <span>Application upgrades</span>
+        <span>{{ __('marketing.ui.home.website_development') }}</span>
+        <span>{{ __('marketing.ui.home.custom_erp') }}</span>
+        <span>{{ __('marketing.ui.home.web_apps') }}</span>
+        <span>{{ __('marketing.ui.home.data_migration') }}</span>
+        <span>{{ __('marketing.ui.home.app_upgrades') }}</span>
     </div>
 </section>
 
 <section class="calm-section business-services" id="services">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Software development services</span>
-            <h2>Products when they fit. Custom software when your workflow needs something different.</h2>
+            <span class="calm-kicker">{{ __('marketing.ui.home.services_kicker') }}</span>
+            <h2>{{ __('marketing.ui.home.services_title') }}</h2>
         </div>
-        <p>BusinessOS develops websites, tailored ERP and MIS platforms, web applications, database systems and integrations. We also migrate data, modernize older applications and provide ongoing technical improvement.</p>
+        <p>{{ __('marketing.ui.home.services_copy') }}</p>
     </div>
 
     <div class="shell business-service-grid">
@@ -92,14 +92,14 @@
                 <span class="service-card-index">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                 <h3>{{ $service['name'] }}</h3>
                 <p>{{ $service['short'] }}</p>
-                <a class="text-link" href="{{ route('services') }}#{{ $service['slug'] }}">Learn more <span>→</span></a>
+                <a class="text-link" href="{{ route('services') }}#{{ $service['slug'] }}">{{ __('marketing.ui.home.learn_more') }} <span>→</span></a>
             </article>
         @endforeach
     </div>
 
     <div class="shell business-services-cta">
-        <p>Need a specialized workflow, modernization project or system not shown here?</p>
-        <a class="button button-primary" href="{{ route('services') }}">Explore all software services <span aria-hidden="true">→</span></a>
+        <p>{{ __('marketing.ui.home.specialized_copy') }}</p>
+        <a class="button button-primary" href="{{ route('services') }}">{{ __('marketing.ui.home.all_services') }} <span aria-hidden="true">→</span></a>
     </div>
 </section>
 
@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="ecosystem-product-actions">
-                    <a class="button button-ghost" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }}</a>
+                    <a class="button button-ghost" href="{{ route('apps.show', $app['slug']) }}">{{ __('marketing.ui.home.explore') }} {{ $app['name'] }}</a>
                 </div>
             </article>
         @endforeach
@@ -154,7 +154,7 @@
                 <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
                 <h3>{{ $app['headline'] }}</h3>
                 <p>{{ $app['short_description'] }}</p>
-                <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+                <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">{{ __('marketing.ui.home.explore') }} {{ $app['name'] }} <span>→</span></a>
             </article>
         @endforeach
     </div>
@@ -169,9 +169,9 @@
         </div>
 
         <div class="calm-value-list">
-            <article><span>01</span><div><h3>Built around real workflows</h3><p>Products start from the job people need to complete, not from a generic feature checklist.</p></div></article>
-            <article><span>02</span><div><h3>Designed for local realities</h3><p>Low-bandwidth conditions, mobile work and Afghanistan-specific business requirements are considered where they matter.</p></div></article>
-            <article><span>03</span><div><h3>Ready to grow as a product family</h3><p>New applications can join BusinessOS without losing a clear identity or making existing products harder to use.</p></div></article>
+            <article><span>01</span><div><h3>{{ __('marketing.ui.home.value_1_title') }}</h3><p>{{ __('marketing.ui.home.value_1_copy') }}</p></div></article>
+            <article><span>02</span><div><h3>{{ __('marketing.ui.home.value_2_title') }}</h3><p>{{ __('marketing.ui.home.value_2_copy') }}</p></div></article>
+            <article><span>03</span><div><h3>{{ __('marketing.ui.home.value_3_title') }}</h3><p>{{ __('marketing.ui.home.value_3_copy') }}</p></div></article>
         </div>
     </div>
 </section>
@@ -185,10 +185,10 @@
         </div>
 
         <div class="calm-dark-cards">
-            <article><strong>Responsive</strong><span>Purposeful layouts for desktop, tablet and mobile.</span></article>
-            <article><strong>Lightweight</strong><span>Public pages avoid unnecessary front-end weight and dependencies.</span></article>
-            <article><strong>Search-ready</strong><span>Structured, crawlable product pages support discoverability.</span></article>
-            <article><strong>Product-focused</strong><span>Field sales, ERP and retail remain clear applications instead of one overloaded interface.</span></article>
+            <article><strong>{{ __('marketing.ui.home.responsive') }}</strong><span>{{ __('marketing.ui.home.responsive_copy') }}</span></article>
+            <article><strong>{{ __('marketing.ui.home.lightweight') }}</strong><span>{{ __('marketing.ui.home.lightweight_copy') }}</span></article>
+            <article><strong>{{ __('marketing.ui.home.search_ready') }}</strong><span>{{ __('marketing.ui.home.search_ready_copy') }}</span></article>
+            <article><strong>{{ __('marketing.ui.home.product_focused') }}</strong><span>{{ __('marketing.ui.home.product_focused_copy') }}</span></article>
         </div>
     </div>
 </section>
@@ -196,10 +196,10 @@
 <section class="calm-section calm-resources" id="case-studies">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Implementation evidence</span>
-            <h2>Real systems, documented without invented ROI claims.</h2>
+            <span class="calm-kicker">{{ __('marketing.ui.home.evidence') }}</span>
+            <h2>{{ __('marketing.ui.home.evidence_title') }}</h2>
         </div>
-        <a class="text-link" href="{{ route('case-studies.index') }}">View case studies <span>→</span></a>
+        <a class="text-link" href="{{ route('case-studies.index') }}">{{ __('marketing.ui.home.view_cases') }} <span>→</span></a>
     </div>
 
     <div class="shell">
@@ -213,14 +213,14 @@
                         </div>
                         <h3><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h3>
                         <p>{{ $caseStudy->summary }}</p>
-                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">Read case study <span>→</span></a>
+                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">{{ __('marketing.ui.home.read_case') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
         @else
             <div class="calm-empty">
-                <strong>Implementation stories are being prepared.</strong>
-                <span>Only verified project work is published as a BusinessOS case study.</span>
+                <strong>{{ __('marketing.ui.home.cases_empty_title') }}</strong>
+                <span>{{ __('marketing.ui.home.cases_empty_copy') }}</span>
             </div>
         @endif
     </div>
@@ -229,7 +229,7 @@
 <section class="calm-section calm-resources" id="resources">
     <div class="shell calm-heading">
         <div>
-            <span class="calm-kicker">Resources</span>
+            <span class="calm-kicker">{{ __('marketing.ui.home.resources') }}</span>
             <h2>{{ $homeText('homepage_resources_title', __('marketing.home.resources_title')) }}</h2>
         </div>
         <a class="text-link" href="{{ route('resources.index') }}">{{ __('marketing.actions.view_resources') }} <span>→</span></a>
@@ -252,8 +252,8 @@
             </div>
         @else
             <div class="calm-empty">
-                <strong>Resources are being prepared.</strong>
-                <span>Published guides will appear here automatically from the BusinessOS CMS.</span>
+                <strong>{{ __('marketing.ui.home.resources_empty_title') }}</strong>
+                <span>{{ __('marketing.ui.home.resources_empty_copy') }}</span>
             </div>
         @endif
     </div>
