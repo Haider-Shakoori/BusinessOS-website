@@ -331,7 +331,7 @@ Business processes evolve. Maintainable code, clear database design, role-based 
 BusinessOS focuses on practical software that connects business workflows with maintainable Laravel, PHP, database and mobile technology.
 TEXT,
                 'target_keywords' => ['software development Afghanistan', 'software company Afghanistan', 'custom software Afghanistan', 'web application development Afghanistan', 'Laravel development Afghanistan'],
-                'related_product_slugs' => ['erp', 'fieldpulse', 'pos'],
+                'related_product_slugs' => ['erp', 'fieldpulse'],
                 'faq' => [
                     ['question' => 'What kinds of software can BusinessOS build?', 'answer' => 'Projects can include websites, custom ERP and MIS systems, web applications, mobile-connected workflows, integrations, data migration and industry-specific software.'],
                     ['question' => 'Can software support English, Dari and Pashto?', 'answer' => 'Yes. Multilingual interfaces and right-to-left presentation can be implemented when the project requires them.'],
