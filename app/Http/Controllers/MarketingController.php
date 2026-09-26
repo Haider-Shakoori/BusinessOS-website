@@ -25,8 +25,8 @@ class MarketingController extends Controller
         $apps = $this->products->homepage();
         $latestGuides = $this->latestGuides();
         $latestCaseStudies = $this->latestCaseStudies();
-        $services = collect(config('businessos_services.services', []));
-        $serviceFaqs = config('businessos_services.faq', []);
+        $services = $this->localizedServices();
+        $serviceFaqs = $this->localizedServiceFaqs();
 
         return view('home', [
             'apps' => $apps,
@@ -83,9 +83,10 @@ class MarketingController extends Controller
         return view('apps.index', [
             'apps' => $apps,
             'meta' => [
-                'title' => 'BusinessOS Products — ERP, Field Sales, POS, Restaurant, Pharmacy & Manufacturing',
-                'description' => 'Explore BusinessOS software for field sales, ERP, retail POS, waiter-based restaurant ordering, pharmacy operations, raw materials, manufacturing and financial management.',
+                'title' => __('marketing.meta.apps_title'),
+                'description' => __('marketing.meta.apps_description'),
                 'canonical' => route('apps.index'),
+                'localized' => true,
             ],
             'schema' => [
                 [
@@ -195,8 +196,8 @@ class MarketingController extends Controller
 
     public function services(): View
     {
-        $services = collect(config('businessos_services.services', []));
-        $serviceFaqs = config('businessos_services.faq', []);
+        $services = $this->localizedServices();
+        $serviceFaqs = $this->localizedServiceFaqs();
 
         try {
             $searchPages = SeoPage::published()->orderBy('title')->get();
@@ -209,9 +210,10 @@ class MarketingController extends Controller
             'serviceFaqs' => $serviceFaqs,
             'searchPages' => $searchPages,
             'meta' => [
-                'title' => 'Software Development Services — Websites, Custom ERP, MIS, Web Apps & Data Migration | BusinessOS',
-                'description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, APIs, automation, database systems and software support.',
+                'title' => __('marketing.meta.services_title'),
+                'description' => __('marketing.meta.services_description'),
                 'canonical' => route('services'),
+                'localized' => true,
             ],
             'schema' => [
                 [
@@ -255,8 +257,8 @@ class MarketingController extends Controller
     {
         return view('pages.pricing', [
             ...$this->pageMeta(
-                'BusinessOS Pricing — Product Pricing & Deployment Options',
-                'Review the current commercial model and deployment approach for BusinessOS products without placeholder or invented pricing.',
+                __('marketing.meta.pricing_title'),
+                __('marketing.meta.pricing_description'),
                 route('pricing')
             ),
             'apps' => $this->products->all(),
@@ -267,8 +269,8 @@ class MarketingController extends Controller
     {
         return view('pages.about', [
             ...$this->pageMeta(
-                'About BusinessOS — Business Software & Custom Software Development',
-                'Learn how BusinessOS approaches business software, custom development, modernization, performance and practical digital systems.',
+                __('marketing.meta.about_title'),
+                __('marketing.meta.about_description'),
                 route('about')
             ),
             'aboutTitle' => $this->settings->localized('about_title', 'Software shaped around the way businesses actually operate.'),
@@ -280,8 +282,8 @@ class MarketingController extends Controller
     public function security(): View
     {
         return view('pages.security', $this->pageMeta(
-            'BusinessOS Security — Product Security Principles',
-            'Review the security principles BusinessOS applies to application design, access control, data handling and production operations.',
+            __('marketing.meta.security_title'),
+            __('marketing.meta.security_description'),
             route('security')
         ));
     }
@@ -289,8 +291,8 @@ class MarketingController extends Controller
     public function privacy(): View
     {
         return view('pages.privacy', $this->pageMeta(
-            'BusinessOS Privacy Policy',
-            'Read how BusinessOS handles information submitted through the public website and product inquiry forms.',
+            __('marketing.meta.privacy_title'),
+            __('marketing.meta.privacy_description'),
             route('privacy')
         ));
     }
@@ -298,8 +300,8 @@ class MarketingController extends Controller
     public function terms(): View
     {
         return view('pages.terms', $this->pageMeta(
-            'BusinessOS Terms of Use',
-            'Read the terms governing use of the BusinessOS public website and informational product materials.',
+            __('marketing.meta.terms_title'),
+            __('marketing.meta.terms_description'),
             route('terms')
         ));
     }
@@ -308,16 +310,16 @@ class MarketingController extends Controller
     {
         return view('pages.contact', [
             ...$this->pageMeta(
-                'Contact BusinessOS — Software Development, Products & Partnerships',
-                'Contact BusinessOS about website development, custom ERP or MIS, web applications, data migration, upgrades, products, integrations or partnerships.',
+                __('marketing.meta.contact_title'),
+                __('marketing.meta.contact_description'),
                 route('contact')
             ),
             'apps' => $this->products->all(),
             'inquiryType' => 'contact',
             'selectedApp' => request('app'),
-            'pageKicker' => 'Contact BusinessOS',
-            'pageTitle' => 'Tell us what you need to build, modernize or run better.',
-            'pageLead' => 'Share the workflow, website, application, data problem or BusinessOS product you want to discuss. Your request is stored securely for follow-up.',
+            'pageKicker' => __('marketing.contact_page.kicker'),
+            'pageTitle' => __('marketing.contact_page.title'),
+            'pageLead' => __('marketing.contact_page.lead'),
         ]);
     }
 
@@ -325,17 +327,54 @@ class MarketingController extends Controller
     {
         return view('pages.contact', [
             ...$this->pageMeta(
-                'Request a BusinessOS Product Demo',
-                'Request a demo of a BusinessOS product and tell us about your team and operational needs.',
+                __('marketing.meta.demo_title'),
+                __('marketing.meta.demo_description'),
                 route('demo')
             ),
             'apps' => $this->products->all(),
             'inquiryType' => 'demo',
             'selectedApp' => request('app'),
-            'pageKicker' => 'Request a demo',
-            'pageTitle' => 'See how BusinessOS fits your actual workflow.',
-            'pageLead' => 'Tell us about your team and the workflow you want to improve. We will use that context to make the product conversation relevant.',
+            'pageKicker' => __('marketing.demo_page.kicker'),
+            'pageTitle' => __('marketing.demo_page.title'),
+            'pageLead' => __('marketing.demo_page.lead'),
         ]);
+    }
+
+    private function localizedServices(): Collection
+    {
+        $services = collect(config('businessos_services.services', []));
+        $locale = app()->getLocale();
+
+        if (! in_array($locale, ['fa', 'ps'], true)) {
+            return $services;
+        }
+
+        return $services->map(function (array $service) use ($locale): array {
+            $key = 'services.catalog.'.($service['slug'] ?? '');
+
+            if (! app('translator')->has($key, $locale)) {
+                return $service;
+            }
+
+            $translation = trans($key, [], $locale);
+
+            return is_array($translation) ? array_replace_recursive($service, $translation) : $service;
+        });
+    }
+
+    private function localizedServiceFaqs(): array
+    {
+        $locale = app()->getLocale();
+
+        if (in_array($locale, ['fa', 'ps'], true) && app('translator')->has('services.faq', $locale)) {
+            $faq = trans('services.faq', [], $locale);
+
+            if (is_array($faq)) {
+                return $faq;
+            }
+        }
+
+        return config('businessos_services.faq', []);
     }
 
     private function latestGuides(): Collection
@@ -363,6 +402,7 @@ class MarketingController extends Controller
                 'title' => $title,
                 'description' => $description,
                 'canonical' => $canonical,
+                'localized' => true,
             ],
             'schema' => [],
         ];
