@@ -18,7 +18,7 @@ class ProductCatalog
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->applyLanguageOverlay($product->toMarketingArray())]);
 
             return $database
                 ->union($configured)
@@ -68,7 +68,7 @@ class ProductCatalog
                 ->first();
 
             if ($product) {
-                return $product->toMarketingArray();
+                return $this->applyLanguageOverlay($product->toMarketingArray());
             }
         } catch (Throwable) {
             // Fall through to the configuration catalog.
@@ -108,7 +108,47 @@ class ProductCatalog
             $app['seo']['description'] = $translation['seo_description'];
         }
 
+        return $this->applyLanguageOverlay($app);
+    }
+
+    private function applyLanguageOverlay(array $app): array
+    {
+        $locale = app()->getLocale();
+
+        if (! in_array($locale, ['fa', 'ps'], true) || empty($app['slug'])) {
+            return $app;
+        }
+
+        $key = 'marketing.products.'.$app['slug'];
+
+        if (! app('translator')->has($key, $locale)) {
+            return $app;
+        }
+
+        $overlay = trans($key, [], $locale);
+
+        if (! is_array($overlay) || $overlay === []) {
+            return $app;
+        }
+
+        $app = $this->mergeLocalized($app, $overlay);
+        $app['has_localized_content'] = true;
+
         return $app;
+    }
+
+    private function mergeLocalized(array $base, array $overlay): array
+    {
+        foreach ($overlay as $key => $value) {
+            if (is_array($value) && isset($base[$key]) && is_array($base[$key]) && ! array_is_list($value)) {
+                $base[$key] = $this->mergeLocalized($base[$key], $value);
+                continue;
+            }
+
+            $base[$key] = $value;
+        }
+
+        return $base;
     }
 
     private function configuredProducts(): Collection
