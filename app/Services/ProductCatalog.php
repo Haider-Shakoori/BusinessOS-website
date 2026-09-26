@@ -44,7 +44,7 @@ class ProductCatalog
             $database = Product::query()
                 ->homepage()
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->applyLanguageOverlay($product->toMarketingArray())]);
 
             return $database
                 ->union($configured)
