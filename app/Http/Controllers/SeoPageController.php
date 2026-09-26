@@ -44,6 +44,7 @@ class SeoPageController extends Controller
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',
                         'url' => route('home'),
+                        'logo' => url('assets/brand/businessos-logo.svg'),
                     ],
                 ],
                 [
