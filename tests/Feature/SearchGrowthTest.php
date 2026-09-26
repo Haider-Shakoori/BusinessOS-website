@@ -49,7 +49,9 @@ class SearchGrowthTest extends TestCase
 
         $this->get('/services/software-development-afghanistan')
             ->assertOk()
-            ->assertSee('Software development for Afghan businesses');
+            ->assertSee('<title>Software Development in Afghanistan | BusinessOS</title>', false)
+            ->assertSee('Software development for Afghan businesses')
+            ->assertSee('assets/brand/businessos-logo.svg', false);
 
         $this->get('/sitemap.xml')
             ->assertOk()
@@ -124,6 +126,7 @@ class SearchGrowthTest extends TestCase
         $this->get('/case-studies/fieldpulse-field-sales-platform')
             ->assertOk()
             ->assertSee('map-based territory drawing')
+            ->assertSee('assets/brand/businessos-logo.svg', false)
             ->assertSee('/apps/fieldpulse', false)
             ->assertSee('/services/field-sales-management-software', false)
             ->assertSee('/guides/how-to-track-field-sales-team', false);
