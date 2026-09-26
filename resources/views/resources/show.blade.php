@@ -54,7 +54,7 @@
             </div>
             @if($displayAuthorBio)
                 <aside class="seo-explainer-card" aria-label="{{ __('marketing.ui.guide.author') }}">
-                    <div><span class="kicker">About the author</span><h2>{{ $displayAuthorName }}</h2></div>
+                    <div><span class="kicker">{{ __('marketing.ui.guide.author') }}</span><h2>{{ $displayAuthorName }}</h2></div>
                     <div><p>{{ $displayAuthorBio }}</p></div>
                 </aside>
             @endif
