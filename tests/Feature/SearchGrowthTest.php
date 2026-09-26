@@ -120,8 +120,8 @@ class SearchGrowthTest extends TestCase
             ->assertOk()
             ->assertSee('Corrugated Carton Manufacturing ERP')
             ->assertSee('FieldPulse: Building a Web + Mobile Field Sales Operations Platform')
-            ->assertSee('BusinessOS POS: Full-Screen Multilingual Retail Checkout for Afghanistan')
-            ->assertSee('Localized E-commerce Storefront Modernization in Laravel');
+            ->assertSee('BusinessOS POS: Full-Screen Multilingual Retail Checkout')
+            ->assertSee('Localized E-commerce Storefront Modernization');
 
         $this->get('/case-studies/fieldpulse-field-sales-platform')
             ->assertOk()
@@ -138,13 +138,13 @@ class SearchGrowthTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('Implementation evidence')
-            ->assertSee('Real systems, documented without invented ROI claims.');
+            ->assertSee('Real systems described through real operational work.');
 
         $this->get('/sitemap.xml')
             ->assertOk()
             ->assertSee('/case-studies/corrugated-carton-manufacturing-erp', false)
             ->assertSee('/case-studies/fieldpulse-field-sales-platform', false)
-            ->assertSee('/case-studies/businessos-pos-afghanistan', false)
+            ->assertSee('/case-studies/businessos-pos-retail-checkout', false)
             ->assertSee('/case-studies/localized-ecommerce-storefront-modernization', false);
     }
 
