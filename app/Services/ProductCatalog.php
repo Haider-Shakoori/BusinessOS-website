@@ -116,7 +116,7 @@ class ProductCatalog
         $app = $this->applyLanguageOverlay($product->toMarketingArray());
         $locale = app()->getLocale();
 
-        if (! in_array($locale, ['fa', 'ps'], true)) {
+        if (in_array($locale, ['fa', 'ps'], true) === false) {
             return $app;
         }
 
@@ -143,19 +143,19 @@ class ProductCatalog
     {
         $locale = app()->getLocale();
 
-        if (! in_array($locale, ['fa', 'ps'], true) || empty($app['slug'])) {
+        if (in_array($locale, ['fa', 'ps'], true) === false || empty($app['slug'])) {
             return $app;
         }
 
         $key = 'products.'.$app['slug'];
 
-        if (! app('translator')->has($key, $locale)) {
+        if (app('translator')->has($key, $locale) === false) {
             return $app;
         }
 
         $overlay = trans($key, [], $locale);
 
-        if (! is_array($overlay) || $overlay === []) {
+        if (is_array($overlay) === false || $overlay === []) {
             return $app;
         }
 
@@ -168,7 +168,7 @@ class ProductCatalog
     private function mergeLocalized(array $base, array $overlay): array
     {
         foreach ($overlay as $key => $value) {
-            if (is_array($value) && isset($base[$key]) && is_array($base[$key]) && ! array_is_list($value)) {
+            if (is_array($value) && isset($base[$key]) && is_array($base[$key]) && array_is_list($value) === false) {
                 $base[$key] = $this->mergeLocalized($base[$key], $value);
                 continue;
             }
