@@ -5,14 +5,17 @@ return [
         'fieldpulse' => [
             'services' => ['field-sales-management-software', 'software-development-afghanistan'],
             'guides' => ['how-to-track-field-sales-team'],
+            'case_studies' => ['fieldpulse-field-sales-platform'],
         ],
         'erp' => [
             'services' => ['custom-erp-development', 'erp-software-afghanistan', 'inventory-management-software'],
             'guides' => ['erp-vs-mis-difference', 'how-to-migrate-from-excel-to-erp', 'custom-erp-vs-off-the-shelf-erp'],
+            'case_studies' => ['corrugated-carton-manufacturing-erp'],
         ],
         'pos' => [
             'services' => ['inventory-management-software', 'software-development-afghanistan'],
             'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
+            'case_studies' => ['businessos-pos-afghanistan'],
         ],
         'pharmacy-management' => [
             'services' => ['pharmacy-management-software', 'inventory-management-software'],
@@ -92,4 +95,28 @@ return [
         'restaurant-kot-kitchen-station-workflow' => ['products' => ['restaurant-management']],
         'financial-management-system-controls' => ['products' => ['financial-systems', 'erp']],
     ],
+
+    'case_studies' => [
+        'corrugated-carton-manufacturing-erp' => [
+            'products' => ['erp', 'raw-materials-db'],
+            'services' => ['manufacturing-erp', 'custom-erp-development'],
+            'guides' => ['bom-actual-consumption-production-costing'],
+        ],
+        'fieldpulse-field-sales-platform' => [
+            'products' => ['fieldpulse'],
+            'services' => ['field-sales-management-software'],
+            'guides' => ['how-to-track-field-sales-team'],
+        ],
+        'businessos-pos-afghanistan' => [
+            'products' => ['pos'],
+            'services' => ['inventory-management-software', 'software-development-afghanistan'],
+            'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
+        ],
+        'localized-ecommerce-storefront-modernization' => [
+            'products' => [],
+            'services' => ['legacy-application-modernization', 'website-development-afghanistan'],
+            'guides' => ['modernize-old-laravel-application', 'business-website-seo-foundation'],
+        ],
+    ],
+
 ];

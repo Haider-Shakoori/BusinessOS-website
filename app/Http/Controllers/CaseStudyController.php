@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseStudy;
+use App\Services\ContentDiscovery;
 use Illuminate\Contracts\View\View;
 
 class CaseStudyController extends Controller
 {
+    public function __construct(
+        private readonly ContentDiscovery $contentDiscovery,
+    ) {}
+
     public function index(): View
     {
         return view('case-studies.index', [
@@ -29,8 +34,13 @@ class CaseStudyController extends Controller
     {
         abort_unless($caseStudy->status === 'published' && $caseStudy->published_at?->lte(now()), 404);
 
+        $relatedContent = $this->contentDiscovery->forCaseStudy($caseStudy->slug);
+
         return view('case-studies.show', [
             'caseStudy' => $caseStudy,
+            'relatedProducts' => $relatedContent['products'],
+            'relatedServices' => $relatedContent['services'],
+            'relatedGuides' => $relatedContent['guides'],
             'meta' => [
                 'title' => $caseStudy->meta_title ?: $caseStudy->title.' | BusinessOS',
                 'description' => $caseStudy->meta_description ?: $caseStudy->summary,

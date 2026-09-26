@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CaseStudy;
 use App\Models\Guide;
 use App\Models\SeoPage;
 use Illuminate\Support\Collection;
@@ -18,6 +19,7 @@ class ContentDiscovery
         return [
             'services' => $this->publishedServices((array) ($mapping['services'] ?? [])),
             'guides' => $this->publishedGuides((array) ($mapping['guides'] ?? [])),
+            'caseStudies' => $this->publishedCaseStudies((array) ($mapping['case_studies'] ?? [])),
         ];
     }
 
@@ -42,6 +44,20 @@ class ContentDiscovery
         ];
     }
 
+    public function forCaseStudy(string $slug): array
+    {
+        $mapping = (array) config('content_discovery.case_studies.'.$slug, []);
+
+        return [
+            'products' => collect((array) ($mapping['products'] ?? []))
+                ->map(fn (string $productSlug) => $this->products->find($productSlug))
+                ->filter()
+                ->values(),
+            'services' => $this->publishedServices((array) ($mapping['services'] ?? [])),
+            'guides' => $this->publishedGuides((array) ($mapping['guides'] ?? [])),
+        ];
+    }
+
     private function publishedServices(array $slugs): Collection
     {
         if ($slugs === []) {
@@ -52,6 +68,21 @@ class ContentDiscovery
             $pages = SeoPage::published()->whereIn('slug', $slugs)->get()->keyBy('slug');
 
             return collect($slugs)->map(fn (string $slug) => $pages->get($slug))->filter()->values();
+        } catch (Throwable) {
+            return collect();
+        }
+    }
+
+    private function publishedCaseStudies(array $slugs): Collection
+    {
+        if ($slugs === []) {
+            return collect();
+        }
+
+        try {
+            $caseStudies = CaseStudy::published()->whereIn('slug', $slugs)->get()->keyBy('slug');
+
+            return collect($slugs)->map(fn (string $slug) => $caseStudies->get($slug))->filter()->values();
         } catch (Throwable) {
             return collect();
         }

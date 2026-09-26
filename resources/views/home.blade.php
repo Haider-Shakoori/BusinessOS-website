@@ -193,6 +193,39 @@
     </div>
 </section>
 
+<section class="calm-section calm-resources" id="case-studies">
+    <div class="shell calm-heading">
+        <div>
+            <span class="calm-kicker">Implementation evidence</span>
+            <h2>Real systems, documented without invented ROI claims.</h2>
+        </div>
+        <a class="text-link" href="{{ route('case-studies.index') }}">View case studies <span>→</span></a>
+    </div>
+
+    <div class="shell">
+        @if ($latestCaseStudies->count())
+            <div class="calm-resource-grid">
+                @foreach ($latestCaseStudies as $caseStudy)
+                    <article>
+                        <div class="calm-resource-meta">
+                            <span>{{ $caseStudy->industry }}</span>
+                            <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->format('M j, Y') }}</time>
+                        </div>
+                        <h3><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h3>
+                        <p>{{ $caseStudy->summary }}</p>
+                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">Read case study <span>→</span></a>
+                    </article>
+                @endforeach
+            </div>
+        @else
+            <div class="calm-empty">
+                <strong>Implementation stories are being prepared.</strong>
+                <span>Only verified project work is published as a BusinessOS case study.</span>
+            </div>
+        @endif
+    </div>
+</section>
+
 <section class="calm-section calm-resources" id="resources">
     <div class="shell calm-heading">
         <div>

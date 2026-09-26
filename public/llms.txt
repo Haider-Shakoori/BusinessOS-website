@@ -55,6 +55,14 @@ Canonical website: https://businessos.af/
 - Restaurant KOT and kitchen stations: https://businessos.af/guides/restaurant-kot-kitchen-station-workflow
 - Financial management system controls: https://businessos.af/guides/financial-management-system-controls
 
+
+## Verified implementation case studies
+
+- Corrugated Carton Manufacturing ERP: https://businessos.af/case-studies/corrugated-carton-manufacturing-erp
+- FieldPulse Web + Mobile Field Sales Platform: https://businessos.af/case-studies/fieldpulse-field-sales-platform
+- BusinessOS POS for Afghanistan: https://businessos.af/case-studies/businessos-pos-afghanistan
+- Localized Laravel E-commerce Storefront Modernization: https://businessos.af/case-studies/localized-ecommerce-storefront-modernization
+
 ## Important pages
 
 - Services: https://businessos.af/services

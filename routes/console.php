@@ -4,6 +4,7 @@ use App\Models\CaseStudy;
 use App\Models\Guide;
 use App\Models\PageVisit;
 use App\Models\SeoPage;
+use App\Models\SiteSetting;
 use App\Models\User;
 use App\Services\IndexNowService;
 use App\Services\ProductCatalog;
@@ -92,3 +93,56 @@ Artisan::command('search:indexnow', function (IndexNowService $indexNow, Product
 
     return 0;
 })->purpose('Submit the current public BusinessOS URL inventory to IndexNow');
+
+Artisan::command('search:status', function (ProductCatalog $products) {
+    $google = (string) SiteSetting::query()->where('key', 'google_site_verification')->value('value');
+    $bing = (string) SiteSetting::query()->where('key', 'bing_site_verification')->value('value');
+    $indexNowEnabled = (bool) config('search.indexnow.enabled');
+    $indexNowKey = trim((string) config('search.indexnow.key'));
+
+    $counts = [
+        'Products' => $products->all()->count(),
+        'Service pages' => 0,
+        'Guides' => 0,
+        'Case studies' => 0,
+    ];
+
+    try {
+        $counts['Service pages'] = SeoPage::published()->count();
+        $counts['Guides'] = Guide::published()->count();
+        $counts['Case studies'] = CaseStudy::published()->count();
+    } catch (Throwable) {
+        // Migrations may not have run yet.
+    }
+
+    $this->table(
+        ['Search integration', 'Status'],
+        [
+            ['Google Search Console verification', $google !== '' ? 'configured' : 'missing'],
+            ['Bing Webmaster verification', $bing !== '' ? 'configured' : 'missing'],
+            ['IndexNow enabled', $indexNowEnabled ? 'yes' : 'no'],
+            ['IndexNow key', $indexNowKey !== '' ? 'configured' : 'missing'],
+            ['Sitemap', route('sitemap')],
+            ['IndexNow key URL', route('indexnow.key')],
+        ]
+    );
+
+    $this->newLine();
+    $this->table(
+        ['Published content', 'Count'],
+        collect($counts)->map(fn (int $count, string $label) => [$label, $count])->values()->all()
+    );
+
+    $searchReady = $google !== ''
+        && $bing !== ''
+        && $indexNowEnabled
+        && $indexNowKey !== '';
+
+    if ($searchReady) {
+        $this->info('Search verification and IndexNow configuration are ready.');
+    } else {
+        $this->warn('Search integration is not fully activated. Configure the missing values before final production submission.');
+    }
+
+    return 0;
+})->purpose('Report Google, Bing, IndexNow and public search-content readiness');
