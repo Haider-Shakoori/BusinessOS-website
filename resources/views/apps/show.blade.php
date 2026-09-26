@@ -198,12 +198,12 @@
     </div>
 </section>
 
-@if($relatedServices->count() || $relatedGuides->count())
+@if($relatedServices->count() || $relatedGuides->count() || $relatedCaseStudies->count())
 <section class="section muted-section">
     <div class="shell">
         <div class="section-heading split-heading">
             <div><span class="kicker">Go deeper</span><h2>Understand the workflow before you choose the software.</h2></div>
-            <p>Related service pages explain implementation scope, while practical guides help compare approaches and prepare your data or process.</p>
+            <p>Related service pages explain implementation scope, practical guides help compare approaches, and case studies show how similar workflows were implemented.</p>
         </div>
 
         @if($relatedServices->count())
@@ -214,6 +214,19 @@
                         <h3><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h3>
                         <p>{{ $page->excerpt }}</p>
                         <a class="text-link" href="{{ route('seo-pages.show', $page) }}">Explore service <span>→</span></a>
+                    </article>
+                @endforeach
+            </div>
+        @endif
+
+        @if($relatedCaseStudies->count())
+            <div class="resource-grid">
+                @foreach($relatedCaseStudies as $caseStudy)
+                    <article class="resource-card">
+                        <div class="resource-card-top"><span>Case study · {{ $caseStudy->industry }}</span></div>
+                        <h3><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h3>
+                        <p>{{ $caseStudy->summary }}</p>
+                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">Read case study <span>→</span></a>
                     </article>
                 @endforeach
             </div>
