@@ -90,7 +90,7 @@ class ProductCatalog
         $app['has_localized_content'] = $hasLocalizedContent;
 
         $locale = app()->getLocale();
-        if (! in_array($locale, ['fa', 'ps'], true)) {
+        if (in_array($locale, ['fa', 'ps'], true) === false) {
             return $app;
         }
 
