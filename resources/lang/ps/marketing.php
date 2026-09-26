@@ -268,6 +268,8 @@ return [
             'explore_apps' => 'اپونه وګورئ',
             'more_guides' => 'نور لارښودونه',
             'editorial_team' => 'د BusinessOS د محتوا ټیم',
+            'editorial_role' => 'سوداګریز سافټویر او عملیات',
+            'editorial_bio' => 'BusinessOS د واقعي کاري بهیرونو او د پلي کولو د تجربې پر بنسټ عملي لارښودونه خپروي.',
         ],
         'security' => [
             'kicker' => 'امنیت',
