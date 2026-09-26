@@ -119,7 +119,7 @@ class ProductCatalog
             return $app;
         }
 
-        $key = 'marketing.products.'.$app['slug'];
+        $key = 'products.'.$app['slug'];
 
         if (! app('translator')->has($key, $locale)) {
             return $app;
