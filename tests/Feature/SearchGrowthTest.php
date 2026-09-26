@@ -6,6 +6,7 @@ use App\Models\CaseStudy;
 use App\Models\Guide;
 use App\Models\SiteSetting;
 use App\Models\User;
+use Database\Seeders\CaseStudySeeder;
 use Database\Seeders\SearchGuideSeeder;
 use Database\Seeders\SeoPageSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -103,6 +104,60 @@ class SearchGrowthTest extends TestCase
             ->assertOk()
             ->assertSee('/services/field-sales-management-software', false)
             ->assertSee('/apps/fieldpulse', false);
+    }
+
+    public function test_verified_case_studies_are_seeded_indexable_and_connected_to_products(): void
+    {
+        $this->seed(SeoPageSeeder::class);
+        $this->seed(SearchGuideSeeder::class);
+        $this->seed(CaseStudySeeder::class);
+
+        $this->assertSame(4, CaseStudy::published()->count());
+
+        $this->get('/case-studies')
+            ->assertOk()
+            ->assertSee('Corrugated Carton Manufacturing ERP')
+            ->assertSee('FieldPulse: Building a Web + Mobile Field Sales Operations Platform')
+            ->assertSee('BusinessOS POS: Full-Screen Multilingual Retail Checkout for Afghanistan')
+            ->assertSee('Localized E-commerce Storefront Modernization in Laravel');
+
+        $this->get('/case-studies/fieldpulse-field-sales-platform')
+            ->assertOk()
+            ->assertSee('map-based territory drawing')
+            ->assertSee('/apps/fieldpulse', false)
+            ->assertSee('/services/field-sales-management-software', false)
+            ->assertSee('/guides/how-to-track-field-sales-team', false);
+
+        $this->get('/apps/fieldpulse')
+            ->assertOk()
+            ->assertSee('/case-studies/fieldpulse-field-sales-platform', false);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Implementation evidence')
+            ->assertSee('Real systems, documented without invented ROI claims.');
+
+        $this->get('/sitemap.xml')
+            ->assertOk()
+            ->assertSee('/case-studies/corrugated-carton-manufacturing-erp', false)
+            ->assertSee('/case-studies/fieldpulse-field-sales-platform', false)
+            ->assertSee('/case-studies/businessos-pos-afghanistan', false)
+            ->assertSee('/case-studies/localized-ecommerce-storefront-modernization', false);
+    }
+
+    public function test_search_status_command_reports_activation_readiness(): void
+    {
+        SiteSetting::create(['group' => 'seo', 'key' => 'google_site_verification', 'value' => 'google-test-token']);
+        SiteSetting::create(['group' => 'seo', 'key' => 'bing_site_verification', 'value' => 'bing-test-token']);
+
+        config([
+            'search.indexnow.enabled' => true,
+            'search.indexnow.key' => 'BusinessOS-Test-Key-2026',
+        ]);
+
+        $this->artisan('search:status')
+            ->expectsOutputToContain('Search verification and IndexNow configuration are ready.')
+            ->assertExitCode(0);
     }
 
     public function test_robots_explicitly_allows_search_ai_crawlers(): void
