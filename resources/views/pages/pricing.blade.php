@@ -4,8 +4,8 @@
 <section class="page-hero trust-page-hero">
     <div class="shell narrow-shell">
         <span class="kicker">{{ __('marketing.nav.pricing') }}</span>
-        <h1>Product pricing should reflect the workflow, rollout and support you actually need.</h1>
-        <p>BusinessOS keeps commercial information product-specific. Where a public amount has not been approved, the website shows the real pricing model and deployment options instead of placeholder numbers.</p>
+        <h1>{{ __('marketing.pages.pricing.title') }}</h1>
+        <p>{{ __('marketing.pages.pricing.lead') }}</p>
     </div>
 </section>
 
@@ -24,7 +24,7 @@
 
                     @if(!empty($app['commercial']['pricing_model']))
                         <div class="pricing-model">
-                            <small>PRICING MODEL</small>
+                            <small>{{ strtoupper(__('marketing.pages.pricing.model')) }}</small>
                             <strong>{{ $app['commercial']['pricing_model'] }}</strong>
                         </div>
                     @endif
@@ -53,7 +53,7 @@
                 </article>
             @endforeach
         </div>
-        <p class="pricing-note">Approved prices can be published per product from the Product CMS. Until then, BusinessOS does not fabricate discounts, list prices or “starting at” amounts.</p>
+        <p class="pricing-note">{{ __('marketing.pages.pricing.note') }}</p>
     </div>
 </section>
 @endsection

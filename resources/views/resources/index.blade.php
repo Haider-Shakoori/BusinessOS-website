@@ -3,9 +3,9 @@
 @section('content')
 <section class="page-hero resource-hero">
     <div class="shell narrow-shell">
-        <span class="kicker">Guides & resources</span>
-        <h1>Practical ideas for running better business operations.</h1>
-        <p>BusinessOS resources focus on field work, software decisions, mobile operations and the systems behind clear day-to-day execution.</p>
+        <span class="kicker">{{ __('marketing.pages.resources.kicker') }}</span>
+        <h1>{{ __('marketing.pages.resources.title') }}</h1>
+        <p>{{ __('marketing.pages.resources.lead') }}</p>
     </div>
 </section>
 
@@ -21,7 +21,7 @@
                         </div>
                         <h2><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h2>
                         <p>{{ $guide->excerpt }}</p>
-                        <a class="text-link" href="{{ route('resources.show', $guide) }}">Read guide <span>→</span></a>
+                        <a class="text-link" href="{{ route('resources.show', $guide) }}">{{ __('marketing.pages.resources.read') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
@@ -29,25 +29,25 @@
             @if ($guides->hasPages())
                 <nav class="resource-pagination" aria-label="Resources pagination">
                     @if ($guides->onFirstPage())
-                        <span aria-disabled="true">← Newer</span>
+                        <span aria-disabled="true">← {{ __('marketing.pages.resources.newer') }}</span>
                     @else
-                        <a href="{{ $guides->previousPageUrl() }}">← Newer</a>
+                        <a href="{{ $guides->previousPageUrl() }}">← {{ __('marketing.pages.resources.newer') }}</a>
                     @endif
 
-                    <span>Page {{ $guides->currentPage() }} of {{ $guides->lastPage() }}</span>
+                    <span>{{ __('marketing.pages.resources.page') }} {{ $guides->currentPage() }} {{ __('marketing.pages.resources.of') }} {{ $guides->lastPage() }}</span>
 
                     @if ($guides->hasMorePages())
-                        <a href="{{ $guides->nextPageUrl() }}">Older →</a>
+                        <a href="{{ $guides->nextPageUrl() }}">{{ __('marketing.pages.resources.older') }} →</a>
                     @else
-                        <span aria-disabled="true">Older →</span>
+                        <span aria-disabled="true">{{ __('marketing.pages.resources.older') }} →</span>
                     @endif
                 </nav>
             @endif
         @else
             <div class="resource-empty">
-                <span class="kicker">Publishing soon</span>
-                <h2>BusinessOS guides are being prepared.</h2>
-                <p>The CMS is ready for focused resources without filling the site with thin placeholder content.</p>
+                <span class="kicker">{{ __('marketing.pages.resources.soon') }}</span>
+                <h2>{{ __('marketing.pages.resources.empty_title') }}</h2>
+                <p>{{ __('marketing.pages.resources.empty_copy') }}</p>
             </div>
         @endif
     </div>

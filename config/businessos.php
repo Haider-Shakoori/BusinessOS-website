@@ -3,7 +3,7 @@
 return [
     'brand' => [
         'name' => 'BusinessOS',
-        'tagline' => 'Modern software. Serious engineering. Fast everywhere.',
+        'tagline' => 'Practical software for everyday business.',
         'description' => 'BusinessOS builds business software and custom digital solutions including websites, ERP, MIS, web applications, data migration, modernization, integrations, automation, analytics and industry-specific systems.',
     ],
 
@@ -301,9 +301,9 @@ return [
             'slug' => 'pos',
             'icon_letter' => 'P',
             'eyebrow' => 'Retail POS & Inventory',
-            'headline' => 'Retail checkout and stock management designed for Afghanistan.',
-            'short_description' => 'A supermarket and retail POS direction built around AFN, English/Dari/Pashto, inventory, purchasing, cash management and reliable daily closing.',
-            'description' => 'BusinessOS POS is the Laravel retail point-of-sale product for supermarkets and shops in Afghanistan. The live pilot is built around AFN-only operation, English/Dari/Pashto interfaces, inventory and purchasing, cash management, daily closing and checkout reliability.',
+            'headline' => 'Retail checkout and stock management built for everyday shop operations.',
+            'short_description' => 'A supermarket and retail POS built around fast checkout, inventory, purchasing, cash management, daily closing and multilingual operation.',
+            'description' => 'BusinessOS POS is a retail point-of-sale product for supermarkets and shops. The live pilot combines fast checkout, inventory and purchasing, cash management, daily closing, AFN support and English/Dari/Pashto interfaces.',
             'category' => 'BusinessApplication',
             'application_category' => 'BusinessApplication',
             'operating_system' => 'Web',
@@ -315,26 +315,26 @@ return [
             'live_note' => 'The live BusinessOS POS pilot is available at dukan.businessos.af. The legacy pos.businessos.af installation is retained separately for compatibility and rollback.',
             'updated_at' => '2026-09-25',
             'seo' => [
-                'title' => 'BusinessOS POS — Supermarket POS & Inventory for Afghanistan',
-                'description' => 'BusinessOS POS is a retail checkout, inventory, purchasing, cash-management and daily-closing product designed for shops and supermarkets in Afghanistan.',
+                'title' => 'BusinessOS POS — Supermarket POS & Inventory',
+                'description' => 'BusinessOS POS brings checkout, inventory, purchasing, cash management and daily closing together for shops and supermarkets.',
             ],
             'translations' => [
                 'fa' => [
                     'name' => 'BusinessOS POS',
                     'eyebrow' => 'فروشگاه، POS و موجودی',
-                    'headline' => 'فروش و مدیریت موجودی برای دکان‌ها و سوپرمارکیت‌های افغانستان.',
+                    'headline' => 'فروش و مدیریت موجودی برای دکان‌ها و سوپرمارکیت‌ها.',
                     'short_description' => 'فروش، موجودی، خرید، مدیریت نقدی و بسته‌شدن روزانه را با AFN و رابط‌های محلی مدیریت کنید.',
                     'description' => 'BusinessOS POS محصول فروشگاهی برای دکان‌ها و سوپرمارکیت‌ها با تمرکز بر AFN، موجودی، خرید، صندوق و گزارش روزانه است.',
-                    'seo_title' => 'BusinessOS POS — سیستم فروش و موجودی برای افغانستان',
+                    'seo_title' => 'BusinessOS POS — سیستم فروش و موجودی',
                     'seo_description' => 'فروش، موجودی، خرید و صندوق را با BusinessOS POS مدیریت کنید.',
                 ],
                 'ps' => [
                     'name' => 'BusinessOS POS',
                     'eyebrow' => 'پرچون، POS او ذخیره',
-                    'headline' => 'د افغانستان د دوکانونو او سوپرمارکېټونو لپاره پلور او ذخیره.',
+                    'headline' => 'د دوکانونو او سوپرمارکېټونو لپاره پلور او ذخیره.',
                     'short_description' => 'پلور، ذخیره، پېرود، نغدي مدیریت او ورځنی بندښت د AFN او محلي ژبو له لارې اداره کړئ.',
                     'description' => 'BusinessOS POS د دوکانونو او سوپرمارکېټونو لپاره د پلور، ذخیرې، پېرود او نغدو مدیریت محصول دی.',
-                    'seo_title' => 'BusinessOS POS — د افغانستان لپاره د پلور او ذخیرې سیستم',
+                    'seo_title' => 'BusinessOS POS — د پلور او ذخیرې سیستم',
                     'seo_description' => 'پلور، ذخیره، پېرود او نغدي مدیریت د BusinessOS POS له لارې اداره کړئ.',
                 ],
             ],
@@ -358,8 +358,8 @@ return [
             'problem' => [
                 'title' => 'Retail software should match the way local shops actually sell, stock and close the day.',
                 'body' => [
-                    'Generic POS products often bring unnecessary tax assumptions, currency complexity or workflows that do not match supermarket operations in Afghanistan.',
-                    'BusinessOS POS is built around local retail requirements: AFN, multilingual interfaces, dependable checkout, inventory control, purchasing and disciplined daily closing.',
+                    'Generic POS products often bring unnecessary tax assumptions, currency complexity or workflows that do not match how many supermarkets and retail shops actually operate.',
+                    'BusinessOS POS is built around practical retail requirements: multilingual interfaces, dependable checkout, inventory control, purchasing, cash management and disciplined daily closing.',
                 ],
             ],
             'features_intro' => [
@@ -384,12 +384,12 @@ return [
                     'description' => 'Support controlled cash handling and daily closing so each retail day can be reconciled consistently.',
                 ],
                 [
-                    'title' => 'Afghanistan-localized operation',
-                    'description' => 'Use AFN as the operating currency with no sales-tax workflow and interfaces planned for English, Dari and Pashto.',
+                    'title' => 'Localized retail operation',
+                    'description' => 'Support AFN operation, flexible tax settings where needed, and interfaces for English, Dari and Pashto.',
                 ],
                 [
                     'title' => 'Responsive custom interface',
-                    'description' => 'The Laravel application uses a custom Blade, Tailwind and Alpine interface designed for a modern browser-based retail experience.',
+                    'description' => 'The application uses a focused, responsive interface designed for fast browser-based retail work.',
                 ],
             ],
             'use_cases_intro' => [
@@ -405,14 +405,14 @@ return [
                 'Daily closing',
             ],
             'spotlight' => [
-                'kicker' => 'Designed for Afghanistan',
+                'kicker' => 'Designed for practical retail',
                 'title' => 'Local rules should be product defaults, not workarounds.',
-                'description' => 'The modern POS is designed around AFN-only operation, no sales-tax workflow, Asia/Kabul business time and English/Dari/Pashto interfaces.',
+                'description' => 'The POS supports AFN operation, English/Dari/Pashto interfaces, practical daily closing and shop-friendly retail workflows.',
                 'items' => ['AFN only', 'No sales-tax workflow', 'EN · Dari · Pashto'],
             ],
             'commercial' => [
                 'pricing_status' => 'Pricing in preparation',
-                'pricing_note' => 'The BusinessOS POS commercial package has not been published yet. Pricing will be aligned with the live Laravel release and deployment requirements.',
+                'pricing_note' => 'The BusinessOS POS commercial package has not been published yet. Pricing will be aligned with the live release and deployment requirements.',
                 'pricing_model' => 'Shop license + deployment',
                 'pricing_plans' => [],
                 'deployment_options' => ['BusinessOS-hosted deployment', 'Dukan subdomain access', 'Catalog import and first-shop onboarding'],
@@ -424,11 +424,11 @@ return [
             'faq' => [
                 [
                     'question' => 'Is BusinessOS POS already live?',
-                    'answer' => 'Yes. The Laravel BusinessOS POS pilot is live at dukan.businessos.af. The legacy pos.businessos.af installation is retained separately while the new release completes checkout UAT.',
+                    'answer' => 'Yes. The BusinessOS POS pilot is live at dukan.businessos.af. The legacy pos.businessos.af installation is retained separately while the new release completes checkout testing.',
                 ],
                 [
                     'question' => 'Which currency is the modern POS designed for?',
-                    'answer' => 'The Laravel POS is designed for AFN-only operation.',
+                    'answer' => 'BusinessOS POS currently supports AFN operation.',
                 ],
                 [
                     'question' => 'Which languages are planned for BusinessOS POS?',

@@ -3,20 +3,20 @@
 @section('content')
 <section class="page-hero services-page-hero">
     <div class="shell narrow-shell">
-        <div class="eyebrow"><span class="pulse-dot"></span> Software development & technology solutions</div>
-        <h1>Custom software for the workflow your business actually needs.</h1>
-        <p>BusinessOS builds websites, custom ERP and MIS platforms, web applications, database systems and integrations. We also migrate business data, modernize older applications and support the software after launch.</p>
+        <div class="eyebrow"><span class="pulse-dot"></span> {{ __('marketing.pages.services.eyebrow') }}</div>
+        <h1>{{ __('marketing.pages.services.title') }}</h1>
+        <p>{{ __('marketing.pages.services.lead') }}</p>
         <div class="hero-actions">
-            <a class="button button-primary" href="{{ route('contact') }}">Discuss your project <span aria-hidden="true">→</span></a>
-            <a class="button button-ghost" href="{{ route('apps.index') }}">Explore BusinessOS products</a>
+            <a class="button button-primary" href="{{ route('contact') }}">{{ __('marketing.pages.services.discuss') }} <span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.pages.services.explore') }}</a>
         </div>
     </div>
 </section>
 
 <section class="service-definition-bar" aria-label="BusinessOS software services summary">
     <div class="shell">
-        <strong>What we do</strong>
-        <p>End-to-end software development, modernization, data migration, integration and operational systems for businesses that need technology matched to real processes.</p>
+        <strong>{{ __('marketing.pages.services.what') }}</strong>
+        <p>{{ __('marketing.pages.services.what_copy') }}</p>
     </div>
 </section>
 
@@ -24,10 +24,10 @@
     <div class="shell">
         <div class="section-heading split-heading">
             <div>
-                <span class="kicker">Core services</span>
-                <h2>From a focused website to a full operational system.</h2>
+                <span class="kicker">{{ __('marketing.pages.services.core') }}</span>
+                <h2>{{ __('marketing.pages.services.core_title') }}</h2>
             </div>
-            <p>Projects can start with one clearly defined problem and expand only where the business gains real value.</p>
+            <p>{{ __('marketing.pages.services.core_copy') }}</p>
         </div>
 
         <div class="service-catalog-grid">
@@ -52,8 +52,8 @@
 <section class="section muted-section">
     <div class="shell">
         <div class="section-heading split-heading">
-            <div><span class="kicker">Detailed service guides</span><h2>Explore the service area that matches your search.</h2></div>
-            <p>These pages go deeper into scope, implementation choices, common questions and related BusinessOS products.</p>
+            <div><span class="kicker">{{ __('marketing.pages.services.guides') }}</span><h2>{{ __('marketing.pages.services.guides_title') }}</h2></div>
+            <p>{{ __('marketing.pages.services.guides_copy') }}</p>
         </div>
         <div class="resource-grid">
             @foreach($searchPages as $page)
@@ -61,7 +61,7 @@
                     <div class="resource-card-top"><span>{{ $page->eyebrow ?: 'BusinessOS service' }}</span></div>
                     <h2><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h2>
                     <p>{{ $page->excerpt }}</p>
-                    <a class="text-link" href="{{ route('seo-pages.show', $page) }}">Explore service <span>→</span></a>
+                    <a class="text-link" href="{{ route('seo-pages.show', $page) }}">{{ __('marketing.pages.services.explore_service') }} <span>→</span></a>
                 </article>
             @endforeach
         </div>
@@ -72,9 +72,9 @@
 <section class="section service-process-section">
     <div class="shell two-column">
         <div>
-            <span class="kicker">How we approach custom work</span>
-            <h2>Understand the process first, then design the software.</h2>
-            <p class="section-copy">A useful custom system starts with the actual business rules, people, data and decisions behind the workflow—not with a generic feature list.</p>
+            <span class="kicker">{{ __('marketing.pages.services.approach') }}</span>
+            <h2>{{ __('marketing.pages.services.approach_title') }}</h2>
+            <p class="section-copy">{{ __('marketing.pages.services.approach_copy') }}</p>
         </div>
         <div class="service-process-list">
             <article><span>01</span><div><strong>Workflow discovery</strong><p>Map the current process, roles, approvals, data sources and reporting needs.</p></div></article>
@@ -89,12 +89,12 @@
 <section class="section seo-explainer-section">
     <div class="shell seo-explainer-card">
         <div>
-            <span class="kicker">Modernization without unnecessary replacement</span>
-            <h2>Existing software and data can often be improved instead of discarded.</h2>
+            <span class="kicker">{{ __('marketing.pages.services.modernize') }}</span>
+            <h2>{{ __('marketing.pages.services.modernize_title') }}</h2>
         </div>
         <div>
-            <p>If your organization already has a Laravel, PHP or database application, BusinessOS can review the current system and identify whether an upgrade, redesign, integration or staged migration is the better path.</p>
-            <p>For spreadsheet-heavy operations, we can first structure the data and reporting model, then build automation around the parts that cause the most repeated work or errors.</p>
+            <p>{{ __('marketing.pages.services.modernize_copy_1') }}</p>
+            <p>{{ __('marketing.pages.services.modernize_copy_2') }}</p>
         </div>
     </div>
 </section>
@@ -102,9 +102,9 @@
 <section class="section faq-section" id="services-faq">
     <div class="shell two-column faq-layout">
         <div>
-            <span class="kicker">Common questions</span>
-            <h2>What businesses usually ask before starting a software project.</h2>
-            <p class="section-copy">Scope, migration and modernization are handled according to the current system and the outcome the business needs.</p>
+            <span class="kicker">{{ __('marketing.pages.services.faq') }}</span>
+            <h2>{{ __('marketing.pages.services.faq_title') }}</h2>
+            <p class="section-copy">{{ __('marketing.pages.services.faq_copy') }}</p>
         </div>
         <div class="faq-list">
             @foreach ($serviceFaqs as $item)
@@ -119,12 +119,12 @@
 
 <section class="section final-cta">
     <div class="shell final-cta-card">
-        <span class="kicker">BusinessOS custom solutions</span>
-        <h2>Tell us the process you want to improve.</h2>
-        <p>Share the current workflow, system or data problem. We can determine whether the right answer is a website, custom application, ERP/MIS module, integration, migration or modernization project.</p>
+        <span class="kicker">{{ __('marketing.pages.services.cta_kicker') }}</span>
+        <h2>{{ __('marketing.pages.services.cta_title') }}</h2>
+        <p>{{ __('marketing.pages.services.cta_copy') }}</p>
         <div class="hero-actions centered-actions">
-            <a class="button button-primary" href="{{ route('contact') }}">Discuss your requirements <span aria-hidden="true">→</span></a>
-            <a class="button button-ghost" href="{{ route('apps.index') }}">View products</a>
+            <a class="button button-primary" href="{{ route('contact') }}">{{ __('marketing.pages.services.requirements') }} <span aria-hidden="true">→</span></a>
+            <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.pages.services.view_products') }}</a>
         </div>
     </div>
 </section>

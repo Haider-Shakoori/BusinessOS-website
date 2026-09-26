@@ -34,15 +34,15 @@ return [
             'slug' => 'application-upgrades',
             'name' => 'Application Upgrades & Modernization',
             'short' => 'Upgrade older applications, frameworks, databases and interfaces without throwing away valuable business logic.',
-            'description' => 'Modernize legacy PHP, Laravel and web applications, improve security and maintainability, refresh interfaces and move outdated technical foundations toward supported versions.',
-            'topics' => ['Laravel upgrades', 'Legacy modernization', 'UI refresh', 'Technical debt'],
+            'description' => 'Modernize older business applications, improve security and maintainability, refresh interfaces and move outdated systems toward a stable supported setup.',
+            'topics' => ['Application upgrades', 'Legacy modernization', 'Interface refresh', 'Stability improvements'],
         ],
         [
             'slug' => 'system-integration',
             'name' => 'System Integration & APIs',
             'short' => 'Connect applications, websites, databases and third-party services so information moves reliably between systems.',
-            'description' => 'We design REST APIs, integration layers, imports, exports, webhooks and scheduled data synchronization for business systems that need to work together.',
-            'topics' => ['REST APIs', 'Webhooks', 'Imports & exports', 'System sync'],
+            'description' => 'We connect business systems so information can move reliably between websites, applications, databases and third-party services.',
+            'topics' => ['System connections', 'Data exchange', 'Imports & exports', 'Reliable synchronization'],
         ],
         [
             'slug' => 'automation-dashboards',
@@ -81,8 +81,8 @@ return [
             'answer' => 'Yes. Data migration can include source review, field mapping, cleanup, validation, import and reconciliation based on the quality and structure of the existing data.',
         ],
         [
-            'question' => 'Can you upgrade an older Laravel or PHP application?',
-            'answer' => 'Yes. Upgrade work can cover framework and dependency updates, database changes, interface modernization, security improvements, testing and deployment planning.',
+            'question' => 'Can you upgrade or modernize an older business application?',
+            'answer' => 'Yes. Upgrade work can cover the application foundation, database, interface, security, testing and rollout plan while preserving valuable business workflows.',
         ],
         [
             'question' => 'Can BusinessOS build a solution that is not listed as a current product?',

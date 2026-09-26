@@ -12,7 +12,7 @@ class SiteSettingSeeder extends Seeder
         $groups = [
             'brand' => [
                 'brand_name' => 'BusinessOS',
-                'brand_tagline' => 'Modern software. Serious engineering. Fast everywhere.',
+                'brand_tagline' => 'Practical software for everyday business.',
                 'footer_text' => 'Focused business software for teams that value clarity, speed and practical workflows.',
                 'footer_text_fa' => 'نرم‌افزارهای متمرکز تجاری برای تیم‌هایی که به وضوح، سرعت و روندهای عملی اهمیت می‌دهند.',
                 'footer_text_ps' => 'د هغو ټیمونو لپاره متمرکز سوداګریز سافټویر چې روښانتیا، چټکتیا او عملي کاري بهیرونو ته ارزښت ورکوي.',
@@ -38,9 +38,9 @@ class SiteSettingSeeder extends Seeder
                 'homepage_solutions_title' => 'Different teams. One clear software direction.',
                 'homepage_solutions_description' => 'BusinessOS is designed around the work happening in the field, the back office and the shop floor.',
                 'homepage_why_title' => 'One brand. Clear products. Practical software.',
-                'homepage_why_description' => 'BusinessOS is the master platform and product family. Each application solves a specific operational problem while following the same approach to clarity, responsiveness and maintainability.',
-                'homepage_engineering_title' => 'Modern on the surface. Practical underneath.',
-                'homepage_engineering_description' => 'BusinessOS products are built around responsive interfaces, maintainable application architecture and performance that remains useful on real devices and imperfect networks.',
+                'homepage_why_description' => 'BusinessOS is a family of focused products and custom solutions. Each application solves a clear operational problem while keeping day-to-day work simple and understandable.',
+                'homepage_engineering_title' => 'Simple to use. Ready for real work.',
+                'homepage_engineering_description' => 'BusinessOS products are designed to stay clear, responsive and dependable across office, shop and field work, including when connectivity is imperfect.',
                 'homepage_resources_title' => 'Useful ideas for running better operations.',
                 'homepage_final_title' => 'Find the right product for the part of your business you want to improve.',
                 'homepage_final_description' => 'Explore BusinessOS products or tell us about the workflow, website, system, data migration or modernization project you need to improve.',

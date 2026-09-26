@@ -75,17 +75,17 @@ TEXT,
                 'published_at' => '2026-09-26 00:10:00',
             ],
             [
-                'title' => 'BusinessOS POS: Full-Screen Multilingual Retail Checkout for Afghanistan',
-                'slug' => 'businessos-pos-afghanistan',
+                'title' => 'BusinessOS POS: Full-Screen Multilingual Retail Checkout',
+                'slug' => 'businessos-pos-retail-checkout',
                 'industry' => 'Retail / Supermarket',
-                'summary' => 'A Laravel POS was redesigned into an immersive cashier workspace with multilingual UX, role controls, shift awareness and immediate post-sale receipt printing.',
+                'summary' => 'A retail POS was redesigned into a focused cashier workspace with multilingual screens, role controls, shift awareness and immediate post-sale receipt printing.',
                 'challenge' => <<<'TEXT'
 A cashier-facing POS needs speed and screen space. Traditional application navigation can compete with the cart, product catalog and checkout controls, while missing post-sale receipt handling forces staff into extra steps after each transaction.
 
-The product also needed to fit Afghanistan-focused retail operation, including explicit English, Dari and Pashto interfaces, right-to-left behavior where required, role permissions and clear cashier-shift state.
+The product also needed English, Dari and Pashto interfaces, right-to-left behavior where required, role permissions and clear cashier-shift state.
 TEXT,
                 'solution' => <<<'TEXT'
-The POS was redesigned into an immersive cashier workspace that preloads sellable products and keeps the checkout flow central. A full-screen POS shell with an in-app menu gives the sale interface more usable space without removing access to the rest of the application.
+The POS was redesigned into an immersive cashier workspace that keeps products, cart and checkout actions central. A full-screen POS shell with an in-app menu gives the sale interface more usable space without removing access to the rest of the application.
 
 Checkout now returns receipt URLs and presents a printable receipt immediately after a sale, including embedded receipt preview support inside the POS workspace.
 
@@ -94,7 +94,7 @@ TEXT,
                 'outcome' => <<<'TEXT'
 The POS now supports a faster cashier-oriented interaction model with explicit shift state and immediate receipt handling after checkout.
 
-The role, permission and language batch was validated by CI with 120 tests and 779 assertions on both SQLite and MySQL 8.4, including migrations and seed data, frontend build, production cache warm-up and dependency audits. Later full-screen and receipt changes added dedicated workflow tests.
+The role, permission and language work was validated through automated workflow tests, including checkout, receipt, permissions and multilingual behavior.
 TEXT,
                 'meta_title' => 'Afghanistan Retail POS Modernization Case Study | BusinessOS',
                 'meta_description' => 'Case study of BusinessOS POS: full-screen Laravel checkout, receipt printing, cashier shifts, permissions and English/Dari/Pashto retail UX.',
@@ -102,27 +102,27 @@ TEXT,
                 'published_at' => '2026-09-26 00:20:00',
             ],
             [
-                'title' => 'Localized E-commerce Storefront Modernization in Laravel',
+                'title' => 'Localized E-commerce Storefront Modernization',
                 'slug' => 'localized-ecommerce-storefront-modernization',
                 'industry' => 'E-commerce / Fashion',
-                'summary' => 'An existing storefront was reworked in Laravel with localized content, SEO CMS controls, legacy URL migration, live-site visual alignment and production-focused regression coverage.',
+                'summary' => 'An existing storefront was reworked with localized content, SEO controls, legacy URL migration, closer visual alignment and safer release checks.',
                 'challenge' => <<<'TEXT'
-The Laravel storefront needed to align closely with an established live brand rather than merely approximate its layout. At the same time, the implementation had to support localized content and search metadata without losing legacy URLs or introducing fragile manual page edits.
+The storefront needed to align closely with an established live brand rather than merely approximate its layout. At the same time, the implementation had to support localized content and search metadata without losing legacy URLs or introducing fragile manual page edits.
 
-The project therefore combined visual migration, content management, search architecture and application safety rather than treating the storefront as a static redesign.
+The project therefore combined visual migration, content management, search visibility and application safety rather than treating the storefront as a static redesign.
 TEXT,
                 'solution' => <<<'TEXT'
-The implementation added localized content and journal CMS features, structured SEO metadata, sitemap indexes, protected CMS slugs, legacy URL migration, RBAC/audit integration and safe product-detail mapping rules.
+The implementation added localized content management, structured search metadata, sitemap coverage, legacy URL migration, controlled publishing and safer product-detail mapping.
 
-A later alignment pass brought the Laravel storefront closer to the live visual reference using the actual branding, imagery and catalog media. English, Dari and Pashto language resources were maintained alongside regression tests for catalog behavior and live-site asset alignment.
+A later alignment pass brought the storefront closer to the live visual reference using the actual branding, imagery and catalog media. English, Dari and Pashto language resources were maintained alongside regression tests for catalog behavior and live-site asset alignment.
 TEXT,
                 'outcome' => <<<'TEXT'
-The storefront moved from a generic Laravel implementation toward a maintainable localized application that preserves the established visual identity while making content and SEO manageable inside the system.
+The storefront moved from a generic implementation toward a maintainable localized application that preserves the established visual identity while making content and SEO manageable inside the system.
 
 Both the localized SEO/CMS work and the live-site alignment work were completed with green feature and pull-request validation in the project repository, without making unverified claims about commercial conversion or traffic impact.
 TEXT,
-                'meta_title' => 'Localized Laravel E-commerce Modernization Case Study | BusinessOS',
-                'meta_description' => 'Case study of a Laravel e-commerce modernization with localized CMS, structured SEO, legacy URL migration, visual alignment and regression coverage.',
+                'meta_title' => 'Localized E-commerce Modernization Case Study | BusinessOS',
+                'meta_description' => 'Case study of an e-commerce modernization with localized content management, search optimization, legacy URL migration, visual alignment and release validation.',
                 'status' => 'published',
                 'published_at' => '2026-09-26 00:30:00',
             ],
