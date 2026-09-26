@@ -209,7 +209,7 @@
                     <article>
                         <div class="calm-resource-meta">
                             <span>{{ $caseStudy->industry }}</span>
-                            <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->format('M j, Y') }}</time>
+                            <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->locale(app()->getLocale())->translatedFormat('M j, Y') }}</time>
                         </div>
                         <h3><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h3>
                         <p>{{ $caseStudy->summary }}</p>
@@ -242,7 +242,7 @@
                     <article>
                         <div class="calm-resource-meta">
                             <span>{{ $guide->category }}</span>
-                            <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('M j, Y') }}</time>
+                            <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->locale(app()->getLocale())->translatedFormat('M j, Y') }}</time>
                         </div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
