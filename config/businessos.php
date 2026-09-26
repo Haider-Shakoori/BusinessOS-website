@@ -26,7 +26,7 @@ return [
             'web_url' => 'https://fieldpulse.businessos.af',
             'updated_at' => '2026-09-25',
             'seo' => [
-                'title' => 'FieldPulse — Field Sales Tracking & Field Force Management Software',
+                'title' => 'FieldPulse — Field Sales & Field Force Software',
                 'description' => 'Track field sales attendance, client visits, GPS activity, routes and team performance with FieldPulse, built for mobile teams and unreliable connectivity.',
             ],
             'translations' => [
@@ -170,7 +170,7 @@ return [
             'web_url' => 'https://erp.businessos.af',
             'updated_at' => '2026-09-25',
             'seo' => [
-                'title' => 'BusinessOS ERP — Customers, Quotations, Invoices, Payments & Expenses',
+                'title' => 'BusinessOS ERP — Sales, Invoicing, Payments & Expenses',
                 'description' => 'Run customers, products, quotations, invoices, payments, expenses and business records in the BusinessOS ERP web application.',
             ],
             'translations' => [

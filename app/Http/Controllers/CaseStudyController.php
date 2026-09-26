@@ -54,8 +54,8 @@ class CaseStudyController extends Controller
                     'description' => $caseStudy->summary,
                     'datePublished' => $caseStudy->published_at?->toAtomString(),
                     'dateModified' => $caseStudy->updated_at?->toAtomString(),
-                    'author' => ['@type' => 'Organization', 'name' => 'BusinessOS'],
-                    'publisher' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'url' => route('home')],
+                    'author' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'logo' => url('assets/brand/businessos-logo.svg')],
+                    'publisher' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'url' => route('home'), 'logo' => url('assets/brand/businessos-logo.svg')],
                     'mainEntityOfPage' => route('case-studies.show', $caseStudy),
                 ],
                 [

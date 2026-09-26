@@ -71,8 +71,8 @@ return [
         'ps' => 'پښتو',
     ],
     'seo' => [
-        'home_title' => 'BusinessOS — Website Development, Custom ERP, MIS & Business Software',
-        'home_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.',
+        'home_title' => 'BusinessOS — Custom ERP, MIS & Business Software',
+        'home_description' => 'BusinessOS builds websites, custom ERP and MIS, web applications, integrations, data migration and industry software for businesses in Afghanistan and beyond.',
     ],
     'inquiry_received' => 'Thanks — your request has been received. We will follow up using the contact details you provided.',
 ];

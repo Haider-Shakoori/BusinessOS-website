@@ -50,6 +50,7 @@ class MarketingController extends Controller
                     '@type' => 'Organization',
                     'name' => 'BusinessOS',
                     'url' => route('home'),
+                    'logo' => url('assets/brand/businessos-logo.svg'),
                     'description' => config('businessos.brand.description'),
                     'knowsAbout' => $services->pluck('name')->values()->all(),
                     'hasOfferCatalog' => [
@@ -164,6 +165,7 @@ class MarketingController extends Controller
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',
                         'url' => route('home'),
+                        'logo' => url('assets/brand/businessos-logo.svg'),
                     ],
                 ],
                 [
@@ -231,6 +233,7 @@ class MarketingController extends Controller
                                     '@type' => 'Organization',
                                     'name' => 'BusinessOS',
                                     'url' => route('home'),
+                                    'logo' => url('assets/brand/businessos-logo.svg'),
                                 ],
                             ],
                         ])->all(),
