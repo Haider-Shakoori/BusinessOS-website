@@ -14,7 +14,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f3f0e8">
     <meta name="color-scheme" content="light">
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
@@ -44,6 +44,9 @@
     @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos-calm.css') }}?v={{ filemtime(public_path('assets/css/businessos-calm.css')) }}">
 
@@ -51,7 +54,7 @@
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>
-<body class="modern-site professional-light calm-premium {{ $isRtl ? 'rtl-site' : '' }}">
+<body class="modern-site professional-light calm-premium locale-{{ $locale }} {{ $isRtl ? 'rtl-site' : '' }}">
     <a class="skip-link" href="#main">{{ $locale === 'en' ? 'Skip to content' : ($locale === 'fa' ? 'رفتن به محتوا' : 'منځپانګې ته لاړ شئ') }}</a>
 
     <header class="site-header">
@@ -134,7 +137,7 @@
                 <div>
                     <strong>{{ __('marketing.footer.resources') }}</strong>
                     <a href="{{ route('resources.index') }}">{{ __('marketing.footer.guides') }}</a>
-                    <a href="{{ route('case-studies.index') }}">Case studies</a>
+                    <a href="{{ route('case-studies.index') }}">{{ __('marketing.footer.case_studies') }}</a>
                     <a href="{{ route('demo') }}">{{ $cmsLabel('nav_demo_label', __('marketing.nav.demo')) }}</a>
                 </div>
                 <div>
