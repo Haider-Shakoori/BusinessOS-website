@@ -268,6 +268,8 @@ return [
             'explore_apps' => 'مشاهده برنامه‌ها',
             'more_guides' => 'راهنماهای بیشتر',
             'editorial_team' => 'تیم محتوای BusinessOS',
+            'editorial_role' => 'نرم‌افزار و عملیات تجارتی',
+            'editorial_bio' => 'BusinessOS راهنماهای عملی را بر اساس روندهای واقعی کار و تجربه پیاده‌سازی منتشر می‌کند.',
         ],
         'security' => [
             'kicker' => 'امنیت',
