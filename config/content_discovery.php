@@ -13,9 +13,9 @@ return [
             'case_studies' => ['corrugated-carton-manufacturing-erp'],
         ],
         'pos' => [
-            'services' => ['inventory-management-software', 'software-development-afghanistan'],
+            'services' => ['inventory-management-software'],
             'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
-            'case_studies' => ['businessos-pos-afghanistan'],
+            'case_studies' => ['businessos-pos-retail-checkout'],
         ],
         'pharmacy-management' => [
             'services' => ['pharmacy-management-software', 'inventory-management-software'],
@@ -107,9 +107,9 @@ return [
             'services' => ['field-sales-management-software'],
             'guides' => ['how-to-track-field-sales-team'],
         ],
-        'businessos-pos-afghanistan' => [
+        'businessos-pos-retail-checkout' => [
             'products' => ['pos'],
-            'services' => ['inventory-management-software', 'software-development-afghanistan'],
+            'services' => ['inventory-management-software'],
             'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
         ],
         'localized-ecommerce-storefront-modernization' => [
