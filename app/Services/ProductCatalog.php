@@ -18,7 +18,7 @@ class ProductCatalog
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->applyLanguageOverlay($product->toMarketingArray())]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->localizeDatabaseProduct($product)]);
 
             return $database
                 ->union($configured)
@@ -44,7 +44,7 @@ class ProductCatalog
             $database = Product::query()
                 ->homepage()
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->applyLanguageOverlay($product->toMarketingArray())]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->localizeDatabaseProduct($product)]);
 
             return $database
                 ->union($configured)
@@ -68,7 +68,7 @@ class ProductCatalog
                 ->first();
 
             if ($product) {
-                return $this->applyLanguageOverlay($product->toMarketingArray());
+                return $this->localizeDatabaseProduct($product);
             }
         } catch (Throwable) {
             // Fall through to the configuration catalog.
@@ -109,6 +109,34 @@ class ProductCatalog
         }
 
         return $this->applyLanguageOverlay($app);
+    }
+
+    private function localizeDatabaseProduct(Product $product): array
+    {
+        $app = $this->applyLanguageOverlay($product->toMarketingArray());
+        $locale = app()->getLocale();
+
+        if (! in_array($locale, ['fa', 'ps'], true)) {
+            return $app;
+        }
+
+        $translation = (array) data_get($product->content, 'translations.'.$locale, []);
+
+        foreach (['name', 'eyebrow', 'headline', 'short_description', 'description'] as $key) {
+            if (isset($translation[$key]) && is_string($translation[$key]) && trim($translation[$key]) !== '') {
+                $app[$key] = $translation[$key];
+            }
+        }
+
+        if (isset($translation['seo_title']) && is_string($translation['seo_title']) && trim($translation['seo_title']) !== '') {
+            $app['seo']['title'] = $translation['seo_title'];
+        }
+
+        if (isset($translation['seo_description']) && is_string($translation['seo_description']) && trim($translation['seo_description']) !== '') {
+            $app['seo']['description'] = $translation['seo_description'];
+        }
+
+        return $app;
     }
 
     private function applyLanguageOverlay(array $app): array
