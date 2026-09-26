@@ -26,7 +26,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('id="solutions"', false)
             ->assertSee('id="why-businessos"', false)
             ->assertSee('modern-site professional-light calm-premium', false)
-            ->assertSee('<meta name="theme-color" content="#ffffff">', false)
+            ->assertSee('<meta name="theme-color" content="#f3f0e8">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
             ->assertSee('ecosystem-scene', false)
             ->assertSee('ecosystem-console', false)
@@ -50,13 +50,13 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/services')
             ->assertOk()
-            ->assertSee('Software development & technology solutions', false)
+            ->assertSee('Business software &amp; digital solutions', false)
             ->assertSee('Website Development')
             ->assertSee('Custom ERP &amp; MIS', false)
             ->assertSee('Web Applications &amp; Portals', false)
             ->assertSee('Data Migration &amp; Cleanup', false)
             ->assertSee('Application Upgrades &amp; Modernization', false)
-            ->assertSee('System Integration &amp; APIs', false)
+            ->assertSee('System Integration &amp; Data Exchange', false)
             ->assertSee('Workflow Automation &amp; Dashboards', false)
             ->assertSee('Database &amp; Information Systems', false)
             ->assertSee('application/ld+json', false);
@@ -112,11 +112,12 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/apps/pos')
             ->assertOk()
-            ->assertSee('Retail checkout and stock management designed for Afghanistan.')
+            ->assertSee('Retail checkout and stock management built for everyday shop operations.')
             ->assertSee('AFN-only retail operation')
             ->assertSee('English, Dari & Pashto')
             ->assertSee('Pilot ready')
             ->assertSee('legacy pos.businessos.af installation is retained')
+            ->assertDontSee('Afghanistan')
             ->assertSee('Request a demo')
             ->assertDontSee('Open BusinessOS POS')
             ->assertDontSee('Live app: dukan.businessos.af')
@@ -157,9 +158,9 @@ class MarketingPagesTest extends TestCase
 
     public function test_trust_pricing_and_conversion_pages_render(): void
     {
-        $this->get('/pricing')->assertOk()->assertSee('Product pricing should reflect the workflow');
+        $this->get('/pricing')->assertOk()->assertSee('Pricing that reflects the workflow');
         $this->get('/about')->assertOk()->assertSee('About BusinessOS');
-        $this->get('/security')->assertOk()->assertSee('Security is part of the product architecture');
+        $this->get('/security')->assertOk()->assertSee('Security is part of the product design');
         $this->get('/privacy')->assertOk()->assertSee('BusinessOS Privacy Policy');
         $this->get('/terms')->assertOk()->assertSee('BusinessOS Website Terms of Use');
         $this->get('/contact')->assertOk()->assertSee('Tell us what you need to build, modernize or run better.');
@@ -219,20 +220,21 @@ class MarketingPagesTest extends TestCase
             ->assertSee('ستاسو', false);
     }
 
-    public function test_product_hreflang_is_only_exposed_for_products_with_real_translations(): void
+    public function test_product_hreflang_is_exposed_for_fully_localized_products(): void
     {
         $this->get('/apps/fieldpulse?lang=fa')
             ->assertOk()
-            ->assertSee('ردیابی فروش ساحوی', false)
+            ->assertSee('فعالیت تیم‌های ساحوی', false)
             ->assertSee('hreflang="fa-AF"', false)
             ->assertSee('hreflang="ps-AF"', false);
 
         $this->get('/apps/restaurant-management?lang=fa')
             ->assertOk()
             ->assertSee('Restaurant Management System')
-            ->assertSee('<link rel="canonical" href="https://businessos.af/apps/restaurant-management">', false)
-            ->assertDontSee('hreflang="fa-AF"', false)
-            ->assertDontSee('hreflang="ps-AF"', false);
+            ->assertSee('سفارش موبایل گارسون', false)
+            ->assertSee('<link rel="canonical" href="https://businessos.af/apps/restaurant-management?lang=fa">', false)
+            ->assertSee('hreflang="fa-AF"', false)
+            ->assertSee('hreflang="ps-AF"', false);
     }
 
     public function test_robots_allows_public_marketing_pages_and_points_to_sitemap(): void

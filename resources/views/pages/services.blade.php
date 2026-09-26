@@ -77,11 +77,11 @@
             <p class="section-copy">{{ __('marketing.pages.services.approach_copy') }}</p>
         </div>
         <div class="service-process-list">
-            <article><span>01</span><div><strong>Workflow discovery</strong><p>Map the current process, roles, approvals, data sources and reporting needs.</p></div></article>
-            <article><span>02</span><div><strong>Solution design</strong><p>Define the modules, data model, integrations and user experience around the agreed scope.</p></div></article>
-            <article><span>03</span><div><strong>Build & validate</strong><p>Develop in clear stages, test the important workflows and validate business rules with real scenarios.</p></div></article>
-            <article><span>04</span><div><strong>Migrate & launch</strong><p>Prepare data, deployment, permissions, onboarding and the transition from the old process.</p></div></article>
-            <article><span>05</span><div><strong>Improve over time</strong><p>Support upgrades, performance improvements, new reports, integrations and future modules as needs change.</p></div></article>
+            <article><span>01</span><div><strong>{{ __('marketing.ui.services_process.discovery') }}</strong><p>{{ __('marketing.ui.services_process.discovery_copy') }}</p></div></article>
+            <article><span>02</span><div><strong>{{ __('marketing.ui.services_process.design') }}</strong><p>{{ __('marketing.ui.services_process.design_copy') }}</p></div></article>
+            <article><span>03</span><div><strong>{{ __('marketing.ui.services_process.build') }}</strong><p>{{ __('marketing.ui.services_process.build_copy') }}</p></div></article>
+            <article><span>04</span><div><strong>{{ __('marketing.ui.services_process.launch') }}</strong><p>{{ __('marketing.ui.services_process.launch_copy') }}</p></div></article>
+            <article><span>05</span><div><strong>{{ __('marketing.ui.services_process.improve') }}</strong><p>{{ __('marketing.ui.services_process.improve_copy') }}</p></div></article>
         </div>
     </div>
 </section>

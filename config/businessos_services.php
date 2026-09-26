@@ -39,7 +39,7 @@ return [
         ],
         [
             'slug' => 'system-integration',
-            'name' => 'System Integration & APIs',
+            'name' => 'System Integration & Data Exchange',
             'short' => 'Connect applications, websites, databases and third-party services so information moves reliably between systems.',
             'description' => 'We connect business systems so information can move reliably between websites, applications, databases and third-party services.',
             'topics' => ['System connections', 'Data exchange', 'Imports & exports', 'Reliable synchronization'],

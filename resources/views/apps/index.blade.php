@@ -3,17 +3,17 @@
 @section('content')
 <section class="page-hero">
     <div class="shell narrow-shell">
-        <div class="eyebrow"><span class="pulse-dot"></span> BusinessOS applications</div>
-        <h1>Software for the work that keeps a business moving.</h1>
-        <p>Explore BusinessOS products and specialized systems for field sales, ERP, retail, pharmacy operations, raw materials, manufacturing and financial management. Each solution can stand on its own while fitting into a broader software ecosystem.</p>
+        <div class="eyebrow"><span class="pulse-dot"></span> {{ __('marketing.ui.apps.eyebrow') }}</div>
+        <h1>{{ __('marketing.ui.apps.title') }}</h1>
+        <p>{{ __('marketing.ui.apps.lead') }}</p>
     </div>
 </section>
 
 <section class="section app-directory">
     <div class="shell">
         <div class="directory-meta">
-            <span>{{ $apps->count() }} {{ $apps->count() === 1 ? 'application' : 'applications' }}</span>
-            <span>Field sales, ERP, retail, pharmacy, materials, manufacturing and finance under one BusinessOS ecosystem.</span>
+            <span>{{ $apps->count() }} {{ $apps->count() === 1 ? __('marketing.ui.apps.application') : __('marketing.ui.apps.applications') }}</span>
+            <span>{{ __('marketing.ui.apps.summary') }}</span>
         </div>
 
         <div class="directory-grid">
@@ -32,16 +32,16 @@
                         @endforeach
                     </div>
                     <div class="directory-actions">
-                        <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">Explore {{ $app['name'] }} <span>→</span></a>
+                        <a class="text-link" href="{{ route('apps.show', $app['slug']) }}">{{ __('marketing.ui.apps.explore') }} {{ $app['name'] }} <span>→</span></a>
                     </div>
                 </article>
             @endforeach
 
             <article class="directory-card future-card">
                 <div class="future-mark" aria-hidden="true">+</div>
-                <span class="kicker">The ecosystem grows here</span>
-                <h2>More BusinessOS apps</h2>
-                <p>New products will only be published when they have a clear purpose, complete product content and a real experience worth indexing.</p>
+                <span class="kicker">{{ __('marketing.ui.apps.future_kicker') }}</span>
+                <h2>{{ __('marketing.ui.apps.future_title') }}</h2>
+                <p>{{ __('marketing.ui.apps.future_copy') }}</p>
             </article>
         </div>
     </div>

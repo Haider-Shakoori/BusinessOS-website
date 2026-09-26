@@ -5,8 +5,8 @@
     <header class="guide-header">
         <div class="shell guide-shell">
             <nav class="breadcrumbs" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}">Home</a><span>/</span>
-                <a href="{{ route('case-studies.index') }}">Case studies</a><span>/</span>
+                <a href="{{ route('home') }}">{{ __('marketing.ui.case_studies.home') }}</a><span>/</span>
+                <a href="{{ route('case-studies.index') }}">{{ __('marketing.ui.case_studies.title') }}</a><span>/</span>
                 <strong>{{ $caseStudy->industry }}</strong>
             </nav>
             <span class="kicker">{{ $caseStudy->industry }}</span>
@@ -14,7 +14,7 @@
             <p>{{ $caseStudy->summary }}</p>
             <div class="guide-meta">
                 <span>BusinessOS</span>
-                <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->format('F j, Y') }}</time>
+                <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->locale(app()->getLocale())->translatedFormat('F j, Y') }}</time>
             </div>
         </div>
     </header>
@@ -22,19 +22,19 @@
     <section class="section guide-body-section">
         <div class="shell guide-shell">
             <div class="guide-body">
-                <h2>The challenge</h2>
+                <h2>{{ __('marketing.ui.case_studies.challenge') }}</h2>
                 @foreach(preg_split('/\R{2,}/', trim($caseStudy->challenge)) as $paragraph)<p>{{ $paragraph }}</p>@endforeach
-                <h2>The solution</h2>
+                <h2>{{ __('marketing.ui.case_studies.solution') }}</h2>
                 @foreach(preg_split('/\R{2,}/', trim($caseStudy->solution)) as $paragraph)<p>{{ $paragraph }}</p>@endforeach
                 @if($caseStudy->outcome)
-                    <h2>The outcome</h2>
+                    <h2>{{ __('marketing.ui.case_studies.outcome') }}</h2>
                     @foreach(preg_split('/\R{2,}/', trim($caseStudy->outcome)) as $paragraph)<p>{{ $paragraph }}</p>@endforeach
                 @endif
             </div>
             @if($relatedProducts->count() || $relatedServices->count() || $relatedGuides->count())
                 <div class="guide-end">
-                    <span class="kicker">Related implementation context</span>
-                    <h2>Explore the product, service and guidance behind this workflow.</h2>
+                    <span class="kicker">{{ __('marketing.ui.case_studies.related') }}</span>
+                    <h2>{{ __('marketing.ui.case_studies.related_title') }}</h2>
 
                     @if($relatedProducts->count())
                         <div class="use-case-list">
@@ -63,11 +63,11 @@
             @endif
 
             <div class="guide-end">
-                <span class="kicker">BusinessOS implementation</span>
-                <h2>Have a similar operational problem?</h2>
+                <span class="kicker">{{ __('marketing.ui.case_studies.implementation') }}</span>
+                <h2>{{ __('marketing.ui.case_studies.similar_title') }}</h2>
                 <div class="hero-actions">
-                    <a class="button button-primary" href="{{ route('contact') }}">Discuss your workflow <span>→</span></a>
-                    <a class="button button-ghost" href="{{ route('case-studies.index') }}">More case studies</a>
+                    <a class="button button-primary" href="{{ route('contact') }}">{{ __('marketing.ui.case_studies.discuss') }} <span>→</span></a>
+                    <a class="button button-ghost" href="{{ route('case-studies.index') }}">{{ __('marketing.ui.case_studies.more') }}</a>
                 </div>
             </div>
         </div>

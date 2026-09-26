@@ -5,8 +5,8 @@
     <div class="shell product-hero-grid">
         <div>
             <nav class="breadcrumbs" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}">Home</a><span>/</span>
-                <a href="{{ route('apps.index') }}">Apps</a><span>/</span>
+                <a href="{{ route('home') }}">{{ __('marketing.ui.product.home') }}</a><span>/</span>
+                <a href="{{ route('apps.index') }}">{{ __('marketing.ui.product.apps') }}</a><span>/</span>
                 <strong>{{ $app['name'] }}</strong>
             </nav>
 
@@ -19,8 +19,8 @@
             <p class="product-lede">{{ $app['description'] }}</p>
 
             <div class="hero-actions">
-                <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">Request a demo</a>
-                <a class="product-inline-link" href="#features">Explore features <span aria-hidden="true">↓</span></a>
+                <a class="button button-primary" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.ui.product.request_demo') }}</a>
+                <a class="product-inline-link" href="#features">{{ __('marketing.ui.product.explore_features') }} <span aria-hidden="true">↓</span></a>
             </div>
 
             @if (!empty($app['live_note']))
@@ -28,7 +28,7 @@
             @endif
 
             <div class="platform-row">
-                <span>Platforms</span>
+                <span>{{ __('marketing.ui.product.platforms') }}</span>
                 @foreach ($app['platforms'] as $platform)<strong>{{ $platform }}</strong>@endforeach
             </div>
         </div>
@@ -83,8 +83,8 @@
 <section class="section product-screenshot-section">
     <div class="shell">
         <div class="section-heading split-heading">
-            <div><span class="kicker">Product interface</span><h2>See the product in context.</h2></div>
-            <p>Published screenshots are managed from the Product and Media CMS.</p>
+            <div><span class="kicker">{{ __('marketing.ui.product.interface') }}</span><h2>{{ __('marketing.ui.product.interface_title') }}</h2></div>
+            <p>{{ __('marketing.ui.product.interface_copy') }}</p>
         </div>
         <div class="product-screenshot-grid">
             @foreach($app['screenshots'] as $screenshot)
@@ -108,7 +108,7 @@
 <section class="section product-problem">
     <div class="shell two-column">
         <div>
-            <span class="kicker">The problem</span>
+            <span class="kicker">{{ __('marketing.ui.product.problem') }}</span>
             <h2>{{ $app['problem']['title'] }}</h2>
         </div>
         <div class="body-copy">
@@ -122,7 +122,7 @@
 <section class="section feature-section" id="features">
     <div class="shell">
         <div class="section-heading split-heading">
-            <div><span class="kicker">Core capabilities</span><h2>{{ $app['features_intro']['title'] }}</h2></div>
+            <div><span class="kicker">{{ __('marketing.ui.product.capabilities') }}</span><h2>{{ $app['features_intro']['title'] }}</h2></div>
             <p>{{ $app['features_intro']['description'] }}</p>
         </div>
 
@@ -142,7 +142,7 @@
 <section class="section use-case-section">
     <div class="shell two-column">
         <div>
-            <span class="kicker">Use cases</span>
+            <span class="kicker">{{ __('marketing.ui.product.use_cases') }}</span>
             <h2>{{ $app['use_cases_intro']['title'] }}</h2>
             <p class="section-copy">{{ $app['use_cases_intro']['description'] }}</p>
         </div>
@@ -172,11 +172,11 @@
 <section class="section product-commercial-section">
     <div class="shell product-commercial-card">
         <div>
-            <span class="kicker">Pricing & rollout</span>
+            <span class="kicker">{{ __('marketing.ui.product.pricing_rollout') }}</span>
             <h2>{{ $app['commercial']['pricing_status'] }}</h2>
             <p>{{ $app['commercial']['pricing_note'] }}</p>
             @if(!empty($app['commercial']['pricing_model']))
-                <div class="product-commercial-model"><small>PRICING MODEL</small><strong>{{ $app['commercial']['pricing_model'] }}</strong></div>
+                <div class="product-commercial-model"><small>{{ strtoupper(__('marketing.ui.product.pricing_model')) }}</small><strong>{{ $app['commercial']['pricing_model'] }}</strong></div>
             @endif
             @if(!empty($app['commercial']['deployment_options']))
                 <div class="product-commercial-options">
@@ -202,8 +202,8 @@
 <section class="section muted-section">
     <div class="shell">
         <div class="section-heading split-heading">
-            <div><span class="kicker">Go deeper</span><h2>Understand the workflow before you choose the software.</h2></div>
-            <p>Related service pages explain implementation scope, practical guides help compare approaches, and case studies show how similar workflows were implemented.</p>
+            <div><span class="kicker">{{ __('marketing.ui.product.deeper') }}</span><h2>{{ __('marketing.ui.product.deeper_title') }}</h2></div>
+            <p>{{ __('marketing.ui.product.deeper_copy') }}</p>
         </div>
 
         @if($relatedServices->count())
@@ -213,7 +213,7 @@
                         <div class="resource-card-top"><span>{{ $page->eyebrow ?: 'BusinessOS service' }}</span></div>
                         <h3><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h3>
                         <p>{{ $page->excerpt }}</p>
-                        <a class="text-link" href="{{ route('seo-pages.show', $page) }}">Explore service <span>→</span></a>
+                        <a class="text-link" href="{{ route('seo-pages.show', $page) }}">{{ __('marketing.ui.product.explore_service') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
@@ -223,10 +223,10 @@
             <div class="resource-grid">
                 @foreach($relatedCaseStudies as $caseStudy)
                     <article class="resource-card">
-                        <div class="resource-card-top"><span>Case study · {{ $caseStudy->industry }}</span></div>
+                        <div class="resource-card-top"><span>{{ __('marketing.ui.product.case_study') }} · {{ $caseStudy->industry }}</span></div>
                         <h3><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h3>
                         <p>{{ $caseStudy->summary }}</p>
-                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">Read case study <span>→</span></a>
+                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">{{ __('marketing.ui.product.read_case') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
@@ -239,7 +239,7 @@
                         <div class="resource-card-top"><span>{{ $guide->category }}</span></div>
                         <h3><a href="{{ route('resources.show', $guide) }}">{{ $guide->title }}</a></h3>
                         <p>{{ $guide->excerpt }}</p>
-                        <a class="text-link" href="{{ route('resources.show', $guide) }}">Read guide <span>→</span></a>
+                        <a class="text-link" href="{{ route('resources.show', $guide) }}">{{ __('marketing.ui.product.read_guide') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
@@ -251,9 +251,9 @@
 <section class="section faq-section" id="faq">
     <div class="shell two-column faq-layout">
         <div>
-            <span class="kicker">Questions</span>
-            <h2>What to know before evaluating {{ $app['name'] }}.</h2>
-            <p class="section-copy">Product status, deployment and pricing information stay explicit so the page does not promise more than the current release supports.</p>
+            <span class="kicker">{{ __('marketing.ui.product.questions') }}</span>
+            <h2>{{ __('marketing.ui.product.questions_title', ['product' => $app['name']]) }}</h2>
+            <p class="section-copy">{{ __('marketing.ui.product.questions_copy') }}</p>
         </div>
         <div class="faq-list">
             @foreach ($app['faq'] as $item)

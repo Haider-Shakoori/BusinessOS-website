@@ -18,7 +18,7 @@ class ProductCatalog
                 ->orderBy('sort_order')
                 ->orderBy('name')
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->localizeDatabaseProduct($product)]);
 
             return $database
                 ->union($configured)
@@ -44,7 +44,7 @@ class ProductCatalog
             $database = Product::query()
                 ->homepage()
                 ->get()
-                ->mapWithKeys(fn (Product $product) => [$product->slug => $product->toMarketingArray()]);
+                ->mapWithKeys(fn (Product $product) => [$product->slug => $this->localizeDatabaseProduct($product)]);
 
             return $database
                 ->union($configured)
@@ -68,7 +68,7 @@ class ProductCatalog
                 ->first();
 
             if ($product) {
-                return $product->toMarketingArray();
+                return $this->localizeDatabaseProduct($product);
             }
         } catch (Throwable) {
             // Fall through to the configuration catalog.
@@ -90,7 +90,7 @@ class ProductCatalog
         $app['has_localized_content'] = $hasLocalizedContent;
 
         $locale = app()->getLocale();
-        if (! in_array($locale, ['fa', 'ps'], true)) {
+        if (in_array($locale, ['fa', 'ps'], true) === false) {
             return $app;
         }
 
@@ -108,7 +108,76 @@ class ProductCatalog
             $app['seo']['description'] = $translation['seo_description'];
         }
 
+        return $this->applyLanguageOverlay($app);
+    }
+
+    private function localizeDatabaseProduct(Product $product): array
+    {
+        $app = $this->applyLanguageOverlay($product->toMarketingArray());
+        $locale = app()->getLocale();
+
+        if (in_array($locale, ['fa', 'ps'], true) === false) {
+            return $app;
+        }
+
+        $translation = (array) data_get($product->content, 'translations.'.$locale, []);
+
+        foreach (['name', 'eyebrow', 'headline', 'short_description', 'description'] as $key) {
+            if (isset($translation[$key]) && is_string($translation[$key]) && trim($translation[$key]) !== '') {
+                $app[$key] = $translation[$key];
+            }
+        }
+
+        if (isset($translation['seo_title']) && is_string($translation['seo_title']) && trim($translation['seo_title']) !== '') {
+            $app['seo']['title'] = $translation['seo_title'];
+        }
+
+        if (isset($translation['seo_description']) && is_string($translation['seo_description']) && trim($translation['seo_description']) !== '') {
+            $app['seo']['description'] = $translation['seo_description'];
+        }
+
         return $app;
+    }
+
+    private function applyLanguageOverlay(array $app): array
+    {
+        $locale = app()->getLocale();
+
+        if (in_array($locale, ['fa', 'ps'], true) === false || empty($app['slug'])) {
+            return $app;
+        }
+
+        $key = 'products.'.$app['slug'];
+
+        if (app('translator')->has($key, $locale) === false) {
+            return $app;
+        }
+
+        $overlay = trans($key, [], $locale);
+
+        if (is_array($overlay) === false || $overlay === []) {
+            return $app;
+        }
+
+        $app = $this->mergeLocalized($app, $overlay);
+        $app['has_localized_content'] = true;
+
+        return $app;
+    }
+
+    private function mergeLocalized(array $base, array $overlay): array
+    {
+        foreach ($overlay as $key => $value) {
+            if (is_array($value) && isset($base[$key]) && is_array($base[$key]) && array_is_list($value) === false) {
+                $base[$key] = $this->mergeLocalized($base[$key], $value);
+
+                continue;
+            }
+
+            $base[$key] = $value;
+        }
+
+        return $base;
     }
 
     private function configuredProducts(): Collection

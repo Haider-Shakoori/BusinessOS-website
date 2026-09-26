@@ -16,10 +16,18 @@ class GuideCmsTest extends TestCase
     {
         $this->seed(GuideSeeder::class);
 
-        $this->assertDatabaseCount('guides', 3);
-        $this->assertSame(3, Guide::published()->count());
+        $this->assertDatabaseCount('guides', 6);
+        $this->assertSame(6, Guide::published()->count());
         $this->assertDatabaseHas('guides', [
             'slug' => 'what-to-look-for-in-field-sales-tracking-software',
+            'status' => 'published',
+        ]);
+        $this->assertDatabaseHas('guides', [
+            'slug' => 'daily-closing-checklist-retail-shops',
+            'status' => 'published',
+        ]);
+        $this->assertDatabaseHas('guides', [
+            'slug' => 'quotation-to-payment-customer-record',
             'status' => 'published',
         ]);
     }
