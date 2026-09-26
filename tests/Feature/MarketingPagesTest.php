@@ -26,7 +26,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('id="solutions"', false)
             ->assertSee('id="why-businessos"', false)
             ->assertSee('modern-site professional-light calm-premium', false)
-            ->assertSee('<meta name="theme-color" content="#ffffff">', false)
+            ->assertSee('<meta name="theme-color" content="#f3f0e8">', false)
             ->assertSee('<meta name="color-scheme" content="light">', false)
             ->assertSee('ecosystem-scene', false)
             ->assertSee('ecosystem-console', false)
@@ -50,7 +50,7 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/services')
             ->assertOk()
-            ->assertSee('Business software & digital solutions', false)
+            ->assertSee('Business software &amp; digital solutions', false)
             ->assertSee('Website Development')
             ->assertSee('Custom ERP &amp; MIS', false)
             ->assertSee('Web Applications &amp; Portals', false)
