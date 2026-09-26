@@ -19,6 +19,8 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Website Development')
             ->assertSee('Custom ERP &amp; MIS', false)
             ->assertSee('application/ld+json', false)
+            ->assertSee('BusinessOS — Custom ERP, MIS &amp; Business Software', false)
+            ->assertSee('assets/brand/businessos-logo.svg', false)
             ->assertSee('id="services"', false)
             ->assertSee('id="products"', false)
             ->assertSee('id="solutions"', false)
@@ -81,6 +83,7 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/apps/fieldpulse')
             ->assertOk()
+            ->assertSee('<title>FieldPulse — Field Sales &amp; Field Force Software</title>', false)
             ->assertSee('Field sales tracking built for teams that work outside the office.')
             ->assertSee('SoftwareApplication')
             ->assertSee('Offline-first mobile operation')
@@ -95,6 +98,7 @@ class MarketingPagesTest extends TestCase
     {
         $this->get('/apps/erp')
             ->assertOk()
+            ->assertSee('<title>BusinessOS ERP — Sales, Invoicing, Payments &amp; Expenses</title>', false)
             ->assertSee('Keep customers, sales, payments and business records connected.')
             ->assertSee('Customer ledgers & statements')
             ->assertSee('Multi-business switching')
