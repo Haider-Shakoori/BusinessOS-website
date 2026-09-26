@@ -3,9 +3,9 @@
 @section('content')
 <section class="page-hero resource-hero">
     <div class="shell narrow-shell">
-        <span class="kicker">Case studies</span>
-        <h1>How business problems are translated into software workflows.</h1>
-        <p>Published case studies focus on the operational problem, implementation approach and verified outcome without inventing performance claims.</p>
+        <span class="kicker">{{ __('marketing.ui.case_studies.title') }}</span>
+        <h1>{{ __('marketing.ui.case_studies.hero') }}</h1>
+        <p>{{ __('marketing.ui.case_studies.lead') }}</p>
     </div>
 </section>
 
@@ -21,16 +21,16 @@
                         </div>
                         <h2><a href="{{ route('case-studies.show', $caseStudy) }}">{{ $caseStudy->title }}</a></h2>
                         <p>{{ $caseStudy->summary }}</p>
-                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">Read case study <span>→</span></a>
+                        <a class="text-link" href="{{ route('case-studies.show', $caseStudy) }}">{{ __('marketing.ui.case_studies.read') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
             {{ $caseStudies->links() }}
         @else
             <div class="resource-empty">
-                <span class="kicker">Case-study CMS ready</span>
-                <h2>Verified implementation stories will appear here.</h2>
-                <p>BusinessOS will publish case studies only when the problem, implementation and outcome can be described accurately.</p>
+                <span class="kicker">{{ __('marketing.ui.case_studies.empty_kicker') }}</span>
+                <h2>{{ __('marketing.ui.case_studies.empty_title') }}</h2>
+                <p>{{ __('marketing.ui.case_studies.empty_copy') }}</p>
             </div>
         @endif
     </div>
