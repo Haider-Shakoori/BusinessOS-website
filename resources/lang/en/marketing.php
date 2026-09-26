@@ -273,6 +273,8 @@ return [
             'explore_apps' => 'Explore apps',
             'more_guides' => 'More guides',
             'editorial_team' => 'BusinessOS Editorial Team',
+            'editorial_role' => 'Business software & operations',
+            'editorial_bio' => 'BusinessOS publishes practical guidance based on real operating workflows and implementation experience.',
         ],
         'security' => [
             'kicker' => 'Security',
