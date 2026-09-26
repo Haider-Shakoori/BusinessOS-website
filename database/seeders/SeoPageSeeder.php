@@ -337,7 +337,7 @@ TEXT,
                     ['question' => 'Can software support English, Dari and Pashto?', 'answer' => 'Yes. Multilingual interfaces and right-to-left presentation can be implemented when the project requires them.'],
                     ['question' => 'Can an existing Excel or legacy application be migrated?', 'answer' => 'Yes. Existing data and workflows can be reviewed, cleaned, mapped and migrated into the new system where appropriate.'],
                 ],
-                'meta_title' => 'Software Development in Afghanistan — Custom Web, ERP & Business Systems | BusinessOS',
+                'meta_title' => 'Software Development in Afghanistan | BusinessOS',
                 'meta_description' => 'BusinessOS provides custom software development in Afghanistan for websites, web apps, ERP, MIS, integrations, data migration and industry systems.',
             ],
             [
