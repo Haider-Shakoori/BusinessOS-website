@@ -1,6 +1,12 @@
 @extends('layouts.marketing')
 
 @section('content')
+@php
+    $localizedEditorial = in_array(app()->getLocale(), ['fa', 'ps'], true);
+    $displayAuthorName = $localizedEditorial ? __('marketing.ui.guide.editorial_team') : ($guide->author_name ?: __('marketing.ui.guide.editorial_team'));
+    $displayAuthorRole = $localizedEditorial ? __('marketing.ui.guide.editorial_role') : $guide->author_role;
+    $displayAuthorBio = $localizedEditorial ? __('marketing.ui.guide.editorial_bio') : $guide->author_bio;
+@endphp
 <article class="guide-page">
     <header class="guide-header">
         <div class="shell guide-shell">
@@ -14,10 +20,10 @@
             <p>{{ $guide->excerpt }}</p>
             <div class="guide-meta">
                 <span>{{ $guide->author_name ?: __('marketing.ui.guide.editorial_team') }}</span>
-                @if($guide->author_role)<span>{{ $guide->author_role }}</span>@endif
-                <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->format('F j, Y') }}</time>
+                @if($displayAuthorRole)<span>{{ $displayAuthorRole }}</span>@endif
+                <time datetime="{{ $guide->published_at?->toDateString() }}">{{ $guide->published_at?->locale(app()->getLocale())->translatedFormat('F j, Y') }}</time>
                 @if($guide->updated_at && $guide->published_at && $guide->updated_at->gt($guide->published_at->copy()->addDay()))
-                    <span>{{ __('marketing.ui.guide.updated') }} {{ $guide->updated_at->format('F j, Y') }}</span>
+                    <span>{{ __('marketing.ui.guide.updated') }} {{ $guide->updated_at->locale(app()->getLocale())->translatedFormat('F j, Y') }}</span>
                 @endif
             </div>
         </div>
@@ -46,10 +52,10 @@
                     @endif
                 @endforeach
             </div>
-            @if($guide->author_bio)
+            @if($displayAuthorBio)
                 <aside class="seo-explainer-card" aria-label="{{ __('marketing.ui.guide.author') }}">
-                    <div><span class="kicker">About the author</span><h2>{{ $guide->author_name ?: 'BusinessOS Editorial Team' }}</h2></div>
-                    <div><p>{{ $guide->author_bio }}</p></div>
+                    <div><span class="kicker">About the author</span><h2>{{ $displayAuthorName }}</h2></div>
+                    <div><p>{{ $displayAuthorBio }}</p></div>
                 </aside>
             @endif
 
