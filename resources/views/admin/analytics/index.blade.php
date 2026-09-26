@@ -181,6 +181,6 @@
 
 <div class="analytics-note">
     <strong>How to read these numbers</strong>
-    <p>Visitors are anonymous browser IDs, not verified people. Obvious bots, admin pages, health checks, robots.txt and sitemap requests are excluded. Country is recorded only from trusted host/CDN country signals; BusinessOS does not send visitor IPs to an external geolocation service. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
+    <p>Visitors are anonymous browser IDs, not verified people. Obvious bots, admin pages, health checks, robots.txt and sitemap requests are excluded. Country uses trusted host/CDN signals when available and otherwise resolves the request IP locally against DB-IP Country Lite; raw visitor IP addresses are never stored or sent to an external geolocation API. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
 </div>
 @endsection

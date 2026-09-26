@@ -4,11 +4,23 @@ return [
     'enabled' => env('ANALYTICS_ENABLED', true),
     'visitor_cookie' => 'bos_vid',
     'internal_cookie' => 'bos_internal',
+    'country_cookie' => 'bos_country',
     'cookie_days' => 400,
+    'country_cookie_days' => 1,
     'retention_days' => (int) env('ANALYTICS_RETENTION_DAYS', 400),
 
-    // Country detection stays local/privacy-first. BusinessOS trusts only
-    // host/CDN-provided ISO country signals and never stores raw visitor IPs.
+    // Country detection stays local/privacy-first. Trusted host/CDN country
+    // headers are preferred. If none exist, BusinessOS resolves the request IP
+    // against a local DB-IP Country Lite MMDB file and never stores the raw IP.
+    'local_country_lookup' => env('ANALYTICS_LOCAL_COUNTRY_LOOKUP', true),
+    'country_database_path' => env(
+        'ANALYTICS_COUNTRY_DATABASE_PATH',
+        storage_path('app/analytics/dbip-country-lite.mmdb')
+    ),
+    'country_database_url_template' => env(
+        'ANALYTICS_COUNTRY_DATABASE_URL_TEMPLATE',
+        'https://download.db-ip.com/free/dbip-country-lite-%s.mmdb.gz'
+    ),
     'country_headers' => array_values(array_filter([
         env('ANALYTICS_COUNTRY_HEADER'),
         'CF-IPCountry',

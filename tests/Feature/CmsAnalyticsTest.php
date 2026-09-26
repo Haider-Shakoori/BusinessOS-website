@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\PageVisit;
 use App\Models\User;
+use App\Services\CountryResolver;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -35,6 +37,31 @@ class CmsAnalyticsTest extends TestCase
         ]);
 
         $this->assertDatabaseCount('page_visits', 1);
+    }
+
+    public function test_local_country_lookup_fallback_records_only_the_country_code(): void
+    {
+        $resolver = \Mockery::mock(CountryResolver::class);
+        $resolver->shouldReceive('resolve')
+            ->once()
+            ->with('8.8.8.8')
+            ->andReturn('US');
+
+        $this->app->instance(CountryResolver::class, $resolver);
+
+        $this
+            ->withServerVariables(['REMOTE_ADDR' => '8.8.8.8'])
+            ->withHeaders(['User-Agent' => 'Mozilla/5.0 Chrome/140.0 Safari/537.36'])
+            ->get('/pricing')
+            ->assertOk()
+            ->assertCookie('bos_country', 'US');
+
+        $this->assertDatabaseHas('page_visits', [
+            'country_code' => 'US',
+            'device_type' => 'Desktop',
+        ]);
+
+        $this->assertNotContains('ip_address', Schema::getColumnListing('page_visits'));
     }
 
     public function test_internal_browser_cookie_prevents_tracking(): void
