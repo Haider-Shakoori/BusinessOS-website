@@ -170,6 +170,7 @@ class ProductCatalog
         foreach ($overlay as $key => $value) {
             if (is_array($value) && isset($base[$key]) && is_array($base[$key]) && array_is_list($value) === false) {
                 $base[$key] = $this->mergeLocalized($base[$key], $value);
+
                 continue;
             }
 
