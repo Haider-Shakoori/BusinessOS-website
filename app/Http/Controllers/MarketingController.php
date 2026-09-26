@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CaseStudy;
 use App\Models\Guide;
 use App\Models\SeoPage;
 use App\Services\ContentDiscovery;
@@ -23,12 +24,14 @@ class MarketingController extends Controller
     {
         $apps = $this->products->homepage();
         $latestGuides = $this->latestGuides();
+        $latestCaseStudies = $this->latestCaseStudies();
         $services = collect(config('businessos_services.services', []));
         $serviceFaqs = config('businessos_services.faq', []);
 
         return view('home', [
             'apps' => $apps,
             'latestGuides' => $latestGuides,
+            'latestCaseStudies' => $latestCaseStudies,
             'services' => $services,
             'serviceFaqs' => $serviceFaqs,
             'meta' => [
@@ -137,6 +140,7 @@ class MarketingController extends Controller
             'app' => $app,
             'relatedServices' => $relatedContent['services'],
             'relatedGuides' => $relatedContent['guides'],
+            'relatedCaseStudies' => $relatedContent['caseStudies'],
             'meta' => [
                 'title' => $app['seo']['title'],
                 'description' => $app['seo']['description'],
@@ -335,6 +339,15 @@ class MarketingController extends Controller
     {
         try {
             return Guide::published()->latest('published_at')->limit(3)->get();
+        } catch (Throwable) {
+            return collect();
+        }
+    }
+
+    private function latestCaseStudies(): Collection
+    {
+        try {
+            return CaseStudy::published()->latest('published_at')->limit(3)->get();
         } catch (Throwable) {
             return collect();
         }
