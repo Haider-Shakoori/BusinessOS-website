@@ -3185,3 +3185,88 @@
     .service-definition-bar .shell { width:min(calc(100% - 28px),1180px);grid-template-columns:1fr;gap:7px; }
     .seo-explainer-card { width:min(calc(100% - 28px),1180px);grid-template-columns:1fr;gap:22px;padding:26px; }
 }
+
+
+/* 2026-09 visual refinement: warmer, calmer surfaces + language-specific typography */
+.calm-premium {
+    --calm-ink:#18202b;
+    --calm-copy:#3f4854;
+    --calm-muted:#6e7680;
+    --calm-line:#dcd8cf;
+    --calm-soft:#f6f3ec;
+    --calm-warm:#eeeae1;
+    --calm-blue:#365b8c;
+    --calm-blue-dark:#29486f;
+    --calm-blue-soft:#e9eef5;
+    --calm-green:#416f66;
+    background:#f3f0e8;
+    font-family:"Manrope","Segoe UI",Arial,sans-serif;
+}
+.calm-premium.locale-fa,
+.calm-premium.locale-ps,
+.calm-premium.locale-fa button,
+.calm-premium.locale-ps button,
+.calm-premium.locale-fa input,
+.calm-premium.locale-ps input,
+.calm-premium.locale-fa select,
+.calm-premium.locale-ps select,
+.calm-premium.locale-fa textarea,
+.calm-premium.locale-ps textarea {
+    font-family:"Noto Sans Arabic",Tahoma,Arial,sans-serif;
+}
+.calm-premium .site-header {
+    background:rgba(243,240,232,.95);
+    border-bottom-color:#dcd8cf;
+}
+.calm-premium .calm-hero,
+.calm-premium .calm-section,
+.calm-premium .calm-product,
+.calm-premium .calm-values,
+.calm-premium .calm-resources {
+    background:#f3f0e8;
+}
+.calm-premium .calm-hero {
+    background:
+        radial-gradient(circle at 78% 18%,rgba(54,91,140,.07),transparent 25rem),
+        linear-gradient(180deg,#f5f2eb 0%,#efebe2 100%);
+}
+.calm-premium .calm-window,
+.calm-premium .calm-product-grid,
+.calm-premium .calm-bento article,
+.calm-premium .calm-resource-grid article,
+.calm-premium .button-ghost,
+.calm-premium .contact-form-card,
+.calm-premium .resource-card,
+.calm-premium .product-pricing-card,
+.calm-premium .service-catalog-card {
+    background:#faf8f3;
+}
+.calm-premium .button-primary {
+    border-color:#365b8c;
+    background:#365b8c;
+    box-shadow:0 8px 20px rgba(54,91,140,.12);
+}
+.calm-premium .button-primary:hover {
+    border-color:#29486f;
+    background:#29486f;
+}
+.calm-premium .calm-dark {
+    background:#232a31;
+}
+.calm-premium h1,
+.calm-premium h2,
+.calm-premium h3,
+.calm-premium h4,
+.calm-premium strong {
+    font-family:inherit;
+}
+.rtl-site {
+    letter-spacing:0;
+}
+.rtl-site .calm-eyebrow,
+.rtl-site .calm-kicker,
+.rtl-site .kicker,
+.rtl-site .eyebrow {
+    letter-spacing:0;
+    text-transform:none;
+}
