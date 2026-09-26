@@ -62,8 +62,8 @@ class SiteSettingSeeder extends Seeder
                 'contact_address' => 'Afghanistan',
             ],
             'seo' => [
-                'seo_default_title' => 'BusinessOS — Website Development, Custom ERP, MIS & Business Software',
-                'seo_default_description' => 'BusinessOS provides website development, custom ERP and MIS, web applications, data migration, application upgrades, integrations and industry-specific business software.',
+                'seo_default_title' => 'BusinessOS — Custom ERP, MIS & Business Software',
+                'seo_default_description' => 'BusinessOS builds websites, custom ERP and MIS, web applications, integrations, data migration and industry software for businesses in Afghanistan and beyond.',
                 'og_image' => '',
                 'google_site_verification' => '',
                 'bing_site_verification' => '',
