@@ -8,9 +8,9 @@
             <h1>{{ $pageTitle }}</h1>
             <p>{{ $pageLead }}</p>
             <div class="contact-promises">
-                <span><i>01</i>No invented sales claims</span>
-                <span><i>02</i>Product-specific discussion</span>
-                <span><i>03</i>Your request is saved for follow-up</span>
+                <span><i>01</i>{{ __('marketing.pages.contact.promise_1') }}</span>
+                <span><i>02</i>{{ __('marketing.pages.contact.promise_2') }}</span>
+                <span><i>03</i>{{ __('marketing.pages.contact.promise_3') }}</span>
             </div>
         </div>
 
@@ -28,50 +28,50 @@
                 </div>
 
                 <div class="form-row">
-                    <label>Full name
+                    <label>{{ __('marketing.pages.contact.name') }}
                         <input type="text" name="name" value="{{ old('name') }}" maxlength="120" autocomplete="name" required>
                         @error('name')<small>{{ $message }}</small>@enderror
                     </label>
-                    <label>Work email
+                    <label>{{ __('marketing.pages.contact.email') }}
                         <input type="email" name="email" value="{{ old('email') }}" maxlength="190" autocomplete="email" required>
                         @error('email')<small>{{ $message }}</small>@enderror
                     </label>
                 </div>
 
                 <div class="form-row">
-                    <label>Company
+                    <label>{{ __('marketing.pages.contact.company') }}
                         <input type="text" name="company" value="{{ old('company') }}" maxlength="190" autocomplete="organization">
                     </label>
-                    <label>Phone <span>optional</span>
+                    <label>{{ __('marketing.pages.contact.phone') }} <span>{{ __('marketing.pages.contact.optional') }}</span>
                         <input type="text" name="phone" value="{{ old('phone') }}" maxlength="60" autocomplete="tel">
                     </label>
                 </div>
 
                 <div class="form-row">
-                    <label>Product
+                    <label>{{ __('marketing.pages.contact.product') }}
                         <select name="app_slug">
-                            <option value="">General BusinessOS inquiry</option>
+                            <option value="">{{ __('marketing.pages.contact.general') }}</option>
                             @foreach ($apps as $app)
                                 <option value="{{ $app['slug'] }}" @selected(old('app_slug', $selectedApp) === $app['slug'])>{{ $app['name'] }}</option>
                             @endforeach
                         </select>
                     </label>
-                    <label>Team size <span>optional</span>
-                        <input type="text" name="team_size" value="{{ old('team_size') }}" maxlength="80" placeholder="e.g. 10 field users">
+                    <label>{{ __('marketing.pages.contact.team_size') }} <span>{{ __('marketing.pages.contact.optional') }}</span>
+                        <input type="text" name="team_size" value="{{ old('team_size') }}" maxlength="80" placeholder="{{ __('marketing.pages.contact.team_placeholder') }}">
                     </label>
                 </div>
 
-                <label>What do you want to improve?
-                    <textarea name="message" rows="6" maxlength="3000" required placeholder="Describe the workflow, team or problem you want to discuss.">{{ old('message') }}</textarea>
+                <label>{{ __('marketing.pages.contact.message') }}
+                    <textarea name="message" rows="6" maxlength="3000" required placeholder="{{ __('marketing.pages.contact.message_placeholder') }}">{{ old('message') }}</textarea>
                     @error('message')<small>{{ $message }}</small>@enderror
                 </label>
 
                 @if ($errors->any())
-                    <div class="form-error-summary" role="alert">Please review the highlighted fields and submit again.</div>
+                    <div class="form-error-summary" role="alert">{{ __('marketing.pages.contact.review') }}</div>
                 @endif
 
-                <button class="button button-primary contact-submit" type="submit">Send request <span aria-hidden="true">→</span></button>
-                <p class="form-privacy">By submitting, you agree that BusinessOS may use the information to respond to your request. See the <a href="{{ route('privacy') }}">Privacy Policy</a>.</p>
+                <button class="button button-primary contact-submit" type="submit">{{ __('marketing.pages.contact.send') }} <span aria-hidden="true">→</span></button>
+                <p class="form-privacy">{{ __('marketing.pages.contact.privacy') }} <a href="{{ route('privacy') }}">{{ __('marketing.pages.contact.privacy_link') }}</a>.</p>
             </form>
         </div>
     </div>
