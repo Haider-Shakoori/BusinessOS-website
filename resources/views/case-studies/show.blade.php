@@ -14,7 +14,7 @@
             <p>{{ $caseStudy->summary }}</p>
             <div class="guide-meta">
                 <span>BusinessOS</span>
-                <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->format('F j, Y') }}</time>
+                <time datetime="{{ $caseStudy->published_at?->toDateString() }}">{{ $caseStudy->published_at?->locale(app()->getLocale())->translatedFormat('F j, Y') }}</time>
             </div>
         </div>
     </header>
