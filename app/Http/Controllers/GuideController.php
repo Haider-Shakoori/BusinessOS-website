@@ -105,11 +105,13 @@ class GuideController extends Controller
                         '@type' => 'Organization',
                         'name' => $guide->author_name ?: 'BusinessOS Editorial Team',
                         'description' => $guide->author_bio,
+                        'logo' => url('assets/brand/businessos-logo.svg'),
                     ],
                     'publisher' => [
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',
                         'url' => route('home'),
+                        'logo' => url('assets/brand/businessos-logo.svg'),
                     ],
                 ],
                 [
