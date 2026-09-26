@@ -94,7 +94,6 @@ Artisan::command('search:indexnow', function (IndexNowService $indexNow, Product
     return 0;
 })->purpose('Submit the current public BusinessOS URL inventory to IndexNow');
 
-
 Artisan::command('search:status', function (ProductCatalog $products) {
     $google = (string) SiteSetting::query()->where('key', 'google_site_verification')->value('value');
     $bing = (string) SiteSetting::query()->where('key', 'bing_site_verification')->value('value');
@@ -134,10 +133,15 @@ Artisan::command('search:status', function (ProductCatalog $products) {
         collect($counts)->map(fn (int $count, string $label) => [$label, $count])->values()->all()
     );
 
-    if ($google === '' || $bing === '' || ! $indexNowEnabled || $indexNowKey === '') {
-        $this->warn('Search integration is not fully activated. Configure the missing values before final production submission.');
-    } else {
+    $searchReady = $google !== ''
+        && $bing !== ''
+        && $indexNowEnabled
+        && $indexNowKey !== '';
+
+    if ($searchReady) {
         $this->info('Search verification and IndexNow configuration are ready.');
+    } else {
+        $this->warn('Search integration is not fully activated. Configure the missing values before final production submission.');
     }
 
     return 0;
