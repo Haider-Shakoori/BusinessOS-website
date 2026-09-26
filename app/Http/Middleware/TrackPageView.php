@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\PageVisit;
+use App\Services\CountryResolver;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,6 +12,8 @@ use Throwable;
 
 class TrackPageView
 {
+    public function __construct(private readonly CountryResolver $countryResolver) {}
+
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
@@ -26,12 +29,14 @@ class TrackPageView
             $visitorId = (string) Str::uuid();
         }
 
+        $countryCode = $this->countryCode($request);
+
         try {
             PageVisit::create([
                 'visitor_id' => $visitorId,
                 'path' => Str::limit('/'.ltrim($request->path(), '/'), 1000, ''),
                 'route_name' => Str::limit((string) optional($request->route())->getName(), 120, '') ?: null,
-                'country_code' => $this->countryCode($request),
+                'country_code' => $countryCode,
                 'referrer_host' => $this->referrerHost($request),
                 'user_agent_family' => $this->userAgentFamily($request),
                 'device_type' => $this->deviceType($request),
@@ -41,7 +46,7 @@ class TrackPageView
             return $response;
         }
 
-        return $response->withCookie(cookie(
+        $response = $response->withCookie(cookie(
             $cookieName,
             $visitorId,
             60 * 24 * (int) config('analytics.cookie_days', 400),
@@ -52,6 +57,24 @@ class TrackPageView
             false,
             'lax'
         ));
+
+        if ($countryCode && $this->normalizeCountryCode(
+            $request->cookie(config('analytics.country_cookie', 'bos_country'))
+        ) !== $countryCode) {
+            $response = $response->withCookie(cookie(
+                config('analytics.country_cookie', 'bos_country'),
+                $countryCode,
+                60 * 24 * (int) config('analytics.country_cookie_days', 1),
+                '/',
+                null,
+                app()->isProduction(),
+                true,
+                false,
+                'lax'
+            ));
+        }
+
+        return $response;
     }
 
     private function shouldTrack(Request $request, Response $response): bool
@@ -98,7 +121,15 @@ class TrackPageView
             }
         }
 
-        return null;
+        $cookieCode = $this->normalizeCountryCode(
+            $request->cookie(config('analytics.country_cookie', 'bos_country'))
+        );
+
+        if ($cookieCode) {
+            return $cookieCode;
+        }
+
+        return $this->countryResolver->resolve($request->ip());
     }
 
     private function normalizeCountryCode(mixed $value): ?string
