@@ -6,7 +6,7 @@
 @section('content')
 <div class="admin-page-head">
     <div><span class="admin-kicker">Organic search</span><h1>{{ $page->exists ? $page->title : 'Create a useful search landing page.' }}</h1><p>Write for a real buyer question or service need. Publishing adds the page to the sitemap.</p></div>
-    @if($page->exists && $page->status === 'published')<a class="admin-secondary-button" href="{{ route('seo-pages.show', $page) }}" target="_blank" rel="noopener">View live ↗</a>@endif
+    @if($page->exists && $page->status === 'published')<a class="admin-secondary-button" href="{{ $page->publicUrl() }}" target="_blank" rel="noopener">View live ↗</a>@endif
 </div>
 <form class="cms-editor" method="POST" action="{{ $page->exists ? route('admin.seo-pages.update', $page) : route('admin.seo-pages.store') }}">
     @csrf @if($page->exists) @method('PUT') @endif
