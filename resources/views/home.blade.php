@@ -123,6 +123,37 @@
     </div>
 </section>
 
+<section class="calm-section calm-resources" id="afghanistan-software">
+    <div class="shell calm-heading">
+        <div>
+            <span class="calm-kicker">BusinessOS Afghanistan</span>
+            <h2>Business software designed around Afghan operating realities.</h2>
+        </div>
+        <p>Explore how BusinessOS connects ERP, POS, field sales, multilingual workflows and offline-ready operation for businesses in Afghanistan.</p>
+    </div>
+
+    <div class="shell calm-resource-grid">
+        <article>
+            <div class="calm-resource-meta"><span>Platform guide</span></div>
+            <h3><a href="{{ route('business-operating-system-afghanistan') }}">Business Operating System for Afghanistan</a></h3>
+            <p>See how BusinessOS connects ERP, POS, field operations, finance and industry workflows while accounting for local language and connectivity needs.</p>
+            <a class="text-link" href="{{ route('business-operating-system-afghanistan') }}">Explore the BusinessOS platform <span>→</span></a>
+        </article>
+        <article>
+            <div class="calm-resource-meta"><span>Buyer guide</span></div>
+            <h3><a href="{{ route('business-software-afghanistan') }}">Business Software in Afghanistan</a></h3>
+            <p>Compare the role of ERP, POS, inventory, field sales and custom software when choosing systems for an Afghan business.</p>
+            <a class="text-link" href="{{ route('business-software-afghanistan') }}">Read the Afghanistan software guide <span>→</span></a>
+        </article>
+        <article>
+            <div class="calm-resource-meta"><span>ERP</span></div>
+            <h3><a href="{{ route('seo-pages.show', ['seoPage' => 'erp-software-afghanistan']) }}">ERP Software in Afghanistan</a></h3>
+            <p>Learn how connected sales, purchasing, inventory, finance, HR and production workflows can replace disconnected operational records.</p>
+            <a class="text-link" href="{{ route('seo-pages.show', ['seoPage' => 'erp-software-afghanistan']) }}">Explore ERP for Afghanistan <span>→</span></a>
+        </article>
+    </div>
+</section>
+
 <section class="calm-section business-services" id="services">
     <div class="shell calm-heading">
         <div>
