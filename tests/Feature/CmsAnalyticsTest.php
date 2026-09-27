@@ -64,6 +64,27 @@ class CmsAnalyticsTest extends TestCase
         $this->assertNotContains('ip_address', Schema::getColumnListing('page_visits'));
     }
 
+    public function test_automated_client_is_stored_separately_without_a_visitor_cookie(): void
+    {
+        $response = $this
+            ->withHeaders([
+                'CF-IPCountry' => 'US',
+                'User-Agent' => 'Mozilla/5.0 Chrome/153.0 Mobile Safari/537.36 (compatible; GoogleOther)',
+            ])
+            ->get('/pricing');
+
+        $response
+            ->assertOk()
+            ->assertCookieMissing('bos_vid');
+
+        $this->assertDatabaseHas('page_visits', [
+            'path' => '/pricing',
+            'country_code' => 'US',
+            'traffic_type' => 'search_crawler',
+            'bot_family' => 'GoogleOther',
+        ]);
+    }
+
     public function test_internal_browser_cookie_prevents_tracking(): void
     {
         $this
@@ -118,6 +139,8 @@ class CmsAnalyticsTest extends TestCase
                 'referrer_host' => 'google.com',
                 'user_agent_family' => 'Chrome',
                 'device_type' => 'Desktop',
+                'traffic_type' => 'human',
+                'bot_family' => null,
                 'occurred_at' => now()->subDay(),
             ],
             [
@@ -128,6 +151,8 @@ class CmsAnalyticsTest extends TestCase
                 'referrer_host' => 'businessos.af',
                 'user_agent_family' => 'Chrome',
                 'device_type' => 'Desktop',
+                'traffic_type' => 'human',
+                'bot_family' => null,
                 'occurred_at' => now(),
             ],
             [
@@ -138,6 +163,32 @@ class CmsAnalyticsTest extends TestCase
                 'referrer_host' => null,
                 'user_agent_family' => 'Safari',
                 'device_type' => 'Mobile',
+                'traffic_type' => 'human',
+                'bot_family' => null,
+                'occurred_at' => now(),
+            ],
+            [
+                'visitor_id' => (string) Str::uuid(),
+                'path' => '/',
+                'route_name' => 'home',
+                'country_code' => 'US',
+                'referrer_host' => null,
+                'user_agent_family' => 'Chrome',
+                'device_type' => 'Mobile',
+                'traffic_type' => 'search_crawler',
+                'bot_family' => 'GoogleOther',
+                'occurred_at' => now(),
+            ],
+            [
+                'visitor_id' => (string) Str::uuid(),
+                'path' => '/pricing',
+                'route_name' => 'pricing',
+                'country_code' => 'US',
+                'referrer_host' => null,
+                'user_agent_family' => 'Other',
+                'device_type' => 'Desktop',
+                'traffic_type' => 'other_bot',
+                'bot_family' => 'cURL',
                 'occurred_at' => now(),
             ],
         ]);
@@ -150,15 +201,23 @@ class CmsAnalyticsTest extends TestCase
             ->assertSee('Page views by country')
             ->assertSee('External referrers')
             ->assertSee('Where visitors entered')
-            ->assertSee('Product pages people viewed')
+            ->assertSee('Product pages human visitors viewed')
             ->assertSee('Browser mix')
             ->assertSee('Device mix')
+            ->assertSee('Automated traffic by category')
+            ->assertSee('GoogleOther')
+            ->assertSee('cURL')
             ->assertSee('Afghanistan')
             ->assertSee('United States')
             ->assertSee('google.com')
             ->assertViewHas('uniqueVisits', 2)
             ->assertViewHas('allVisits', 3)
+            ->assertViewHas('automatedHits', 2)
             ->assertViewHas('countryCoverage', 100)
+            ->assertViewHas('trafficSummary', function ($rows) {
+                return $rows->firstWhere('type', 'search_crawler')->total === 1
+                    && $rows->firstWhere('type', 'other_bot')->total === 1;
+            })
             ->assertViewHas('directVisits', 1)
             ->assertViewHas('uniqueByCountry', function ($rows) {
                 $afghanistan = $rows->firstWhere('code', 'AF');
