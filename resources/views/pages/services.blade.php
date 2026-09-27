@@ -59,9 +59,9 @@
             @foreach($searchPages as $page)
                 <article class="resource-card">
                     <div class="resource-card-top"><span>{{ $page->eyebrow ?: 'BusinessOS service' }}</span></div>
-                    <h2><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h2>
+                    <h2><a href="{{ $page->publicUrl() }}">{{ $page->title }}</a></h2>
                     <p>{{ $page->excerpt }}</p>
-                    <a class="text-link" href="{{ route('seo-pages.show', $page) }}">{{ __('marketing.pages.services.explore_service') }} <span>→</span></a>
+                    <a class="text-link" href="{{ $page->publicUrl() }}">{{ __('marketing.pages.services.explore_service') }} <span>→</span></a>
                 </article>
             @endforeach
         </div>
