@@ -3187,21 +3187,22 @@
 }
 
 
-/* 2026-09 visual refinement: warmer, calmer surfaces + language-specific typography */
+/* 2026-09 visual refinement: cool neutral surfaces, accessible contrast + local typography */
 .calm-premium {
-    --calm-ink:#18202b;
-    --calm-copy:#3f4854;
-    --calm-muted:#6e7680;
-    --calm-line:#dcd8cf;
-    --calm-soft:#f6f3ec;
-    --calm-warm:#eeeae1;
-    --calm-blue:#365b8c;
-    --calm-blue-dark:#29486f;
-    --calm-blue-soft:#e9eef5;
-    --calm-green:#416f66;
-    background:#f3f0e8;
+    --calm-ink:#0f1b2d;
+    --calm-copy:#334155;
+    --calm-muted:#526277;
+    --calm-line:#d7e0ea;
+    --calm-soft:#f5f8fc;
+    --calm-warm:#edf3f8;
+    --calm-blue:#2457a6;
+    --calm-blue-dark:#193f7a;
+    --calm-blue-soft:#e8f0fb;
+    --calm-green:#0f766e;
+    background:#f7f9fc;
     font-family:"Manrope","Segoe UI",Arial,sans-serif;
 }
+
 .calm-premium.locale-fa,
 .calm-premium.locale-ps,
 .calm-premium.locale-fa button,
@@ -3214,22 +3215,51 @@
 .calm-premium.locale-ps textarea {
     font-family:"Noto Sans Arabic",Tahoma,Arial,sans-serif;
 }
+
 .calm-premium .site-header {
-    background:rgba(243,240,232,.95);
-    border-bottom-color:#dcd8cf;
+    color:#0f1b2d;
+    background:rgba(248,250,252,.97);
+    border-bottom-color:#d7e0ea;
 }
+
+.calm-premium .brand { color:#0f1b2d; }
+
+.calm-premium .desktop-nav a {
+    color:#334155;
+    font-weight:620;
+}
+
+.calm-premium .desktop-nav a:hover,
+.calm-premium .desktop-nav a:focus-visible { color:#0f1b2d; }
+
+.calm-premium .locale-switcher {
+    border-color:#cfd9e5;
+    background:#f1f5f9;
+}
+
+.calm-premium .locale-switcher a,
+.calm-premium .mobile-locale-row a { color:#405168; }
+
+.calm-premium .locale-switcher a.active,
+.calm-premium .mobile-locale-row a.active {
+    color:#0f1b2d;
+    background:#fff;
+}
+
 .calm-premium .calm-hero,
 .calm-premium .calm-section,
 .calm-premium .calm-product,
 .calm-premium .calm-values,
 .calm-premium .calm-resources {
-    background:#f3f0e8;
+    background:#f7f9fc;
 }
+
 .calm-premium .calm-hero {
     background:
-        radial-gradient(circle at 78% 18%,rgba(54,91,140,.07),transparent 25rem),
-        linear-gradient(180deg,#f5f2eb 0%,#efebe2 100%);
+        radial-gradient(circle at 78% 18%,rgba(36,87,166,.10),transparent 25rem),
+        linear-gradient(180deg,#fbfdff 0%,#eef4fa 100%);
 }
+
 .calm-premium .calm-window,
 .calm-premium .calm-product-grid,
 .calm-premium .calm-bento article,
@@ -3239,20 +3269,63 @@
 .calm-premium .resource-card,
 .calm-premium .product-pricing-card,
 .calm-premium .service-catalog-card {
-    background:#faf8f3;
+    background:#fff;
 }
+
 .calm-premium .button-primary {
-    border-color:#365b8c;
-    background:#365b8c;
-    box-shadow:0 8px 20px rgba(54,91,140,.12);
+    color:#fff;
+    border-color:#2457a6;
+    background:#2457a6;
+    box-shadow:0 10px 24px rgba(36,87,166,.16);
 }
+
 .calm-premium .button-primary:hover {
-    border-color:#29486f;
-    background:#29486f;
+    color:#fff;
+    border-color:#193f7a;
+    background:#193f7a;
+    box-shadow:0 14px 30px rgba(25,63,122,.20);
 }
-.calm-premium .calm-dark {
-    background:#232a31;
+
+.calm-premium .button-ghost {
+    color:#0f1b2d;
+    border-color:#c8d3df;
 }
+
+.calm-premium .button-ghost:hover {
+    border-color:#9fb0c2;
+    background:#f7f9fc;
+}
+
+.calm-premium .text-link,
+.calm-premium .calm-eyebrow,
+.calm-premium .calm-kicker { color:#1f4f96; }
+
+.calm-premium .calm-hero-copy > p,
+.calm-premium .calm-heading > p,
+.calm-premium .calm-product-copy > p,
+.calm-premium .calm-bento p,
+.calm-premium .calm-values-intro > p,
+.calm-premium .calm-value-list p,
+.calm-premium .calm-resource-grid p,
+.calm-premium .footer-contact a {
+    color:#526277;
+}
+
+.calm-premium .calm-outcomes { background:#edf3f8; }
+
+.calm-premium .calm-dark { background:#101d30; }
+
+.calm-premium .calm-dark .calm-kicker { color:#a9c7f5; }
+
+.calm-premium .site-footer {
+    border-top-color:#d7e0ea;
+    background:#f2f6fa;
+}
+
+.calm-premium .footer-links a,
+.calm-premium .site-footer p,
+.calm-premium .footer-bottom { color:#526277; }
+
 .calm-premium h1,
 .calm-premium h2,
 .calm-premium h3,
@@ -3260,9 +3333,17 @@
 .calm-premium strong {
     font-family:inherit;
 }
+
+.calm-premium a:focus-visible,
+.calm-premium .button:focus-visible,
+.calm-premium summary:focus-visible {
+    outline-color:#2457a6;
+}
+
 .rtl-site {
     letter-spacing:0;
 }
+
 .rtl-site .calm-eyebrow,
 .rtl-site .calm-kicker,
 .rtl-site .kicker,

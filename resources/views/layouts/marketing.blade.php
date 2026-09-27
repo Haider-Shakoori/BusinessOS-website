@@ -14,7 +14,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f3f0e8">
+    <meta name="theme-color" content="#f7f9fc">
     <meta name="color-scheme" content="light">
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
@@ -44,9 +44,12 @@
     @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    @if($isRtl)
+        <link rel="preload" href="{{ asset('assets/fonts/noto-sans-arabic.woff2') }}" as="font" type="font/woff2" crossorigin>
+    @else
+        <link rel="preload" href="{{ asset('assets/fonts/manrope-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    @endif
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}?v={{ filemtime(public_path('assets/css/fonts.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/businessos-calm.css') }}?v={{ filemtime(public_path('assets/css/businessos-calm.css')) }}">
 
