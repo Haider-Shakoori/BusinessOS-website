@@ -1,7 +1,7 @@
 @extends('layouts.marketing')
 
 @section('content')
-<section class="product-hero">
+<section class="product-hero product-theme-{{ $app['slug'] }}">
     <div class="shell product-hero-grid">
         <div>
             <nav class="breadcrumbs" aria-label="Breadcrumb">

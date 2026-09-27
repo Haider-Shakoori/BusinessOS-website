@@ -23,6 +23,21 @@
                         <div class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</div>
                         <span class="status-pill">{{ $app['status'] }}</span>
                     </div>
+                    @if(!empty($app['preview']))
+                        <div class="directory-interface directory-interface-{{ $app['slug'] }}" aria-hidden="true">
+                            <div class="directory-interface-head"><span>{{ $app['preview']['section'] }}</span><i></i></div>
+                            <div class="directory-interface-metrics">
+                                @foreach(array_slice($app['preview']['metrics'], 0, 3) as $metric)
+                                    <span><small>{{ $metric['label'] }}</small><strong>{{ $metric['value'] }}</strong></span>
+                                @endforeach
+                            </div>
+                            <div class="directory-interface-rows">
+                                @foreach(array_slice($app['preview']['rows'], 0, 2) as $row)
+                                    <span><i></i>{{ $row }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <span class="kicker">{{ $app['eyebrow'] }}</span>
                     <h2>{{ $app['name'] }}</h2>
                     <p>{{ $app['short_description'] }}</p>
