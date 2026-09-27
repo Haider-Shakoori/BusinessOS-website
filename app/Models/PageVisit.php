@@ -16,6 +16,8 @@ class PageVisit extends Model
         'referrer_host',
         'user_agent_family',
         'device_type',
+        'traffic_type',
+        'bot_family',
         'occurred_at',
     ];
 

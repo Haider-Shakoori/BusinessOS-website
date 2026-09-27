@@ -8,7 +8,7 @@
     <div>
         <span class="admin-kicker">{{ $days }} day report</span>
         <h1>First-party website analytics.</h1>
-        <p>Page views, anonymous visitors, acquisition sources, landing pages, product interest and audience signals — without storing raw visitor IP addresses.</p>
+        <p>Human traffic is separated from search crawlers, AI / LLM crawlers and other automated clients — without storing raw visitor IP addresses.</p>
     </div>
     <div style="display:grid;gap:9px;justify-items:end">
         <nav class="range-switch" aria-label="Analytics date range">
@@ -32,11 +32,49 @@
 </div>
 
 <div class="admin-metric-grid analytics-metrics">
-    <article><span>PAGE VIEWS</span><strong>{{ number_format($allVisits) }}</strong><small>Every tracked public-page view</small></article>
-    <article><span>VISITORS</span><strong>{{ number_format($uniqueVisits) }}</strong><small>Distinct anonymous browser IDs</small></article>
-    <article><span>COUNTRY COVERAGE</span><strong>{{ number_format($countryCoverage) }}%</strong><small>{{ number_format($knownCountryViews) }} views had a trusted country signal</small></article>
-    <article><span>FROM</span><strong class="metric-date">{{ $start->format('M j') }}</strong><small>through today</small></article>
+    <article><span>HUMAN PAGE VIEWS</span><strong>{{ number_format($allVisits) }}</strong><small>Automated traffic excluded</small></article>
+    <article><span>HUMAN VISITORS</span><strong>{{ number_format($uniqueVisits) }}</strong><small>Distinct anonymous browser IDs</small></article>
+    <article><span>AUTOMATED REQUESTS</span><strong>{{ number_format($automatedHits) }}</strong><small>Search, AI and other bots tracked separately</small></article>
+    <article><span>COUNTRY COVERAGE</span><strong>{{ number_format($countryCoverage) }}%</strong><small>{{ number_format($knownCountryViews) }} human views had a trusted country signal</small></article>
 </div>
+
+<div class="admin-panel-grid analytics-bottom">
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>AUTOMATION</span><h2>Automated traffic by category</h2></div><strong>{{ number_format($automatedHits) }}</strong></div>
+        <p class="admin-panel-copy">These requests are excluded from every human visitor, country, acquisition and content-interest KPI below.</p>
+        <div class="analytics-table">
+            <div class="analytics-table-head"><span>Category</span><span></span><span>Requests</span></div>
+            @foreach ($trafficSummary as $traffic)
+                <div><span>{{ $traffic->label }}</span><b></b><b>{{ number_format($traffic->total) }}</b></div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>AUTOMATED CLIENTS</span><h2>Top crawlers, bots & scanners</h2></div></div>
+        <p class="admin-panel-copy">Identified from the request user agent. Bot IP addresses are not stored in analytics.</p>
+        <div class="analytics-table">
+            <div class="analytics-table-head"><span>Client</span><span>Type</span><span>Requests</span></div>
+            @forelse ($botFamilies as $bot)
+                @php($typeLabel = match ($bot->traffic_type) {
+                    'search_crawler' => 'Search',
+                    'ai_crawler' => 'AI / LLM',
+                    default => 'Other bot',
+                })
+                <div><span>{{ $bot->label }}</span><b>{{ $typeLabel }}</b><b>{{ number_format($bot->total) }}</b></div>
+            @empty
+                <p class="analytics-empty">No automated traffic recorded in this period.</p>
+            @endforelse
+        </div>
+    </section>
+</div>
+
+@if ($legacyVisits > 0)
+    <div class="analytics-note">
+        <strong>{{ number_format($legacyVisits) }} historical views are unclassified</strong>
+        <p>They were collected before human/bot separation was enabled, so they are preserved for audit purposes but excluded from the human KPIs above. New traffic is classified at request time.</p>
+    </div>
+@endif
 
 <div class="analytics-country-grid">
     <section class="admin-panel analytics-country-panel">
@@ -44,7 +82,7 @@
             <div><span>VISITORS</span><h2>Visitors by country</h2></div>
             <strong>{{ number_format($uniqueVisits) }}</strong>
         </div>
-        <p class="admin-panel-copy">Each anonymous browser is counted once in the selected period, grouped only when the host or CDN supplies a trusted ISO country code.</p>
+        <p class="admin-panel-copy">Human visitors only. Each anonymous browser is counted once in the selected period and automated clients are excluded.</p>
 
         @php($uniqueMax = max(1, (int) ($uniqueByCountry->max('total') ?? 1)))
         <div class="country-table">
@@ -65,7 +103,7 @@
             <div><span>PAGE VIEWS</span><h2>Page views by country</h2></div>
             <strong>{{ number_format($allVisits) }}</strong>
         </div>
-        <p class="admin-panel-copy">Repeat browsing is included here, so this shows traffic volume rather than people.</p>
+        <p class="admin-panel-copy">Human page views only. Repeat browsing is included, while search crawlers, AI crawlers and other bots are excluded.</p>
 
         @php($allMax = max(1, (int) ($allByCountry->max('total') ?? 1)))
         <div class="country-table">
@@ -112,7 +150,7 @@
 
 <div class="admin-panel-grid analytics-bottom">
     <section class="admin-panel">
-        <div class="admin-panel-head"><div><span>PRODUCT INTEREST</span><h2>Product pages people viewed</h2></div></div>
+        <div class="admin-panel-head"><div><span>PRODUCT INTEREST</span><h2>Product pages human visitors viewed</h2></div></div>
         <p class="admin-panel-copy">Useful for seeing which BusinessOS products are attracting attention before an inquiry is submitted.</p>
         <div class="analytics-table">
             <div class="analytics-table-head"><span>Product</span><span>Visitors</span><span>Views</span></div>
@@ -181,6 +219,6 @@
 
 <div class="analytics-note">
     <strong>How to read these numbers</strong>
-    <p>Visitors are anonymous browser IDs, not verified people. Obvious bots, admin pages, health checks, robots.txt and sitemap requests are excluded. Country uses trusted host/CDN signals when available and otherwise resolves the request IP locally against DB-IP Country Lite; raw visitor IP addresses are never stored or sent to an external geolocation API. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
+    <p>Human visitors are anonymous browser IDs, not verified people. Search / Google crawlers, AI / LLM crawlers, scanners and scripted clients are classified separately and never contribute to the human KPIs. Country uses trusted host/CDN signals when available and otherwise resolves the request IP locally against DB-IP Country Lite; raw visitor IP addresses are never stored or sent to an external geolocation API. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
 </div>
 @endsection

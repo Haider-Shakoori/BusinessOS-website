@@ -18,10 +18,14 @@ class AnalyticsController extends Controller
     {
         $start = now()->subDays(29)->startOfDay();
 
+        $human = PageVisit::query()
+            ->where('occurred_at', '>=', $start)
+            ->where('traffic_type', 'human');
+
         return view('admin.dashboard', [
-            'allVisits' => PageVisit::where('occurred_at', '>=', $start)->count(),
-            'uniqueVisits' => PageVisit::where('occurred_at', '>=', $start)->distinct('visitor_id')->count('visitor_id'),
-            'countries' => PageVisit::where('occurred_at', '>=', $start)->whereNotNull('country_code')->distinct('country_code')->count('country_code'),
+            'allVisits' => (clone $human)->count(),
+            'uniqueVisits' => (clone $human)->distinct('visitor_id')->count('visitor_id'),
+            'countries' => (clone $human)->whereNotNull('country_code')->distinct('country_code')->count('country_code'),
             'inquiries' => Inquiry::where('created_at', '>=', $start)->count(),
             'newInquiries' => Inquiry::where('status', 'new')->count(),
             'products' => Product::query()->publiclyVisible()->count(),
@@ -38,13 +42,36 @@ class AnalyticsController extends Controller
 
         $start = now()->subDays($days - 1)->startOfDay();
         $base = PageVisit::query()->where('occurred_at', '>=', $start);
+        $humanBase = (clone $base)->where('traffic_type', 'human');
 
-        $allVisits = (clone $base)->count();
-        $uniqueVisits = (clone $base)->distinct('visitor_id')->count('visitor_id');
-        $knownCountryViews = (clone $base)->whereNotNull('country_code')->count();
+        $allVisits = (clone $humanBase)->count();
+        $uniqueVisits = (clone $humanBase)->distinct('visitor_id')->count('visitor_id');
+        $knownCountryViews = (clone $humanBase)->whereNotNull('country_code')->count();
         $countryCoverage = $allVisits > 0 ? (int) round(($knownCountryViews / $allVisits) * 100) : 0;
 
-        $allByCountry = (clone $base)
+        $automatedTypes = ['search_crawler', 'ai_crawler', 'other_bot'];
+        $automatedHits = (clone $base)->whereIn('traffic_type', $automatedTypes)->count();
+        $legacyVisits = (clone $base)->where('traffic_type', 'legacy')->count();
+
+        $trafficSummary = collect([
+            'search_crawler' => 'Search / Google crawlers',
+            'ai_crawler' => 'AI / LLM crawlers',
+            'other_bot' => 'Other bots & scanners',
+        ])->map(fn (string $label, string $type) => (object) [
+            'type' => $type,
+            'label' => $label,
+            'total' => (clone $base)->where('traffic_type', $type)->count(),
+        ])->values();
+
+        $botFamilies = (clone $base)
+            ->whereIn('traffic_type', $automatedTypes)
+            ->selectRaw("traffic_type, COALESCE(bot_family, 'Unknown automated client') as label, COUNT(*) as total")
+            ->groupBy('traffic_type', 'bot_family')
+            ->orderByDesc('total')
+            ->limit(12)
+            ->get();
+
+        $allByCountry = (clone $humanBase)
             ->selectRaw("COALESCE(country_code, 'Unknown') as country, COUNT(*) as total")
             ->groupBy('country')
             ->orderByDesc('total')
@@ -55,7 +82,7 @@ class AnalyticsController extends Controller
                 'total' => (int) $row->total,
             ]);
 
-        $uniqueByCountry = (clone $base)
+        $uniqueByCountry = (clone $humanBase)
             ->selectRaw("COALESCE(country_code, 'Unknown') as country, COUNT(DISTINCT visitor_id) as total")
             ->groupBy('country')
             ->orderByDesc('total')
@@ -66,14 +93,14 @@ class AnalyticsController extends Controller
                 'total' => (int) $row->total,
             ]);
 
-        $topPages = (clone $base)
+        $topPages = (clone $humanBase)
             ->selectRaw('path, COUNT(*) as total, COUNT(DISTINCT visitor_id) as unique_total')
             ->groupBy('path')
             ->orderByDesc('total')
             ->limit(10)
             ->get();
 
-        $daily = (clone $base)
+        $daily = (clone $humanBase)
             ->selectRaw('DATE(occurred_at) as day, COUNT(*) as total, COUNT(DISTINCT visitor_id) as unique_total')
             ->groupBy('day')
             ->orderBy('day')
@@ -81,7 +108,7 @@ class AnalyticsController extends Controller
 
         $siteHost = strtolower((string) parse_url((string) config('app.url'), PHP_URL_HOST));
 
-        $topReferrers = (clone $base)
+        $topReferrers = (clone $humanBase)
             ->whereNotNull('referrer_host')
             ->where('referrer_host', '!=', '')
             ->when($siteHost !== '', fn ($query) => $query->where('referrer_host', '!=', $siteHost))
@@ -91,25 +118,25 @@ class AnalyticsController extends Controller
             ->limit(8)
             ->get();
 
-        $directVisits = (clone $base)
+        $directVisits = (clone $humanBase)
             ->where(function ($query): void {
                 $query->whereNull('referrer_host')->orWhere('referrer_host', '');
             })
             ->count();
 
-        $browsers = (clone $base)
+        $browsers = (clone $humanBase)
             ->selectRaw("COALESCE(user_agent_family, 'Unknown') as label, COUNT(*) as total, COUNT(DISTINCT visitor_id) as unique_total")
             ->groupBy('user_agent_family')
             ->orderByDesc('total')
             ->get();
 
-        $devices = (clone $base)
+        $devices = (clone $humanBase)
             ->selectRaw("COALESCE(device_type, 'Unknown') as label, COUNT(*) as total, COUNT(DISTINCT visitor_id) as unique_total")
             ->groupBy('device_type')
             ->orderByDesc('total')
             ->get();
 
-        $landingPages = (clone $base)
+        $landingPages = (clone $humanBase)
             ->orderBy('occurred_at')
             ->orderBy('id')
             ->get(['visitor_id', 'path'])
@@ -123,7 +150,7 @@ class AnalyticsController extends Controller
             ])
             ->values();
 
-        $productInterest = (clone $base)
+        $productInterest = (clone $humanBase)
             ->where('path', 'like', '/apps/%')
             ->selectRaw('path, COUNT(*) as total, COUNT(DISTINCT visitor_id) as unique_total')
             ->groupBy('path')
@@ -151,6 +178,10 @@ class AnalyticsController extends Controller
             'uniqueByCountry' => $uniqueByCountry,
             'knownCountryViews' => $knownCountryViews,
             'countryCoverage' => $countryCoverage,
+            'automatedHits' => $automatedHits,
+            'trafficSummary' => $trafficSummary,
+            'botFamilies' => $botFamilies,
+            'legacyVisits' => $legacyVisits,
             'topPages' => $topPages,
             'daily' => $daily,
             'topReferrers' => $topReferrers,
