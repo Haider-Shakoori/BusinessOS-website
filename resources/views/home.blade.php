@@ -4,6 +4,10 @@
 @php
     $homeText = static fn (string $key, string $fallback): string =>
         app()->getLocale() === 'en' ? (string) $siteSettings->get($key, $fallback) : $fallback;
+
+    $heroFieldPulse = $apps->firstWhere('slug', 'fieldpulse');
+    $heroErp = $apps->firstWhere('slug', 'erp');
+    $heroPos = $apps->firstWhere('slug', 'pos');
 @endphp
 <section class="ecosystem-hero" id="top">
     <div class="shell ecosystem-hero-grid">
@@ -13,7 +17,7 @@
             <p>{{ $siteSettings->localized('homepage_hero_description', __('marketing.home.hero_description')) }}</p>
 
             <div class="calm-hero-actions">
-                <a class="button button-primary" href="{{ route('services') }}">{{ __('marketing.nav.solutions') }} <span aria-hidden="true">→</span></a>
+                <a class="button button-primary" href="{{ route('demo') }}">{{ __('marketing.actions.request_demo') }} <span aria-hidden="true">→</span></a>
                 <a class="button button-ghost" href="{{ route('apps.index') }}">{{ __('marketing.actions.explore_apps') }}</a>
             </div>
 
@@ -25,44 +29,86 @@
         </div>
 
         <div class="ecosystem-scene" aria-label="BusinessOS product ecosystem preview">
-            <div class="ecosystem-depth ecosystem-depth-back" aria-hidden="true"></div>
-            <div class="ecosystem-depth ecosystem-depth-mid" aria-hidden="true"></div>
+            <div class="hero-product-orbit" aria-hidden="true"></div>
 
-            <div class="ecosystem-console">
-                <div class="ecosystem-console-top">
-                    <div><i></i><i></i><i></i></div>
-                    <strong>BusinessOS</strong>
-                    <span>{{ __('marketing.ui.home.ecosystem') }}</span>
-                </div>
-
-                <div class="ecosystem-console-body">
-                    <div class="ecosystem-console-intro">
-                        <small>{{ strtoupper(__('marketing.home.one_family')) }}</small>
-                        <h2>{{ __('marketing.home.choose_software') }}</h2>
-                        <p>{{ __('marketing.home.family_copy') }}</p>
+            @if($heroErp)
+                <a class="hero-product-window hero-product-window-erp" href="{{ route('apps.show', $heroErp['slug']) }}" aria-label="{{ $heroErp['name'] }}">
+                    <div class="hero-window-top">
+                        <span class="hero-window-brand"><i>{{ $heroErp['icon_letter'] }}</i>{{ $heroErp['name'] }}</span>
+                        <span class="hero-window-live">{{ $heroErp['preview']['status'] }}</span>
                     </div>
+                    <div class="hero-window-body">
+                        <aside aria-hidden="true"><i></i><i class="active"></i><i></i><i></i><i></i></aside>
+                        <main>
+                            <div class="hero-preview-title">
+                                <span>{{ strtoupper($heroErp['preview']['section']) }}</span>
+                                <strong>{{ $heroErp['preview']['title'] }}</strong>
+                            </div>
+                            <div class="hero-preview-metrics">
+                                @foreach(array_slice($heroErp['preview']['metrics'], 0, 3) as $metric)
+                                    <span><small>{{ $metric['label'] }}</small><strong>{{ $metric['value'] }}</strong><em>{{ $metric['detail'] }}</em></span>
+                                @endforeach
+                            </div>
+                            <div class="hero-preview-rows">
+                                @foreach(array_slice($heroErp['preview']['rows'], 0, 3) as $row)
+                                    <div><i></i><span>{{ $row }}</span><b>→</b></div>
+                                @endforeach
+                            </div>
+                        </main>
+                    </div>
+                </a>
+            @endif
 
-                    <div class="ecosystem-console-products">
-                        @foreach ($apps as $app)
-                            <a class="ecosystem-mini-app ecosystem-mini-{{ $app['slug'] }}" href="{{ route('apps.show', $app['slug']) }}">
-                                <span class="app-letter-icon" aria-hidden="true">{{ $app['icon_letter'] }}</span>
-                                <div>
-                                    <small>{{ $app['eyebrow'] }}</small>
-                                    <strong>{{ $app['name'] }}</strong>
-                                </div>
-                                <i>→</i>
-                            </a>
+            @if($heroFieldPulse)
+                <a class="hero-phone-preview" href="{{ route('apps.show', $heroFieldPulse['slug']) }}" aria-label="{{ $heroFieldPulse['name'] }}">
+                    <div class="hero-phone-shell">
+                        <div class="hero-phone-status"><span>9:41</span><i></i></div>
+                        <div class="hero-phone-header">
+                            <span class="hero-phone-app"><i>{{ $heroFieldPulse['icon_letter'] }}</i><strong>{{ $heroFieldPulse['name'] }}</strong></span>
+                            <b>{{ $heroFieldPulse['preview']['status'] }}</b>
+                        </div>
+                        <div class="hero-phone-map" aria-hidden="true">
+                            <span class="map-road road-a"></span>
+                            <span class="map-road road-b"></span>
+                            <span class="map-road road-c"></span>
+                            <i class="map-pin pin-a"></i>
+                            <i class="map-pin pin-b"></i>
+                            <i class="map-pin pin-c"></i>
+                        </div>
+                        <div class="hero-phone-card">
+                            <small>{{ $heroFieldPulse['preview']['section'] }}</small>
+                            <strong>{{ $heroFieldPulse['preview']['title'] }}</strong>
+                            @foreach(array_slice($heroFieldPulse['preview']['rows'], 0, 2) as $row)
+                                <span><i></i>{{ $row }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                </a>
+            @endif
+
+            @if($heroPos)
+                <a class="hero-pos-preview" href="{{ route('apps.show', $heroPos['slug']) }}" aria-label="{{ $heroPos['name'] }}">
+                    <div class="hero-pos-head">
+                        <span><i>{{ $heroPos['icon_letter'] }}</i><strong>{{ $heroPos['name'] }}</strong></span>
+                        <b>{{ $heroPos['preview']['status'] }}</b>
+                    </div>
+                    <div class="hero-pos-items">
+                        @foreach(array_slice($heroPos['preview']['rows'], 0, 3) as $index => $row)
+                            <div><span><i>{{ $index + 1 }}</i>{{ $row }}</span><b>✓</b></div>
                         @endforeach
                     </div>
-                </div>
-            </div>
-
-            @foreach ($apps->take(3) as $app)
-                <a class="ecosystem-float ecosystem-float-{{ ['field', 'erp', 'pos'][$loop->index] }}" href="{{ route('apps.show', $app['slug']) }}">
-                    <span>{{ $app['icon_letter'] }}</span>
-                    <div><small>{{ strtoupper($app['eyebrow']) }}</small><strong>{{ $app['name'] }}</strong></div>
+                    <div class="hero-pos-summary">
+                        <small>{{ $heroPos['preview']['metrics'][0]['label'] ?? $heroPos['eyebrow'] }}</small>
+                        <strong>{{ $heroPos['preview']['metrics'][0]['value'] ?? $heroPos['name'] }}</strong>
+                        <span>{{ $heroPos['preview']['metrics'][0]['detail'] ?? $heroPos['status'] }}</span>
+                    </div>
                 </a>
-            @endforeach
+            @endif
+
+            <div class="hero-visual-caption">
+                <span>{{ __('marketing.ui.home.visual_kicker') }}</span>
+                <strong>{{ __('marketing.ui.home.visual_title') }}</strong>
+            </div>
         </div>
     </div>
 </section>
@@ -120,6 +166,25 @@
                     <span class="status-pill">{{ $app['status'] }}</span>
                 </div>
 
+                @if(!empty($app['preview']))
+                    <div class="product-card-interface product-card-interface-{{ $app['slug'] }}" aria-hidden="true">
+                        <div class="product-card-interface-top">
+                            <span>{{ $app['preview']['section'] }}</span>
+                            <i></i>
+                        </div>
+                        <div class="product-card-interface-metrics">
+                            @foreach(array_slice($app['preview']['metrics'], 0, 3) as $metric)
+                                <span><small>{{ $metric['label'] }}</small><strong>{{ $metric['value'] }}</strong></span>
+                            @endforeach
+                        </div>
+                        <div class="product-card-interface-line">
+                            @foreach(array_slice($app['preview']['rows'], 0, 3) as $row)
+                                <i title="{{ $row }}"></i>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 <span class="calm-app-kicker">{{ $app['eyebrow'] }}</span>
                 <h3>{{ $app['name'] }}</h3>
                 <p>{{ $app['short_description'] }}</p>
@@ -132,9 +197,58 @@
 
                 <div class="ecosystem-product-actions">
                     <a class="button button-ghost" href="{{ route('apps.show', $app['slug']) }}">{{ __('marketing.ui.home.explore') }} {{ $app['name'] }}</a>
+                    <a class="product-demo-link" href="{{ route('demo', ['app' => $app['slug']]) }}">{{ __('marketing.actions.request_demo') }} <span>→</span></a>
                 </div>
             </article>
         @endforeach
+    </div>
+</section>
+
+<section class="calm-section workflow-showcase" id="workflows">
+    <div class="shell calm-heading">
+        <div>
+            <span class="calm-kicker">{{ __('marketing.ui.home.workflow_kicker') }}</span>
+            <h2>{{ __('marketing.ui.home.workflow_title') }}</h2>
+        </div>
+        <p>{{ __('marketing.ui.home.workflow_copy') }}</p>
+    </div>
+
+    <div class="shell workflow-showcase-grid">
+        @if($heroFieldPulse)
+            <a class="workflow-card workflow-card-fieldpulse" href="{{ route('apps.show', $heroFieldPulse['slug']) }}">
+                <div class="workflow-card-head"><span>{{ $heroFieldPulse['icon_letter'] }}</span><div><small>{{ $heroFieldPulse['eyebrow'] }}</small><strong>{{ $heroFieldPulse['name'] }}</strong></div></div>
+                <div class="workflow-steps">
+                    <span>{{ __('marketing.ui.home.workflow_field_1') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_field_2') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_field_3') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_field_4') }}</span>
+                </div>
+            </a>
+        @endif
+
+        @if($heroErp)
+            <a class="workflow-card workflow-card-erp" href="{{ route('apps.show', $heroErp['slug']) }}">
+                <div class="workflow-card-head"><span>{{ $heroErp['icon_letter'] }}</span><div><small>{{ $heroErp['eyebrow'] }}</small><strong>{{ $heroErp['name'] }}</strong></div></div>
+                <div class="workflow-steps">
+                    <span>{{ __('marketing.ui.home.workflow_erp_1') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_erp_2') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_erp_3') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_erp_4') }}</span>
+                </div>
+            </a>
+        @endif
+
+        @if($heroPos)
+            <a class="workflow-card workflow-card-pos" href="{{ route('apps.show', $heroPos['slug']) }}">
+                <div class="workflow-card-head"><span>{{ $heroPos['icon_letter'] }}</span><div><small>{{ $heroPos['eyebrow'] }}</small><strong>{{ $heroPos['name'] }}</strong></div></div>
+                <div class="workflow-steps">
+                    <span>{{ __('marketing.ui.home.workflow_pos_1') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_pos_2') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_pos_3') }}</span><i>→</i>
+                    <span>{{ __('marketing.ui.home.workflow_pos_4') }}</span>
+                </div>
+            </a>
+        @endif
     </div>
 </section>
 
