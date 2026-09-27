@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             SearchGuideSeeder::class,
             SeoPageSeeder::class,
             SearchGrowthPhase2Seeder::class,
+            AfghanistanSearchAuthoritySeeder::class,
             CaseStudySeeder::class,
         ]);
     }

@@ -49,10 +49,17 @@ class MarketingController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'Organization',
+                    '@id' => route('home').'#organization',
                     'name' => 'BusinessOS',
+                    'alternateName' => 'BusinessOS Afghanistan',
                     'url' => route('home'),
                     'logo' => url('assets/brand/businessos-logo.svg'),
-                    'description' => config('businessos.brand.description'),
+                    'description' => 'BusinessOS is an Afghanistan-focused business software platform and development company providing ERP, POS, field sales, inventory and industry-specific systems.',
+                    'areaServed' => [
+                        '@type' => 'Country',
+                        'name' => 'Afghanistan',
+                    ],
+                    'knowsLanguage' => ['English', 'Dari', 'Pashto'],
                     'knowsAbout' => $services->pluck('name')->merge($allApps->pluck('name'))->unique()->values()->all(),
                     'hasOfferCatalog' => [
                         '@type' => 'OfferCatalog',
@@ -73,9 +80,11 @@ class MarketingController extends Controller
                     'name' => 'BusinessOS',
                     'url' => route('home'),
                     'publisher' => [
-                        '@type' => 'Organization',
-                        'name' => 'BusinessOS',
-                        'url' => route('home'),
+                        '@id' => route('home').'#organization',
+                    ],
+                    'about' => [
+                        '@type' => 'Thing',
+                        'name' => 'Business software in Afghanistan',
                     ],
                     'inLanguage' => ['en', 'fa', 'ps'],
                 ],

@@ -47,7 +47,7 @@
                     @if($relatedServices->count())
                         <div class="use-case-list">
                             @foreach($relatedServices as $page)
-                                <div><span>S{{ $loop->iteration }}</span><strong><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></strong><i>→</i></div>
+                                <div><span>S{{ $loop->iteration }}</span><strong><a href="{{ $page->publicUrl() }}">{{ $page->title }}</a></strong><i>→</i></div>
                             @endforeach
                         </div>
                     @endif

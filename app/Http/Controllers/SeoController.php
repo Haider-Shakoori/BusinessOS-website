@@ -54,7 +54,7 @@ class SeoController extends Controller
         try {
             $urls = $urls
                 ->merge(SeoPage::published()->latest('updated_at')->get()->map(fn (SeoPage $page) => [
-                    'loc' => route('seo-pages.show', $page),
+                    'loc' => $page->publicUrl(),
                     'lastmod' => $page->updated_at?->toDateString() ?? now()->toDateString(),
                     'priority' => '0.9',
                 ]))

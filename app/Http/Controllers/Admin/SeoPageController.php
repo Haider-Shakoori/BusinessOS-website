@@ -27,7 +27,7 @@ class SeoPageController extends Controller
         $page = SeoPage::create($this->prepare($request->validated()));
 
         if ($page->status === 'published') {
-            $indexNow->submit(route('seo-pages.show', $page));
+            $indexNow->submit($page->publicUrl());
         }
 
         return redirect()->route('admin.seo-pages.edit', $page)->with('status', 'Search landing page created.');
@@ -43,7 +43,7 @@ class SeoPageController extends Controller
         $seoPage->update($this->prepare($request->validated(), $seoPage));
 
         if ($seoPage->status === 'published') {
-            $indexNow->submit(route('seo-pages.show', $seoPage));
+            $indexNow->submit($seoPage->publicUrl());
         }
 
         return back()->with('status', 'Search landing page updated.');
@@ -51,7 +51,7 @@ class SeoPageController extends Controller
 
     public function destroy(SeoPage $seoPage, IndexNowService $indexNow): RedirectResponse
     {
-        $url = route('seo-pages.show', $seoPage);
+        $url = $seoPage->publicUrl();
         $seoPage->delete();
         $indexNow->submit($url);
 

@@ -211,9 +211,9 @@
                 @foreach($relatedServices as $page)
                     <article class="resource-card">
                         <div class="resource-card-top"><span>{{ $page->eyebrow ?: 'BusinessOS service' }}</span></div>
-                        <h3><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></h3>
+                        <h3><a href="{{ $page->publicUrl() }}">{{ $page->title }}</a></h3>
                         <p>{{ $page->excerpt }}</p>
-                        <a class="text-link" href="{{ route('seo-pages.show', $page) }}">{{ __('marketing.ui.product.explore_service') }} <span>→</span></a>
+                        <a class="text-link" href="{{ $page->publicUrl() }}">{{ __('marketing.ui.product.explore_service') }} <span>→</span></a>
                     </article>
                 @endforeach
             </div>
