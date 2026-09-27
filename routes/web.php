@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MarketingController::class, 'home'])->name('home');
 
+Route::get('/business-operating-system-afghanistan', [SeoPageController::class, 'businessOperatingSystem'])
+    ->name('business-operating-system-afghanistan');
+Route::get('/business-software-afghanistan', [SeoPageController::class, 'businessSoftwareAfghanistan'])
+    ->name('business-software-afghanistan');
+
 Route::get('/services', [MarketingController::class, 'services'])->name('services');
 Route::get('/services/{seoPage:slug}', [SeoPageController::class, 'show'])
     ->where('seoPage', '[a-z0-9-]+')
