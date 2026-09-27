@@ -65,7 +65,7 @@
                     <h2>{{ __('marketing.ui.guide.related_services_title') }}</h2>
                     <div class="use-case-list">
                         @foreach($relatedPages as $page)
-                            <div><span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><strong><a href="{{ route('seo-pages.show', $page) }}">{{ $page->title }}</a></strong><i>→</i></div>
+                            <div><span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span><strong><a href="{{ $page->publicUrl() }}">{{ $page->title }}</a></strong><i>→</i></div>
                         @endforeach
                     </div>
                 </div>
