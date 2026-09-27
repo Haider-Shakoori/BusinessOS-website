@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             GuideSeeder::class,
             SearchGuideSeeder::class,
             SeoPageSeeder::class,
+            SearchGrowthPhase2Seeder::class,
             CaseStudySeeder::class,
         ]);
     }
