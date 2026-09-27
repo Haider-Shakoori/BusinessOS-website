@@ -7,6 +7,7 @@ use App\Models\Guide;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Database\Seeders\CaseStudySeeder;
+use Database\Seeders\SearchGrowthPhase2Seeder;
 use Database\Seeders\SearchGuideSeeder;
 use Database\Seeders\SeoPageSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -195,6 +196,46 @@ class SearchGrowthTest extends TestCase
         $this->get('/indexnow-key.txt')
             ->assertOk()
             ->assertSee('BusinessOS-Test-Key-2026');
+    }
+
+    public function test_search_growth_phase_two_adds_high_intent_topics_and_ai_context(): void
+    {
+        $this->seed(SearchGrowthPhase2Seeder::class);
+
+        $this->assertDatabaseHas('seo_pages', ['slug' => 'offline-business-software', 'status' => 'published']);
+        $this->assertDatabaseHas('seo_pages', ['slug' => 'supermarket-pos-software', 'status' => 'published']);
+        $this->assertDatabaseHas('seo_pages', ['slug' => 'dari-pashto-business-software', 'status' => 'published']);
+        $this->assertDatabaseHas('guides', ['slug' => 'offline-first-business-software-poor-internet', 'status' => 'published']);
+        $this->assertDatabaseHas('guides', ['slug' => 'field-sales-visit-planning-territories', 'status' => 'published']);
+
+        $this->get('/services/offline-business-software')
+            ->assertOk()
+            ->assertSee('software designed to keep important work moving')
+            ->assertSee('"serviceType":"Offline Business Software"', false)
+            ->assertSee('"inLanguage":"en"', false)
+            ->assertSee('offline business software', false);
+
+        $this->get('/guides/offline-first-business-software-poor-internet')
+            ->assertOk()
+            ->assertSee('Queue writes with stable identifiers')
+            ->assertSee('"articleSection":"Offline-First Software"', false)
+            ->assertSee('"isPartOf"', false);
+
+        $this->get('/sitemap.xml')
+            ->assertOk()
+            ->assertSee('/services/supermarket-pos-software', false)
+            ->assertSee('/services/pharmacy-inventory-expiry-software', false)
+            ->assertSee('/services/dari-pashto-business-software', false)
+            ->assertSee('/guides/manufacturing-bom-costing-guide', false)
+            ->assertSee('/guides/restaurant-table-order-kitchen-billing-workflow', false);
+
+        $llms = file_get_contents(public_path('llms.txt'));
+
+        $this->assertIsString($llms);
+        $this->assertStringContainsString('High-intent solution topics', $llms);
+        $this->assertStringContainsString('/services/offline-business-software', $llms);
+        $this->assertStringContainsString('/case-studies/businessos-pos-retail-checkout', $llms);
+        $this->assertStringNotContainsString('/case-studies/businessos-pos-afghanistan', $llms);
     }
 
     public function test_admin_can_publish_a_case_study_without_fabricated_seed_content(): void

@@ -3,23 +3,23 @@
 return [
     'products' => [
         'fieldpulse' => [
-            'services' => ['field-sales-management-software', 'software-development-afghanistan'],
-            'guides' => ['how-to-track-field-sales-team'],
+            'services' => ['field-sales-management-software', 'field-sales-visit-management-software', 'offline-business-software'],
+            'guides' => ['how-to-track-field-sales-team', 'field-sales-visit-planning-territories', 'offline-first-business-software-poor-internet'],
             'case_studies' => ['fieldpulse-field-sales-platform'],
         ],
         'erp' => [
-            'services' => ['custom-erp-development', 'erp-software-afghanistan', 'inventory-management-software'],
-            'guides' => ['erp-vs-mis-difference', 'how-to-migrate-from-excel-to-erp', 'custom-erp-vs-off-the-shelf-erp'],
+            'services' => ['custom-erp-development', 'erp-software-afghanistan', 'inventory-management-software', 'manufacturing-inventory-bom-software'],
+            'guides' => ['erp-vs-mis-difference', 'how-to-migrate-from-excel-to-erp', 'custom-erp-vs-off-the-shelf-erp', 'manufacturing-bom-costing-guide'],
             'case_studies' => ['corrugated-carton-manufacturing-erp'],
         ],
         'pos' => [
-            'services' => ['inventory-management-software'],
-            'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
+            'services' => ['inventory-management-software', 'supermarket-pos-software'],
+            'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software', 'supermarket-pos-buying-checklist'],
             'case_studies' => ['businessos-pos-retail-checkout'],
         ],
         'pharmacy-management' => [
-            'services' => ['pharmacy-management-software', 'inventory-management-software'],
-            'guides' => ['pharmacy-expiry-tracking', 'excel-vs-inventory-management-software'],
+            'services' => ['pharmacy-management-software', 'inventory-management-software', 'pharmacy-inventory-expiry-software'],
+            'guides' => ['pharmacy-expiry-tracking', 'excel-vs-inventory-management-software', 'pharmacy-stock-expiry-reorder-guide'],
         ],
         'raw-materials-db' => [
             'services' => ['inventory-management-software', 'data-migration-services'],
@@ -34,8 +34,8 @@ return [
             'guides' => ['financial-management-system-controls', 'erp-vs-mis-difference'],
         ],
         'restaurant-management' => [
-            'services' => ['restaurant-management-software', 'inventory-management-software'],
-            'guides' => ['restaurant-kot-kitchen-station-workflow', 'pos-vs-erp'],
+            'services' => ['restaurant-management-software', 'inventory-management-software', 'restaurant-waiter-ordering-kot-software'],
+            'guides' => ['restaurant-kot-kitchen-station-workflow', 'pos-vs-erp', 'restaurant-table-order-kitchen-billing-workflow'],
         ],
     ],
 
@@ -79,6 +79,27 @@ return [
         'financial-management-software' => [
             'guides' => ['financial-management-system-controls', 'erp-vs-mis-difference'],
         ],
+        'offline-business-software' => [
+            'guides' => ['offline-first-business-software-poor-internet'],
+        ],
+        'supermarket-pos-software' => [
+            'guides' => ['supermarket-pos-buying-checklist', 'pos-vs-erp'],
+        ],
+        'pharmacy-inventory-expiry-software' => [
+            'guides' => ['pharmacy-stock-expiry-reorder-guide', 'pharmacy-expiry-tracking'],
+        ],
+        'manufacturing-inventory-bom-software' => [
+            'guides' => ['manufacturing-bom-costing-guide', 'bom-actual-consumption-production-costing'],
+        ],
+        'field-sales-visit-management-software' => [
+            'guides' => ['field-sales-visit-planning-territories', 'how-to-track-field-sales-team'],
+        ],
+        'restaurant-waiter-ordering-kot-software' => [
+            'guides' => ['restaurant-table-order-kitchen-billing-workflow', 'restaurant-kot-kitchen-station-workflow'],
+        ],
+        'dari-pashto-business-software' => [
+            'guides' => ['multilingual-business-software-dari-pashto'],
+        ],
     ],
 
     'guides' => [
@@ -94,7 +115,13 @@ return [
         'how-to-track-field-sales-team' => ['products' => ['fieldpulse']],
         'restaurant-kot-kitchen-station-workflow' => ['products' => ['restaurant-management']],
         'financial-management-system-controls' => ['products' => ['financial-systems', 'erp']],
-    ],
+        'offline-first-business-software-poor-internet' => ['products' => ['fieldpulse', 'pos', 'pharmacy-management']],
+        'supermarket-pos-buying-checklist' => ['products' => ['pos']],
+        'pharmacy-stock-expiry-reorder-guide' => ['products' => ['pharmacy-management']],
+        'manufacturing-bom-costing-guide' => ['products' => ['erp', 'pvc-pipe-factory', 'raw-materials-db']],
+        'field-sales-visit-planning-territories' => ['products' => ['fieldpulse']],
+        'restaurant-table-order-kitchen-billing-workflow' => ['products' => ['restaurant-management']],
+        'multilingual-business-software-dari-pashto' => ['products' => ['erp', 'pos', 'fieldpulse', 'pharmacy-management', 'restaurant-management']],    ],
 
     'case_studies' => [
         'corrugated-carton-manufacturing-erp' => [
@@ -109,8 +136,8 @@ return [
         ],
         'businessos-pos-retail-checkout' => [
             'products' => ['pos'],
-            'services' => ['inventory-management-software'],
-            'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software'],
+            'services' => ['inventory-management-software', 'supermarket-pos-software'],
+            'guides' => ['pos-vs-erp', 'excel-vs-inventory-management-software', 'supermarket-pos-buying-checklist'],
         ],
         'localized-ecommerce-storefront-modernization' => [
             'products' => [],

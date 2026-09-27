@@ -98,6 +98,17 @@ class GuideController extends Controller
                     '@type' => 'Article',
                     'headline' => $guide->title,
                     'description' => $guide->excerpt,
+                    'articleSection' => $guide->category,
+                    'inLanguage' => app()->getLocale(),
+                    'about' => [
+                        '@type' => 'Thing',
+                        'name' => $guide->category,
+                    ],
+                    'isPartOf' => [
+                        '@type' => 'WebSite',
+                        'name' => 'BusinessOS',
+                        'url' => route('home'),
+                    ],
                     'datePublished' => $guide->published_at?->toAtomString(),
                     'dateModified' => $guide->updated_at?->toAtomString(),
                     'mainEntityOfPage' => route('resources.show', $guide),

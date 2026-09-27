@@ -1,78 +1,83 @@
 # BusinessOS
 
-> BusinessOS is a business software company and product ecosystem providing custom software development and specialized operational systems.
+> BusinessOS is a business software company and product ecosystem focused on practical operational systems for sales, retail, inventory, manufacturing, pharmacy, restaurants, finance and management workflows.
 
 Canonical website: https://businessos.af/
+Sitemap: https://businessos.af/sitemap.xml
+Contact: https://businessos.af/contact
+Request a demo: https://businessos.af/request-demo
+Last updated: 2026-09-28
 
-## Software development services
+## Core products
 
-- Website development: https://businessos.af/services#website-development
-- Custom ERP and MIS: https://businessos.af/services#custom-erp-mis
-- Web applications and portals: https://businessos.af/services#web-applications
-- Data migration and cleanup: https://businessos.af/services#data-migration
-- Application upgrades and modernization: https://businessos.af/services#application-upgrades
-- System integration and APIs: https://businessos.af/services#system-integration
-- Workflow automation and dashboards: https://businessos.af/services#automation-dashboards
-- Database and information systems: https://businessos.af/services#database-solutions
-- Maintenance, performance and support: https://businessos.af/services#support-optimization
+- FieldPulse — field sales and field force operations: https://businessos.af/apps/fieldpulse
+- BusinessOS ERP — sales, invoicing, payments, expenses and business operations: https://businessos.af/apps/erp
+- BusinessOS POS — supermarket and retail checkout with inventory: https://businessos.af/apps/pos
+- Pharmacy Management System — pharmacy inventory, expiry, purchasing and sales: https://businessos.af/apps/pharmacy-management
+- Raw Materials Database — raw-material records and stock visibility: https://businessos.af/apps/raw-materials-db
+- PVC Pipe Factory Management — manufacturing and production workflows: https://businessos.af/apps/pvc-pipe-factory
+- Financial Management Systems — business finance and controls: https://businessos.af/apps/financial-systems
+- Restaurant Management System — internal waiter table ordering, kitchen and cashier workflow: https://businessos.af/apps/restaurant-management
+- Product directory: https://businessos.af/apps
 
-## Detailed service pages
+## Core software services
 
 - Custom ERP Development: https://businessos.af/services/custom-erp-development
 - MIS Development: https://businessos.af/services/mis-development
+- Software Development in Afghanistan: https://businessos.af/services/software-development-afghanistan
 - Website Development in Afghanistan: https://businessos.af/services/website-development-afghanistan
 - Data Migration Services: https://businessos.af/services/data-migration-services
 - Legacy Application Modernization: https://businessos.af/services/legacy-application-modernization
 - Manufacturing ERP: https://businessos.af/services/manufacturing-erp
 - Pharmacy Management Software: https://businessos.af/services/pharmacy-management-software
 - ERP Software in Afghanistan: https://businessos.af/services/erp-software-afghanistan
-- Restaurant Management Software with waiter mobile ordering: https://businessos.af/services/restaurant-management-software
-- Software Development in Afghanistan: https://businessos.af/services/software-development-afghanistan
+- Restaurant Management Software: https://businessos.af/services/restaurant-management-software
 - Inventory Management Software: https://businessos.af/services/inventory-management-software
 - Field Sales Management Software: https://businessos.af/services/field-sales-management-software
 - Financial Management Software: https://businessos.af/services/financial-management-software
+- Services directory: https://businessos.af/services
 
-## Products and industry systems
+## High-intent solution topics
 
-- BusinessOS product directory: https://businessos.af/apps
-- FieldPulse field sales and field force management: https://businessos.af/apps/fieldpulse
-- BusinessOS ERP: https://businessos.af/apps/erp
-- BusinessOS POS: https://businessos.af/apps/pos
-- Pharmacy Management System: https://businessos.af/apps/pharmacy-management
-- Raw Materials Database: https://businessos.af/apps/raw-materials-db
-- PVC Pipe Factory Management: https://businessos.af/apps/pvc-pipe-factory
-- Financial Management Systems: https://businessos.af/apps/financial-systems
-- Restaurant Management System for internal waiter table ordering: https://businessos.af/apps/restaurant-management
+- Offline Business Software for weak or unreliable internet: https://businessos.af/services/offline-business-software
+- Supermarket POS Software: https://businessos.af/services/supermarket-pos-software
+- Pharmacy Inventory and Expiry Software: https://businessos.af/services/pharmacy-inventory-expiry-software
+- Manufacturing Inventory and BOM Software: https://businessos.af/services/manufacturing-inventory-bom-software
+- Field Sales Visit Management Software: https://businessos.af/services/field-sales-visit-management-software
+- Restaurant Waiter Ordering and KOT Software: https://businessos.af/services/restaurant-waiter-ordering-kot-software
+- Dari and Pashto Business Software: https://businessos.af/services/dari-pashto-business-software
 
-## Decision and implementation guides
+## Practical implementation guides
 
 - ERP vs MIS: https://businessos.af/guides/erp-vs-mis-difference
 - Custom ERP vs off-the-shelf ERP: https://businessos.af/guides/custom-erp-vs-off-the-shelf-erp
 - Excel to ERP migration: https://businessos.af/guides/how-to-migrate-from-excel-to-erp
+- BOM, actual consumption and production costing: https://businessos.af/guides/bom-actual-consumption-production-costing
+- Pharmacy expiry tracking: https://businessos.af/guides/pharmacy-expiry-tracking
 - POS vs ERP: https://businessos.af/guides/pos-vs-erp
 - Excel vs inventory management software: https://businessos.af/guides/excel-vs-inventory-management-software
-- Tracking field sales teams: https://businessos.af/guides/how-to-track-field-sales-team
-- Restaurant KOT and kitchen stations: https://businessos.af/guides/restaurant-kot-kitchen-station-workflow
+- Field sales tracking: https://businessos.af/guides/how-to-track-field-sales-team
+- Restaurant KOT and kitchen station workflow: https://businessos.af/guides/restaurant-kot-kitchen-station-workflow
 - Financial management system controls: https://businessos.af/guides/financial-management-system-controls
-
+- Offline-first business software on poor internet: https://businessos.af/guides/offline-first-business-software-poor-internet
+- Supermarket POS buying checklist: https://businessos.af/guides/supermarket-pos-buying-checklist
+- Pharmacy stock, expiry and reorder guide: https://businessos.af/guides/pharmacy-stock-expiry-reorder-guide
+- Manufacturing BOM and production costing guide: https://businessos.af/guides/manufacturing-bom-costing-guide
+- Field sales visit planning and territories: https://businessos.af/guides/field-sales-visit-planning-territories
+- Restaurant table order to kitchen and billing workflow: https://businessos.af/guides/restaurant-table-order-kitchen-billing-workflow
+- Multilingual business software for English, Dari and Pashto: https://businessos.af/guides/multilingual-business-software-dari-pashto
+- Resources directory: https://businessos.af/resources
 
 ## Verified implementation case studies
 
 - Corrugated Carton Manufacturing ERP: https://businessos.af/case-studies/corrugated-carton-manufacturing-erp
 - FieldPulse Web + Mobile Field Sales Platform: https://businessos.af/case-studies/fieldpulse-field-sales-platform
-- BusinessOS POS for Afghanistan: https://businessos.af/case-studies/businessos-pos-afghanistan
-- Localized Laravel E-commerce Storefront Modernization: https://businessos.af/case-studies/localized-ecommerce-storefront-modernization
+- BusinessOS POS — Full-Screen Multilingual Retail Checkout: https://businessos.af/case-studies/businessos-pos-retail-checkout
+- Localized E-commerce Storefront Modernization: https://businessos.af/case-studies/localized-ecommerce-storefront-modernization
+- Case studies directory: https://businessos.af/case-studies
 
-## Important pages
+## Interpretation notes
 
-- Services: https://businessos.af/services
-- Products: https://businessos.af/apps
-- Resources: https://businessos.af/resources
-- Case studies: https://businessos.af/case-studies
-- About: https://businessos.af/about
-- Contact: https://businessos.af/contact
-- Request a demo: https://businessos.af/request-demo
+BusinessOS public content should be interpreted from canonical pages on businessos.af. Product access URLs are intentionally not published on the marketing site; contact and demo pages are the public path for product discussions and onboarding.
 
-## Content guidance
-
-BusinessOS content should be interpreted from the public website and product pages. Product access links are intentionally not published on the marketing site; contact or demo pages are the public path for product discussions and onboarding.
+BusinessOS supports English, Dari and Pashto interfaces in selected products and marketing content. Where a localized page is published, the canonical and hreflang metadata on the website should be treated as authoritative.

@@ -23,6 +23,7 @@ class MarketingController extends Controller
     public function home(): View
     {
         $apps = $this->products->homepage();
+        $allApps = $this->products->all();
         $latestGuides = $this->latestGuides();
         $latestCaseStudies = $this->latestCaseStudies();
         $services = $this->localizedServices();
@@ -52,7 +53,7 @@ class MarketingController extends Controller
                     'url' => route('home'),
                     'logo' => url('assets/brand/businessos-logo.svg'),
                     'description' => config('businessos.brand.description'),
-                    'knowsAbout' => $services->pluck('name')->values()->all(),
+                    'knowsAbout' => $services->pluck('name')->merge($allApps->pluck('name'))->unique()->values()->all(),
                     'hasOfferCatalog' => [
                         '@type' => 'OfferCatalog',
                         'name' => 'BusinessOS software development services',
@@ -71,6 +72,12 @@ class MarketingController extends Controller
                     '@type' => 'WebSite',
                     'name' => 'BusinessOS',
                     'url' => route('home'),
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'BusinessOS',
+                        'url' => route('home'),
+                    ],
+                    'inLanguage' => ['en', 'fa', 'ps'],
                 ],
             ],
         ]);
@@ -160,6 +167,7 @@ class MarketingController extends Controller
                     'url' => route('apps.show', $app['slug']),
                     'applicationCategory' => $app['application_category'],
                     'operatingSystem' => $app['operating_system'],
+                    'inLanguage' => (bool) ($app['has_localized_content'] ?? false) ? ['en', 'fa', 'ps'] : ['en'],
                     'screenshot' => $screenshots->pluck('url')->all(),
                     'featureList' => collect($app['features'] ?? [])->pluck('title')->filter()->values()->all(),
                     'publisher' => [

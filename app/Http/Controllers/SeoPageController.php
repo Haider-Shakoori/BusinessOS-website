@@ -40,6 +40,15 @@ class SeoPageController extends Controller
                     'name' => $seoPage->title,
                     'description' => $seoPage->excerpt,
                     'url' => route('seo-pages.show', $seoPage),
+                    'mainEntityOfPage' => route('seo-pages.show', $seoPage),
+                    'serviceType' => $seoPage->title,
+                    'keywords' => implode(', ', $seoPage->target_keywords ?? []),
+                    'inLanguage' => app()->getLocale(),
+                    'isPartOf' => [
+                        '@type' => 'WebSite',
+                        'name' => 'BusinessOS',
+                        'url' => route('home'),
+                    ],
                     'provider' => [
                         '@type' => 'Organization',
                         'name' => 'BusinessOS',
