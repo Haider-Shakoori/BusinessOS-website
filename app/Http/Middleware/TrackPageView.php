@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\PageVisit;
 use App\Services\CountryResolver;
+use App\Services\TrafficClassifier;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,7 +13,10 @@ use Throwable;
 
 class TrackPageView
 {
-    public function __construct(private readonly CountryResolver $countryResolver) {}
+    public function __construct(
+        private readonly CountryResolver $countryResolver,
+        private readonly TrafficClassifier $trafficClassifier,
+    ) {}
 
     public function handle(Request $request, Closure $next): Response
     {
@@ -22,8 +26,10 @@ class TrackPageView
             return $response;
         }
 
+        $traffic = $this->trafficClassifier->classify($request->userAgent());
+        $isHuman = $traffic['type'] === 'human';
         $cookieName = config('analytics.visitor_cookie', 'bos_vid');
-        $visitorId = $request->cookie($cookieName);
+        $visitorId = $isHuman ? $request->cookie($cookieName) : null;
 
         if (! is_string($visitorId) || ! Str::isUuid($visitorId)) {
             $visitorId = (string) Str::uuid();
@@ -40,9 +46,15 @@ class TrackPageView
                 'referrer_host' => $this->referrerHost($request),
                 'user_agent_family' => $this->userAgentFamily($request),
                 'device_type' => $this->deviceType($request),
+                'traffic_type' => $traffic['type'],
+                'bot_family' => $traffic['family'],
                 'occurred_at' => now(),
             ]);
         } catch (Throwable) {
+            return $response;
+        }
+
+        if (! $isHuman) {
             return $response;
         }
 
@@ -95,12 +107,7 @@ class TrackPageView
             return false;
         }
 
-        $userAgent = strtolower((string) $request->userAgent());
-
-        return $userAgent === '' || ! preg_match(
-            '/bot|crawler|spider|slurp|bingpreview|facebookexternalhit|monitoring|uptime|headless|lighthouse/i',
-            $userAgent
-        );
+        return true;
     }
 
     private function countryCode(Request $request): ?string
