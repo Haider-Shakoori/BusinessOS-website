@@ -31,6 +31,23 @@ class SeoPage extends Model
         return 'slug';
     }
 
+    public function usesRootCanonical(): bool
+    {
+        return in_array($this->slug, [
+            'business-operating-system-afghanistan',
+            'business-software-afghanistan',
+        ], true);
+    }
+
+    public function publicUrl(): string
+    {
+        return match ($this->slug) {
+            'business-operating-system-afghanistan' => route('business-operating-system-afghanistan'),
+            'business-software-afghanistan' => route('business-software-afghanistan'),
+            default => route('seo-pages.show', $this),
+        };
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query
