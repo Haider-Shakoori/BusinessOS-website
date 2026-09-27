@@ -118,5 +118,4 @@ class SeoPageController extends Controller
             ],
         ]);
     }
-
 }
