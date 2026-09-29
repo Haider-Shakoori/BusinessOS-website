@@ -3507,7 +3507,7 @@
 }
 
 .hero-preview-title > span {
-    color:#6f8197;
+    color:#526277;
     font-size:.47rem;
     font-weight:750;
     letter-spacing:.08em;
@@ -3538,7 +3538,7 @@
 
 .hero-preview-metrics small {
     overflow:hidden;
-    color:#73849a;
+    color:#526277;
     font-size:.46rem;
     text-overflow:ellipsis;
     white-space:nowrap;
@@ -3553,7 +3553,7 @@
 .hero-preview-metrics em {
     margin-top:3px;
     overflow:hidden;
-    color:#7c8da1;
+    color:#526277;
     font-size:.42rem;
     font-style:normal;
     text-overflow:ellipsis;
@@ -3594,7 +3594,7 @@
 }
 
 .hero-preview-rows b {
-    color:#9aa9ba;
+    color:#64748b;
     font-size:.65rem;
 }
 
@@ -3727,7 +3727,7 @@
 }
 
 .hero-phone-card > small {
-    color:#718096;
+    color:#526277;
     font-size:.42rem;
     text-transform:uppercase;
 }
