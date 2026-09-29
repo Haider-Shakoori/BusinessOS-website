@@ -49,9 +49,8 @@
     @else
         <link rel="preload" href="{{ asset('assets/fonts/manrope-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
     @endif
-    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css') }}?v={{ filemtime(public_path('assets/css/fonts.css')) }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/businessos.css') }}?v={{ filemtime(public_path('assets/css/businessos.css')) }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/businessos-calm.css') }}?v={{ filemtime(public_path('assets/css/businessos-calm.css')) }}">
+    {{-- Generated from fonts.css + businessos.css + businessos-calm.css to reduce render-blocking requests. --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/businessos.bundle.min.css') }}?v={{ filemtime(public_path('assets/css/businessos.bundle.min.css')) }}">
 
     @foreach ($schema ?? [] as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
