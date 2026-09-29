@@ -49,8 +49,19 @@
     @else
         <link rel="preload" href="{{ asset('assets/fonts/manrope-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
     @endif
-    {{-- Generated from fonts.css + businessos.css + businessos-calm.css to reduce render-blocking requests. --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/businessos.bundle.min.css') }}?v={{ filemtime(public_path('assets/css/businessos.bundle.min.css')) }}">
+    @php
+        $marketingCssUrl = asset('assets/css/businessos.bundle.min.css').'?v='.filemtime(public_path('assets/css/businessos.bundle.min.css'));
+        $isHomeRoute = request()->routeIs('home');
+    @endphp
+    @if($isHomeRoute)
+        {{-- Keep the first viewport styled while loading the full shared stylesheet outside the render-blocking path. --}}
+        <style>{!! file_get_contents(public_path('assets/css/home-critical.min.css')) !!}</style>
+        <link rel="preload" href="{{ $marketingCssUrl }}" as="style">
+        <link rel="stylesheet" href="{{ $marketingCssUrl }}" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="{{ $marketingCssUrl }}"></noscript>
+    @else
+        <link rel="stylesheet" href="{{ $marketingCssUrl }}">
+    @endif
 
     @foreach ($schema ?? [] as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
