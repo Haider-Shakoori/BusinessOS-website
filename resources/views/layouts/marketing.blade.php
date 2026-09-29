@@ -51,13 +51,14 @@
     @endif
     @php
         $marketingCssUrl = asset('assets/css/businessos.bundle.min.css').'?v='.filemtime(public_path('assets/css/businessos.bundle.min.css'));
+        $marketingCssLoaderUrl = asset('assets/js/marketing-css-loader.js').'?v='.filemtime(public_path('assets/js/marketing-css-loader.js'));
         $isHomeRoute = request()->routeIs('home');
     @endphp
     @if($isHomeRoute)
         {{-- Keep the first viewport styled while loading the full shared stylesheet outside the render-blocking path. --}}
         <style>{!! file_get_contents(public_path('assets/css/home-critical.min.css')) !!}</style>
-        <link rel="preload" href="{{ $marketingCssUrl }}" as="style">
-        <link rel="stylesheet" href="{{ $marketingCssUrl }}" media="print" onload="this.media='all'">
+        <link id="marketing-css" rel="preload" href="{{ $marketingCssUrl }}" as="style">
+        <script defer src="{{ $marketingCssLoaderUrl }}"></script>
         <noscript><link rel="stylesheet" href="{{ $marketingCssUrl }}"></noscript>
     @else
         <link rel="stylesheet" href="{{ $marketingCssUrl }}">
