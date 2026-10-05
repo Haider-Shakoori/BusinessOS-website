@@ -96,6 +96,7 @@ class GuideController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'Article',
+                    '@id' => route('resources.show', $guide).'#article',
                     'headline' => $guide->title,
                     'description' => $guide->excerpt,
                     'articleSection' => $guide->category,
@@ -104,11 +105,7 @@ class GuideController extends Controller
                         '@type' => 'Thing',
                         'name' => $guide->category,
                     ],
-                    'isPartOf' => [
-                        '@type' => 'WebSite',
-                        'name' => 'BusinessOS',
-                        'url' => route('home'),
-                    ],
+                    'isPartOf' => ['@id' => route('home').'#website'],
                     'datePublished' => $guide->published_at?->toAtomString(),
                     'dateModified' => $guide->updated_at?->toAtomString(),
                     'mainEntityOfPage' => route('resources.show', $guide),
@@ -118,12 +115,7 @@ class GuideController extends Controller
                         'description' => $guide->author_bio,
                         'logo' => url('assets/brand/businessos-logo.svg'),
                     ],
-                    'publisher' => [
-                        '@type' => 'Organization',
-                        'name' => 'BusinessOS',
-                        'url' => route('home'),
-                        'logo' => url('assets/brand/businessos-logo.svg'),
-                    ],
+                    'publisher' => ['@id' => route('home').'#organization'],
                 ],
                 [
                     '@context' => 'https://schema.org',

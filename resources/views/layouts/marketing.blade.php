@@ -14,6 +14,50 @@
     $brandName = $siteSettings->get('brand_name', 'BusinessOS');
     $cmsLabel = static fn (string $key, string $fallback): string =>
         $locale === 'en' ? (string) $siteSettings->get($key, $fallback) : $fallback;
+
+    $providedSchema = collect($schema ?? []);
+    $globalSchema = collect();
+
+    if (! $providedSchema->contains(fn (array $entity) => ($entity['@type'] ?? null) === 'Organization')) {
+        $globalSchema->push([
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            '@id' => route('home').'#organization',
+            'name' => 'BusinessOS',
+            'alternateName' => 'BusinessOS Afghanistan',
+            'url' => route('home'),
+            'logo' => url('assets/brand/businessos-logo.svg'),
+            'description' => 'BusinessOS is an Afghanistan-focused business software ecosystem providing ERP, POS, field sales, inventory, pharmacy, restaurant, manufacturing, finance and custom software systems.',
+            'areaServed' => ['@type' => 'Country', 'name' => 'Afghanistan'],
+            'knowsLanguage' => ['English', 'Dari', 'Pashto'],
+            'knowsAbout' => [
+                'Enterprise resource planning',
+                'Point of sale software',
+                'Field sales management',
+                'Inventory management',
+                'Pharmacy management software',
+                'Restaurant management software',
+                'Manufacturing software',
+                'Financial management software',
+                'Custom software development',
+                'Offline-first business software',
+            ],
+        ]);
+    }
+
+    if (! $providedSchema->contains(fn (array $entity) => ($entity['@type'] ?? null) === 'WebSite')) {
+        $globalSchema->push([
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            '@id' => route('home').'#website',
+            'name' => 'BusinessOS',
+            'url' => route('home'),
+            'publisher' => ['@id' => route('home').'#organization'],
+            'inLanguage' => ['en', 'fa', 'ps'],
+        ]);
+    }
+
+    $renderSchema = $globalSchema->concat($providedSchema);
 @endphp
 <!doctype html>
 <html lang="{{ $locale }}" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
@@ -70,7 +114,7 @@
         <link rel="stylesheet" href="{{ $marketingCssUrl }}">
     @endif
 
-    @foreach ($schema ?? [] as $entity)
+    @foreach ($renderSchema as $entity)
         <script type="application/ld+json">{!! json_encode($entity, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endforeach
 </head>

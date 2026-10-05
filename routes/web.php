@@ -87,4 +87,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('robots');
+Route::get('/llms-full.txt', [SeoController::class, 'llmsFull'])->name('llms.full');
 Route::get('/indexnow-key.txt', [SeoController::class, 'indexNowKey'])->name('indexnow.key');
