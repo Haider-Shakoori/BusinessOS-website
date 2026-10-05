@@ -6,6 +6,7 @@ BusinessOS serves organizations looking for a modern business operating system i
 
 - [BusinessOS canonical website](https://businessos.af/)
 - [XML sitemap](https://businessos.af/sitemap.xml)
+- [Full AI discovery document](https://businessos.af/llms-full.txt)
 - [Contact BusinessOS](https://businessos.af/contact)
 - [Request a demo](https://businessos.af/request-demo)
 
