@@ -99,7 +99,7 @@ class GuideController extends Controller
                     'headline' => $guide->title,
                     'description' => $guide->excerpt,
                     'articleSection' => $guide->category,
-                    'inLanguage' => app()->getLocale(),
+                    'inLanguage' => 'en',
                     'about' => [
                         '@type' => 'Thing',
                         'name' => $guide->category,
