@@ -3,6 +3,12 @@
     $isRtl = in_array($locale, ['fa', 'ps'], true);
     $hasLocalizedVersions = (bool) ($meta['localized'] ?? false);
     $canonical = $meta['canonical'].($hasLocalizedVersions && $locale !== 'en' ? '?lang='.$locale : '');
+    // Locale query variants that do not contain translated primary content should not compete
+    // with the English canonical in Google or other search indexes.
+    $shouldIndexCurrentLocale = $locale === 'en' || $hasLocalizedVersions;
+    $robotsDirective = $shouldIndexCurrentLocale
+        ? 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+        : 'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
     $ogImage = $meta['image'] ?? $siteSettings->get('og_image');
     $ogImageAlt = $meta['image_alt'] ?? $meta['title'];
     $brandName = $siteSettings->get('brand_name', 'BusinessOS');
@@ -25,7 +31,7 @@
         <link rel="alternate" hreflang="ps-AF" href="{{ $meta['canonical'] }}?lang=ps">
     @endif
     <link rel="alternate" hreflang="x-default" href="{{ $meta['canonical'] }}">
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="robots" content="{{ $robotsDirective }}">
     @if($siteSettings->get('google_site_verification'))<meta name="google-site-verification" content="{{ $siteSettings->get('google_site_verification') }}">@endif
     @if($siteSettings->get('bing_site_verification'))<meta name="msvalidate.01" content="{{ $siteSettings->get('bing_site_verification') }}">@endif
 
