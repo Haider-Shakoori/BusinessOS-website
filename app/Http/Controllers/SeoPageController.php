@@ -57,6 +57,7 @@ class SeoPageController extends Controller
         $serviceSchema = [
             '@context' => 'https://schema.org',
             '@type' => 'Service',
+            '@id' => $canonical.'#service',
             'name' => $seoPage->title,
             'description' => $seoPage->excerpt,
             'url' => $canonical,
@@ -64,18 +65,8 @@ class SeoPageController extends Controller
             'serviceType' => $seoPage->title,
             'keywords' => implode(', ', $seoPage->target_keywords ?? []),
             'inLanguage' => app()->getLocale(),
-            'isPartOf' => [
-                '@type' => 'WebSite',
-                'name' => 'BusinessOS',
-                'url' => route('home'),
-            ],
-            'provider' => [
-                '@type' => 'Organization',
-                '@id' => route('home').'#organization',
-                'name' => 'BusinessOS',
-                'url' => route('home'),
-                'logo' => url('assets/brand/businessos-logo.svg'),
-            ],
+            'isPartOf' => ['@id' => route('home').'#website'],
+            'provider' => ['@id' => route('home').'#organization'],
         ];
 
         if (str_contains($seoPage->slug, 'afghanistan')) {
