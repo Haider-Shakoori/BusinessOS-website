@@ -171,6 +171,7 @@ class MarketingController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'SoftwareApplication',
+                    '@id' => route('apps.show', $app['slug']).'#software',
                     'name' => $app['name'],
                     'description' => $app['description'],
                     'url' => route('apps.show', $app['slug']),
@@ -179,12 +180,11 @@ class MarketingController extends Controller
                     'inLanguage' => (bool) ($app['has_localized_content'] ?? false) ? ['en', 'fa', 'ps'] : ['en'],
                     'screenshot' => $screenshots->pluck('url')->all(),
                     'featureList' => collect($app['features'] ?? [])->pluck('title')->filter()->values()->all(),
-                    'publisher' => [
-                        '@type' => 'Organization',
-                        'name' => 'BusinessOS',
-                        'url' => route('home'),
-                        'logo' => url('assets/brand/businessos-logo.svg'),
-                    ],
+                    'applicationSuite' => 'BusinessOS',
+                    'areaServed' => ['@type' => 'Country', 'name' => 'Afghanistan'],
+                    'audience' => ['@type' => 'BusinessAudience', 'audienceType' => 'Businesses and organizations'],
+                    'isPartOf' => ['@id' => route('home').'#website'],
+                    'publisher' => ['@id' => route('home').'#organization'],
                 ],
                 [
                     '@context' => 'https://schema.org',
