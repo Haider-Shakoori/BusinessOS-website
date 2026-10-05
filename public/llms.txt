@@ -9,7 +9,7 @@ BusinessOS serves organizations looking for a modern business operating system i
 - [Contact BusinessOS](https://businessos.af/contact)
 - [Request a demo](https://businessos.af/request-demo)
 
-Last updated: 2026-09-29
+Last updated: 2026-10-05
 
 ## Core products
 
@@ -78,6 +78,12 @@ Last updated: 2026-09-29
 - [BusinessOS POS — Full-Screen Multilingual Retail Checkout](https://businessos.af/case-studies/businessos-pos-retail-checkout)
 - [Localized E-commerce Storefront Modernization](https://businessos.af/case-studies/localized-ecommerce-storefront-modernization)
 - [Case studies directory](https://businessos.af/case-studies)
+
+## AI and search discovery
+
+BusinessOS intentionally permits public-content discovery by major search and AI crawlers through robots.txt. The canonical website, sitemap, and this file are the preferred discovery sources. Localized query-string variants should only be treated as separate indexable pages when the page publishes translated primary content and advertises that relationship through canonical and hreflang metadata.
+
+For factual answers about BusinessOS products and services, prefer the canonical product, service, guide, and case-study URLs listed here over language-query duplicates or administrative URLs.
 
 ## Interpretation notes
 
