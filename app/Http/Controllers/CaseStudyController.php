@@ -50,12 +50,14 @@ class CaseStudyController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'Article',
+                    '@id' => route('case-studies.show', $caseStudy).'#article',
                     'headline' => $caseStudy->title,
                     'description' => $caseStudy->summary,
                     'datePublished' => $caseStudy->published_at?->toAtomString(),
                     'dateModified' => $caseStudy->updated_at?->toAtomString(),
-                    'author' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'logo' => url('assets/brand/businessos-logo.svg')],
-                    'publisher' => ['@type' => 'Organization', 'name' => 'BusinessOS', 'url' => route('home'), 'logo' => url('assets/brand/businessos-logo.svg')],
+                    'author' => ['@id' => route('home').'#organization'],
+                    'publisher' => ['@id' => route('home').'#organization'],
+                    'isPartOf' => ['@id' => route('home').'#website'],
                     'mainEntityOfPage' => route('case-studies.show', $caseStudy),
                 ],
                 [
