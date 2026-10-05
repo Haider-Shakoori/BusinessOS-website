@@ -77,6 +77,7 @@ class MarketingController extends Controller
                 [
                     '@context' => 'https://schema.org',
                     '@type' => 'WebSite',
+                    '@id' => route('home').'#website',
                     'name' => 'BusinessOS',
                     'url' => route('home'),
                     'publisher' => [
