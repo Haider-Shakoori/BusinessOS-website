@@ -45,12 +45,12 @@ class GoogleAnalyticsIntegrationTest extends TestCase
         $admin = $this->admin();
         $this->actingAs($admin)->get('/admin')
             ->assertOk()
-            ->assertSee('Google Analytics 4')
+            ->assertSee('GOOGLE ANALYTICS 4')
             ->assertSee('not configured yet');
 
         $this->get('/admin/analytics?days=7')
             ->assertOk()
-            ->assertSee('Google Analytics 4')
+            ->assertSee('GOOGLE ANALYTICS 4')
             ->assertSee('GA4_PROPERTY_ID')
             ->assertSee('AI / LLM crawlers');
     }
