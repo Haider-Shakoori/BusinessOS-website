@@ -75,6 +75,40 @@ vendor/bin/pint --test
 - `/sitemap.xml` — XML sitemap
 - `/robots.txt` — crawler policy
 
+## Google Analytics 4 integration
+
+The first-party BusinessOS analytics (including AI crawler counts) remains independent.
+The CMS overview and /admin/analytics now show a separate Google Analytics 4 report
+with users, sessions, page views, engagement, key events, acquisition sources,
+and identifiable AI referral sessions. These are attributed referrals, not
+evidence of every AI answer mentioning BusinessOS.
+
+1. Create a Google Analytics account/property and a **Web data stream**
+   for `https://businessos.af`. Copy its Measurement ID (`G-...`) and
+   numeric **Property ID**.
+2. Enable **Google Analytics Data API** for your Google Cloud project.
+3. Create a Google Cloud service account, securely download its JSON key,
+   store it **outside the site document root and repository**, and give its
+   email **Viewer** access to the GA4 property (Analytics Admin > Property
+   access management).
+4. On the server set these values in `.env` and run `php artisan config:cache`:
+
+```env
+GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+GA4_PROPERTY_ID=123456789
+GA4_CREDENTIALS_PATH=/absolute/private/path/ga4-service-account.json
+GA4_REPORT_CACHE_MINUTES=15
+```
+
+**Security:** Never paste the private key into GitHub or the CMS settings.
+Ensure the JSON file permissions allow only the PHP application user to
+read it. The Google tag is placed on public marketing pages only, and is
+not included for signed-in administrators or browsers excluded with the
+`bos_internal` cookie. The server-side reports are cached and fail
+gracefully if Google is unavailable. Confirm any cookie/consent requirements
+for your visitors before enabling third-party tracking. Test the Google
+tag using GA4 Realtime/DebugView and confirm CMS reports after processing.
+
 ## Inquiry capture
 
 Contact, sales and demo requests are stored in the `inquiries` table before any future email or CRM integration. This avoids depending on an invented or unconfigured recipient address and gives the later admin/CMS batch a reliable source of leads.
