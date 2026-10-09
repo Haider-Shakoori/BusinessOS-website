@@ -7,6 +7,7 @@ use App\Models\Guide;
 use App\Models\Inquiry;
 use App\Models\PageVisit;
 use App\Models\Product;
+use App\Services\GoogleAnalytics;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -31,6 +32,7 @@ class AnalyticsController extends Controller
             'products' => Product::query()->publiclyVisible()->count(),
             'publishedGuides' => Guide::query()->published()->count(),
             'latestInquiries' => Inquiry::query()->latest()->limit(6)->get(),
+            'ga4' => app(GoogleAnalytics::class)->report(30),
         ]);
     }
 
@@ -171,6 +173,7 @@ class AnalyticsController extends Controller
 
         return view('admin.analytics.index', [
             'days' => $days,
+            'ga4' => app(GoogleAnalytics::class)->report($days),
             'start' => $start,
             'allVisits' => $allVisits,
             'uniqueVisits' => $uniqueVisits,
