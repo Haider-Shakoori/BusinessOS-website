@@ -94,6 +94,16 @@
     @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    @if (app(\App\Services\GoogleAnalytics::class)->measurementEnabled() && ! auth()->check() && request()->cookie(config('analytics.internal_cookie', 'bos_internal')) !== '1')
+        {{-- Track public visitors only. Exclude authenticated CMS sessions and locally excluded browsers. --}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('ga4.measurement_id') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', @json(config('ga4.measurement_id')));
+        </script>
+    @endif
     @if($isRtl)
         <link rel="preload" href="{{ asset('assets/fonts/noto-sans-arabic.woff2') }}" as="font" type="font/woff2" crossorigin>
     @else
