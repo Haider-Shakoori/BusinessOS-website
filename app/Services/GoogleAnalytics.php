@@ -136,7 +136,7 @@ class GoogleAnalytics
             throw new RuntimeException('Invalid GA4 service account credentials.');
         }
 
-        $cacheKey = 'ga4:oauth:'.hash('sha256', $credentials['client_email'].':'.$credentials['private_key_id'] ?? '');
+        $cacheKey = 'ga4:oauth:'.hash('sha256', $credentials['client_email'].':'.($credentials['private_key_id'] ?? ''));
         $cached = Cache::get($cacheKey);
         if (is_string($cached) && $cached !== '') {
             return $cached;
