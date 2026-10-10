@@ -44,7 +44,7 @@ class FieldPulseAndroidDistributionTest extends TestCase
         $this->get('/apps/fieldpulse')->assertDontSee('Download Android APK');
 
         $this->post(route('admin.products.android-release.store', $this->product), $this->payload($bytes))
-            ->assertRedirect(route('login'));
+            ->assertRedirect(route('admin.login'));
 
         $this->actingAs($this->admin)->post(route('admin.products.android-release.store', $this->product), $this->payload($bytes))
             ->assertRedirect();
