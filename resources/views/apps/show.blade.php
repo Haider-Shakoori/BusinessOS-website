@@ -23,6 +23,19 @@
                 <a class="product-inline-link" href="#features">{{ __('marketing.ui.product.explore_features') }} <span aria-hidden="true">↓</span></a>
             </div>
 
+            @if(!empty($androidRelease))
+                <div class="product-android-download">
+                    <a class="button button-primary" href="{{ route('apps.android.download', $app['slug']) }}">
+                        Download Android APK (v{{ $androidRelease['version'] }})
+                    </a>
+                    <p>Direct installation outside Google Play. Android may ask you to allow installs from your browser. Only install if you trust the source.</p>
+                    <small>File: {{ number_format(($androidRelease['size_bytes'] ?? 0) / 1048576, 1) }} MB</small>
+                    <label>SHA-256 verification checksum
+                        <input type="text" value="{{ $androidRelease['sha256'] }}" readonly aria-label="APK SHA-256">
+                    </label>
+                </div>
+            @endif
+
             @if (!empty($app['live_note']))
                 <p class="product-live-note">{{ $app['live_note'] }}</p>
             @endif

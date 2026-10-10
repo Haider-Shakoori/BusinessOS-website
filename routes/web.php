@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
+use App\Http\Controllers\Admin\AndroidReleaseController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SeoPageController as AdminSeoPageController;
 use App\Http\Controllers\Admin\SettingsController as AdminSettingsController;
+use App\Http\Controllers\AndroidDownloadController;
 use App\Http\Controllers\CaseStudyController;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\InquiryController;
@@ -30,6 +32,10 @@ Route::get('/services/{seoPage:slug}', [SeoPageController::class, 'show'])
     ->name('seo-pages.show');
 
 Route::get('/apps', [MarketingController::class, 'apps'])->name('apps.index');
+Route::get('/apps/{slug}/android/download', AndroidDownloadController::class)
+    ->where('slug', '[a-z0-9-]+')
+    ->middleware('throttle:60,1')
+    ->name('apps.android.download');
 Route::get('/apps/{slug}', [MarketingController::class, 'show'])
     ->where('slug', '[a-z0-9-]+')
     ->name('apps.show');
@@ -65,6 +71,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/analytics/exclude-browser', [AdminAnalyticsController::class, 'excludeBrowser'])->name('analytics.exclude-browser');
     Route::post('/analytics/include-browser', [AdminAnalyticsController::class, 'includeBrowser'])->name('analytics.include-browser');
     Route::resource('products', AdminProductController::class)->except(['show']);
+    Route::post('/products/{product}/android-release', [AndroidReleaseController::class, 'store'])
+        ->name('products.android-release.store');
+    Route::delete('/products/{product}/android-release', [AndroidReleaseController::class, 'destroy'])
+        ->name('products.android-release.destroy');
     Route::resource('guides', AdminGuideController::class)->except(['show']);
     Route::resource('seo-pages', AdminSeoPageController::class)->except(['show']);
     Route::resource('case-studies', AdminCaseStudyController::class)->except(['show']);

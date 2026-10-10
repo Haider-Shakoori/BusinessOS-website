@@ -103,7 +103,8 @@ class TrackPageView
             return false;
         }
 
-        if ($request->is('admin*', 'up', 'robots.txt', 'sitemap.xml') || $request->expectsJson()) {
+        // Binary downloads are not page views and return streamed responses without Laravel's withCookie helper.
+        if ($request->routeIs('apps.android.download') || $request->is('admin*', 'up', 'robots.txt', 'sitemap.xml') || $request->expectsJson()) {
             return false;
         }
 
