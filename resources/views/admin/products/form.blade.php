@@ -391,6 +391,64 @@
     </aside>
 </form>
 
+@if ($product->exists && $product->slug === 'fieldpulse')
+<section class="admin-panel admin-form">
+    <div class="admin-form-section-head"><span>ANDROID DISTRIBUTION</span><h2>FieldPulse APK release</h2></div>
+    <p class="admin-panel-copy">Upload a <strong>release-signed</strong> APK for direct Android installation without Google Play. An actually unsigned APK cannot be installed. The file stays in private hosting storage until explicitly published.</p>
+    @php($androidRelease = (array) data_get($product->content, 'android_release', []))
+    @if(!empty($androidRelease['path']))
+        <p>Current release: <strong>{{ $androidRelease['version'] ?? 'Unknown' }}</strong> —
+            {{ ($androidRelease['published'] ?? false) ? 'Published' : 'Draft' }}.
+            {{ number_format(($androidRelease['size_bytes'] ?? 0) / 1048576, 1) }} MB
+        </p>
+        <label>SHA-256 fingerprint
+            <input type="text" readonly value="{{ $androidRelease['sha256'] ?? '' }}">
+        </label>
+        @if($androidRelease['published'] ?? false)
+            <p><a href="{{ route('apps.android.download', $product->slug) }}">Verify public download ↗</a></p>
+        @endif
+    @endif
+
+    <form action="{{ route('admin.products.android-release.store', $product) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="admin-form-row">
+            <label>Signed Android .apk (up to 150 MB)
+                <input type="file" name="apk" accept=".apk,application/vnd.android.package-archive" required>
+                @error('apk')<small>{{ $message }}</small>@enderror
+            </label>
+            <label>App version
+                <input type="text" name="version" maxlength="60" value="{{ old('version', '1.0.2') }}" placeholder="1.0.2" required>
+                @error('version')<small>{{ $message }}</small>@enderror
+            </label>
+        </div>
+        <label>SHA-256 from the signed release artifact
+            <input type="text" name="sha256" maxlength="64" minlength="64" pattern="[A-Fa-f0-9]{64}" value="{{ old('sha256') }}" required>
+            @error('sha256')<small>{{ $message }}</small>@enderror
+        </label>
+        <label class="admin-check">
+            <input type="checkbox" name="signed_confirmed" value="1" required>
+            I have verified the APK signature and installed this exact release on a physical Android device.
+        </label>
+        @error('signed_confirmed')<small>{{ $message }}</small>@enderror
+        <input type="hidden" name="publish" value="0">
+        <label class="admin-check">
+            <input type="checkbox" name="publish" value="1" @checked((bool) old('publish', false))>
+            Make this APK publicly downloadable immediately (unchecked = private draft)
+        </label>
+        <p class="admin-inline-help">Use the persistent production signing key, not a temporary GitHub CI key. On cPanel, ensure PHP upload_max_filesize/post_max_size support the file size.</p>
+        <button type="submit" class="admin-primary-button">Upload FieldPulse APK</button>
+    </form>
+
+    @if(!empty($androidRelease['path']))
+        <form method="POST" action="{{ route('admin.products.android-release.destroy', $product) }}" onsubmit="return confirm('Remove and unpublish this Android APK?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="admin-danger-button">Remove current APK</button>
+        </form>
+    @endif
+</section>
+@endif
+
 @if ($product->exists)
 <form id="delete-product-form" method="POST" action="{{ route('admin.products.destroy', $product) }}">
     @csrf
