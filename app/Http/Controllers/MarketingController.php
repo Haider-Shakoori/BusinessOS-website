@@ -10,6 +10,7 @@ use App\Services\ProductCatalog;
 use App\Services\SiteSettings;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 class MarketingController extends Controller
@@ -155,8 +156,21 @@ class MarketingController extends Controller
         $primaryScreenshot = $screenshots->first();
         $relatedContent = $this->contentDiscovery->forProduct($app['slug']);
 
+        $androidRelease = (array) ($app['android_release'] ?? []);
+        $apkPath = $androidRelease['path'] ?? null;
+        if (
+            $app['slug'] !== 'fieldpulse'
+            || ($androidRelease['published'] ?? false) !== true
+            || ! is_string($apkPath)
+            || ! str_starts_with($apkPath, 'android-releases/fieldpulse/')
+            || ! Storage::disk('local')->exists($apkPath)
+        ) {
+            $androidRelease = [];
+        }
+
         return view('apps.show', [
             'app' => $app,
+            'androidRelease' => $androidRelease,
             'relatedServices' => $relatedContent['services'],
             'relatedGuides' => $relatedContent['guides'],
             'relatedCaseStudies' => $relatedContent['caseStudies'],
