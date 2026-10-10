@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AndroidReleaseController;
 use App\Http\Controllers\Admin\AnalyticsController as AdminAnalyticsController;
+use App\Http\Controllers\Admin\AndroidReleaseController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
 use App\Http\Controllers\Admin\GuideController as AdminGuideController;
