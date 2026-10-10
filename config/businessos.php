@@ -18,13 +18,14 @@ return [
             'description' => 'FieldPulse is a field sales and field force management platform for organizations that need to coordinate mobile sales teams, verify field activity, understand client visits, and keep operating when connectivity is unreliable.',
             'category' => 'BusinessApplication',
             'application_category' => 'BusinessApplication',
-            'operating_system' => 'Web, Android, iOS',
-            'platforms' => ['Web', 'Android', 'iOS'],
-            'status' => 'Active development',
+            'operating_system' => 'Web',
+            'platforms' => ['Web'],
+            'status' => 'Web live',
+            'live_note' => 'Web platform available for demo requests. Android APK download is coming separately.',
             'featured' => true,
             'accent' => 'blue',
             'web_url' => 'https://fieldpulse.businessos.af',
-            'updated_at' => '2026-09-25',
+            'updated_at' => '2026-10-10',
             'seo' => [
                 'title' => 'FieldPulse — Field Sales & Field Force Software',
                 'description' => 'Track field sales attendance, client visits, GPS activity, routes and team performance with FieldPulse, built for mobile teams and unreliable connectivity.',
@@ -118,7 +119,7 @@ return [
             'spotlight' => [
                 'kicker' => 'Designed for imperfect connectivity',
                 'title' => 'Work should not stop when the signal does.',
-                'description' => 'FieldPulse is being built around offline-first mobile foundations so essential workflows can continue through unreliable connections and synchronize when the network is available again.',
+                'description' => 'FieldPulse web is available now. Its offline-first Android companion will be offered for direct download after the separate mobile release and acceptance checks are completed.',
                 'items' => ['Offline-aware', 'Mobile-first', 'Safe synchronization'],
             ],
             'commercial' => [
@@ -130,16 +131,16 @@ return [
             ],
             'final' => [
                 'title' => 'Make field activity easier to see, understand and manage.',
-                'description' => 'Tell us about your field team and the workflow you want to improve. We will keep the conversation aligned with the current FieldPulse release state.',
+                'description' => 'Request a demonstration or web onboarding discussion. The Android installer will be available separately when the mobile release is approved.',
             ],
             'faq' => [
                 [
-                    'question' => 'Is FieldPulse available as a finished public product?',
-                    'answer' => 'FieldPulse is currently in active development. Demo and deployment discussions should reflect the current release state rather than presenting the product as generally available before it is ready.',
+                    'question' => 'Is the FieldPulse web platform available now?',
+                    'answer' => 'The FieldPulse web platform is available for demos and onboarding discussions. The Android app is a separate release and is not yet published for installation.',
                 ],
                 [
                     'question' => 'Can FieldPulse work with unreliable mobile internet?',
-                    'answer' => 'FieldPulse is being built on an offline-first mobile foundation so essential field workflows can continue during connectivity gaps and synchronize when a connection returns.',
+                    'answer' => 'The offline-first Android application is designed for working through connectivity gaps and safe synchronization. It will be downloadable after its separate mobile release checks.',
                 ],
                 [
                     'question' => 'What kinds of teams is FieldPulse designed for?',
