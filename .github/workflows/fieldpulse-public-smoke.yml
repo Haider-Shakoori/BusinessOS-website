@@ -1,0 +1,46 @@
+name: BusinessOS FieldPulse public launch smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '21 3 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  public-launch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify public FieldPulse web release and admin availability
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          base='https://businessos.af'
+          curl --fail --silent --show-error --location --retry 3 --retry-delay 2 --max-time 25 \
+            -H 'Cache-Control: no-cache' \
+            "$base/apps/fieldpulse?release=$GITHUB_SHA" \
+            -o /tmp/fieldpulse-page.html
+          test -s /tmp/fieldpulse-page.html
+          grep -Fq 'Web live' /tmp/fieldpulse-page.html || {
+            echo "::error::Hosted FieldPulse still does not show the web-live status."; exit 1;
+          }
+          grep -Fq 'Android APK download is coming separately' /tmp/fieldpulse-page.html || {
+            echo "::error::The hosted product page does not distinguish Android release from web availability."; exit 1;
+          }
+          if grep -Fq 'Active development' /tmp/fieldpulse-page.html; then
+            echo "::error::Legacy development label is still visible on the hosted product page."; exit 1;
+          fi
+          curl --fail --silent --show-error --location --retry 3 --retry-delay 2 --max-time 25 \
+            "$base/admin/login" -o /tmp/businessos-admin.html
+          test -s /tmp/businessos-admin.html
+          {
+            echo '## Live FieldPulse marketing release'
+            echo "- Public page: $base/apps/fieldpulse"
+            echo '- FieldPulse web status: Web live'
+            echo '- Android: announced as a separate release'
+            echo '- BusinessOS admin login: reachable'
+          } >> "$GITHUB_STEP_SUMMARY"
