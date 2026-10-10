@@ -39,7 +39,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('workflow-card workflow-card-fieldpulse', false)
             ->assertSee('ecosystem-solution-grid', false)
             ->assertSee('assets/css/businessos.bundle.min.css', false)
-            ->assertSee('assets/css/fonts.css', false)
+            ->assertSee('assets/js/marketing-css-loader.js', false)
             ->assertSee('assets/fonts/manrope-latin.woff2', false)
             ->assertDontSee('fonts.googleapis.com', false)
             ->assertDontSee('fonts.gstatic.com', false)
