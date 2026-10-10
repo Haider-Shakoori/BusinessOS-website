@@ -46,6 +46,8 @@
     </section>
 </div>
 
+@include('admin.analytics.ga4')
+
 <section class="admin-panel">
     <div class="admin-panel-head"><div><span>LATEST INQUIRIES</span><h2>Recent customer requests.</h2></div><a href="{{ route('admin.inquiries.index') }}">View all →</a></div>
     <div class="cms-table">
