@@ -186,7 +186,7 @@ class MarketingPagesTest extends TestCase
             ->assertSee('Request a demo')
             ->assertSee('Pricing in preparation')
             ->assertSee('FAQPage')
-            ->assertSee('Is FieldPulse available as a finished public product?');
+            ->assertSee('Is the FieldPulse web platform available now?');
     }
 
     public function test_unknown_product_returns_not_found(): void
