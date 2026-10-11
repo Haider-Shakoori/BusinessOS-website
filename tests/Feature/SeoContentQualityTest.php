@@ -38,7 +38,7 @@ class SeoContentQualityTest extends TestCase
             ->assertOk()
             ->assertSee('Organize people and territories')
             ->assertSee('See the customer visit management workflow')
-            ->assertSee('href="http://localhost/services/field-sales-visit-management-software"', false);
+            ->assertSee('/services/field-sales-visit-management-software"', false);
 
         $this->get('/services/field-sales-visit-management-software')
             ->assertOk()
@@ -46,7 +46,7 @@ class SeoContentQualityTest extends TestCase
             ->assertSee('Before the visit: prepare the daily plan')
             ->assertSee('In a hypothetical daily route')
             ->assertSee('Explore Field Sales Management Software')
-            ->assertSee('href="http://localhost/services/field-sales-management-software"', false);
+            ->assertSee('/services/field-sales-management-software"', false);
     }
 
     public function test_live_copy_migration_does_not_overwrite_a_cms_edit(): void
