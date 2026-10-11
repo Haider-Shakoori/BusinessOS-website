@@ -23,11 +23,6 @@
         <div>
             <span class="kicker">{{ __('marketing.ui.seo_page.covers') }}</span>
             <h2>{{ $seoPage->title }}</h2>
-            @if(!empty($seoPage->target_keywords))
-                <div class="service-topic-row">
-                    @foreach($seoPage->target_keywords as $keyword)<span>{{ $keyword }}</span>@endforeach
-                </div>
-            @endif
         </div>
         <div class="body-copy">
             @foreach(preg_split('/\R{2,}/', trim($seoPage->content)) as $block)
@@ -49,6 +44,15 @@
                     <p>{{ $block }}</p>
                 @endif
             @endforeach
+            @if($seoPage->slug === 'field-sales-visit-management-software')
+                <p>Need team-wide attendance, territory oversight or performance reporting as well?
+                    <a href="{{ route('seo-pages.show', 'field-sales-management-software') }}">Explore Field Sales Management Software</a>.
+                </p>
+            @elseif($seoPage->slug === 'field-sales-management-software')
+                <p>Looking specifically for daily customer assignments, visit outcomes and missed-visit follow-ups?
+                    <a href="{{ route('seo-pages.show', 'field-sales-visit-management-software') }}">See the customer visit management workflow</a>.
+                </p>
+            @endif
         </div>
     </div>
 </section>

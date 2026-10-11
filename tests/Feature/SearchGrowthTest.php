@@ -213,7 +213,7 @@ class SearchGrowthTest extends TestCase
             ->assertSee('software designed to keep important work moving')
             ->assertSee('"serviceType":"Offline Business Software"', false)
             ->assertSee('"inLanguage":"en"', false)
-            ->assertSee('offline business software', false);
+            ->assertSee('Queue transactions instead of hiding failures');
 
         $this->get('/guides/offline-first-business-software-poor-internet')
             ->assertOk()
