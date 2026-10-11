@@ -239,42 +239,42 @@ TEXT,
                 'title' => 'Field Sales Visit Management Software',
                 'slug' => 'field-sales-visit-management-software',
                 'eyebrow' => 'Field sales operations',
-                'headline' => 'Field sales software that connects territories, customer visits, orders, collections and follow-up.',
-                'excerpt' => 'Give supervisors a clear view of assigned customers, planned visits, field activity and commercial outcomes without reducing performance to GPS points.',
+                'headline' => 'Plan customer visits, capture outcomes and keep missed follow-ups visible.',
+                'excerpt' => 'Turn customer assignments into a clear daily mobile workflow with visit outcomes, missed-visit reasons and accountable follow-up.',
                 'content' => <<<'TEXT'
-Field-sales management is easier when location is connected to the customer workflow rather than collected as an isolated trail of coordinates.
+Visit management answers a specific operational question: which customer should a salesperson visit, what happened during that visit, and what still needs follow-up? It is one workflow within a wider field-sales system—not a substitute for attendance, territory administration, payroll or company-wide sales reporting.
 
-## Start with customer and territory responsibility
+## Before the visit: prepare the daily plan
 
-Every field employee should know which customers and territory they are responsible for. Managers should be able to assign customers directly or organize them through territories and routes.
+A supervisor assigns each customer to a responsible salesperson and may set a date, route, priority or purpose. The mobile list should distinguish due visits from future appointments so a salesperson does not have to search the full customer directory.
 
-A map can make territory creation and customer placement easier for non-technical users.
+Record the latest customer address and an agreed contact person where available. If a visit cannot be completed, preserve the assigned customer and its history instead of deleting the task.
 
-## Plan visits around business purpose
+## At the customer: capture an outcome, not only a GPS point
 
-A visit record should identify the customer, assigned salesman, planned date or route and the expected purpose where relevant. The mobile app can then present today's work without requiring the salesman to search through every customer.
+A useful visit record links the customer, employee, time, visit type and an outcome. Outcomes might include an order placed, a collection recorded, a follow-up requested, a complaint or a reason for an unsuccessful visit.
 
-## Record the visit outcome
+Coordinates or a geofence can provide supporting evidence of where a check-in occurred. They do not, by themselves, demonstrate a successful sale or collection. When a visit is outside an expected area, the system should flag the exception for review rather than silently discarding the record.
 
-Check-in alone is not enough. The visit should connect to outcomes such as an order, collection, note, follow-up date, issue or completed task.
+## After the visit: close the follow-up loop
 
-That context lets supervisors distinguish activity from productive progress.
+A completed visit may create a next action with an owner and due date. A missed appointment should retain its reason and proposed reschedule date. Supervisors need to see overdue follow-ups and unvisited assigned customers alongside completed visits.
 
-## Use location as validation
+Separate the visit status from commercial outcomes: a visit can be completed without an order, and an order should not automatically mark every scheduled visit as completed.
 
-Customer coordinates and geofences can help confirm whether check-in happened near the customer location. Territory maps can help management review coverage.
+## Example: a distributor's morning route
 
-Location should support workflow validation rather than become the only measure of employee performance.
+In a hypothetical daily route, a supervisor assigns ten customer visits. Seven are completed, two customers are unavailable and one stop is deferred. The useful report identifies the three unfinished stops and their next actions; it does not present ten assigned visits as ten successful visits. An order or payment collected at any stop should be linked to the relevant customer transaction, not counted merely because the salesperson checked in.
 
-## Keep working through weak connectivity
+## When internet connectivity is unreliable
 
-Field teams frequently work where mobile data is inconsistent. Offline-first mobile design can preserve assigned customers and permitted actions locally, queue transactions and synchronize them when the connection returns.
+The mobile app should indicate whether a visit is saved locally or synchronized to the server. Give offline records stable identifiers so a retry does not create duplicate visits, orders or collections. The server should preserve the relevant timestamps and surface conflicts for review instead of quietly overwriting changes.
 
-## Build the customer history
+## Review performance fairly
 
-Orders, collections, visits, notes, referrals and follow-ups become more valuable when they remain available from the same customer profile.
+Managers can compare assigned versus completed visits, overdue follow-ups, customer coverage and recorded sales outcomes. Interpret these measures together: a long customer meeting may produce more value than many short check-ins.
 
-FieldPulse by BusinessOS is designed around this connected field workflow for sales teams, supervisors and administrators.
+For team-wide attendance, shift management, territory administration and reporting beyond individual visits, use the broader Field Sales Management Software service.
 TEXT,
                 'target_keywords' => ['field sales visit management', 'salesman visit tracking', 'field sales software', 'territory management software', 'customer visit app'],
                 'related_product_slugs' => ['fieldpulse'],
