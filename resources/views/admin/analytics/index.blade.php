@@ -31,6 +31,8 @@
     </div>
 </div>
 
+@include('admin.analytics.ga4')
+
 <div class="admin-metric-grid analytics-metrics">
     <article><span>HUMAN PAGE VIEWS</span><strong>{{ number_format($allVisits) }}</strong><small>Automated traffic excluded</small></article>
     <article><span>HUMAN VISITORS</span><strong>{{ number_format($uniqueVisits) }}</strong><small>Distinct anonymous browser IDs</small></article>

@@ -94,6 +94,10 @@
     @if($ogImage)<meta name="twitter:image" content="{{ str_starts_with($ogImage, 'http') ? $ogImage : url($ogImage) }}">@endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    @if (app(\App\Services\GoogleAnalytics::class)->shouldLoadTag(request()))
+        {{-- First-party bootstrap initializes the GA4 queue before loading Google's script. --}}
+        <script defer src="{{ asset('assets/js/ga4-tag.js') }}?v=1" data-measurement-id="{{ config('ga4.measurement_id') }}"></script>
+    @endif
     @if($isRtl)
         <link rel="preload" href="{{ asset('assets/fonts/noto-sans-arabic.woff2') }}" as="font" type="font/woff2" crossorigin>
     @else

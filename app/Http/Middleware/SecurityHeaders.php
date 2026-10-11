@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\GoogleAnalytics;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +17,13 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
         $response->headers->set('X-Frame-Options', 'DENY');
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+        // Allow third-party Google origins only on pages actually permitted to load GA4.
+        $allowGa4 = app(GoogleAnalytics::class)->shouldLoadTag($request);
+        $ga4Script = $allowGa4 ? ' https://www.googletagmanager.com' : '';
+        $ga4Connect = $allowGa4 ? ' https://www.google-analytics.com https://*.google-analytics.com' : '';
         $response->headers->set(
             'Content-Security-Policy',
-            "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+            "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'{$ga4Script}; connect-src 'self'{$ga4Connect}; upgrade-insecure-requests"
         );
 
         if ($request->isSecure()) {
