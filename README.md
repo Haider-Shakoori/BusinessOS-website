@@ -75,6 +75,30 @@ vendor/bin/pint --test
 - `/sitemap.xml` — XML sitemap
 - `/robots.txt` — crawler policy
 
+## Google Analytics 4 integration
+
+GA4 remains separate from the existing first-party BusinessOS analytics. The public tag
+is loaded only when GA4_MEASUREMENT_ID is set and the visitor is permitted to be
+tracked. This implementation requires no inline JavaScript and dynamically aligns
+the site's Content Security Policy with Google Analytics script and collection hosts.
+
+1. Create a **BusinessOS** GA4 property and a Web data stream at https://businessos.af.
+2. Configure GA4_MEASUREMENT_ID=G-... on the production server (do not reuse the RelayWA ID).
+3. For the optional CMS GA4 dashboard, configure the **numeric** GA4_PROPERTY_ID, enable
+   the Google Analytics Data API, grant Viewer access to a service account, and put the
+   JSON file **outside public/**; configure GA4_CREDENTIALS_PATH with the private path.
+4. For automatic tracking in non-consent regions, configure GA4_TRUSTED_COUNTRY_HEADER
+   only if your CDN/edge overwrites a trustworthy country header. Alternatively,
+   install the existing local MMDB country database. Unknown locations default to
+   opt-in; EEA, UK, and Swiss visitors must explicitly opt in via /privacy.
+   All visitors can disable GA4 at /privacy; GPC opt-out signals are respected.
+5. Run `php artisan config:cache` after editing the environment. Validate the public
+   HTML, CSP headers, browser Network requests and GA4 Realtime; dashboard stats
+   require the separate Data API credentials and may lag behind Realtime.
+
+Do not commit service-account credentials, install arbitrary visitor-country headers as
+trusted geolocation, or assume GA4 referrals show every AI recommendation.
+
 ## Inquiry capture
 
 Contact, sales and demo requests are stored in the `inquiries` table before any future email or CRM integration. This avoids depending on an invented or unconfigured recipient address and gives the later admin/CMS batch a reliable source of leads.

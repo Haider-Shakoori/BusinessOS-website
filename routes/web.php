@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SeoPageController as AdminSeoPageController;
 use App\Http\Controllers\Admin\SettingsController as AdminSettingsController;
+use App\Http\Controllers\AnalyticsPreferenceController;
 use App\Http\Controllers\AndroidDownloadController;
 use App\Http\Controllers\CaseStudyController;
 use App\Http\Controllers\GuideController;
@@ -51,6 +52,8 @@ Route::get('/pricing', [MarketingController::class, 'pricing'])->name('pricing')
 Route::get('/about', [MarketingController::class, 'about'])->name('about');
 Route::get('/security', [MarketingController::class, 'security'])->name('security');
 Route::get('/privacy', [MarketingController::class, 'privacy'])->name('privacy');
+Route::post('/analytics-preference', AnalyticsPreferenceController::class)
+    ->middleware('throttle:20,1')->name('analytics.preference');
 Route::get('/terms', [MarketingController::class, 'terms'])->name('terms');
 Route::get('/contact', [MarketingController::class, 'contact'])->name('contact');
 Route::get('/request-demo', [MarketingController::class, 'demo'])->name('demo');
