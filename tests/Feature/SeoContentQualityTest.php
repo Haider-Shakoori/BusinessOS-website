@@ -62,6 +62,7 @@ class SeoContentQualityTest extends TestCase
 
         $this->assertSame('Customized by the BusinessOS editorial team.', $page->fresh()->content);
     }
+
     public function test_bom_guide_provides_worked_costing_and_preserves_cms_edits(): void
     {
         $this->seed(SearchGrowthPhase2Seeder::class);
