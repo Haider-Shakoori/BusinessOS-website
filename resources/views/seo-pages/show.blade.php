@@ -44,6 +44,15 @@
                     <p>{{ $block }}</p>
                 @endif
             @endforeach
+            @if($seoPage->slug === 'field-sales-visit-management-software')
+                <p>Need team-wide attendance, territory oversight or performance reporting as well?
+                    <a href="{{ route('seo-pages.show', 'field-sales-management-software') }}">Explore Field Sales Management Software</a>.
+                </p>
+            @elseif($seoPage->slug === 'field-sales-management-software')
+                <p>Looking specifically for daily customer assignments, visit outcomes and missed-visit follow-ups?
+                    <a href="{{ route('seo-pages.show', 'field-sales-visit-management-software') }}">See the customer visit management workflow</a>.
+                </p>
+            @endif
         </div>
     </div>
 </section>
