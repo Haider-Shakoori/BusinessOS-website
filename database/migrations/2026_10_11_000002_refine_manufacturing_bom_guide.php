@@ -109,5 +109,4 @@ Compare the planned amount, actual stock movement and recorded finished quantity
 Use recurring differences to improve the standard BOM; do not silently overwrite earlier production history when the standard is revised.
 TEXT;
     }
-
 };
