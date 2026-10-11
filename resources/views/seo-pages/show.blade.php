@@ -23,11 +23,6 @@
         <div>
             <span class="kicker">{{ __('marketing.ui.seo_page.covers') }}</span>
             <h2>{{ $seoPage->title }}</h2>
-            @if(!empty($seoPage->target_keywords))
-                <div class="service-topic-row">
-                    @foreach($seoPage->target_keywords as $keyword)<span>{{ $keyword }}</span>@endforeach
-                </div>
-            @endif
         </div>
         <div class="body-copy">
             @foreach(preg_split('/\R{2,}/', trim($seoPage->content)) as $block)
