@@ -63,7 +63,6 @@ class SeoPageController extends Controller
             'url' => $canonical,
             'mainEntityOfPage' => $canonical,
             'serviceType' => $seoPage->title,
-            'keywords' => implode(', ', $seoPage->target_keywords ?? []),
             'inLanguage' => app()->getLocale(),
             'isPartOf' => ['@id' => route('home').'#website'],
             'provider' => ['@id' => route('home').'#organization'],
