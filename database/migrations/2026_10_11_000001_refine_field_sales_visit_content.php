@@ -138,5 +138,4 @@ Managers can compare assigned versus completed visits, overdue follow-ups, custo
 For team-wide attendance, shift management, territory administration and reporting beyond individual visits, use the broader Field Sales Management Software service.
 TEXT;
     }
-
 };
