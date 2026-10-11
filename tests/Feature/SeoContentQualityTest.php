@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Guide;
 use App\Models\SeoPage;
 use Database\Seeders\SearchGrowthPhase2Seeder;
 use Database\Seeders\SeoPageSeeder;
@@ -61,4 +62,30 @@ class SeoContentQualityTest extends TestCase
 
         $this->assertSame('Customized by the BusinessOS editorial team.', $page->fresh()->content);
     }
+    public function test_bom_guide_provides_worked_costing_and_preserves_cms_edits(): void
+    {
+        $this->seed(SearchGrowthPhase2Seeder::class);
+
+        $this->get('/guides/manufacturing-bom-costing-guide')
+            ->assertOk()
+            ->assertSee('Worked example: 1,000 cartons')
+            ->assertSee('AFN 9,635')
+            ->assertSee('AFN 395')
+            ->assertSee('Where paper rolls cannot be weighed on site');
+
+        $guide = Guide::where('slug', 'manufacturing-bom-costing-guide')->firstOrFail();
+        $enhancedContent = $guide->content;
+        $migration = require database_path('migrations/2026_10_11_000002_refine_manufacturing_bom_guide.php');
+
+        $migration->down();
+        $this->assertNotSame($enhancedContent, $guide->fresh()->content);
+
+        $migration->up();
+        $this->assertSame($enhancedContent, $guide->fresh()->content);
+
+        $guide->update(['content' => 'Reviewed and edited by a BusinessOS subject-matter expert.']);
+        $migration->up();
+        $this->assertSame('Reviewed and edited by a BusinessOS subject-matter expert.', $guide->fresh()->content);
+    }
+
 }
