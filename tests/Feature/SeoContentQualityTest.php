@@ -87,5 +87,4 @@ class SeoContentQualityTest extends TestCase
         $migration->up();
         $this->assertSame('Reviewed and edited by a BusinessOS subject-matter expert.', $guide->fresh()->content);
     }
-
 }
