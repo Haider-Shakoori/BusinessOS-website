@@ -16,7 +16,7 @@
         </nav>
         <div class="legal-copy">
             <section id="information"><h2>{{ __('marketing.ui.privacy.information_title') }}</h2><p>{{ __('marketing.ui.privacy.information_copy') }}</p></section>
-            <section id="analytics"><h2>{{ __('marketing.ui.privacy.analytics_title') }}</h2><p>{{ __('marketing.ui.privacy.analytics_copy_1') }}</p><p>{{ __('marketing.ui.privacy.analytics_copy_2') }}</p>
+            <section id="analytics"><h2>{{ __('marketing.ui.privacy.analytics_title') }}</h2><p>{{ __('marketing.ui.privacy.analytics_copy_1') }}</p><p>{{ __('marketing.ui.privacy.analytics_copy_2') }}</p><p>For first-party acquisition statistics, we retain the referring domain and, when supplied, the search term visible in a recognized search referral or a campaign link's UTM term and source. We do not store full referring URLs or raw IP addresses. Older visits without a recorded keyword remain marked as unavailable. Aggregated Google Search Console reports are kept separate from individual visitor records and are subject to Google's query privacy thresholds. First-party analytics records follow the published retention period.</p>
                 @if (app(\App\Services\GoogleAnalytics::class)->measurementEnabled())
                     <p>We use Google Analytics 4 to measure page views and general referrals, subject to your choice and applicable privacy requirements. The Google tag may set cookies. You can opt out or change this preference below. BusinessOS first-party statistics are separate.</p>
                     <form method="POST" action="{{ route('analytics.preference') }}">
