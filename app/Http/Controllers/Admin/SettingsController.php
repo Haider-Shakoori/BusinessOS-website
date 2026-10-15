@@ -97,8 +97,8 @@ class SettingsController extends Controller
                 'about_body_ps' => ['label' => 'About body — Pashto', 'default' => 'د BusinessOS اپونه د روښانه عملیاتي ستونزو پر بنسټ جوړېږي او د کارونې، چټکتیا، امنیت او ساتنې ګډه تګلاره لري.'],
             ],
             'contact' => [
-                'contact_email' => ['label' => 'Contact email', 'default' => '', 'max' => 190],
-                'contact_phone' => ['label' => 'Contact phone', 'default' => '', 'max' => 80],
+                'contact_email' => ['label' => 'Contact email', 'default' => 'info@businessos.af', 'max' => 190],
+                'contact_phone' => ['label' => 'Contact phone / WhatsApp', 'default' => '+93707413263', 'max' => 80],
                 'contact_address' => ['label' => 'Contact address', 'default' => 'Afghanistan', 'max' => 500],
             ],
             'seo' => [
