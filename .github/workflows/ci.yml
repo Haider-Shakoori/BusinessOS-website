@@ -43,5 +43,8 @@ jobs:
       - name: Run application tests
         run: php artisan test
 
+      - name: Validate cPanel deployment script syntax
+        run: bash -n scripts/deploy-businessos-analytics.sh
+
       - name: Verify code style
         run: vendor/bin/pint --test
