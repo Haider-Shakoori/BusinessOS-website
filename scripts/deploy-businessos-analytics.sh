@@ -57,6 +57,5 @@ done
 
 php artisan migrate:status | tail -18
 echo "Production Git commit: $(git rev-parse HEAD)"
-echo "Search Console property configured: $(php -r 'echo (getenv("SEARCH_CONSOLE_SITE_URL") ?: "inspect cached Laravel config on host");')"
 echo "DEPLOY COMPLETED. Backup: $BACKUP"
 echo "Next: open https://businessos.af/admin/analytics?days=365 as admin."
