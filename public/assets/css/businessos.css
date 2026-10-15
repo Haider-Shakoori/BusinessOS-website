@@ -3484,3 +3484,18 @@ summary:focus-visible {
         box-shadow: none;
     }
 }
+
+/* Contact options: aligned with the light BusinessOS marketing theme. */
+.contact-direct{margin-top:28px;padding-top:25px;border-top:1px solid #e2e8f0}
+.contact-direct h2{margin:0;color:#0f172a;font-size:1.18rem;line-height:1.4;letter-spacing:-.025em}
+.contact-direct>p{margin:7px 0 16px;color:#64748b;font-size:.9rem;line-height:1.6}
+.contact-direct-links{display:grid;gap:10px}
+.contact-direct-link{display:grid;gap:5px;min-width:0;padding:14px 16px;border:1px solid #dbe2ea;border-radius:14px;background:#fff;text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.contact-direct-link:hover{border-color:#94b8ee;box-shadow:0 7px 20px rgba(15,23,42,.06);transform:translateY(-1px)}
+.contact-direct-link:focus-visible{outline:2px solid #2457a6;outline-offset:3px}
+.contact-direct-label{color:#64748b;font-size:.76rem;font-weight:650}
+.contact-direct-link strong{color:#0f172a;font-size:.95rem;font-weight:720;overflow-wrap:anywhere;unicode-bidi:isolate;text-align:start}
+.contact-direct-whatsapp{background:#f0fdf4;border-color:#bbebca}
+.contact-direct-whatsapp:hover{border-color:#34a96a}
+.contact-direct-whatsapp .contact-direct-label,.contact-direct-whatsapp strong{color:#176b41}
+@media (prefers-reduced-motion:reduce){.contact-direct-link{transition:none}.contact-direct-link:hover{transform:none}}

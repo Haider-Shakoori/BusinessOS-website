@@ -113,6 +113,11 @@ return [
             'empty_copy' => 'New resources will focus on practical business decisions, workflows and operating problems.',
         ],
         'contact' => [
+            'direct_title' => 'Contact us directly',
+            'direct_intro' => 'Call, message us on WhatsApp, or send an email.',
+            'direct_call' => 'Call us',
+            'direct_whatsapp' => 'Chat on WhatsApp',
+            'direct_email' => 'Email us',
             'promise_1' => 'Clear, practical discussion',
             'promise_2' => 'Product or workflow-specific guidance',
             'promise_3' => 'Your request is saved for follow-up',

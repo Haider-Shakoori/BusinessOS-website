@@ -12,6 +12,31 @@
                 <span><i>02</i>{{ __('marketing.pages.contact.promise_2') }}</span>
                 <span><i>03</i>{{ __('marketing.pages.contact.promise_3') }}</span>
             </div>
+
+            @php
+                $directPhone = $siteSettings->get('contact_phone', '+93707413263');
+                $directEmail = $siteSettings->get('contact_email', 'info@businessos.af');
+                $whatsAppNumber = preg_replace('/\\D+/', '', $directPhone);
+                $callNumber = preg_replace('/[^+0-9]/', '', $directPhone);
+            @endphp
+            <section class="contact-direct" aria-label="{{ __('marketing.pages.contact.direct_title') }}">
+                <h2>{{ __('marketing.pages.contact.direct_title') }}</h2>
+                <p>{{ __('marketing.pages.contact.direct_intro') }}</p>
+                <div class="contact-direct-links">
+                    <a class="contact-direct-link" href="tel:{{ $callNumber }}">
+                        <span class="contact-direct-label">{{ __('marketing.pages.contact.direct_call') }}</span>
+                        <strong dir="ltr">{{ $directPhone }}</strong>
+                    </a>
+                    <a class="contact-direct-link contact-direct-whatsapp" href="https://wa.me/{{ $whatsAppNumber }}" target="_blank" rel="noopener noreferrer">
+                        <span class="contact-direct-label">{{ __('marketing.pages.contact.direct_whatsapp') }} <span aria-hidden="true">↗</span></span>
+                        <strong dir="ltr">{{ $directPhone }}</strong>
+                    </a>
+                    <a class="contact-direct-link" href="mailto:{{ $directEmail }}">
+                        <span class="contact-direct-label">{{ __('marketing.pages.contact.direct_email') }}</span>
+                        <strong dir="ltr">{{ $directEmail }}</strong>
+                    </a>
+                </div>
+            </section>
         </div>
 
         <div class="contact-form-card">
