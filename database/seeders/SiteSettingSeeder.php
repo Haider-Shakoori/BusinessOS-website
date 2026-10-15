@@ -57,8 +57,8 @@ class SiteSettingSeeder extends Seeder
                 'about_body_ps' => 'د BusinessOS اپونه د روښانه عملیاتي ستونزو پر بنسټ جوړېږي او د کارونې، چټکتیا، امنیت او ساتنې ګډه تګلاره لري.',
             ],
             'contact' => [
-                'contact_email' => '',
-                'contact_phone' => '',
+                'contact_email' => 'info@businessos.af',
+                'contact_phone' => '+93707413263',
                 'contact_address' => 'Afghanistan',
             ],
             'seo' => [
