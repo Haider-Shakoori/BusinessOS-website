@@ -136,6 +136,33 @@ privacy suppression, whereas the local visit table follows the configured
 retention schedule (default 400 days). The analytics page has 7, 30, 90, and
 365-day views. No historical keywords are inferred from aggregate GSC queries.
 
+## Safe cPanel production deployment
+
+BusinessOS marketing website stays on its existing cPanel host (not the
+development VPS). The production checkout is
+`/home/businessos/businessos-site` and the live public folder is
+`/home/businessos/public_html`.
+
+The deployment script uses SQLite `VACUUM INTO` to take a consistent private
+backup of the existing database, copies the production `.env` and live
+web entry files to `/home/businessos/deployment-backups/`, safely fast-forwards
+`main`, installs production dependencies, runs *only pending migrations*,
+refreshes Laravel caches and copies static assets. It **never** reseeds,
+resets or truncates existing data, and never overwrites
+`public_html/index.php` or `public_html/.htaccess`.
+
+Using an authorized BusinessOS cPanel SSH session, run:
+
+```bash
+cd /home/businessos/businessos-site
+git pull --ff-only origin main
+bash scripts/deploy-businessos-analytics.sh
+```
+
+If the SQLite database is not present at the expected path or tracked working
+files are dirty, the script refuses to deploy. Do not bypass that safeguard:
+confirm the actual DB configuration and production state first.
+
 ## Inquiry capture
 
 Contact, sales and demo requests are stored in the `inquiries` table before any future email or CRM integration. This avoids depending on an invented or unconfigured recipient address and gives the later admin/CMS batch a reliable source of leads.
