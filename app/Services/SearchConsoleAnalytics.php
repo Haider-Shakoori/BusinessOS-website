@@ -125,7 +125,7 @@ class SearchConsoleAnalytics
         }
 
         $response = Http::asForm()->acceptJson()->timeout(10)->post('https://oauth2.googleapis.com/token', [
-            'grant_type' => 'urn:ietf:params:oauth:grant_type:jwt-bearer',
+            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
             'assertion' => $unsigned.'.'.rtrim(strtr(base64_encode($signature), '+/', '-_'), '='),
         ]);
 
