@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\PageVisit;
+use App\Services\AcquisitionAttribution;
 use App\Services\CountryResolver;
 use App\Services\TrafficClassifier;
 use Closure;
@@ -16,6 +17,7 @@ class TrackPageView
     public function __construct(
         private readonly CountryResolver $countryResolver,
         private readonly TrafficClassifier $trafficClassifier,
+        private readonly AcquisitionAttribution $acquisitionAttribution,
     ) {}
 
     public function handle(Request $request, Closure $next): Response
@@ -36,6 +38,7 @@ class TrackPageView
         }
 
         $countryCode = $this->countryCode($request);
+        $acquisition = $this->acquisitionAttribution->fromRequest($request);
 
         try {
             PageVisit::create([
@@ -44,6 +47,8 @@ class TrackPageView
                 'route_name' => Str::limit((string) optional($request->route())->getName(), 120, '') ?: null,
                 'country_code' => $countryCode,
                 'referrer_host' => $this->referrerHost($request),
+                'campaign_source' => $acquisition['campaign_source'],
+                'search_keyword' => $acquisition['search_keyword'],
                 'user_agent_family' => $this->userAgentFamily($request),
                 'device_type' => $this->deviceType($request),
                 'traffic_type' => $traffic['type'],
