@@ -12,7 +12,7 @@
     </div>
     <div style="display:grid;gap:9px;justify-items:end">
         <nav class="range-switch" aria-label="Analytics date range">
-            @foreach ([7, 30, 90] as $range)
+            @foreach ([7, 30, 90, 365] as $range)
                 <a class="{{ $days === $range ? 'active' : '' }}" href="{{ route('admin.analytics', ['days' => $range]) }}">{{ $range }}d</a>
             @endforeach
         </nav>
@@ -32,6 +32,83 @@
 </div>
 
 @include('admin.analytics.ga4')
+
+<div class="admin-panel-grid analytics-bottom">
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>ORGANIC GOOGLE SEARCH</span><h2>Keyword-based search impressions</h2></div></div>
+        @if (($searchConsole['status'] ?? '') === 'ready')
+            <p class="admin-panel-copy">Actual Google Search result impressions and clicks, grouped by known keyword ({{ $searchConsole['start'] }} to {{ $searchConsole['end'] }}). These are not page views; private or anonymized Google queries may be omitted.</p>
+            <div class="analytics-table">
+                <div class="analytics-table-head"><span>Search keyword</span><span>Impressions</span><span>Clicks</span></div>
+                @forelse ($searchConsole['keywords'] as $keyword)
+                    <div>
+                        <span title="{{ $keyword['keyword'] }}">{{ $keyword['keyword'] }}</span>
+                        <b>{{ number_format($keyword['impressions']) }}</b>
+                        <b title="CTR: {{ $keyword['ctr'] }}% — average position: {{ $keyword['position'] }}">{{ number_format($keyword['clicks']) }}</b>
+                    </div>
+                @empty
+                    <p class="analytics-empty">No identifiable Google Search queries found in this period.</p>
+                @endforelse
+            </div>
+        @else
+            <p class="admin-panel-copy">To retrieve current and historical Google Search impressions, connect the verified Search Console property using <code>SEARCH_CONSOLE_SITE_URL</code> and a service account with Search Console access. The first-party visit data below remains available without this connection.</p>
+            @if (($searchConsole['status'] ?? '') === 'unavailable')
+                <p class="analytics-empty">Google Search Console is temporarily unavailable or its credentials lack access.</p>
+            @endif
+        @endif
+    </section>
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>GOOGLE SEARCH DISCOVERY</span><h2>Which keyword showed which page</h2></div></div>
+        <p class="admin-panel-copy">Search engine: Google. Impression counts are aggregated per keyword and destination page, not tied to an identifiable website visitor.</p>
+        @if (($searchConsole['status'] ?? '') === 'ready')
+            <div class="analytics-table">
+                <div class="analytics-table-head"><span>Keyword / landing page</span><span>Impressions</span><span>Clicks</span></div>
+                @forelse ($searchConsole['keyword_pages'] as $row)
+                    <div>
+                        <span title="{{ $row['page'] }}">{{ $row['keyword'] }}<small style="display:block;overflow-wrap:anywhere;opacity:.7">{{ $row['page'] }}</small></span>
+                        <b>{{ number_format($row['impressions']) }}</b>
+                        <b>{{ number_format($row['clicks']) }}</b>
+                    </div>
+                @empty
+                    <p class="analytics-empty">No identifiable keyword-to-page pairs found in this period.</p>
+                @endforelse
+            </div>
+        @else
+            <p class="analytics-empty">Available after the Google Search Console connection is configured.</p>
+        @endif
+    </section>
+</div>
+
+<div class="admin-panel-grid analytics-bottom">
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>FIRST-PARTY ATTRIBUTION</span><h2>Referral sources and their keywords</h2></div></div>
+        <p class="admin-panel-copy">Recorded page views by source and known referral / campaign keyword, including previously stored source domains. Unclassified historical traffic is marked separately and is not added to human-only visitor totals. Page views here are not search-result impressions.</p>
+        <div class="analytics-table">
+            <div class="analytics-table-head"><span>Source / keyword</span><span>Visitors</span><span>Views</span></div>
+            @forelse ($acquisitionSources as $source)
+                <div>
+                    <span>{{ $source->source }}<small style="display:block;overflow-wrap:anywhere;opacity:.7">Keyword: {{ $source->keyword }}{{ $source->traffic_type === 'legacy' ? ' · Historical / unclassified' : '' }}</small></span>
+                    <b>{{ number_format($source->visitors) }}</b>
+                    <b>{{ number_format($source->views) }}</b>
+                </div>
+            @empty
+                <p class="analytics-empty">No referral sources have been recorded in this period.</p>
+            @endforelse
+        </div>
+    </section>
+    <section class="admin-panel">
+        <div class="admin-panel-head"><div><span>KNOWN SEARCH / CAMPAIGN TERMS</span><h2>Keyword-attributed website views</h2></div></div>
+        <p class="admin-panel-copy">Terms provided by campaign tags or visible search-referrer query parameters. Google, Bing and other search engines usually hide organic visitor keywords; unknown values are never guessed.</p>
+        <div class="analytics-table">
+            <div class="analytics-table-head"><span>Keyword</span><span>Visitors</span><span>Views</span></div>
+            @forelse ($keywordViews as $keyword)
+                <div><span>{{ $keyword->keyword }}</span><b>{{ number_format($keyword->visitors) }}</b><b>{{ number_format($keyword->views) }}</b></div>
+            @empty
+                <p class="analytics-empty">No request-level keywords were supplied in this period. Historical referral domains remain available to the left.</p>
+            @endforelse
+        </div>
+    </section>
+</div>
 
 <div class="admin-metric-grid analytics-metrics">
     <article><span>HUMAN PAGE VIEWS</span><strong>{{ number_format($allVisits) }}</strong><small>Automated traffic excluded</small></article>
@@ -221,6 +298,6 @@
 
 <div class="analytics-note">
     <strong>How to read these numbers</strong>
-    <p>Human visitors are anonymous browser IDs, not verified people. Search / Google crawlers, AI / LLM crawlers, scanners and scripted clients are classified separately and never contribute to the human KPIs. Country uses trusted host/CDN signals when available and otherwise resolves the request IP locally against DB-IP Country Lite; raw visitor IP addresses are never stored or sent to an external geolocation API. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
+    <p>Human visitors are anonymous browser IDs, not verified people. Referral source and explicit campaign/search terms are captured for future visits; old saved referral hosts are included without inventing missing keywords. Google Search Console impressions are separate search-result metrics and can cover earlier periods when authorized. Search / Google crawlers, AI / LLM crawlers, scanners and scripted clients are classified separately and never contribute to the human KPIs. Country uses trusted host/CDN signals when available and otherwise resolves the request IP locally against DB-IP Country Lite; raw visitor IP addresses are never stored or sent to an external geolocation API. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>. Use “Exclude my browser” above to remove your own browser history and stop future public-page visits from affecting the report.</p>
 </div>
 @endsection

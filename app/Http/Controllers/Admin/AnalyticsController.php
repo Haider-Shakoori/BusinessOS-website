@@ -8,6 +8,7 @@ use App\Models\Inquiry;
 use App\Models\PageVisit;
 use App\Models\Product;
 use App\Services\GoogleAnalytics;
+use App\Services\SearchConsoleAnalytics;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -38,7 +39,7 @@ class AnalyticsController extends Controller
 
     public function index(Request $request): View
     {
-        $days = in_array((int) $request->integer('days', 30), [7, 30, 90], true)
+        $days = in_array((int) $request->integer('days', 30), [7, 30, 90, 365], true)
             ? (int) $request->integer('days', 30)
             : 30;
 
@@ -120,6 +121,26 @@ class AnalyticsController extends Controller
             ->limit(8)
             ->get();
 
+        // Historical rows retain their original referrer_host even though older
+        // requests did not record search terms or human/bot classification.
+        // Keep legacy attribution visible without relabeling it human traffic.
+        $acquisitionBase = (clone $base)->whereIn('traffic_type', ['human', 'legacy']);
+        $acquisitionSources = (clone $acquisitionBase)
+            ->selectRaw("COALESCE(NULLIF(campaign_source, ''), NULLIF(referrer_host, ''), 'Direct / unknown') as source, COALESCE(NULLIF(search_keyword, ''), 'Not provided') as keyword, traffic_type, COUNT(*) as views, COUNT(DISTINCT visitor_id) as visitors")
+            ->groupBy('source', 'keyword', 'traffic_type')
+            ->orderByDesc('views')
+            ->limit(40)
+            ->get();
+
+        $keywordViews = (clone $acquisitionBase)
+            ->whereNotNull('search_keyword')
+            ->where('search_keyword', '!=', '')
+            ->selectRaw('search_keyword as keyword, COUNT(*) as views, COUNT(DISTINCT visitor_id) as visitors')
+            ->groupBy('search_keyword')
+            ->orderByDesc('views')
+            ->limit(20)
+            ->get();
+
         $directVisits = (clone $humanBase)
             ->where(function ($query): void {
                 $query->whereNull('referrer_host')->orWhere('referrer_host', '');
@@ -174,6 +195,7 @@ class AnalyticsController extends Controller
         return view('admin.analytics.index', [
             'days' => $days,
             'ga4' => app(GoogleAnalytics::class)->report($days),
+            'searchConsole' => app(SearchConsoleAnalytics::class)->report($days),
             'start' => $start,
             'allVisits' => $allVisits,
             'uniqueVisits' => $uniqueVisits,
@@ -188,6 +210,8 @@ class AnalyticsController extends Controller
             'topPages' => $topPages,
             'daily' => $daily,
             'topReferrers' => $topReferrers,
+            'acquisitionSources' => $acquisitionSources,
+            'keywordViews' => $keywordViews,
             'directVisits' => $directVisits,
             'browsers' => $browsers,
             'devices' => $devices,

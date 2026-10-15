@@ -99,6 +99,43 @@ the site's Content Security Policy with Google Analytics script and collection h
 Do not commit service-account credentials, install arbitrary visitor-country headers as
 trusted geolocation, or assume GA4 referrals show every AI recommendation.
 
+## Keyword and referral attribution
+
+The admin website analytics screen now provides two different metrics that should
+never be confused:
+
+- **Search result impressions**: actual Google organic search impressions, clicks,
+  CTR and average position by query and landing page, queried from Search Console.
+- **First-party page views**: the existing anonymous visit log, grouped by referring
+  domain / campaign source and a supplied search keyword or campaign UTM term.
+
+Historical visit rows retain their existing `referrer_host`, which is used at
+report time after migration. Old visits are **never deleted or relabeled** to
+manufacture keywords. Historical visits collected before bot classification are
+shown as *Historical / unclassified* in acquisition reports, not included in the
+human-only KPIs. Unknown search terms display *Not provided*. New requests can
+capture a keyword from `utm_term` or recognized search engines' visible query
+parameter; organic search usually does not provide individual keywords.
+
+To enable Search Console reports, verify the property at Google Search Console,
+enable the Google Search Console API in Google Cloud, and grant the service account
+**Full** or **Restricted** access to the property. Configure
+`SEARCH_CONSOLE_SITE_URL=sc-domain:businessos.af` (or the **exact** URL prefix).
+Set `SEARCH_CONSOLE_CREDENTIALS_PATH` to an untracked service-account JSON file
+outside `public/`, or reuse your existing `GA4_CREDENTIALS_PATH` when the
+same service account has access to both properties. Run:
+
+```bash
+php artisan migrate --force
+php artisan config:cache
+```
+
+The new nullable columns preserve all existing visits. Search Console may return
+up to about 16 months of historical data depending on Google's retention and
+privacy suppression, whereas the local visit table follows the configured
+retention schedule (default 400 days). The analytics page has 7, 30, 90, and
+365-day views. No historical keywords are inferred from aggregate GSC queries.
+
 ## Inquiry capture
 
 Contact, sales and demo requests are stored in the `inquiries` table before any future email or CRM integration. This avoids depending on an invented or unconfigured recipient address and gives the later admin/CMS batch a reliable source of leads.

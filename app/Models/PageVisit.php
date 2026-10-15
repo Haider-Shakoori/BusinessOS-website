@@ -14,6 +14,8 @@ class PageVisit extends Model
         'route_name',
         'country_code',
         'referrer_host',
+        'campaign_source',
+        'search_keyword',
         'user_agent_family',
         'device_type',
         'traffic_type',

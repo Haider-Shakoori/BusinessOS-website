@@ -12,7 +12,7 @@ class GoogleAnalytics
 {
     public function report(int $days = 30): array
     {
-        $days = in_array($days, [7, 30, 90], true) ? $days : 30;
+        $days = in_array($days, [7, 30, 90, 365], true) ? $days : 30;
         $property = (string) config('ga4.property_id', '');
         $path = (string) config('ga4.credentials_path', '');
 
